@@ -1,2 +1,2 @@
 # Human-vs-Gradient-Descent-for-WC-Predictions
-In 8 hours I want to see if I can build an analytical model that would be better at predicting world cup winners than a deep neural net. 
+A comparison of a linear regression fit of features to a neural network for parameter estimation for the dixon-coles model of predicting football match outcomes. 
