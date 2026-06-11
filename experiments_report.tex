@@ -1,0 +1,219 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\title{World Cup Prediction: Human (Linear Dixon--Coles) vs.\ Gradient Descent (MLP)}
+\author{Experiment harness}
+\date{\today}
+\begin{document}
+\maketitle
+\section{Setup}
+Leak-safe split by match date: TRAIN $<$ 2024-01-01, VALIDATION 2024-01-01 to 2025-10-01 (all model and hyperparameter selection), TEST $\geq$ 2025-10-01 (end of 2025 + the 2026 World Cup; scored once). Metric of record is the Ranked Probability Score (RPS) over the ordinal home/draw/away outcome (lower is better); we also report multiclass log-loss, Brier score, and argmax accuracy. A temporal exponential decay ($\lambda=0.001$) weights recent matches more and is applied to both models.
+
+\section*{Experiment 1: Isolation and convergence (validation)}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Base rate & - & 0.2246 & 1.0602 & 0.6398 & 0.467 \\
+Linear (alpha=0) & full feats & 0.1889 & 0.9549 & 0.5643 & 0.545 \\
+\textbf{MLP (weights, long)} & \textbf{w128 d2 do0.2 lr1e-3 | best@11/411} & \textbf{0.1874} & \textbf{0.9456} & \textbf{0.5620} & \textbf{0.551} \\
+\bottomrule
+\end{tabular}}
+\caption{Experiment 1: Isolation and convergence (validation)}
+\end{table}
+
+\section*{Experiment 3: Linear ridge $\alpha$ sweep (validation)}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Linear & alpha=0 & 0.1882 & 0.9520 & 0.5628 & 0.545 \\
+\textbf{Linear} & \textbf{alpha=10} & \textbf{0.1880} & \textbf{0.9509} & \textbf{0.5624} & \textbf{0.542} \\
+Linear & alpha=100 & 0.1884 & 0.9520 & 0.5634 & 0.542 \\
+Linear & alpha=1000 & 0.1892 & 0.9540 & 0.5655 & 0.542 \\
+Linear & alpha=10000 & 0.2016 & 0.9936 & 0.5923 & 0.500 \\
+\bottomrule
+\end{tabular}}
+\caption{Experiment 3: Linear ridge $\alpha$ sweep (validation)}
+\end{table}
+
+\section*{Experiment 4: Reduced 10-feature set (validation)}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Linear (alpha=10) & 10 feats & 0.1890 & 0.9573 & 0.5641 & 0.536 \\
+\textbf{MLP (best cfg)} & \textbf{10 feats} & \textbf{0.1888} & \textbf{0.9513} & \textbf{0.5646} & \textbf{0.548} \\
+\bottomrule
+\end{tabular}}
+\caption{Experiment 4: Reduced 10-feature set (validation)}
+\end{table}
+
+\section*{Experiment 5: Friendlies removed from train + val (validation)}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Linear (alpha=10) & no friendlies (n\_tr=1933) & 0.1921 & 0.9815 & 0.5820 & 0.524 \\
+\textbf{MLP (best cfg)} & \textbf{no friendlies (n\_tr=1933)} & \textbf{0.1893} & \textbf{0.9697} & \textbf{0.5786} & \textbf{0.536} \\
+\bottomrule
+\end{tabular}}
+\caption{Experiment 5: Friendlies removed from train + val (validation)}
+\end{table}
+
+\section*{Experiment 6: ELO scale / K-factor sensitivity (validation)}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Linear (alpha=10) & elo div=800 k=tourn (baseline) & 0.1886 & 0.9533 & 0.5637 & 0.545 \\
+MLP (best cfg) & elo div=800 k=tourn (baseline) & 0.1866 & 0.9448 & 0.5603 & 0.551 \\
+Linear (alpha=10) & elo div=200 k=50 & 0.1885 & 0.9519 & 0.5639 & 0.542 \\
+MLP (best cfg) & elo div=200 k=50 & 0.1870 & 0.9463 & 0.5618 & 0.548 \\
+Linear (alpha=10) & elo div=1600 k=50 & 0.1875 & 0.9498 & 0.5614 & 0.539 \\
+\textbf{MLP (best cfg)} & \textbf{elo div=1600 k=50} & \textbf{0.1860} & \textbf{0.9432} & \textbf{0.5592} & \textbf{0.551} \\
+\bottomrule
+\end{tabular}}
+\caption{Experiment 6: ELO scale / K-factor sensitivity (validation)}
+\end{table}
+
+\section*{Final held-out TEST set (end 2025 + 2026), scored once}
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+Base rate & - & 0.2234 & 1.0658 & 0.6437 & 0.457 \\
+Linear (alpha=10) & full feats & 0.1762 & 0.9143 & 0.5449 & 0.556 \\
+\textbf{MLP (best cfg)} & \textbf{\{'lr': 0.0005, 'depth': 3, 'width': 256, 'dropout': 0.0, 'grad\_clip': 5.0\}} & \textbf{0.1756} & \textbf{0.9170} & \textbf{0.5444} & \textbf{0.564} \\
+\bottomrule
+\end{tabular}}
+\caption{Final held-out TEST set (end 2025 + 2026), scored once}
+\end{table}
+
+\section*{Experiment 2: MLP hyperparameter sweep (validation)}
+Best 12 of 55 configurations by validation RPS. Across the whole grid RPS spanned only 0.1866--0.1900, i.e.\ architecture had little effect.
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}llrrrr@{}}
+\toprule
+Model & Config & RPS & LogLoss & Brier & Acc \\
+\midrule
+\textbf{MLP} & \textbf{lr0.0005 d3 w256 do0.0} & \textbf{0.1866} & \textbf{0.9448} & \textbf{0.5603} & \textbf{0.551} \\
+MLP (best, clip OFF) & lr0.0005 d3 w256 do0.0 & 0.1866 & 0.9448 & 0.5603 & 0.551 \\
+MLP & lr0.003 d3 w64 do0.0 & 0.1867 & 0.9436 & 0.5600 & 0.557 \\
+MLP & lr0.0005 d2 w128 do0.2 & 0.1869 & 0.9440 & 0.5607 & 0.563 \\
+MLP & lr0.0005 d2 w128 do0.0 & 0.1870 & 0.9445 & 0.5612 & 0.554 \\
+MLP & lr0.003 d2 w128 do0.0 & 0.1871 & 0.9447 & 0.5614 & 0.557 \\
+MLP & lr0.001 d3 w256 do0.2 & 0.1871 & 0.9462 & 0.5615 & 0.563 \\
+MLP & lr0.001 d2 w128 do0.0 & 0.1871 & 0.9440 & 0.5609 & 0.548 \\
+MLP & lr0.003 d2 w128 do0.2 & 0.1871 & 0.9437 & 0.5611 & 0.551 \\
+MLP & lr0.001 d3 w64 do0.2 & 0.1872 & 0.9461 & 0.5613 & 0.557 \\
+MLP & lr0.0005 d3 w128 do0.0 & 0.1874 & 0.9472 & 0.5624 & 0.554 \\
+MLP & lr0.003 d3 w64 do0.2 & 0.1874 & 0.9460 & 0.5615 & 0.557 \\
+\bottomrule
+\end{tabular}}
+\caption{MLP sweep: best 12 configurations by RPS}
+\end{table}
+
+\section*{World Cup 2026 Monte Carlo simulation}
+Each model's predicted goal expectations drive 10{,}000 simulated tournaments (group stage, best-eight third places, full knockout bracket from openfootball/worldcup.json). Matches are treated as neutral by averaging both home/away orientations. Knockout ties (penalty shootouts) are resolved by a coin flip weighted by the teams' goalkeeper ratings, $P(A) = \mathrm{gk}_A/(\mathrm{gk}_A+\mathrm{gk}_B)$.
+\begin{table}[h!]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Team & Champ (Lin) & Champ (MLP) & Champ (Ens) & Final (Lin) & Final (MLP) \\
+\midrule
+Germany & 7.6\% & 22.4\% & 15.0\% & 13.3\% & 32.9\% \\
+Spain & 14.0\% & 15.4\% & 14.7\% & 22.2\% & 21.7\% \\
+France & 10.8\% & 3.2\% & 7.0\% & 18.0\% & 7.5\% \\
+England & 7.6\% & 6.0\% & 6.8\% & 14.1\% & 12.3\% \\
+Netherlands & 6.0\% & 6.3\% & 6.1\% & 10.8\% & 12.0\% \\
+Brazil & 7.4\% & 4.8\% & 6.1\% & 13.7\% & 11.3\% \\
+Argentina & 8.6\% & 1.2\% & 4.9\% & 15.5\% & 3.1\% \\
+Belgium & 5.7\% & 3.5\% & 4.6\% & 10.9\% & 7.3\% \\
+Portugal & 6.6\% & 2.1\% & 4.3\% & 12.7\% & 4.8\% \\
+Uruguay & 1.5\% & 5.0\% & 3.2\% & 3.6\% & 11.0\% \\
+Switzerland & 2.0\% & 2.9\% & 2.5\% & 5.6\% & 6.7\% \\
+Morocco & 3.6\% & 0.7\% & 2.1\% & 7.6\% & 2.0\% \\
+Iran & 0.3\% & 3.2\% & 1.8\% & 1.1\% & 6.5\% \\
+USA & 1.3\% & 2.1\% & 1.7\% & 3.3\% & 4.7\% \\
+Egypt & 0.2\% & 3.0\% & 1.6\% & 0.8\% & 6.5\% \\
+Uzbekistan & 0.1\% & 3.0\% & 1.6\% & 0.5\% & 6.2\% \\
+Croatia & 2.2\% & 0.9\% & 1.5\% & 4.9\% & 3.1\% \\
+Colombia & 1.9\% & 1.0\% & 1.5\% & 4.6\% & 3.5\% \\
+Jordan & 0.2\% & 2.7\% & 1.4\% & 0.6\% & 4.7\% \\
+Sweden & 0.3\% & 2.1\% & 1.2\% & 1.2\% & 4.8\% \\
+Turkey & 1.5\% & 0.5\% & 1.0\% & 3.6\% & 2.1\% \\
+Senegal & 1.6\% & 0.4\% & 0.9\% & 4.0\% & 1.3\% \\
+Norway & 1.0\% & 0.9\% & 0.9\% & 2.8\% & 2.7\% \\
+Japan & 1.3\% & 0.6\% & 0.9\% & 3.5\% & 1.9\% \\
+\bottomrule
+\end{tabular}}
+\caption{World Cup 2026 Monte Carlo (10{,}000 sims): championship probabilities for the linear model, the MLP, and their ensemble (average), plus reach-final probabilities; top 24 by ensemble. Shootouts resolved by goalkeeper rating.}
+\end{table}
+
+\subsection*{Shootout-resolution sensitivity (GK vs.\ strength)}
+We compare resolving knockout draws by goalkeeper rating against the simpler overall-strength ($\lambda$) rule. The effect on championship odds is small, since shootouts decide only a minority of knockout games.
+\begin{table}[h!]
+\centering
+\resizebox{0.85\textwidth}{!}{%
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+& \multicolumn{3}{c}{Linear} & \multicolumn{3}{c}{MLP} \\
+Team & GK & $\lambda$ & $\Delta$ & GK & $\lambda$ & $\Delta$ \\
+\midrule
+Spain & 14.0\% & 15.9\% & -2.0 & 15.4\% & 20.6\% & -5.2 \\
+France & 10.8\% & 12.1\% & -1.3 & 3.2\% & 2.7\% & +0.5 \\
+Argentina & 8.6\% & 9.1\% & -0.5 & 1.2\% & 0.6\% & +0.6 \\
+England & 7.6\% & 8.3\% & -0.7 & 6.0\% & 5.7\% & +0.3 \\
+Germany & 7.6\% & 7.9\% & -0.3 & 22.4\% & 26.9\% & -4.5 \\
+Brazil & 7.4\% & 7.8\% & -0.4 & 4.8\% & 3.9\% & +0.9 \\
+Portugal & 6.6\% & 6.9\% & -0.3 & 2.1\% & 1.2\% & +0.9 \\
+Netherlands & 6.0\% & 5.9\% & +0.1 & 6.3\% & 5.5\% & +0.8 \\
+Belgium & 5.7\% & 5.1\% & +0.6 & 3.5\% & 2.7\% & +0.8 \\
+Morocco & 3.6\% & 3.2\% & +0.4 & 0.7\% & 0.4\% & +0.3 \\
+Croatia & 2.2\% & 1.9\% & +0.3 & 0.9\% & 0.4\% & +0.5 \\
+Switzerland & 2.0\% & 1.9\% & +0.1 & 2.9\% & 2.0\% & +0.9 \\
+\bottomrule
+\end{tabular}}
+\caption{Shootout-resolution sensitivity: championship probability when knockout draws are decided by goalkeeper rating (GK) vs.\ overall strength ($\lambda$). $\Delta$ in percentage points.}
+\end{table}
+
+\section*{Methodology changelog}
+Every change introduced during development, with its implementation:
+\begin{enumerate}
+\item \textbf{FIFA-year alignment fix.} Matches were keyed to squad ratings a year early. Corrected the rule to \texttt{month $\geq$ 10 $\Rightarrow$ year+1} in \texttt{prepare\_training\_data}, so each match merges with the squad of the game that was live at the time.
+\item \textbf{Linear feature standardization fixed.} Standardization had been recomputed per call and applied to the coefficients (nullifying the intercept). Now the train-set mean/std are fit once in \texttt{fit()} and reused at predict time; the intercept column is appended \emph{after} scaling. Validation log-loss fell from $3.54$ to $0.94$.
+\item \textbf{Dixon--Coles $\tau$ in the linear likelihood.} $\rho$ was inert because the linear NLL multiplied two independent Poissons. Added the low-score $\tau$ correction for the (0,0)/(1,0)/(0,1)/(1,1) cells; $\rho$ now fits to $\approx -0.05$.
+\item \textbf{MLP: mini-batches, temporal weights, early stopping.} \texttt{dixon\_coles\_loss} takes per-match weights and returns a weighted mean; the \texttt{DataLoader} carries each match's temporal-decay weight. Training early-stops on validation NLL, which removed the over-fitting that had pinned the MLP near the base rate.
+\item \textbf{Leak-safe TRAIN/VAL/TEST split.} Split by match date: TRAIN $<$2024-01-01, VAL 2024-01-01..2025-10-01 (all selection), TEST $\geq$2025-10-01 (end 2025 + the World Cup, scored once).
+\item \textbf{Linear ridge regularization.} Added an $\alpha\sum\beta^2$ penalty on the slope coefficients (not the intercepts or $\rho$) to \texttt{\_negative\_log\_likelihood}; swept five $\alpha$.
+\item \textbf{ELO scale / K-factor sensitivity.} \texttt{elo\_calculator} parameterized by logistic divisor and a fixed $K$; regenerated match features for divisor $\in\{200,800,1600\}$ with $K=50$.
+\item \textbf{Reduced feature set \& friendly stripping.} Evaluated a 10-feature subset (elo, bench avg, per-match goal difference, attack/defence squad avgs) and a variant with friendlies removed from train+val.
+\item \textbf{World Cup Monte Carlo.} 10{,}000-simulation bracket from openfootball/worldcup.json: group stage, best-eight third-place teams slotted into the R32 by a memoized backtracking matching that respects each slot's allowed groups, then the full knockout tree. Matches are neutralized by averaging both home/away orientations.
+\item \textbf{Goalkeeper-weighted shootouts.} Knockout draws are now decided by $P(A)=\mathrm{gk}_A/(\mathrm{gk}_A+\mathrm{gk}_B)$ using a per-squad \texttt{gk\_rating} (best goalkeeper overall, falling back to defence average). Previously draws were resolved by overall strength $\lambda$.
+\item \textbf{Thin-squad repair (FC26 data gaps).} Some nations have very small FC26 squads (Egypt 10 players, Iran 6, Uzbekistan 5), giving a $0$ bench average and an inflated dispersion that the MLP extrapolated to absurd odds (Egypt champion $65\%$). Fixes in \texttt{squad\_features.py}: (i) std features converted to standard error ($\mathrm{std}/\sqrt{n}$) and capped at the 85th percentile; (ii) bench average imputed for squads $\leq$20 as squad\_avg minus the mean squad-to-bench gap of full squads; (iii) \texttt{gk\_rating} extracted, with a defence-average fallback.
+\end{enumerate}
+
+\end{document}
