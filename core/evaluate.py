@@ -8,7 +8,7 @@ ordered probabilities against the actual outcome.
 """
 import numpy as np
 import torch
-from dixon_coles import dixon_coles
+from .dixon_coles import dixon_coles
 
 
 # ---------------------------------------------------------------------------

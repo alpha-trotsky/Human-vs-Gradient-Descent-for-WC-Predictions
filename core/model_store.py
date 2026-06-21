@@ -16,19 +16,26 @@ Public API:
     load_models()              -> (lin, mlp)   reconstruct both from ./models
     load_or_train(retrain=False)-> (lin, mlp)   load if present else train+save
 """
+import sys
 import pickle
 from pathlib import Path
 
 import numpy as np
 import torch
 
+# Ensure the project root is in sys.path so wc_simulation can be imported
+# whether this file is run directly or imported as core.model_store.
+_root = Path(__file__).resolve().parent.parent
+if str(_root) not in sys.path:
+    sys.path.insert(0, str(_root))
+
 from wc_simulation import (
     TRAIN_END, VAL_START, BEST_ALPHA, BEST_MLP, ELO_CSV, SQUAD_CSV,
 )
-from training import prepare_training_data, LinearRegressionDixonColes
-from experiments import FULL_FEATURES, build_X, train_mlp, FlexibleMLP
+from .training import prepare_training_data, LinearRegressionDixonColes
+from .experiments import FULL_FEATURES, build_X, train_mlp, FlexibleMLP
 
-MODEL_DIR = Path(__file__).resolve().parent / 'models'
+MODEL_DIR = _root / 'models'
 LINEAR_PATH = MODEL_DIR / 'linear_dc.pkl'
 MLP_PATH = MODEL_DIR / 'mlp_dc.pt'
 
@@ -100,7 +107,7 @@ def load_models(model_dir=MODEL_DIR):
     mlp_path = model_dir / MLP_PATH.name
     if not lin_path.exists() or not mlp_path.exists():
         raise FileNotFoundError(
-            f"Saved models not found in {model_dir}. Run: python model_store.py")
+            f"Saved models not found in {model_dir}. Run: python core/model_store.py")
 
     with open(lin_path, 'rb') as f:
         d = pickle.load(f)

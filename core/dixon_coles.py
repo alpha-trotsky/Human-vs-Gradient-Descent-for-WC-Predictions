@@ -4,7 +4,7 @@ from scipy.stats import poisson
 def dixon_coles(lambda_home, lambda_away, rho, max_goals=10):
     """W/D/L probabilities from two Poissons with the Dixon-Coles low-score correction.
     lambda_home/away come from either the linear regression or the MLP — same function for both."""
-    g = np.arange(max_goals + 1)                       
+    g = np.arange(max_goals + 1)
     M = np.outer(poisson.pmf(g, lambda_home),          # rows = home goals
                  poisson.pmf(g, lambda_away))          # cols = away goals
 

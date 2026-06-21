@@ -13,16 +13,19 @@ Best models carried over from the main sweep (selected on validation):
     Linear : ridge alpha = 100, full feature set
     MLP    : lr=0.003, depth=3, width=64, dropout=0.0, grad_clip=5.0
 """
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import time
 import pandas as pd
-from pathlib import Path
 
-from data_pipeline import build_match_features
-from training import prepare_training_data
-from experiments import (FULL_FEATURES, build_X, run_linear, run_mlp,
-                         WEIGHT_DECAY, TRAIN_END, VAL_END)
+from pipeline.data_pipeline import build_match_features
+from core.training import prepare_training_data
+from core.experiments import (FULL_FEATURES, build_X, run_linear, run_mlp,
+                               WEIGHT_DECAY, TRAIN_END, VAL_END)
 
-base_dir = Path(__file__).resolve().parent
+base_dir = Path(__file__).resolve().parent.parent
 csv_path = base_dir / 'results' / 'experiment_results.csv'
 
 BEST_ALPHA = 10.0

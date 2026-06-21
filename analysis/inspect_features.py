@@ -3,6 +3,10 @@ Inspect why the MLP rates Morocco ~ Haiti in Group C.
 Prints per-team feature vectors and each model's neutral lambdas for every
 Group C pairing, plus the MLP's input standardization stats.
 """
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import numpy as np
 np.set_printoptions(suppress=True, precision=2, linewidth=160)
 
@@ -10,8 +14,8 @@ from wc_simulation import (
     load_bracket, build_team_features, make_feat_builder, neutral_lambdas,
     TRAIN_END, VAL_START, BEST_ALPHA, BEST_MLP, ELO_CSV, SQUAD_CSV, SQUAD_COLS,
 )
-from training import prepare_training_data, LinearRegressionDixonColes
-from experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
+from core.training import prepare_training_data, LinearRegressionDixonColes
+from core.experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
 
 GROUP = 'C'
 

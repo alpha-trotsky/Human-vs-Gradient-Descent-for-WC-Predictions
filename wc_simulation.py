@@ -28,8 +28,8 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-from training import prepare_training_data, LinearRegressionDixonColes
-from experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
+from core.training import prepare_training_data, LinearRegressionDixonColes
+from core.experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
 
 base_dir = Path(__file__).resolve().parent
 WC_JSON = base_dir / 'data' / 'worldcup' / 'worldcup2026.json'

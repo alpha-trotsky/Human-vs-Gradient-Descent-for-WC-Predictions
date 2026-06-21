@@ -1,17 +1,20 @@
 """Generate report figures. Currently: the joint scoreline (two-Poisson) surface
 for a hypothetical Spain vs France match, using the fitted linear Dixon-Coles model."""
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from scipy.stats import poisson
-from pathlib import Path
 
-from training import prepare_training_data, LinearRegressionDixonColes
-from experiments import FULL_FEATURES, build_X
+from core.training import prepare_training_data, LinearRegressionDixonColes
+from core.experiments import FULL_FEATURES, build_X
 import wc_simulation as W
 
-base = Path(__file__).resolve().parent
+base = Path(__file__).resolve().parent.parent
 
 
 def main():

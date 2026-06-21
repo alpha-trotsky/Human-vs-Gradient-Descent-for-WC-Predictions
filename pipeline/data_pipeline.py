@@ -4,7 +4,7 @@ from pathlib import Path
 from scipy.stats import poisson, skellam
 
 # Resolve results file relative to this script to avoid cwd issues
-base_dir = Path(__file__).resolve().parent
+base_dir = Path(__file__).resolve().parent.parent
 results_path = base_dir / 'results' / 'results.csv'
 
 

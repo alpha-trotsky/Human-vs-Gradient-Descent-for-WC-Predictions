@@ -10,7 +10,7 @@ import pandas as pd
 from pathlib import Path
 from scipy.optimize import minimize
 from scipy.stats import poisson
-from dixon_coles import dixon_coles
+from .dixon_coles import dixon_coles
 
 # ============================================================================
 # LINEAR REGRESSION TRAINING FOR DIXON-COLES MODEL
@@ -19,14 +19,14 @@ from dixon_coles import dixon_coles
 class LinearRegressionDixonColes:
     """
     Linear regression model optimized for Dixon-Coles likelihood.
-    
+
     Two separate linear models:
     - lambda_home = beta_0_h + sum(beta_i_h * feature_i)
     - lambda_away = beta_0_a + sum(beta_i_a * feature_i)
-    
+
     Plus shared rho parameter for correlation between home/away goals.
     """
-    
+
     def __init__(self, n_features):
         """
         Args:
@@ -40,15 +40,15 @@ class LinearRegressionDixonColes:
         # Feature standardization stats, fit once on the training set in fit()
         self.feature_mean = None
         self.feature_std = None
-        
+
     def _predict_lambdas(self, X, params):
         """
         Predict lambda_home and lambda_away for each match.
-        
+
         Args:
             X: feature matrix (n_matches, n_features)
             params: parameter vector of length 2*(n_features+1)+1
-            
+
         Returns:
             lambda_home, lambda_away: arrays of shape (n_matches,)
         """
@@ -66,37 +66,37 @@ class LinearRegressionDixonColes:
 
         lambda_home = np.dot(X_with_intercept, beta_h)
         lambda_away = np.dot(X_with_intercept, beta_a)
-        
+
         # Ensure lambdas are positive (expected goals must be > 0)
         lambda_home = np.clip(lambda_home, 1e-6, 1e6)
         lambda_away = np.clip(lambda_away, 1e-6, 1e6)
-        
+
         return lambda_home, lambda_away
-    
+
     def _negative_log_likelihood(self, params, X, home_goals, away_goals, weights=None, alpha=0.0):
         """
         Calculate negative log-likelihood using Poisson distribution with optional weighting.
-        
+
         For each match, given predicted lambdas and observed scores,
         calculate P(home_goals | lambda_home) * P(away_goals | lambda_away)
         using Poisson PMF.
-        
+
         Args:
             params: parameter vector
             X: feature matrix
             home_goals: observed home goals
             away_goals: observed away goals
             weights: optional match weights for temporal decay (shape: n_matches)
-            
+
         Returns:
             negative log-likelihood (scalar)
         """
         lambda_home, lambda_away = self._predict_lambdas(X, params)
         rho = params[-1]
-        
+
         # Clip rho to valid range [-1, 1]
         rho = np.clip(rho, -0.99, 0.99)
-        
+
         # Calculate Poisson likelihoods
         p_home = poisson.pmf(home_goals, lambda_home)
         p_away = poisson.pmf(away_goals, lambda_away)
@@ -118,7 +118,7 @@ class LinearRegressionDixonColes:
 
         # Penalize if any likelihood is extremely low
         log_likelihood = np.where(log_likelihood < -10, -10, log_likelihood)
-        
+
         # Apply weights if provided (for temporal decay)
         if weights is not None:
             log_likelihood = log_likelihood * weights
@@ -134,12 +134,12 @@ class LinearRegressionDixonColes:
             nll = nll + alpha * (np.sum(beta_h_slopes ** 2) + np.sum(beta_a_slopes ** 2))
 
         return nll
-    
+
     def fit(self, X, home_goals, away_goals, weights=None, method='L-BFGS-B', max_iter=1000,
             alpha=0.0, verbose=True):
         """
         Optimize model parameters to maximize Dixon-Coles likelihood.
-        
+
         Args:
             X: feature matrix (n_matches, n_features)
             home_goals: observed home team goals
@@ -147,7 +147,7 @@ class LinearRegressionDixonColes:
             weights: optional match weights for temporal decay
             method: scipy.optimize method
             max_iter: maximum iterations
-            
+
         Returns:
             optimization result object
         """
@@ -159,10 +159,10 @@ class LinearRegressionDixonColes:
         # Initial parameter guess: small positive values
         x0 = np.random.normal(0.1, 0.01, self.n_params)
         x0[-1] = 0.0  # rho starts at 0
-        
+
         # Bounds: lambdas should be positive, rho in [-1, 1]
         bounds = [(-10, 10)] * (2 * (self.n_features + 1)) + [(-0.99, 0.99)]
-        
+
         self.alpha = alpha
         callback = None
         if verbose:
@@ -181,22 +181,22 @@ class LinearRegressionDixonColes:
 
         self.coefficients = result.x
         return result
-    
+
     def predict(self, X):
         """Predict lambdas for new matches."""
         if self.coefficients is None:
             raise ValueError("Model not trained yet")
         return self._predict_lambdas(X, self.coefficients)
-    
+
     def get_params(self):
         """Return fitted parameters as a dict."""
         if self.coefficients is None:
             raise ValueError("Model not trained yet")
-        
+
         beta_h = self.coefficients[:self.n_features + 1]
         beta_a = self.coefficients[self.n_features + 1:2 * (self.n_features + 1)]
         rho = self.coefficients[-1]
-        
+
         return {
             'beta_home': beta_h,
             'beta_away': beta_a,
@@ -210,7 +210,7 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
                           verbose=True):
     """
     Load and prepare training data for linear regression.
-    
+
     Steps:
     1. Load match results and squad features
     2. Extract FIFA year from match date (year starts Oct 10)
@@ -218,12 +218,12 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
     4. Normalize team names to match between datasets
     5. Create feature matrix combining ELO, last-10, and squad stats
     6. Compute temporal weights with exponential decay (recent matches weighted higher)
-    
+
     Args:
         results_path: path to match_results_elo.csv
         squad_features_path: path to squad_features.csv
         weight_decay: decay rate for temporal weighting (higher = faster decay to past)
-        
+
     Returns:
         X: feature matrix (n_matches, n_features)
         home_goals, away_goals: observed goals
@@ -231,26 +231,26 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
         feature_names: list of feature names
         matches_df: filtered match dataframe with predictions
     """
-    
+
     # Load data
     match_results = pd.read_csv(results_path)
     squad_features = pd.read_csv(squad_features_path)
-    
+
     # Convert date to datetime
     match_results['date'] = pd.to_datetime(match_results['date'])
-    
+
     # Extract FIFA year. A new FIFA game ships in Oct and covers Oct(Y-1)..Sep(Y),
     # so a match in Oct(Y-1) or later belongs to game-year Y.
     # E.g. 2024-10-10 to 2025-09-30 is FC25 (year=2025).
     match_results['fifa_year'] = match_results['date'].dt.year
     match_results.loc[match_results['date'].dt.month >= 10, 'fifa_year'] += 1
-    
+
     # Normalize team names for matching
     # squad_features has capitalized names, match_results might vary
     squad_features['team_normalized'] = squad_features['team'].str.lower().str.strip()
     match_results['home_team_normalized'] = match_results['home_team'].str.lower().str.strip()
     match_results['away_team_normalized'] = match_results['away_team'].str.lower().str.strip()
-    
+
     # Merge with squad features for home team
     match_results = match_results.merge(
         squad_features.rename(columns={
@@ -263,14 +263,14 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
             'bench_avg': 'home_bench_avg',
             'bench_std': 'home_bench_std',
             'year': 'squad_year_home'
-        })[['team_normalized', 'squad_year_home', 'home_squad_size', 'home_squad_avg', 
+        })[['team_normalized', 'squad_year_home', 'home_squad_size', 'home_squad_avg',
             'home_squad_std', 'home_attack_avg', 'home_midfield_avg', 'home_defence_avg',
             'home_bench_avg', 'home_bench_std']],
         left_on=['home_team_normalized', 'fifa_year'],
         right_on=['team_normalized', 'squad_year_home'],
         how='left'
     )
-    
+
     # Merge with squad features for away team
     match_results = match_results.merge(
         squad_features.rename(columns={
@@ -290,13 +290,13 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
         right_on=['team_normalized', 'squad_year_away'],
         how='left'
     )
-    
+
     # Filter: both teams must have squad_size > 11
     match_results = match_results[
-        (match_results['home_squad_size'] > 11) & 
+        (match_results['home_squad_size'] > 11) &
         (match_results['away_squad_size'] > 11)
     ].copy()
-    
+
     # Drop rows with NaN in critical features
     critical_cols = ['home_squad_avg', 'away_squad_avg', 'home_elo', 'away_elo',
                      'home_scored_last10', 'away_scored_last10']
@@ -325,7 +325,7 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
     days_since = (latest_date - match_results['date']).dt.days
     weights = np.exp(-weight_decay * days_since)
     weights = weights / weights.sum() * len(weights)  # Normalize so average weight = 1
-    
+
     # Build feature matrix
     feature_cols = [
         'home_elo', 'away_elo',
@@ -335,15 +335,15 @@ def prepare_training_data(results_path, squad_features_path, weight_decay=0.001,
         'away_squad_avg', 'away_squad_std', 'away_attack_avg', 'away_midfield_avg', 'away_defence_avg',
         'away_bench_avg', 'away_bench_std'
     ]
-    
+
     # Fill any remaining NaNs (e.g., bench_std for small squads) with 0
     for col in feature_cols:
         match_results[col] = match_results[col].fillna(0)
-    
+
     X = match_results[feature_cols].values
     home_goals = match_results['home_score'].values.astype(float)
     away_goals = match_results['away_score'].values.astype(float)
-    
+
     # Check for NaN values — drop from BOTH the arrays and the returned dataframe
     nan_goals = np.isnan(home_goals) | np.isnan(away_goals)
     if nan_goals.any():
@@ -417,7 +417,7 @@ def train_linear_regression(X, home_goals, away_goals, weights, feature_names):
 class MLPDixonColes(nn.Module):
     """
     Neural network that predicts lambda_home, lambda_away, and rho.
-    
+
     Output:
     - lambda_home, lambda_away: expected goals (must be > 0)
     - rho: correlation parameter for Dixon-Coles model
@@ -439,12 +439,12 @@ class MLPDixonColes(nn.Module):
         out = self.fc2(out)
         out = self.dropout(self.relu2(out))
         out = self.fc3(out)
-        
+
         # Separate output
         lambda_home = self.softplus(out[:, 0]) + 0.1  # Add 0.1 for numerical stability
         lambda_away = self.softplus(out[:, 1]) + 0.1
         rho = self.tanh(out[:, 2])  # Constrained to [-1, 1]
-        
+
         return lambda_home, lambda_away, rho
 
 
@@ -465,39 +465,39 @@ def dixon_coles_loss(lambda_home, lambda_away, rho, home_goals, away_goals, weig
     lambda_home = torch.clamp(lambda_home, min=0.01, max=100)
     lambda_away = torch.clamp(lambda_away, min=0.01, max=100)
     rho = torch.clamp(rho, min=-0.99, max=0.99)
-    
+
     # Poisson log-likelihood: log(e^(-lambda) * lambda^k / k!)
     # Using log-space: -lambda + k*log(lambda) - log(k!)
     log_pmf_h = home_goals * torch.log(lambda_home) - lambda_home
     log_pmf_a = away_goals * torch.log(lambda_away) - lambda_away
-    
+
     # Clamp to avoid -inf
     log_pmf_h = torch.clamp(log_pmf_h, min=-50)
     log_pmf_a = torch.clamp(log_pmf_a, min=-50)
-    
+
     # Dixon-Coles low-score correction (tau factors)
     # Start with tau = 1 for all matches
     tau = torch.ones_like(rho)
-    
+
     # For (0,0): tau = 1 - lambda_h * lambda_a * rho
     mask_0_0 = (home_goals == 0) & (away_goals == 0)
     tau[mask_0_0] = torch.clamp(1 - lambda_home[mask_0_0] * lambda_away[mask_0_0] * rho[mask_0_0], min=0.01, max=10)
-    
+
     # For (0,1): tau = 1 + lambda_h * rho
     mask_0_1 = (home_goals == 0) & (away_goals == 1)
     tau[mask_0_1] = torch.clamp(1 + lambda_home[mask_0_1] * rho[mask_0_1], min=0.01, max=10)
-    
+
     # For (1,0): tau = 1 + lambda_a * rho
     mask_1_0 = (home_goals == 1) & (away_goals == 0)
     tau[mask_1_0] = torch.clamp(1 + lambda_away[mask_1_0] * rho[mask_1_0], min=0.01, max=10)
-    
+
     # For (1,1): tau = 1 - rho
     mask_1_1 = (home_goals == 1) & (away_goals == 1)
     tau[mask_1_1] = torch.clamp(1 - rho[mask_1_1], min=0.01, max=10)
-    
+
     # Combined log-likelihood with Dixon-Coles correction
     log_likelihood = log_pmf_h + log_pmf_a + torch.log(tau)
-    
+
     # Clamp to avoid extreme values
     log_likelihood = torch.clamp(log_likelihood, min=-50, max=10)
 
@@ -594,9 +594,11 @@ def train_mlp_dixon_coles(X_train, home_goals, away_goals, weights=None, hidden_
 # ============================================================================
 
 if __name__ == "__main__":
-    from evaluate import evaluate_models
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from core.evaluate import evaluate_models
 
-    base_dir = Path(__file__).resolve().parent
+    base_dir = Path(__file__).resolve().parent.parent
     results_path = base_dir / 'results' / 'match_results_elo.csv'
     squad_features_path = base_dir / 'results' / 'squad_features.csv'
 
@@ -641,4 +643,3 @@ if __name__ == "__main__":
     print(f"Train: {len(X_tr)} matches (<= {SPLIT_YEAR - 1})   "
           f"Validation: {len(X_val)} matches (>= {SPLIT_YEAR})")
     print(f"MLP final training loss: {loss_history[-1]:.4f}")
-

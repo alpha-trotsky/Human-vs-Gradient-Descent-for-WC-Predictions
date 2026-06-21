@@ -29,11 +29,11 @@ import torch.optim as optim
 from pathlib import Path
 from torch.utils.data import TensorDataset, DataLoader
 
-from training import prepare_training_data, LinearRegressionDixonColes, dixon_coles_loss
-from evaluate import (outcome_probs_from_lambdas, actual_outcomes, predict_linear, predict_mlp,
-                      ranked_probability_score, log_loss, brier_score, accuracy, base_rate_probs)
+from .training import prepare_training_data, LinearRegressionDixonColes, dixon_coles_loss
+from .evaluate import (outcome_probs_from_lambdas, actual_outcomes, predict_linear, predict_mlp,
+                       ranked_probability_score, log_loss, brier_score, accuracy, base_rate_probs)
 
-base_dir = Path(__file__).resolve().parent
+base_dir = Path(__file__).resolve().parent.parent
 results_path = base_dir / 'results' / 'match_results_elo.csv'
 squad_path = base_dir / 'results' / 'squad_features.csv'
 

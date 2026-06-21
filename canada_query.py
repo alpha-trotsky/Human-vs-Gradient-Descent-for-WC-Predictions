@@ -22,8 +22,8 @@ from wc_simulation import (
     load_bracket, build_team_features, make_feat_builder, neutral_lambdas,
     TRAIN_END, VAL_START, BEST_ALPHA, BEST_MLP, ELO_CSV, SQUAD_CSV,
 )
-from training import prepare_training_data, LinearRegressionDixonColes
-from experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
+from core.training import prepare_training_data, LinearRegressionDixonColes
+from core.experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
 
 # ---------------------------------------------------------------------------
 # Args:  python canada_query.py "Team A" "Team B" [--no-plot]
@@ -87,7 +87,7 @@ def odds(p):
 # Load the same two models the WC simulation uses (train + cache on first run,
 # reload from ./models afterwards). Pass --retrain to force a fresh fit.
 # ---------------------------------------------------------------------------
-from model_store import load_or_train
+from core.model_store import load_or_train
 RETRAIN = '--retrain' in sys.argv
 lin, mlp = load_or_train(retrain=RETRAIN)
 
@@ -160,7 +160,7 @@ for name, key in rows:
     print(f"  {name:32}{cells}")
 
 # ===========================================================================
-# 3D joint-scoreline surface (ensemble)
+# 3D joint-scoreline surface (linear)
 # ===========================================================================
 if MAKE_PLOT:
     import matplotlib
@@ -168,7 +168,7 @@ if MAKE_PLOT:
     import matplotlib.pyplot as plt
     from pathlib import Path
 
-    P = mats['ensemble'][:PLOT_GOALS, :PLOT_GOALS]
+    P = mats['linear'][:PLOT_GOALS, :PLOT_GOALS]
     g = np.arange(PLOT_GOALS)
     fig = plt.figure(figsize=(8, 6))
     ax = fig.add_subplot(111, projection='3d')
@@ -180,9 +180,8 @@ if MAKE_PLOT:
     ax.set_xlabel(f'{TEAM_A} goals'); ax.set_ylabel(f'{TEAM_B} goals'); ax.set_zlabel('P(scoreline)')
     ax.set_xticks(g); ax.set_yticks(g)
     la, lb = lams['linear']
-    le, be = lams['mlp']
-    ax.set_title(f'Joint scoreline distribution (ensemble): {TEAM_A} vs {TEAM_B}\n'
-                 rf'$\lambda_{{lin}}$=({la:.2f}, {lb:.2f})  $\lambda_{{mlp}}$=({le:.2f}, {be:.2f})')
+    ax.set_title(f'Joint scoreline distribution (linear): {TEAM_A} vs {TEAM_B}\n'
+                 rf'$\lambda_{{lin}}$=({la:.2f}, {lb:.2f})')
     ax.view_init(elev=28, azim=-58)
     plt.tight_layout()
     fname = f"{TEAM_A}_vs_{TEAM_B}.png".replace(' ', '_').replace('&', 'and')
