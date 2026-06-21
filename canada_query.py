@@ -32,9 +32,9 @@ N = 50000
 SEED = 0
 MAX_GOALS = 10                       # scoreline grid for the Dixon-Coles matrix
 PLOT_GOALS = 7                       # smaller grid for a readable 3D plot
-args = [a for a in sys.argv[1:] if a != '--no-plot']
+args = [a for a in sys.argv[1:] if a not in ('--no-plot', '--retrain')]
 MAKE_PLOT = '--no-plot' not in sys.argv
-TEAM_A, TEAM_B = (args[0], args[1]) if len(args) >= 2 else ('Canada', 'Bosnia & Herzegovina')
+TEAM_A, TEAM_B = (args[0], args[1]) if len(args) >= 2 else ('Canada', 'Switzerland')
 
 
 # ---------------------------------------------------------------------------
@@ -84,17 +84,12 @@ def odds(p):
 
 
 # ---------------------------------------------------------------------------
-# Train the same two models the WC simulation uses
+# Load the same two models the WC simulation uses (train + cache on first run,
+# reload from ./models afterwards). Pass --retrain to force a fresh fit.
 # ---------------------------------------------------------------------------
-print("Training models (linear + MLP)...", flush=True)
-_, hgtr, agtr, wtr, _, dftr = prepare_training_data(ELO_CSV, SQUAD_CSV, end_date=TRAIN_END, verbose=False)
-_, hgval, agval, _, _, dfval = prepare_training_data(ELO_CSV, SQUAD_CSV, start_date=VAL_START, end_date=TRAIN_END, verbose=False)
-Xtr = build_X(dftr.reset_index(drop=True), FULL_FEATURES)
-Xval = build_X(dfval.reset_index(drop=True), FULL_FEATURES)
-
-lin = LinearRegressionDixonColes(Xtr.shape[1])
-lin.fit(Xtr, hgtr, agtr, weights=wtr, alpha=BEST_ALPHA, verbose=False, max_iter=500)
-mlp, _ = train_mlp(Xtr, hgtr, agtr, wtr, Xval, hgval, agval, max_epochs=1500, patience=150, **BEST_MLP)
+from model_store import load_or_train
+RETRAIN = '--retrain' in sys.argv
+lin, mlp = load_or_train(retrain=RETRAIN)
 
 lin_lam = lambda X: lin.predict(X)
 def mlp_lam(X):
