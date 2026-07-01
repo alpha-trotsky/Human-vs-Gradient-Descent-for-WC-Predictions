@@ -1,4 +1,5 @@
-# Large raw data dumps (re-downloadable; far over GitHub's 100 MB limit)
+# Large raw data / downloaded archives
+*.zip
 data/*
 # ...but keep the small World Cup bracket JSONs needed by wc_simulation.py
 !data/worldcup/

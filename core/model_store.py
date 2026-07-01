@@ -30,23 +30,25 @@ if str(_root) not in sys.path:
     sys.path.insert(0, str(_root))
 
 from wc_simulation import (
-    TRAIN_END, VAL_START, BEST_ALPHA, BEST_MLP, ELO_CSV, SQUAD_CSV,
+    TRAIN_END, VAL_START, BEST_ALPHA, BEST_MLP, BEST_COPULA_ALPHA, ELO_CSV, SQUAD_CSV,
 )
 from .training import prepare_training_data, LinearRegressionDixonColes
 from .experiments import FULL_FEATURES, build_X, train_mlp, FlexibleMLP
+from .McHale_Copula import McHaleCopulaModel
 
 MODEL_DIR = _root / 'models'
 LINEAR_PATH = MODEL_DIR / 'linear_dc.pkl'
-MLP_PATH = MODEL_DIR / 'mlp_dc.pt'
+MLP_PATH    = MODEL_DIR / 'mlp_dc.pt'
+COPULA_PATH = MODEL_DIR / 'copula_dc.pkl'
 
 
 # ---------------------------------------------------------------------------
 # Train (same pipeline + hyperparameters as wc_simulation / canada_query)
 # ---------------------------------------------------------------------------
 def train_models(verbose=True):
-    """Train the linear + MLP Dixon-Coles models from the project CSVs."""
+    """Train the linear + MLP + copula Dixon-Coles models from the project CSVs."""
     if verbose:
-        print("Training models (linear + MLP)...", flush=True)
+        print("Training models (linear + MLP + copula)...", flush=True)
     _, hgtr, agtr, wtr, _, dftr = prepare_training_data(
         ELO_CSV, SQUAD_CSV, end_date=TRAIN_END, verbose=False)
     _, hgval, agval, _, _, dfval = prepare_training_data(
@@ -59,19 +61,22 @@ def train_models(verbose=True):
 
     mlp, _ = train_mlp(Xtr, hgtr, agtr, wtr, Xval, hgval, agval,
                        max_epochs=1500, patience=150, **BEST_MLP)
-    return lin, mlp
+
+    copula = McHaleCopulaModel(Xtr.shape[1])
+    copula.fit(Xtr, hgtr, agtr, weights=wtr, alpha=BEST_COPULA_ALPHA,
+               max_iter=500, verbose=False)
+
+    return lin, mlp, copula
 
 
 # ---------------------------------------------------------------------------
 # Save
 # ---------------------------------------------------------------------------
-def save_models(lin, mlp, model_dir=MODEL_DIR):
-    """Persist both models to model_dir (created if needed)."""
+def save_models(lin, mlp, copula, model_dir=MODEL_DIR):
+    """Persist all three models to model_dir (created if needed)."""
     model_dir = Path(model_dir)
     model_dir.mkdir(exist_ok=True)
 
-    # Linear model: pure numpy. Store coefficients + the train-set scaler so
-    # predictions reproduce exactly without refitting.
     with open(model_dir / LINEAR_PATH.name, 'wb') as f:
         pickle.dump({
             'n_features': lin.n_features,
@@ -81,7 +86,6 @@ def save_models(lin, mlp, model_dir=MODEL_DIR):
             'feature_names': lin.feature_names,
         }, f)
 
-    # MLP: weights + the architecture needed to rebuild FlexibleMLP, + scaler.
     torch.save({
         'state_dict': mlp.state_dict(),
         'config': {
@@ -94,6 +98,15 @@ def save_models(lin, mlp, model_dir=MODEL_DIR):
         'feature_std': np.asarray(mlp.feature_std),
     }, model_dir / MLP_PATH.name)
 
+    with open(model_dir / COPULA_PATH.name, 'wb') as f:
+        pickle.dump({
+            'n_features': copula.n_features,
+            'k_mode': copula.k_mode,
+            'coefficients': copula.coefficients,
+            'feature_mean': copula.feature_mean,
+            'feature_std': copula.feature_std,
+        }, f)
+
     return model_dir
 
 
@@ -101,48 +114,57 @@ def save_models(lin, mlp, model_dir=MODEL_DIR):
 # Load
 # ---------------------------------------------------------------------------
 def load_models(model_dir=MODEL_DIR):
-    """Reconstruct both models from model_dir. Raises if artifacts are missing."""
+    """Reconstruct all three models from model_dir. Raises if artifacts are missing."""
     model_dir = Path(model_dir)
-    lin_path = model_dir / LINEAR_PATH.name
-    mlp_path = model_dir / MLP_PATH.name
-    if not lin_path.exists() or not mlp_path.exists():
+    lin_path    = model_dir / LINEAR_PATH.name
+    mlp_path    = model_dir / MLP_PATH.name
+    copula_path = model_dir / COPULA_PATH.name
+    if not lin_path.exists() or not mlp_path.exists() or not copula_path.exists():
         raise FileNotFoundError(
-            f"Saved models not found in {model_dir}. Run: python core/model_store.py")
+            f"Saved models not found in {model_dir}. Run: python -m core.model_store")
 
     with open(lin_path, 'rb') as f:
         d = pickle.load(f)
     lin = LinearRegressionDixonColes(d['n_features'])
     lin.coefficients = d['coefficients']
     lin.feature_mean = d['feature_mean']
-    lin.feature_std = d['feature_std']
+    lin.feature_std  = d['feature_std']
     lin.feature_names = d['feature_names']
 
     blob = torch.load(mlp_path, weights_only=False)
-    cfg = blob['config']
-    mlp = FlexibleMLP(cfg['input_size'], cfg['width'], cfg['depth'], cfg['dropout'])
+    cfg  = blob['config']
+    mlp  = FlexibleMLP(cfg['input_size'], cfg['width'], cfg['depth'], cfg['dropout'])
     mlp.load_state_dict(blob['state_dict'])
     mlp.feature_mean = blob['feature_mean']
-    mlp.feature_std = blob['feature_std']
+    mlp.feature_std  = blob['feature_std']
     mlp.eval()
 
-    return lin, mlp
+    with open(copula_path, 'rb') as f:
+        d = pickle.load(f)
+    copula = McHaleCopulaModel(d['n_features'], k_mode=d.get('k_mode', 'const'))
+    copula.coefficients = d['coefficients']
+    copula.feature_mean = d['feature_mean']
+    copula.feature_std  = d['feature_std']
+
+    return lin, mlp, copula
 
 
 def load_or_train(retrain=False, save=True, verbose=True):
     """Load saved models if present (and retrain not forced), else train + save."""
-    if not retrain and LINEAR_PATH.exists() and MLP_PATH.exists():
+    all_present = LINEAR_PATH.exists() and MLP_PATH.exists() and COPULA_PATH.exists()
+    if not retrain and all_present:
         if verbose:
             print(f"Loading saved models from {MODEL_DIR}...", flush=True)
         return load_models()
-    lin, mlp = train_models(verbose=verbose)
+    lin, mlp, copula = train_models(verbose=verbose)
     if save:
-        save_models(lin, mlp)
+        save_models(lin, mlp, copula)
         if verbose:
             print(f"Saved models to {MODEL_DIR}", flush=True)
-    return lin, mlp
+    return lin, mlp, copula
 
 
 if __name__ == "__main__":
-    lin, mlp = train_models()
-    out = save_models(lin, mlp)
-    print(f"Saved linear + MLP models to {out}")
+    lin, mlp, copula = train_models()
+    out = save_models(lin, mlp, copula)
+    print(f"Saved linear + MLP + copula models to {out}")

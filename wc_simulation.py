@@ -30,17 +30,20 @@ from pathlib import Path
 
 from core.training import prepare_training_data, LinearRegressionDixonColes
 from core.experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
+from core.McHale_Copula import McHaleCopulaModel
 
 base_dir = Path(__file__).resolve().parent
 WC_JSON = base_dir / 'data' / 'worldcup' / 'worldcup2026.json'
 ELO_CSV = base_dir / 'results' / 'match_results_elo.csv'
 SQUAD_CSV = base_dir / 'results' / 'squad_features.csv'
-WC_CUTOFF = '2026-06-11'      # freeze features before the first WC match
-TRAIN_END = '2026-06-01'      # train models on everything before this
+WC_CUTOFF = '2026-06-24'      # freeze features before the first WC match
+TRAIN_END = '2026-06-24'      # train models on everything before this
 VAL_START = '2024-01-01'
 
 BEST_ALPHA = 10.0
 BEST_MLP = dict(lr=0.0005, depth=3, width=256, dropout=0.0, grad_clip=5.0)
+BEST_COPULA_ALPHA  = 50.0   # update after mode_comparison in core.McHale_Copula
+BEST_COPULA_K_MODE = 'const'  # update after mode_comparison
 
 # Per-team feature columns (order matters: must match how feat() stacks them)
 SQUAD_COLS = ['squad_avg', 'squad_std', 'attack_avg', 'midfield_avg',
@@ -354,11 +357,16 @@ def train_models():
     mlp, _ = train_mlp(Xtr, hgtr, agtr, wtr, Xval, hgval, agval,
                        max_epochs=1500, patience=150, **BEST_MLP)
 
+    copula = McHaleCopulaModel(Xtr.shape[1], k_mode=BEST_COPULA_K_MODE)
+    copula.fit(Xtr, hgtr, agtr, weights=wtr, alpha=BEST_COPULA_ALPHA,
+               max_iter=500, verbose=True)
+
     lin_pred = lambda X: lin.predict(X)
     def mlp_pred(X):
         lh, la, _ = predict_mlp(mlp, X)
         return lh, la
-    return lin_pred, mlp_pred
+    copula_pred = lambda X: copula.predict(X)
+    return lin_pred, mlp_pred, copula_pred, copula
 
 
 def main(N=10000):
@@ -372,12 +380,12 @@ def main(N=10000):
     F = build_team_features(team_names)
     feat = make_feat_builder(F)
 
-    lin_pred, mlp_pred = train_models()
+    lin_pred, mlp_pred, copula_pred, copula = train_models()
     print(f"[{time.time()-t0:.1f}s] Models trained. Running {N} sims each...", flush=True)
 
     n_teams = len(team_names)
     cols = {'team': team_names}
-    for label, pred in [('linear', lin_pred), ('mlp', mlp_pred)]:
+    for label, pred in [('linear', lin_pred), ('mlp', mlp_pred), ('copula', copula_pred)]:
         for method in ('gk', 'lambda'):
             champ, finalists = simulate(pred, feat, groups, group_matches, ko, team_idx, N,
                                         draw_method=method, gk=F['gk'])
@@ -387,15 +395,15 @@ def main(N=10000):
             print(f"[{time.time()-t0:.1f}s] {label}/{method}: done", flush=True)
 
     df = pd.DataFrame(cols).sort_values('champion_linear_gk', ascending=False).reset_index(drop=True)
-    # Ensemble: average the two models' probabilities (linear robustness + MLP non-linearity)
-    df['champion_ensemble_gk'] = (df['champion_linear_gk'] + df['champion_mlp_gk']) / 2
-    df['final_ensemble'] = (df['final_linear'] + df['final_mlp']) / 2
+    # Ensemble: average all three models' probabilities
+    df['champion_ensemble_gk'] = (df['champion_linear_gk'] + df['champion_mlp_gk'] + df['champion_copula_gk']) / 3
+    df['final_ensemble'] = (df['final_linear'] + df['final_mlp'] + df['final_copula']) / 3
     out_csv = base_dir / 'results' / 'wc_odds.csv'
     df.to_csv(out_csv, index=False)
     print(f"[{time.time()-t0:.1f}s] Saved {out_csv}", flush=True)
 
     # Draw-resolution comparison: how much do title odds move (GK vs lambda)?
-    for label in ('linear', 'mlp'):
+    for label in ('linear', 'mlp', 'copula'):
         d = (df[f'champion_{label}_gk'] - df[f'champion_{label}_lambda']).abs()
         print(f"\n{label}: mean |GK - lambda| champ-prob shift = {d.mean()*100:.2f}pp, "
               f"max = {d.max()*100:.2f}pp")
@@ -407,7 +415,8 @@ def main(N=10000):
                   f"(gk {r[f'champion_{label}_gk']*100:.1f}% vs lam {r[f'champion_{label}_lambda']*100:.1f}%)")
 
     print("\nTop 16 by linear championship probability (GK draw resolution):")
-    show = ['team', 'champion_linear_gk', 'champion_mlp_gk', 'final_linear', 'final_mlp']
+    show = ['team', 'champion_linear_gk', 'champion_mlp_gk', 'champion_copula_gk',
+            'final_linear', 'final_mlp', 'final_copula']
     print(df[show].head(16).to_string(index=False,
           formatters={c: '{:.3f}'.format for c in show if c != 'team'}))
 

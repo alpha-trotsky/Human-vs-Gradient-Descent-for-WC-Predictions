@@ -24,17 +24,18 @@ from wc_simulation import (
 )
 from core.training import prepare_training_data, LinearRegressionDixonColes
 from core.experiments import FULL_FEATURES, build_X, train_mlp, predict_mlp
+from core.McHale_Copula import score_matrix as copula_score_matrix
 
 # ---------------------------------------------------------------------------
 # Args:  python canada_query.py "Team A" "Team B" [--no-plot]
 # ---------------------------------------------------------------------------
-N = 50000
+N = 10000
 SEED = 0
 MAX_GOALS = 10                       # scoreline grid for the Dixon-Coles matrix
 PLOT_GOALS = 7                       # smaller grid for a readable 3D plot
 args = [a for a in sys.argv[1:] if a not in ('--no-plot', '--retrain')]
 MAKE_PLOT = '--no-plot' not in sys.argv
-TEAM_A, TEAM_B = (args[0], args[1]) if len(args) >= 2 else ('Canada', 'Switzerland')
+TEAM_A, TEAM_B = (args[0], args[1]) if len(args) >= 2 else ('Ghana', 'Croatia')
 
 
 # ---------------------------------------------------------------------------
@@ -89,12 +90,13 @@ def odds(p):
 # ---------------------------------------------------------------------------
 from core.model_store import load_or_train
 RETRAIN = '--retrain' in sys.argv
-lin, mlp = load_or_train(retrain=RETRAIN)
+lin, mlp, copula = load_or_train(retrain=RETRAIN)
 
-lin_lam = lambda X: lin.predict(X)
+lin_lam    = lambda X: lin.predict(X)
 def mlp_lam(X):
     lh, la, _ = predict_mlp(mlp, X)
     return lh, la
+copula_lam = lambda X: copula.predict(X)
 
 # ---------------------------------------------------------------------------
 # Features (frozen pre-tournament, same as headline odds)
@@ -124,7 +126,15 @@ for label, pred, rho in [('linear', lin_lam, rho_lin), ('mlp', mlp_lam, rho_mlp)
     lamA, lamB = neutral_lambdas(pred, feat, [iA], [iB])
     lams[label] = (float(lamA[0]), float(lamB[0]))
     mats[label] = dc_matrix(lamA[0], lamB[0], rho)
-mats['ensemble'] = (mats['linear'] + mats['mlp']) / 2     # ensemble = mean of the two scoreline grids
+r_h, r_a, k_params = copula._unpack_extras(copula.coefficients)
+mu_A, mu_B = neutral_lambdas(copula_lam, feat, [iA], [iB])
+# neutral k: average both orientations (cancels the linear term in quad mode)
+k_ab = np.asarray(copula._compute_k(feat([iA], [iB]), k_params))
+k_ba = np.asarray(copula._compute_k(feat([iB], [iA]), k_params))
+k_neutral = float((k_ab.mean() + k_ba.mean()) / 2)
+lams['copula'] = (float(mu_A[0]), float(mu_B[0]))
+mats['copula'] = copula_score_matrix(float(mu_A[0]), float(mu_B[0]), r_h, r_a, k_neutral, max_goals=MAX_GOALS)
+mats['ensemble'] = (mats['linear'] + mats['mlp'] + mats['copula']) / 3
 mk = {lab: markets_from_matrix(M) for lab, M in mats.items()}
 
 # ===========================================================================
@@ -136,7 +146,7 @@ print(f"  {TEAM_A}  vs  {TEAM_B}   (neutral one-off match)")
 print(bar)
 print(f"{'model':10}{'xG '+TEAM_A[:6]:>10}{'xG '+TEAM_B[:6]:>10}"
       f"{'A win':>9}{'draw':>8}{'B win':>9}")
-for lab in ('linear', 'mlp'):
+for lab in ('linear', 'mlp', 'copula'):
     la, lb = lams[lab]; m = mk[lab]
     print(f"{lab:10}{la:10.2f}{lb:10.2f}{m['A_win']*100:8.1f}%{m['draw']*100:7.1f}%{m['B_win']*100:8.1f}%")
 m = mk['ensemble']
@@ -154,9 +164,9 @@ rows = [
     ("Total goals over 3.5",           'o35'),
     ("Both teams to score",            'btts'),
 ]
-print(f"  {'market':32}{'linear':>14}{'mlp':>14}{'ensemble':>14}")
+print(f"  {'market':32}{'linear':>14}{'mlp':>14}{'copula':>14}{'ensemble':>14}")
 for name, key in rows:
-    cells = "".join(f"{mk[l][key]*100:7.1f}% {odds(mk[l][key]):5.2f}" for l in ('linear', 'mlp', 'ensemble'))
+    cells = "".join(f"{mk[l][key]*100:7.1f}% {odds(mk[l][key]):5.2f}" for l in ('linear', 'mlp', 'copula', 'ensemble'))
     print(f"  {name:32}{cells}")
 
 # ===========================================================================
@@ -224,13 +234,13 @@ for team in (TEAM_A, TEAM_B):
         continue
     gteams = groups[GRP]
     top1 = {}; top2 = {}
-    for lab, pred in [('linear', lin_lam), ('mlp', mlp_lam)]:
+    for lab, pred in [('linear', lin_lam), ('mlp', mlp_lam), ('copula', copula_lam)]:
         top1[lab], top2[lab] = group_top_probs(pred, GRP)
     print(f"\n{bar}\n  GROUP {GRP}  -- P(win group) and P(top-2, auto-qualify)\n{bar}")
-    print(f"  {'team':22}{'win (lin)':>12}{'win (mlp)':>12}{'win (ens)':>12}{'top2 (ens)':>12}")
+    print(f"  {'team':22}{'win (lin)':>12}{'win (mlp)':>12}{'win (cop)':>12}{'win (ens)':>12}{'top2 (ens)':>12}")
     for t in gteams:
-        e1 = (top1['linear'][t] + top1['mlp'][t]) / 2
-        e2 = (top2['linear'][t] + top2['mlp'][t]) / 2
+        e1 = (top1['linear'][t] + top1['mlp'][t] + top1['copula'][t]) / 3
+        e2 = (top2['linear'][t] + top2['mlp'][t] + top2['copula'][t]) / 3
         mark = "  <--" if t == team else ""
         print(f"  {t:22}{top1['linear'][t]*100:11.1f}%{top1['mlp'][t]*100:11.1f}%"
-              f"{e1*100:11.1f}%{e2*100:11.1f}%{mark}")
+              f"{top1['copula'][t]*100:11.1f}%{e1*100:11.1f}%{e2*100:11.1f}%{mark}")
