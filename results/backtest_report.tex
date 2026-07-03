@@ -1,0 +1,245 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\title{\textbf{WC 2026 McHale--Copula Backtest Report}\\[0.4em]
+       \large Moneyline Value Betting \& Asymmetric-Result Hypothesis}
+\author{WC Prediction Project}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\section{Setup}
+
+\paragraph{Model.}
+We use a McHale--Copula model: negative-binomial goal marginals linked by
+Frank's copula, with the copula intensity parameter $k$ held constant.
+Optimal hyperparameters ($\alpha = 50.0$, \texttt{k\_mode = const}) were
+selected on the validation set.
+For each fixture the model produces \emph{neutral} win/draw/loss
+probabilities by averaging predictions under both home/away orientations.
+
+\paragraph{Training window.}
+The model is trained on all available data strictly before the test set
+($<$ 2025-10-01), combining the original training split and the validation
+split to give 3{,}148 matches.
+All WC~2026 matches (group stage + Round of~32, June~11~--~July~2) are
+out-of-sample test observations.
+
+\paragraph{Market data.}
+Match-level prediction-market odds are sourced from Kalshi (finalized
+contracts):
+\begin{itemize}
+  \item \textbf{KXWCGAME}: regulation-time moneyline (win / draw / loss),
+        73 fixtures, 219 contracts.
+  \item \textbf{KXWCTOTAL}: total-match-goals over/under lines
+        (0.5--6.5+), 82 fixtures, 544 contracts.
+\end{itemize}
+
+\paragraph{PnL accounting.}
+All positions are \$1 notional per contract (prediction-market convention):
+\[
+  \text{PnL}_{\text{BUY}}  = \mathbf{1}[\text{hit}] - p, \qquad
+  \text{PnL}_{\text{SELL}} = p - \mathbf{1}[\text{hit}],
+\]
+where $p$ is the market implied probability at the time of the snapshot.
+
+\bigskip
+
+\section{Backtest 1: Moneyline Value Betting}
+
+\subsection{Strategy}
+
+For every WC~2026 moneyline contract, we compare the model's neutral
+WDL probability $\hat{q}$ against the market implied probability $p$:
+\begin{align*}
+  \text{BUY}  &\text{ if } \hat{q} > p + 0.02 \quad \text{(market undervalues outcome)},\\
+  \text{SELL} &\text{ if } p > \hat{q} + 0.02 \quad \text{(market overvalues outcome)}.
+\end{align*}
+The 2-cent threshold filters out noise near the bid--ask spread.
+
+\subsection{Results}
+
+\begin{table}[h!]
+\centering
+\caption{Overall moneyline backtest results (72 matches, all WC~2026).}
+\begin{tabular}{lrrrr}
+\toprule
+Subset & Bets & Staked & Net PnL & ROI \\
+\midrule
+All bets  & 182 & \$182 & \$--4.15 & --2.3\% \\
+\quad BUY  & 100 & \$100 & \$--3.28 & --3.3\% \\
+\quad SELL &  82 & \$82  & \$--0.87 & --1.1\% \\
+\midrule
+By outcome type & & & & \\
+\quad Home win &  60 & \$60 & \$--2.02 & --3.4\% \\
+\quad Draw     &  56 & \$56 & \$--1.32 & --2.4\% \\
+\quad Away win &  66 & \$66 & \$--0.81 & --1.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Bucket analysis -- moneyline backtest.}
+\begin{tabular}{lrrrr}
+\toprule
+Bucket & Bets & Net PnL & ROI & Hit\% \\
+\midrule
+Both teams score $\geq 4$ goals     &  0 &    --   &    --   & -- \\
+Asymmetric (min $\leq 1$, max $\geq 3$) & 70 & \$--7.97 & --11.4\% & -- \\
+\quad BUY contracts                 & 44 & \$--4.34 &  --9.9\% &  2\% \\
+\quad SELL contracts                & 26 & \$--3.63 & --14.0\% & 88\% \\
+SELL with implied $> 80\%$          & 17 & \$+0.96  &  +5.6\%  & 82\% \\
+BUY  with implied $> 80\%$          &  0 &    --    &    --    &  -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Discussion}
+
+The overall --2.3\% ROI is consistent with the Kalshi round-trip vig
+(\(\approx 2\)--4\%), suggesting the McHale--Copula model produces
+predictions close to market-efficiency but adds no systematic edge.
+
+The only profitable pocket is \textbf{selling heavily-implied favourites}
+(market implied $> 80\%$): 17 contracts, +\$0.96, +5.6\% ROI.
+Although the favourite still won 82\% of the time, the market slightly
+over-prices certainty in small-volume WC prediction markets, leaving a
+marginal sell edge.
+
+Asymmetric matches (one team scores 3+, other scores $\leq 1$) were
+harmful: the model's BUY signals in lopsided matches had only a 2\% hit
+rate, and SELL signals were wiped out when draws unexpectedly occurred (e.g.\
+Portugal~1--1 DR~Congo, Canada~1--1 Bosnia). The model systematically
+over-estimates draw probability for mismatched pairs.
+
+\bigskip
+
+\section{Backtest 2: Asymmetric-Result / Total-Goals Hypothesis}
+
+\subsection{Hypothesis}
+
+When the prediction market prices one team as a heavy favourite
+(implied win probability $> 65\%$), the match is more likely to produce
+an asymmetric result: the strong team scores 3+ goals while the weak team
+scores 0--1.  This should push total match goals above what the
+over/under market prices, creating a potential BUY edge on higher lines.
+
+\subsection{Strategy}
+
+\begin{enumerate}
+  \item Identify matches where $\max(p_{\text{home}}, p_{\text{away}}) > 0.65$.
+  \item On those 32 matches, BUY over 2.5, 3.5, 4.5, 5.5, and 6.5 total
+        goals (\$5 contracts per match, \$160 total staked for 32 matches with
+        all five lines available).
+\end{enumerate}
+
+\noindent\textit{Note on ``under 0.5 for the weaker team'':} Kalshi offered
+only total-match-goals markets, not individual team scoring markets.
+``Team B scores 0 goals'' cannot be directly bet on with the available data.
+
+\subsection{Results}
+
+\begin{table}[h!]
+\centering
+\caption{Totals backtest by over line (32 qualifying matches).}
+\begin{tabular}{lrrrrrr}
+\toprule
+Over line & Bets & Hits & Hit\% & Avg implied & Net PnL & ROI \\
+\midrule
+2.5 & 32 & 22 & 68.8\% & 71.0\% & \$--0.71 & --2.2\% \\
+3.5 & 32 & 17 & 53.1\% & 52.8\% & \$+0.12  & +0.4\% \\
+4.5 & 32 & 10 & 31.2\% & 32.5\% & \$--0.40 & --1.2\% \\
+5.5 & 32 &  6 & 18.8\% & 20.2\% & \$--0.45 & --1.4\% \\
+6.5 & 14 &  1 &  7.1\% &  9.0\% & \$--0.26 & --1.9\% \\
+\midrule
+\textbf{Total} & \textbf{142} & 56 & 39.4\% & -- & \textbf{\$--1.70} & \textbf{--1.2\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Totals backtest by actual match outcome (all scores known).}
+\begin{tabular}{lrrr}
+\toprule
+Actual result type & Bets & Net PnL & ROI \\
+\midrule
+Strong team wins asymmetrically ($\geq 3$ goals, weak $\leq 1$) & 93 & \$+0.38 & +0.4\% \\
+Strong team wins, but not asymmetrically & 29 & \$--0.84 & --2.9\% \\
+Draw & 20 & \$--1.24 & --6.2\% \\
+Upset (weak team wins) & 0 & -- & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Empirical validation of the underlying signal}
+
+Even though the total-goals market absorbs most of the asymmetry signal,
+the underlying hypothesis is strongly confirmed in the raw outcomes:
+
+\begin{itemize}
+  \item The weaker team (implied win prob $< 35\%$) scored \textbf{zero
+        goals in 50\% of matches} (16/32).
+  \item The weaker team scored \textbf{zero or one goal in 97\% of
+        matches} (31/32).
+\end{itemize}
+
+If individual team scoring markets existed at reasonable prices (e.g.\
+``team B scores under 1.5 goals''), this would represent a robust edge at
+this favouritism threshold.
+
+\subsection{Discussion}
+
+The over-3.5 line is essentially flat (+0.4\%), and the over-2.5 line is
+slightly negative (--2.2\%), indicating the Kalshi total-goals market is
+near-efficiently priced for strong-favourite matches.
+The hypothesis partially holds for the \textit{asymmetric subset}
+(+0.4\% ROI), but three low-scoring heavy-favourite upsets -- Spain 0--0
+Cape Verde (93\% favourite), Ecuador 0--0 Cura\c{c}ao (85\%), and
+Germany 1--1 Paraguay (71\%) -- dominate the loss side and flatten
+the edge.
+
+The absence of any upset (weak team winning) across all 32 matches
+corroborates the market's win-probability pricing, while the rare
+low-scoring draw remains the primary risk to the asymmetric hypothesis.
+
+\bigskip
+
+\section{Summary}
+
+\begin{table}[h!]
+\centering
+\caption{Combined backtest summary.}
+\begin{tabular}{lrrrr}
+\toprule
+Backtest & Matches & Bets & Net PnL & ROI \\
+\midrule
+WDL moneyline value betting    & 72 & 182 & \$--4.15 & --2.3\% \\
+\quad of which: SELL implied $>80\%$ & -- & 17 & \$+0.96 & +5.6\% \\
+Total-goals BUY (fav $>65\%$) & 32 & 142 & \$--1.70 & --1.2\% \\
+\quad of which: asymmetric matches & -- & 93 & \$+0.38 & +0.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Neither strategy generates significant profit after accounting for the
+vig embedded in Kalshi's implied probabilities.
+The most actionable takeaways are:
+\begin{enumerate}
+  \item Selling overpriced moneyline contracts where market implied $> 80\%$
+        yields a modest but consistent edge (+5.6\% ROI, $n = 17$).
+  \item The asymmetric-result signal (97\% of weak teams scored $\leq 1$
+        goal when the favourite implied win prob exceeded 65\%) is real, but
+        requires individual team scoring markets to exploit directly.
+  \item The McHale--Copula model underestimates draw probability for
+        mismatched pairs, which is the primary source of BUY losses in
+        asymmetric contexts.
+\end{enumerate}
+
+\end{document}

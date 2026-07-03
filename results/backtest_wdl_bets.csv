@@ -1,0 +1,183 @@
+match,kickoff,outcome,action,model,implied,diff,hit,pnl,g_A,g_B
+Belgium vs Senegal,2026-07-01,home,BUY,0.495,0.24,0.255,False,-0.24,3,2
+Belgium vs Senegal,2026-07-01,draw,SELL,0.2573,0.31,-0.0527,True,-0.69,3,2
+Belgium vs Senegal,2026-07-01,away,SELL,0.2477,0.46,-0.2123,False,0.46,3,2
+England vs Congo DR,2026-07-01,home,BUY,0.6485,0.41,0.2385,True,0.59,2,1
+England vs Congo DR,2026-07-01,draw,SELL,0.2237,0.32,-0.0963,False,0.32,2,1
+England vs Congo DR,2026-07-01,away,SELL,0.1278,0.28,-0.1522,False,0.28,2,1
+USA vs Bosnia and Herzegovina,2026-07-02,home,SELL,0.493,0.87,-0.377,True,-0.13,2,0
+USA vs Bosnia and Herzegovina,2026-07-02,draw,BUY,0.2708,0.11,0.1608,False,-0.11,2,0
+USA vs Bosnia and Herzegovina,2026-07-02,away,BUY,0.2362,0.03,0.2062,False,-0.03,2,0
+Korea Republic vs Czechia,2026-06-12,draw,SELL,0.299,0.44,-0.141,False,0.44,2,1
+Korea Republic vs Czechia,2026-06-12,away,BUY,0.3464,0.24,0.1064,False,-0.24,2,1
+Mexico vs South Africa,2026-06-11,home,SELL,0.6477,0.7,-0.0523,True,-0.3,2,0
+Mexico vs South Africa,2026-06-11,away,BUY,0.1345,0.11,0.0245,False,-0.11,2,0
+Canada vs Bosnia and Herzegovina,2026-06-12,home,BUY,0.4436,0.24,0.2036,False,-0.24,1,1
+Canada vs Bosnia and Herzegovina,2026-06-12,draw,SELL,0.2924,0.32,-0.0276,True,-0.68,1,1
+Canada vs Bosnia and Herzegovina,2026-06-12,away,SELL,0.264,0.44,-0.176,False,0.44,1,1
+USA vs Paraguay,2026-06-13,home,SELL,0.4547,0.48,-0.0253,True,-0.52,4,1
+USA vs Paraguay,2026-06-13,away,BUY,0.264,0.24,0.024,False,-0.24,4,1
+Brazil vs Morocco,2026-06-13,home,SELL,0.4171,0.6,-0.1829,False,0.6,1,1
+Brazil vs Morocco,2026-06-13,away,BUY,0.305,0.18,0.125,False,-0.18,1,1
+Haiti vs Scotland,2026-06-14,home,BUY,0.1946,0.16,0.0346,False,-0.16,0,1
+Haiti vs Scotland,2026-06-14,draw,BUY,0.2513,0.22,0.0313,False,-0.22,0,1
+Haiti vs Scotland,2026-06-14,away,SELL,0.5541,0.64,-0.0859,True,-0.36,0,1
+Qatar vs Switzerland,2026-06-13,home,BUY,0.1514,0.06,0.0914,False,-0.06,1,1
+Qatar vs Switzerland,2026-06-13,draw,BUY,0.2331,0.14,0.0931,True,0.86,1,1
+Qatar vs Switzerland,2026-06-13,away,SELL,0.6155,0.81,-0.1945,False,0.81,1,1
+Australia vs Turkiye,2026-06-14,home,SELL,0.2537,0.46,-0.2063,True,-0.54,2,0
+Australia vs Turkiye,2026-06-14,draw,SELL,0.283,0.32,-0.037,False,0.32,2,0
+Australia vs Turkiye,2026-06-14,away,BUY,0.4633,0.22,0.2433,False,-0.22,2,0
+Ivory Coast vs Ecuador,2026-06-15,home,BUY,0.4341,0.29,0.1441,True,0.71,1,0
+Ivory Coast vs Ecuador,2026-06-15,draw,SELL,0.2913,0.34,-0.0487,False,0.34,1,0
+Ivory Coast vs Ecuador,2026-06-15,away,SELL,0.2746,0.39,-0.1154,False,0.39,1,0
+Germany vs Curacao,2026-06-14,home,SELL,0.8949,0.94,-0.0451,True,-0.06,7,1
+Germany vs Curacao,2026-06-14,draw,BUY,0.0766,0.05,0.0266,False,-0.05,7,1
+Sweden vs Tunisia,2026-06-15,home,SELL,0.5,0.76,-0.26,True,-0.24,5,1
+Sweden vs Tunisia,2026-06-15,draw,BUY,0.265,0.2,0.065,False,-0.2,5,1
+Sweden vs Tunisia,2026-06-15,away,BUY,0.235,0.06,0.175,False,-0.06,5,1
+Spain vs Cape Verde,2026-06-15,home,SELL,0.8259,0.93,-0.1041,False,0.93,0,0
+Spain vs Cape Verde,2026-06-15,draw,BUY,0.1258,0.06,0.0658,True,0.94,0,0
+IR Iran vs New Zealand,2026-06-16,home,SELL,0.5166,0.55,-0.0334,False,0.55,2,2
+Saudi Arabia vs Uruguay,2026-06-15,home,BUY,0.1531,0.12,0.0331,False,-0.12,0,1
+Saudi Arabia vs Uruguay,2026-06-15,draw,BUY,0.2401,0.21,0.0301,True,0.79,0,1
+Saudi Arabia vs Uruguay,2026-06-15,away,SELL,0.6068,0.68,-0.0732,False,0.68,0,1
+Argentina vs Algeria,2026-06-17,home,SELL,0.5619,0.65,-0.0881,True,-0.35,3,0
+Argentina vs Algeria,2026-06-17,draw,BUY,0.2477,0.22,0.0277,False,-0.22,3,0
+Argentina vs Algeria,2026-06-17,away,BUY,0.1903,0.12,0.0703,False,-0.12,3,0
+France vs Senegal,2026-06-16,home,SELL,0.6074,0.67,-0.0626,True,-0.33,3,1
+France vs Senegal,2026-06-16,away,BUY,0.1681,0.13,0.0381,False,-0.13,3,1
+Iraq vs Norway,2026-06-17,home,BUY,0.1636,0.03,0.1336,False,-0.03,1,4
+Iraq vs Norway,2026-06-17,draw,BUY,0.2406,0.11,0.1306,False,-0.11,1,4
+Iraq vs Norway,2026-06-17,away,SELL,0.5958,0.87,-0.2742,True,-0.13,1,4
+Austria vs Jordan,2026-06-17,home,SELL,0.5477,0.7,-0.1523,True,-0.3,3,1
+Austria vs Jordan,2026-06-17,draw,BUY,0.2537,0.2,0.0537,False,-0.2,3,1
+Austria vs Jordan,2026-06-17,away,BUY,0.1986,0.11,0.0886,False,-0.11,3,1
+England vs Croatia,2026-06-17,draw,SELL,0.2393,0.26,-0.0207,False,0.26,4,2
+Ghana vs Panama,2026-06-18,home,BUY,0.4902,0.41,0.0802,True,0.59,1,0
+Ghana vs Panama,2026-06-18,draw,SELL,0.2638,0.31,-0.0462,False,0.31,1,0
+Ghana vs Panama,2026-06-18,away,SELL,0.246,0.3,-0.054,False,0.3,1,0
+Portugal vs Congo DR,2026-06-17,home,SELL,0.6206,0.65,-0.0294,False,0.65,1,1
+Portugal vs Congo DR,2026-06-17,draw,SELL,0.2307,0.29,-0.0593,True,-0.71,1,1
+Portugal vs Congo DR,2026-06-17,away,BUY,0.1487,0.08,0.0687,False,-0.08,1,1
+Uzbekistan vs Colombia,2026-06-18,home,BUY,0.1779,0.1,0.0779,False,-0.1,1,3
+Uzbekistan vs Colombia,2026-06-18,draw,BUY,0.2606,0.2,0.0606,False,-0.2,1,3
+Uzbekistan vs Colombia,2026-06-18,away,SELL,0.5616,0.72,-0.1584,True,-0.28,1,3
+Canada vs Qatar,2026-06-18,home,SELL,0.5133,0.75,-0.2367,True,-0.25,6,0
+Canada vs Qatar,2026-06-18,draw,BUY,0.2759,0.18,0.0959,False,-0.18,6,0
+Canada vs Qatar,2026-06-18,away,BUY,0.2109,0.09,0.1209,False,-0.09,6,0
+Czechia vs South Africa,2026-06-18,home,SELL,0.5368,0.74,-0.2032,False,0.74,1,1
+Czechia vs South Africa,2026-06-18,draw,BUY,0.2575,0.21,0.0475,True,0.79,1,1
+Czechia vs South Africa,2026-06-18,away,BUY,0.2057,0.07,0.1357,False,-0.07,1,1
+Mexico vs Korea Republic,2026-06-19,home,SELL,0.4527,0.48,-0.0273,True,-0.52,1,0
+Switzerland vs Bosnia and Herzegovina,2026-06-18,draw,SELL,0.2581,0.34,-0.0819,False,0.34,3,1
+Switzerland vs Bosnia and Herzegovina,2026-06-18,away,BUY,0.1974,0.15,0.0474,False,-0.15,3,1
+Brazil vs Haiti,2026-06-20,home,SELL,0.7894,0.89,-0.1006,True,-0.11,3,0
+Brazil vs Haiti,2026-06-20,draw,BUY,0.1418,0.08,0.0618,False,-0.08,3,0
+Scotland vs Morocco,2026-06-19,home,BUY,0.2104,0.16,0.0504,False,-0.16,0,1
+Scotland vs Morocco,2026-06-19,away,SELL,0.5218,0.59,-0.0682,True,-0.41,0,1
+Turkiye vs Paraguay,2026-06-20,home,BUY,0.4837,0.38,0.1037,False,-0.38,0,1
+Turkiye vs Paraguay,2026-06-20,draw,SELL,0.2718,0.32,-0.0482,False,0.32,0,1
+Turkiye vs Paraguay,2026-06-20,away,SELL,0.2446,0.3,-0.0554,True,-0.7,0,1
+USA vs Australia,2026-06-19,home,SELL,0.4349,0.61,-0.1751,True,-0.39,2,0
+USA vs Australia,2026-06-19,draw,BUY,0.292,0.22,0.072,False,-0.22,2,0
+USA vs Australia,2026-06-19,away,BUY,0.2731,0.19,0.0831,False,-0.19,2,0
+Ecuador vs Curacao,2026-06-21,home,SELL,0.6715,0.85,-0.1785,False,0.85,0,0
+Ecuador vs Curacao,2026-06-21,draw,BUY,0.2072,0.11,0.0972,True,0.89,0,0
+Ecuador vs Curacao,2026-06-21,away,BUY,0.1213,0.06,0.0613,False,-0.06,0,0
+Germany vs Ivory Coast,2026-06-20,home,SELL,0.5291,0.7,-0.1709,True,-0.3,2,1
+Germany vs Ivory Coast,2026-06-20,draw,BUY,0.2526,0.19,0.0626,False,-0.19,2,1
+Germany vs Ivory Coast,2026-06-20,away,BUY,0.2182,0.13,0.0882,False,-0.13,2,1
+Netherlands vs Sweden,2026-06-20,home,SELL,0.6274,0.93,-0.3026,True,-0.07,5,1
+Netherlands vs Sweden,2026-06-20,draw,BUY,0.2176,0.07,0.1476,False,-0.07,5,1
+Netherlands vs Sweden,2026-06-20,away,BUY,0.1549,0.01,0.1449,False,-0.01,5,1
+Spain vs Saudi Arabia,2026-06-21,home,SELL,0.793,0.89,-0.097,True,-0.11,4,0
+Spain vs Saudi Arabia,2026-06-21,draw,BUY,0.1459,0.07,0.0759,False,-0.07,4,0
+New Zealand vs Egypt,2026-06-22,home,BUY,0.2196,0.17,0.0496,False,-0.17,1,3
+New Zealand vs Egypt,2026-06-22,draw,BUY,0.2852,0.24,0.0452,False,-0.24,1,3
+New Zealand vs Egypt,2026-06-22,away,SELL,0.4951,0.62,-0.1249,True,-0.38,1,3
+Tunisia vs Japan,2026-06-21,home,BUY,0.1465,0.11,0.0365,False,-0.11,0,4
+Tunisia vs Japan,2026-06-21,draw,BUY,0.2319,0.21,0.0219,False,-0.21,0,4
+Tunisia vs Japan,2026-06-21,away,SELL,0.6215,0.7,-0.0785,True,-0.3,0,4
+Argentina vs Austria,2026-06-22,home,SELL,0.5691,0.69,-0.1209,True,-0.31,2,0
+Argentina vs Austria,2026-06-22,draw,BUY,0.2458,0.21,0.0358,False,-0.21,2,0
+Argentina vs Austria,2026-06-22,away,BUY,0.1851,0.12,0.0651,False,-0.12,2,0
+France vs Iraq,2026-06-23,home,SELL,0.8191,0.96,-0.1409,True,-0.04,3,0
+France vs Iraq,2026-06-23,draw,BUY,0.1279,0.04,0.0879,False,-0.04,3,0
+France vs Iraq,2026-06-23,away,BUY,0.0531,0.01,0.0431,False,-0.01,3,0
+Norway vs Senegal,2026-06-23,home,SELL,0.347,0.43,-0.083,True,-0.57,3,2
+Norway vs Senegal,2026-06-23,away,BUY,0.3755,0.31,0.0655,False,-0.31,3,2
+Colombia vs Congo DR,2026-06-24,home,SELL,0.4705,0.58,-0.1095,True,-0.42,1,0
+Colombia vs Congo DR,2026-06-24,draw,SELL,0.2875,0.33,-0.0425,False,0.33,1,0
+Colombia vs Congo DR,2026-06-24,away,BUY,0.242,0.1,0.142,False,-0.1,1,0
+Portugal vs Uzbekistan,2026-06-23,home,SELL,0.7107,0.86,-0.1493,True,-0.14,5,0
+Portugal vs Uzbekistan,2026-06-23,draw,BUY,0.1893,0.11,0.0793,False,-0.11,5,0
+Portugal vs Uzbekistan,2026-06-23,away,BUY,0.1,0.05,0.05,False,-0.05,5,0
+Bosnia and Herzegovina vs Qatar,2026-06-24,home,SELL,0.4208,0.81,-0.3892,True,-0.19,3,1
+Bosnia and Herzegovina vs Qatar,2026-06-24,draw,BUY,0.2882,0.15,0.1382,False,-0.15,3,1
+Bosnia and Herzegovina vs Qatar,2026-06-24,away,BUY,0.291,0.05,0.241,False,-0.05,3,1
+Czechia vs Mexico,2026-06-25,home,BUY,0.2561,0.19,0.0661,False,-0.19,0,3
+Czechia vs Mexico,2026-06-25,draw,SELL,0.2824,0.38,-0.0976,False,0.38,0,3
+Morocco vs Haiti,2026-06-24,home,SELL,0.7187,0.8,-0.0813,True,-0.2,4,2
+Morocco vs Haiti,2026-06-24,draw,BUY,0.1842,0.15,0.0342,False,-0.15,4,2
+Morocco vs Haiti,2026-06-24,away,BUY,0.0972,0.07,0.0272,False,-0.07,4,2
+South Africa vs Korea Republic,2026-06-25,home,BUY,0.2011,0.16,0.0411,True,0.84,1,0
+South Africa vs Korea Republic,2026-06-25,away,SELL,0.5364,0.59,-0.0536,False,0.59,1,0
+Scotland vs Brazil,2026-06-24,home,BUY,0.1684,0.09,0.0784,False,-0.09,0,3
+Scotland vs Brazil,2026-06-24,draw,BUY,0.2326,0.17,0.0626,False,-0.17,0,3
+Scotland vs Brazil,2026-06-24,away,SELL,0.599,0.76,-0.161,True,-0.24,0,3
+Switzerland vs Canada,2026-06-24,home,BUY,0.4351,0.4,0.0351,True,0.6,2,1
+Switzerland vs Canada,2026-06-24,draw,SELL,0.2914,0.32,-0.0286,False,0.32,2,1
+Switzerland vs Canada,2026-06-24,away,SELL,0.2735,0.3,-0.0265,False,0.3,2,1
+Curacao vs Ivory Coast,2026-06-25,away,SELL,0.7765,0.83,-0.0535,True,-0.17,0,2
+Ecuador vs Germany,2026-06-25,home,SELL,0.1583,0.2,-0.0417,True,-0.8,2,1
+Ecuador vs Germany,2026-06-25,draw,BUY,0.2427,0.21,0.0327,False,-0.21,2,1
+Ecuador vs Germany,2026-06-25,away,SELL,0.599,0.62,-0.021,False,0.62,2,1
+Japan vs Sweden,2026-06-26,home,BUY,0.4865,0.39,0.0965,False,-0.39,1,1
+Japan vs Sweden,2026-06-26,draw,SELL,0.2718,0.41,-0.1382,True,-0.59,1,1
+Japan vs Sweden,2026-06-26,away,BUY,0.2417,0.21,0.0317,False,-0.21,1,1
+Paraguay vs Australia,2026-06-26,home,SELL,0.3338,0.37,-0.0362,False,0.37,0,0
+Paraguay vs Australia,2026-06-26,draw,SELL,0.3088,0.42,-0.1112,True,-0.58,0,0
+Paraguay vs Australia,2026-06-26,away,BUY,0.3574,0.23,0.1274,False,-0.23,0,0
+Turkiye vs USA,2026-06-26,home,SELL,0.3872,0.54,-0.1528,True,-0.46,3,2
+Turkiye vs USA,2026-06-26,away,BUY,0.3368,0.21,0.1268,False,-0.21,3,2
+Egypt vs IR Iran,2026-06-27,home,SELL,0.3229,0.37,-0.0471,False,0.37,1,1
+Egypt vs IR Iran,2026-06-27,draw,SELL,0.3165,0.36,-0.0435,True,-0.64,1,1
+Egypt vs IR Iran,2026-06-27,away,BUY,0.3606,0.29,0.0706,False,-0.29,1,1
+Norway vs France,2026-06-26,home,BUY,0.1576,0.13,0.0276,False,-0.13,1,4
+Norway vs France,2026-06-26,draw,BUY,0.2177,0.17,0.0477,False,-0.17,1,4
+Norway vs France,2026-06-26,away,SELL,0.6247,0.71,-0.0853,True,-0.29,1,4
+New Zealand vs Belgium,2026-06-27,draw,BUY,0.1497,0.11,0.0397,False,-0.11,1,5
+New Zealand vs Belgium,2026-06-27,away,SELL,0.7814,0.82,-0.0386,True,-0.18,1,5
+Senegal vs Iraq,2026-06-26,home,SELL,0.6099,0.95,-0.3401,True,-0.05,5,0
+Senegal vs Iraq,2026-06-26,draw,BUY,0.2342,0.05,0.1842,False,-0.05,5,0
+Senegal vs Iraq,2026-06-26,away,BUY,0.1559,0.02,0.1359,False,-0.02,5,0
+Uruguay vs Spain,2026-06-27,home,BUY,0.1882,0.15,0.0382,False,-0.15,0,1
+Uruguay vs Spain,2026-06-27,away,SELL,0.5621,0.59,-0.0279,True,-0.41,0,1
+Congo DR vs Uzbekistan,2026-06-28,home,BUY,0.4193,0.28,0.1393,True,0.72,3,1
+Congo DR vs Uzbekistan,2026-06-28,draw,BUY,0.3106,0.29,0.0206,False,-0.29,3,1
+Congo DR vs Uzbekistan,2026-06-28,away,SELL,0.27,0.46,-0.19,False,0.46,3,1
+Algeria vs Austria,2026-06-28,home,BUY,0.3623,0.28,0.0823,False,-0.28,3,3
+Algeria vs Austria,2026-06-28,draw,SELL,0.2888,0.47,-0.1812,True,-0.53,3,3
+Algeria vs Austria,2026-06-28,away,BUY,0.3488,0.28,0.0688,False,-0.28,3,3
+Jordan vs Argentina,2026-06-28,home,BUY,0.0807,0.05,0.0307,False,-0.05,1,3
+Jordan vs Argentina,2026-06-28,draw,BUY,0.1604,0.1,0.0604,False,-0.1,1,3
+Jordan vs Argentina,2026-06-28,away,SELL,0.7589,0.87,-0.1111,True,-0.13,1,3
+South Africa vs Canada,2026-06-28,draw,SELL,0.2603,0.39,-0.1297,False,0.39,0,1
+South Africa vs Canada,2026-06-28,away,BUY,0.5471,0.44,0.1071,True,0.56,0,1
+Brazil vs Japan,2026-06-29,home,BUY,0.4962,0.23,0.2662,True,0.77,2,1
+Brazil vs Japan,2026-06-29,draw,SELL,0.2652,0.32,-0.0548,False,0.32,2,1
+Brazil vs Japan,2026-06-29,away,SELL,0.2386,0.46,-0.2214,False,0.46,2,1
+Germany vs Paraguay,2026-06-29,home,SELL,0.6778,0.71,-0.0322,False,0.71,1,1
+Germany vs Paraguay,2026-06-29,away,BUY,0.1175,0.08,0.0375,False,-0.08,1,1
+Netherlands vs Morocco,2026-06-30,home,BUY,0.4014,0.36,0.0414,False,-0.36,1,1
+Netherlands vs Morocco,2026-06-30,draw,SELL,0.2794,0.41,-0.1306,True,-0.59,1,1
+Netherlands vs Morocco,2026-06-30,away,BUY,0.3192,0.24,0.0792,False,-0.24,1,1
+Ivory Coast vs Norway,2026-06-30,home,BUY,0.3992,0.11,0.2892,False,-0.11,1,2
+Ivory Coast vs Norway,2026-06-30,draw,BUY,0.278,0.25,0.028,False,-0.25,1,2
+Ivory Coast vs Norway,2026-06-30,away,SELL,0.3228,0.65,-0.3272,True,-0.35,1,2
+France vs Sweden,2026-07-01,home,SELL,0.7101,0.88,-0.1699,True,-0.12,3,0
+France vs Sweden,2026-07-01,draw,BUY,0.1818,0.11,0.0718,False,-0.11,3,0
+France vs Sweden,2026-07-01,away,BUY,0.1081,0.02,0.0881,False,-0.02,3,0
+Mexico vs Ecuador,2026-07-01,draw,SELL,0.2991,0.36,-0.0609,False,0.36,2,0
+Mexico vs Ecuador,2026-07-01,away,BUY,0.2728,0.23,0.0428,False,-0.23,2,0
