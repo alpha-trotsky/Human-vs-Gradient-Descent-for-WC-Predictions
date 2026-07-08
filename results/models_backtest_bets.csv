@@ -1,0 +1,1706 @@
+model,match_id,match,is_wc,outcome,action,model_p,implied,diff,hit,pnl
+M1 Poisson+DC,26MAY16IRLGRN,Ireland vs Grenada,False,home,BUY,0.9285,0.7745,0.154,1.0,0.2255
+M1 Poisson+DC,26MAY16IRLGRN,Ireland vs Grenada,False,draw,SELL,0.0615,0.1961,-0.1346,0.0,0.1961
+M2 NegBin+DC,26MAY16IRLGRN,Ireland vs Grenada,False,home,BUY,0.927,0.7745,0.1525,1.0,0.2255
+M2 NegBin+DC,26MAY16IRLGRN,Ireland vs Grenada,False,draw,SELL,0.0628,0.1961,-0.1333,0.0,0.1961
+M3 NegBin+Frank,26MAY16IRLGRN,Ireland vs Grenada,False,home,BUY,0.9347,0.7745,0.1602,1.0,0.2255
+M3 NegBin+Frank,26MAY16IRLGRN,Ireland vs Grenada,False,draw,SELL,0.0562,0.1961,-0.1399,0.0,0.1961
+M3 NegBin+Frank,26MAY16IRLGRN,Ireland vs Grenada,False,away,SELL,0.0091,0.0294,-0.0203,0.0,0.0294
+M1 Poisson+DC,26MAY22MEXGHA,Mexico vs Ghana,False,home,SELL,0.599,0.7379,-0.1389,1.0,-0.2621
+M1 Poisson+DC,26MAY22MEXGHA,Mexico vs Ghana,False,draw,BUY,0.2603,0.1748,0.0856,0.0,-0.1748
+M1 Poisson+DC,26MAY22MEXGHA,Mexico vs Ghana,False,away,BUY,0.1407,0.0874,0.0533,0.0,-0.0874
+M2 NegBin+DC,26MAY22MEXGHA,Mexico vs Ghana,False,home,SELL,0.5986,0.7379,-0.1393,1.0,-0.2621
+M2 NegBin+DC,26MAY22MEXGHA,Mexico vs Ghana,False,draw,BUY,0.2605,0.1748,0.0857,0.0,-0.1748
+M2 NegBin+DC,26MAY22MEXGHA,Mexico vs Ghana,False,away,BUY,0.1409,0.0874,0.0536,0.0,-0.0874
+M3 NegBin+Frank,26MAY22MEXGHA,Mexico vs Ghana,False,home,SELL,0.6276,0.7379,-0.1102,1.0,-0.2621
+M3 NegBin+Frank,26MAY22MEXGHA,Mexico vs Ghana,False,draw,BUY,0.2489,0.1748,0.0742,0.0,-0.1748
+M3 NegBin+Frank,26MAY22MEXGHA,Mexico vs Ghana,False,away,BUY,0.1234,0.0874,0.036,0.0,-0.0874
+M1 Poisson+DC,26MAY26MARBDI,Morocco vs Burundi,False,home,SELL,0.8796,0.9796,-0.1,1.0,-0.0204
+M1 Poisson+DC,26MAY26MARBDI,Morocco vs Burundi,False,draw,BUY,0.1083,0.0102,0.0981,0.0,-0.0102
+M2 NegBin+DC,26MAY26MARBDI,Morocco vs Burundi,False,home,SELL,0.8783,0.9796,-0.1013,1.0,-0.0204
+M2 NegBin+DC,26MAY26MARBDI,Morocco vs Burundi,False,draw,BUY,0.1094,0.0102,0.0992,0.0,-0.0102
+M3 NegBin+Frank,26MAY26MARBDI,Morocco vs Burundi,False,home,SELL,0.8993,0.9796,-0.0803,1.0,-0.0204
+M3 NegBin+Frank,26MAY26MARBDI,Morocco vs Burundi,False,draw,BUY,0.0917,0.0102,0.0815,0.0,-0.0102
+M1 Poisson+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,home,SELL,0.6951,0.82,-0.1249,1.0,-0.18
+M1 Poisson+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,draw,BUY,0.2018,0.14,0.0618,0.0,-0.14
+M1 Poisson+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,away,BUY,0.103,0.04,0.063,0.0,-0.04
+M2 NegBin+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,home,SELL,0.694,0.82,-0.126,1.0,-0.18
+M2 NegBin+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,draw,BUY,0.2022,0.14,0.0622,0.0,-0.14
+M2 NegBin+DC,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,away,BUY,0.1038,0.04,0.0638,0.0,-0.04
+M3 NegBin+Frank,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,home,SELL,0.7004,0.82,-0.1196,1.0,-0.18
+M3 NegBin+Frank,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,draw,BUY,0.2031,0.14,0.0631,0.0,-0.14
+M3 NegBin+Frank,26MAY26NGRZIM,Nigeria vs Zimbabwe,False,away,BUY,0.0965,0.04,0.0565,0.0,-0.04
+M1 Poisson+DC,26MAY27JAMIND,Jamaica vs India,False,home,SELL,0.5682,0.8641,-0.2958,1.0,-0.1359
+M1 Poisson+DC,26MAY27JAMIND,Jamaica vs India,False,draw,BUY,0.3461,0.1068,0.2393,0.0,-0.1068
+M1 Poisson+DC,26MAY27JAMIND,Jamaica vs India,False,away,BUY,0.0857,0.0291,0.0565,0.0,-0.0291
+M2 NegBin+DC,26MAY27JAMIND,Jamaica vs India,False,home,SELL,0.5673,0.8641,-0.2968,1.0,-0.1359
+M2 NegBin+DC,26MAY27JAMIND,Jamaica vs India,False,draw,BUY,0.3469,0.1068,0.2401,0.0,-0.1068
+M2 NegBin+DC,26MAY27JAMIND,Jamaica vs India,False,away,BUY,0.0858,0.0291,0.0567,0.0,-0.0291
+M3 NegBin+Frank,26MAY27JAMIND,Jamaica vs India,False,home,SELL,0.5816,0.8641,-0.2825,1.0,-0.1359
+M3 NegBin+Frank,26MAY27JAMIND,Jamaica vs India,False,draw,BUY,0.3463,0.1068,0.2395,0.0,-0.1068
+M3 NegBin+Frank,26MAY27JAMIND,Jamaica vs India,False,away,BUY,0.0721,0.0291,0.043,0.0,-0.0291
+M1 Poisson+DC,26MAY28EGYRUS,Egypt vs Russia,False,home,SELL,0.3418,0.375,-0.0332,1.0,-0.625
+M1 Poisson+DC,26MAY28EGYRUS,Egypt vs Russia,False,draw,SELL,0.3662,0.4038,-0.0376,0.0,0.4038
+M1 Poisson+DC,26MAY28EGYRUS,Egypt vs Russia,False,away,BUY,0.292,0.2212,0.0708,0.0,-0.2212
+M2 NegBin+DC,26MAY28EGYRUS,Egypt vs Russia,False,home,SELL,0.3414,0.375,-0.0336,1.0,-0.625
+M2 NegBin+DC,26MAY28EGYRUS,Egypt vs Russia,False,draw,SELL,0.3654,0.4038,-0.0385,0.0,0.4038
+M2 NegBin+DC,26MAY28EGYRUS,Egypt vs Russia,False,away,BUY,0.2933,0.2212,0.0721,0.0,-0.2212
+M3 NegBin+Frank,26MAY28EGYRUS,Egypt vs Russia,False,home,SELL,0.3293,0.375,-0.0457,1.0,-0.625
+M3 NegBin+Frank,26MAY28EGYRUS,Egypt vs Russia,False,away,BUY,0.2813,0.2212,0.0602,0.0,-0.2212
+M1 Poisson+DC,26MAY28IRLQAT,Ireland vs Qatar,False,home,SELL,0.7487,0.8713,-0.1226,1.0,-0.1287
+M1 Poisson+DC,26MAY28IRLQAT,Ireland vs Qatar,False,draw,BUY,0.1688,0.099,0.0697,0.0,-0.099
+M1 Poisson+DC,26MAY28IRLQAT,Ireland vs Qatar,False,away,BUY,0.0825,0.0297,0.0528,0.0,-0.0297
+M2 NegBin+DC,26MAY28IRLQAT,Ireland vs Qatar,False,home,SELL,0.7471,0.8713,-0.1242,1.0,-0.1287
+M2 NegBin+DC,26MAY28IRLQAT,Ireland vs Qatar,False,draw,BUY,0.1694,0.099,0.0704,0.0,-0.099
+M2 NegBin+DC,26MAY28IRLQAT,Ireland vs Qatar,False,away,BUY,0.0835,0.0297,0.0538,0.0,-0.0297
+M3 NegBin+Frank,26MAY28IRLQAT,Ireland vs Qatar,False,home,SELL,0.7744,0.8713,-0.0968,1.0,-0.1287
+M3 NegBin+Frank,26MAY28IRLQAT,Ireland vs Qatar,False,draw,BUY,0.1548,0.099,0.0558,0.0,-0.099
+M3 NegBin+Frank,26MAY28IRLQAT,Ireland vs Qatar,False,away,BUY,0.0707,0.0297,0.041,0.0,-0.0297
+M1 Poisson+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,home,BUY,0.6839,0.6346,0.0493,1.0,0.3654
+M1 Poisson+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,draw,SELL,0.1933,0.2212,-0.0278,0.0,0.2212
+M1 Poisson+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,away,SELL,0.1228,0.1442,-0.0214,0.0,0.1442
+M2 NegBin+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,home,BUY,0.6832,0.6346,0.0486,1.0,0.3654
+M2 NegBin+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,draw,SELL,0.1934,0.2212,-0.0277,0.0,0.2212
+M2 NegBin+DC,26MAY29IRIGAM,IR Iran vs Gambia,False,away,SELL,0.1234,0.1442,-0.0209,0.0,0.1442
+M3 NegBin+Frank,26MAY29IRIGAM,IR Iran vs Gambia,False,home,BUY,0.6982,0.6346,0.0636,1.0,0.3654
+M3 NegBin+Frank,26MAY29IRIGAM,IR Iran vs Gambia,False,draw,SELL,0.1891,0.2212,-0.0321,0.0,0.2212
+M3 NegBin+Frank,26MAY29IRIGAM,IR Iran vs Gambia,False,away,SELL,0.1127,0.1442,-0.0315,0.0,0.1442
+M1 Poisson+DC,26MAY29RSANIC,South Africa vs Nicaragua,False,home,BUY,0.8502,0.6765,0.1738,0.0,-0.6765
+M1 Poisson+DC,26MAY29RSANIC,South Africa vs Nicaragua,False,draw,SELL,0.1143,0.2745,-0.1602,1.0,-0.7255
+M2 NegBin+DC,26MAY29RSANIC,South Africa vs Nicaragua,False,home,BUY,0.8476,0.6765,0.1712,0.0,-0.6765
+M2 NegBin+DC,26MAY29RSANIC,South Africa vs Nicaragua,False,draw,SELL,0.1161,0.2745,-0.1584,1.0,-0.7255
+M3 NegBin+Frank,26MAY29RSANIC,South Africa vs Nicaragua,False,home,BUY,0.8641,0.6765,0.1876,0.0,-0.6765
+M3 NegBin+Frank,26MAY29RSANIC,South Africa vs Nicaragua,False,draw,SELL,0.1048,0.2745,-0.1697,1.0,-0.7255
+M1 Poisson+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,home,BUY,0.0416,0.0198,0.0218,0.0,-0.0198
+M1 Poisson+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,draw,BUY,0.2809,0.0891,0.1918,0.0,-0.0891
+M1 Poisson+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,away,SELL,0.6776,0.8911,-0.2135,1.0,-0.1089
+M2 NegBin+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,home,BUY,0.0418,0.0198,0.022,0.0,-0.0198
+M2 NegBin+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,draw,BUY,0.2816,0.0891,0.1925,0.0,-0.0891
+M2 NegBin+DC,26MAY29ANDIRQ,Andorra vs Iraq,False,away,SELL,0.6766,0.8911,-0.2145,1.0,-0.1089
+M3 NegBin+Frank,26MAY29ANDIRQ,Andorra vs Iraq,False,draw,BUY,0.2826,0.0891,0.1935,0.0,-0.0891
+M3 NegBin+Frank,26MAY29ANDIRQ,Andorra vs Iraq,False,away,SELL,0.6826,0.8911,-0.2085,1.0,-0.1089
+M1 Poisson+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,home,BUY,0.567,0.5098,0.0572,0.0,-0.5098
+M1 Poisson+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,draw,SELL,0.2644,0.3431,-0.0788,1.0,-0.6569
+M1 Poisson+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,away,BUY,0.1686,0.1471,0.0215,0.0,-0.1471
+M2 NegBin+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,home,BUY,0.5664,0.5098,0.0566,0.0,-0.5098
+M2 NegBin+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,draw,SELL,0.2646,0.3431,-0.0786,1.0,-0.6569
+M2 NegBin+DC,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,away,BUY,0.169,0.1471,0.022,0.0,-0.1471
+M3 NegBin+Frank,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,home,BUY,0.5855,0.5098,0.0757,0.0,-0.5098
+M3 NegBin+Frank,26MAY29BIHMKD,Bosnia and Herzegovina vs North Macedonia,False,draw,SELL,0.2621,0.3431,-0.0811,1.0,-0.6569
+M1 Poisson+DC,26MAY30SCOCUW,Scotland vs Curacao,False,home,BUY,0.8631,0.7921,0.071,1.0,0.2079
+M1 Poisson+DC,26MAY30SCOCUW,Scotland vs Curacao,False,draw,SELL,0.1026,0.1782,-0.0756,0.0,0.1782
+M2 NegBin+DC,26MAY30SCOCUW,Scotland vs Curacao,False,home,BUY,0.8603,0.7921,0.0682,1.0,0.2079
+M2 NegBin+DC,26MAY30SCOCUW,Scotland vs Curacao,False,draw,SELL,0.1044,0.1782,-0.0738,0.0,0.1782
+M3 NegBin+Frank,26MAY30SCOCUW,Scotland vs Curacao,False,home,BUY,0.8789,0.7921,0.0868,1.0,0.2079
+M3 NegBin+Frank,26MAY30SCOCUW,Scotland vs Curacao,False,draw,SELL,0.0919,0.1782,-0.0863,0.0,0.1782
+M1 Poisson+DC,26MAY30ZIMIND,Zimbabwe vs India,False,home,BUY,0.7511,0.5644,0.1867,1.0,0.4356
+M1 Poisson+DC,26MAY30ZIMIND,Zimbabwe vs India,False,draw,SELL,0.2036,0.3168,-0.1132,0.0,0.3168
+M1 Poisson+DC,26MAY30ZIMIND,Zimbabwe vs India,False,away,SELL,0.0453,0.1188,-0.0735,0.0,0.1188
+M2 NegBin+DC,26MAY30ZIMIND,Zimbabwe vs India,False,home,BUY,0.7491,0.5644,0.1848,1.0,0.4356
+M2 NegBin+DC,26MAY30ZIMIND,Zimbabwe vs India,False,draw,SELL,0.2051,0.3168,-0.1117,0.0,0.3168
+M2 NegBin+DC,26MAY30ZIMIND,Zimbabwe vs India,False,away,SELL,0.0457,0.1188,-0.0731,0.0,0.1188
+M3 NegBin+Frank,26MAY30ZIMIND,Zimbabwe vs India,False,home,BUY,0.7635,0.5644,0.1991,1.0,0.4356
+M3 NegBin+Frank,26MAY30ZIMIND,Zimbabwe vs India,False,draw,SELL,0.1978,0.3168,-0.1191,0.0,0.3168
+M3 NegBin+Frank,26MAY30ZIMIND,Zimbabwe vs India,False,away,SELL,0.0387,0.1188,-0.0801,0.0,0.1188
+M1 Poisson+DC,26MAY30NGRJAM,Nigeria vs Jamaica,False,home,SELL,0.717,0.7647,-0.0477,1.0,-0.2353
+M1 Poisson+DC,26MAY30NGRJAM,Nigeria vs Jamaica,False,draw,BUY,0.211,0.1765,0.0345,0.0,-0.1765
+M2 NegBin+DC,26MAY30NGRJAM,Nigeria vs Jamaica,False,home,SELL,0.7139,0.7647,-0.0508,1.0,-0.2353
+M2 NegBin+DC,26MAY30NGRJAM,Nigeria vs Jamaica,False,draw,BUY,0.213,0.1765,0.0365,0.0,-0.1765
+M3 NegBin+Frank,26MAY30NGRJAM,Nigeria vs Jamaica,False,home,SELL,0.7194,0.7647,-0.0453,1.0,-0.2353
+M3 NegBin+Frank,26MAY30NGRJAM,Nigeria vs Jamaica,False,draw,BUY,0.2135,0.1765,0.037,0.0,-0.1765
+M3 NegBin+Frank,26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,home,BUY,0.9301,0.8932,0.0369,1.0,0.1068
+M3 NegBin+Frank,26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,away,SELL,0.0153,0.0388,-0.0235,0.0,0.0388
+M4 NegBin+Frank (calib 1X2),26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,home,BUY,0.9458,0.8932,0.0526,1.0,0.1068
+M4 NegBin+Frank (calib 1X2),26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,draw,SELL,0.0338,0.068,-0.0342,0.0,0.068
+M5 NegBin+Frank (calib 1X2+O/U),26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,home,BUY,0.9458,0.8932,0.0526,1.0,0.1068
+M5 NegBin+Frank (calib 1X2+O/U),26MAY30KORTTO,Korea Republic vs Trinidad and Tobago,False,draw,SELL,0.0338,0.068,-0.0342,0.0,0.068
+M1 Poisson+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,home,BUY,0.6495,0.625,0.0245,1.0,0.375
+M1 Poisson+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,draw,BUY,0.2741,0.2308,0.0433,0.0,-0.2308
+M1 Poisson+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,away,SELL,0.0764,0.1442,-0.0678,0.0,0.1442
+M2 NegBin+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,home,BUY,0.6484,0.625,0.0234,1.0,0.375
+M2 NegBin+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,draw,BUY,0.2747,0.2308,0.044,0.0,-0.2308
+M2 NegBin+DC,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,away,SELL,0.0769,0.1442,-0.0674,0.0,0.1442
+M3 NegBin+Frank,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,draw,BUY,0.289,0.2308,0.0583,0.0,-0.2308
+M3 NegBin+Frank,26MAY30ECUKSA,Ecuador vs Saudi Arabia,False,away,SELL,0.0685,0.1442,-0.0758,0.0,0.1442
+M1 Poisson+DC,26MAY30MEXAUS,Mexico vs Australia,False,home,SELL,0.3611,0.8416,-0.4804,1.0,-0.1584
+M1 Poisson+DC,26MAY30MEXAUS,Mexico vs Australia,False,draw,BUY,0.3653,0.1287,0.2366,0.0,-0.1287
+M1 Poisson+DC,26MAY30MEXAUS,Mexico vs Australia,False,away,BUY,0.2735,0.0297,0.2438,0.0,-0.0297
+M2 NegBin+DC,26MAY30MEXAUS,Mexico vs Australia,False,home,SELL,0.361,0.8416,-0.4805,1.0,-0.1584
+M2 NegBin+DC,26MAY30MEXAUS,Mexico vs Australia,False,draw,BUY,0.3654,0.1287,0.2367,0.0,-0.1287
+M2 NegBin+DC,26MAY30MEXAUS,Mexico vs Australia,False,away,BUY,0.2735,0.0297,0.2438,0.0,-0.0297
+M3 NegBin+Frank,26MAY30MEXAUS,Mexico vs Australia,False,home,SELL,0.3729,0.8416,-0.4687,1.0,-0.1584
+M3 NegBin+Frank,26MAY30MEXAUS,Mexico vs Australia,False,draw,BUY,0.3727,0.1287,0.244,0.0,-0.1287
+M3 NegBin+Frank,26MAY30MEXAUS,Mexico vs Australia,False,away,BUY,0.2544,0.0297,0.2247,0.0,-0.0297
+M1 Poisson+DC,26MAY31JPNISL,Japan vs Iceland,False,home,BUY,0.8403,0.71,0.1303,1.0,0.29
+M1 Poisson+DC,26MAY31JPNISL,Japan vs Iceland,False,draw,SELL,0.1151,0.22,-0.1049,0.0,0.22
+M1 Poisson+DC,26MAY31JPNISL,Japan vs Iceland,False,away,SELL,0.0447,0.07,-0.0253,0.0,0.07
+M2 NegBin+DC,26MAY31JPNISL,Japan vs Iceland,False,home,BUY,0.8385,0.71,0.1285,1.0,0.29
+M2 NegBin+DC,26MAY31JPNISL,Japan vs Iceland,False,draw,SELL,0.1161,0.22,-0.1039,0.0,0.22
+M2 NegBin+DC,26MAY31JPNISL,Japan vs Iceland,False,away,SELL,0.0454,0.07,-0.0246,0.0,0.07
+M3 NegBin+Frank,26MAY31JPNISL,Japan vs Iceland,False,home,BUY,0.8621,0.71,0.1521,1.0,0.29
+M3 NegBin+Frank,26MAY31JPNISL,Japan vs Iceland,False,draw,SELL,0.1003,0.22,-0.1197,0.0,0.22
+M3 NegBin+Frank,26MAY31JPNISL,Japan vs Iceland,False,away,SELL,0.0376,0.07,-0.0324,0.0,0.07
+M1 Poisson+DC,26MAY31SINMGL,Singapore vs Mongolia,False,home,SELL,0.8428,0.93,-0.0872,1.0,-0.07
+M1 Poisson+DC,26MAY31SINMGL,Singapore vs Mongolia,False,draw,BUY,0.121,0.06,0.061,0.0,-0.06
+M1 Poisson+DC,26MAY31SINMGL,Singapore vs Mongolia,False,away,BUY,0.0362,0.01,0.0262,0.0,-0.01
+M2 NegBin+DC,26MAY31SINMGL,Singapore vs Mongolia,False,home,SELL,0.8427,0.93,-0.0873,1.0,-0.07
+M2 NegBin+DC,26MAY31SINMGL,Singapore vs Mongolia,False,draw,BUY,0.121,0.06,0.061,0.0,-0.06
+M2 NegBin+DC,26MAY31SINMGL,Singapore vs Mongolia,False,away,BUY,0.0363,0.01,0.0263,0.0,-0.01
+M3 NegBin+Frank,26MAY31SINMGL,Singapore vs Mongolia,False,home,SELL,0.8663,0.93,-0.0637,1.0,-0.07
+M3 NegBin+Frank,26MAY31SINMGL,Singapore vs Mongolia,False,draw,BUY,0.1055,0.06,0.0455,0.0,-0.06
+M1 Poisson+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,home,SELL,0.8337,0.9802,-0.1465,1.0,-0.0198
+M1 Poisson+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,draw,BUY,0.1093,0.0099,0.0994,0.0,-0.0099
+M1 Poisson+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,away,BUY,0.0571,0.0099,0.0472,0.0,-0.0099
+M2 NegBin+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,home,SELL,0.8309,0.9802,-0.1493,1.0,-0.0198
+M2 NegBin+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,draw,BUY,0.1107,0.0099,0.1008,0.0,-0.0099
+M2 NegBin+DC,26MAY31SUIJOR,Switzerland vs Jordan,False,away,BUY,0.0585,0.0099,0.0486,0.0,-0.0099
+M3 NegBin+Frank,26MAY31SUIJOR,Switzerland vs Jordan,False,home,SELL,0.8456,0.9802,-0.1346,1.0,-0.0198
+M3 NegBin+Frank,26MAY31SUIJOR,Switzerland vs Jordan,False,draw,BUY,0.1027,0.0099,0.0928,0.0,-0.0099
+M3 NegBin+Frank,26MAY31SUIJOR,Switzerland vs Jordan,False,away,BUY,0.0517,0.0099,0.0418,0.0,-0.0099
+M1 Poisson+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,home,SELL,0.3288,0.9208,-0.592,1.0,-0.0792
+M1 Poisson+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,draw,BUY,0.2817,0.0594,0.2223,0.0,-0.0594
+M1 Poisson+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,away,BUY,0.3894,0.0198,0.3696,0.0,-0.0198
+M2 NegBin+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,home,SELL,0.3303,0.9208,-0.5905,1.0,-0.0792
+M2 NegBin+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,draw,BUY,0.2812,0.0594,0.2218,0.0,-0.0594
+M2 NegBin+DC,26MAY31CZEKOS,Czechia vs Kosovo,False,away,BUY,0.3885,0.0198,0.3687,0.0,-0.0198
+M3 NegBin+Frank,26MAY31CZEKOS,Czechia vs Kosovo,False,home,SELL,0.3383,0.9208,-0.5825,1.0,-0.0792
+M3 NegBin+Frank,26MAY31CZEKOS,Czechia vs Kosovo,False,draw,BUY,0.2892,0.0594,0.2298,0.0,-0.0594
+M3 NegBin+Frank,26MAY31CZEKOS,Czechia vs Kosovo,False,away,BUY,0.3725,0.0198,0.3527,0.0,-0.0198
+M1 Poisson+DC,26MAY31CPVSRB,Cape Verde vs Serbia,False,draw,BUY,0.3113,0.28,0.0313,0.0,-0.28
+M2 NegBin+DC,26MAY31CPVSRB,Cape Verde vs Serbia,False,draw,BUY,0.3114,0.28,0.0314,0.0,-0.28
+M3 NegBin+Frank,26MAY31CPVSRB,Cape Verde vs Serbia,False,draw,BUY,0.3256,0.28,0.0456,0.0,-0.28
+M3 NegBin+Frank,26MAY31CPVSRB,Cape Verde vs Serbia,False,away,SELL,0.4424,0.48,-0.0376,0.0,0.48
+M1 Poisson+DC,26MAY31POLUKR,Poland vs Ukraine,False,draw,SELL,0.2393,0.3173,-0.078,0.0,0.3173
+M1 Poisson+DC,26MAY31POLUKR,Poland vs Ukraine,False,away,BUY,0.2598,0.1923,0.0675,1.0,0.8077
+M2 NegBin+DC,26MAY31POLUKR,Poland vs Ukraine,False,draw,SELL,0.2387,0.3173,-0.0786,0.0,0.3173
+M2 NegBin+DC,26MAY31POLUKR,Poland vs Ukraine,False,away,BUY,0.2602,0.1923,0.0679,1.0,0.8077
+M3 NegBin+Frank,26MAY31POLUKR,Poland vs Ukraine,False,home,BUY,0.5184,0.4904,0.028,0.0,-0.4904
+M3 NegBin+Frank,26MAY31POLUKR,Poland vs Ukraine,False,draw,SELL,0.2417,0.3173,-0.0756,0.0,0.3173
+M3 NegBin+Frank,26MAY31POLUKR,Poland vs Ukraine,False,away,BUY,0.2399,0.1923,0.0476,1.0,0.8077
+M1 Poisson+DC,26MAY31GERFIN,Germany vs Finland,False,home,SELL,0.8495,0.8725,-0.0231,1.0,-0.1275
+M2 NegBin+DC,26MAY31GERFIN,Germany vs Finland,False,home,SELL,0.8476,0.8725,-0.025,1.0,-0.1275
+M4 NegBin+Frank (calib 1X2),26MAY31GERFIN,Germany vs Finland,False,home,BUY,0.894,0.8725,0.0214,1.0,0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31GERFIN,Germany vs Finland,False,home,BUY,0.9146,0.8725,0.042,1.0,0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31GERFIN,Germany vs Finland,False,draw,SELL,0.0613,0.0882,-0.0269,0.0,0.0882
+M1 Poisson+DC,26MAY31USASEN,USA vs Senegal,False,home,SELL,0.1829,0.89,-0.7071,1.0,-0.11
+M1 Poisson+DC,26MAY31USASEN,USA vs Senegal,False,draw,BUY,0.2261,0.08,0.1461,0.0,-0.08
+M1 Poisson+DC,26MAY31USASEN,USA vs Senegal,False,away,BUY,0.5911,0.03,0.5611,0.0,-0.03
+M2 NegBin+DC,26MAY31USASEN,USA vs Senegal,False,home,SELL,0.1844,0.89,-0.7056,1.0,-0.11
+M2 NegBin+DC,26MAY31USASEN,USA vs Senegal,False,draw,BUY,0.2263,0.08,0.1463,0.0,-0.08
+M2 NegBin+DC,26MAY31USASEN,USA vs Senegal,False,away,BUY,0.5893,0.03,0.5593,0.0,-0.03
+M3 NegBin+Frank,26MAY31USASEN,USA vs Senegal,False,home,SELL,0.1718,0.89,-0.7182,1.0,-0.11
+M3 NegBin+Frank,26MAY31USASEN,USA vs Senegal,False,draw,BUY,0.2206,0.08,0.1406,0.0,-0.08
+M3 NegBin+Frank,26MAY31USASEN,USA vs Senegal,False,away,BUY,0.6076,0.03,0.5776,0.0,-0.03
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31USASEN,USA vs Senegal,False,home,BUY,0.9859,0.89,0.0959,1.0,0.11
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31USASEN,USA vs Senegal,False,draw,SELL,0.0085,0.08,-0.0715,0.0,0.08
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31USASEN,USA vs Senegal,False,away,SELL,0.0056,0.03,-0.0244,0.0,0.03
+M1 Poisson+DC,26MAY31BRAPAN,Brazil vs Panama,False,home,BUY,0.9181,0.7921,0.1261,1.0,0.2079
+M1 Poisson+DC,26MAY31BRAPAN,Brazil vs Panama,False,draw,SELL,0.0593,0.1584,-0.0991,0.0,0.1584
+M1 Poisson+DC,26MAY31BRAPAN,Brazil vs Panama,False,away,SELL,0.0226,0.0495,-0.0269,0.0,0.0495
+M2 NegBin+DC,26MAY31BRAPAN,Brazil vs Panama,False,home,BUY,0.9154,0.7921,0.1233,1.0,0.2079
+M2 NegBin+DC,26MAY31BRAPAN,Brazil vs Panama,False,draw,SELL,0.0611,0.1584,-0.0973,0.0,0.1584
+M2 NegBin+DC,26MAY31BRAPAN,Brazil vs Panama,False,away,SELL,0.0236,0.0495,-0.026,0.0,0.0495
+M3 NegBin+Frank,26MAY31BRAPAN,Brazil vs Panama,False,home,BUY,0.9291,0.7921,0.1371,1.0,0.2079
+M3 NegBin+Frank,26MAY31BRAPAN,Brazil vs Panama,False,draw,SELL,0.0513,0.1584,-0.1071,0.0,0.1584
+M3 NegBin+Frank,26MAY31BRAPAN,Brazil vs Panama,False,away,SELL,0.0196,0.0495,-0.0299,0.0,0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31BRAPAN,Brazil vs Panama,False,home,BUY,0.9765,0.7921,0.1844,1.0,0.2079
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31BRAPAN,Brazil vs Panama,False,draw,SELL,0.0134,0.1584,-0.145,0.0,0.1584
+M5 NegBin+Frank (calib 1X2+O/U),26MAY31BRAPAN,Brazil vs Panama,False,away,SELL,0.01,0.0495,-0.0395,0.0,0.0495
+M1 Poisson+DC,26JUN01MDVAFG,Maldives vs Afghanistan,False,home,BUY,0.3371,0.1765,0.1606,0.0,-0.1765
+M1 Poisson+DC,26JUN01MDVAFG,Maldives vs Afghanistan,False,away,SELL,0.2975,0.451,-0.1535,1.0,-0.549
+M2 NegBin+DC,26JUN01MDVAFG,Maldives vs Afghanistan,False,home,BUY,0.3387,0.1765,0.1622,0.0,-0.1765
+M2 NegBin+DC,26JUN01MDVAFG,Maldives vs Afghanistan,False,away,SELL,0.2961,0.451,-0.1549,1.0,-0.549
+M3 NegBin+Frank,26JUN01MDVAFG,Maldives vs Afghanistan,False,home,BUY,0.3372,0.1765,0.1607,0.0,-0.1765
+M3 NegBin+Frank,26JUN01MDVAFG,Maldives vs Afghanistan,False,away,SELL,0.2767,0.451,-0.1743,1.0,-0.549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01MDVAFG,Maldives vs Afghanistan,False,home,SELL,0.0927,0.1765,-0.0837,0.0,0.1765
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01MDVAFG,Maldives vs Afghanistan,False,draw,BUY,0.6086,0.3725,0.2361,0.0,-0.3725
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01MDVAFG,Maldives vs Afghanistan,False,away,SELL,0.2986,0.451,-0.1523,1.0,-0.549
+M1 Poisson+DC,26JUN01SVKMLT,Slovakia vs Malta,False,home,BUY,0.8113,0.6535,0.1578,1.0,0.3465
+M1 Poisson+DC,26JUN01SVKMLT,Slovakia vs Malta,False,draw,SELL,0.1377,0.2574,-0.1197,0.0,0.2574
+M1 Poisson+DC,26JUN01SVKMLT,Slovakia vs Malta,False,away,SELL,0.051,0.0891,-0.0381,0.0,0.0891
+M2 NegBin+DC,26JUN01SVKMLT,Slovakia vs Malta,False,home,BUY,0.8089,0.6535,0.1554,1.0,0.3465
+M2 NegBin+DC,26JUN01SVKMLT,Slovakia vs Malta,False,draw,SELL,0.1393,0.2574,-0.1182,0.0,0.2574
+M2 NegBin+DC,26JUN01SVKMLT,Slovakia vs Malta,False,away,SELL,0.0518,0.0891,-0.0373,0.0,0.0891
+M3 NegBin+Frank,26JUN01SVKMLT,Slovakia vs Malta,False,home,BUY,0.8464,0.6535,0.1929,1.0,0.3465
+M3 NegBin+Frank,26JUN01SVKMLT,Slovakia vs Malta,False,draw,SELL,0.1137,0.2574,-0.1437,0.0,0.2574
+M3 NegBin+Frank,26JUN01SVKMLT,Slovakia vs Malta,False,away,SELL,0.0399,0.0891,-0.0492,0.0,0.0891
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01SVKMLT,Slovakia vs Malta,False,home,BUY,0.7257,0.6535,0.0722,1.0,0.3465
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01SVKMLT,Slovakia vs Malta,False,draw,SELL,0.1785,0.2574,-0.079,0.0,0.2574
+M1 Poisson+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,home,BUY,0.5133,0.2772,0.236,0.0,-0.2772
+M1 Poisson+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,draw,SELL,0.2415,0.4356,-0.1942,0.0,0.4356
+M1 Poisson+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,away,SELL,0.2453,0.2871,-0.0419,1.0,-0.7129
+M2 NegBin+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,home,BUY,0.5109,0.2772,0.2337,0.0,-0.2772
+M2 NegBin+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,draw,SELL,0.2418,0.4356,-0.1939,0.0,0.4356
+M2 NegBin+DC,26JUN01BULMNE,Bulgaria vs Montenegro,False,away,SELL,0.2474,0.2871,-0.0398,1.0,-0.7129
+M3 NegBin+Frank,26JUN01BULMNE,Bulgaria vs Montenegro,False,home,BUY,0.5297,0.2772,0.2525,0.0,-0.2772
+M3 NegBin+Frank,26JUN01BULMNE,Bulgaria vs Montenegro,False,draw,SELL,0.2431,0.4356,-0.1926,0.0,0.4356
+M3 NegBin+Frank,26JUN01BULMNE,Bulgaria vs Montenegro,False,away,SELL,0.2273,0.2871,-0.0599,1.0,-0.7129
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01BULMNE,Bulgaria vs Montenegro,False,home,SELL,0.1746,0.2772,-0.1026,0.0,0.2772
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01BULMNE,Bulgaria vs Montenegro,False,draw,BUY,0.6431,0.4356,0.2075,0.0,-0.4356
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01BULMNE,Bulgaria vs Montenegro,False,away,SELL,0.1823,0.2871,-0.1048,1.0,-0.7129
+M1 Poisson+DC,26JUN01NORSWE,Norway vs Sweden,False,home,SELL,0.7566,0.9802,-0.2236,1.0,-0.0198
+M1 Poisson+DC,26JUN01NORSWE,Norway vs Sweden,False,draw,BUY,0.1445,0.0099,0.1346,0.0,-0.0099
+M1 Poisson+DC,26JUN01NORSWE,Norway vs Sweden,False,away,BUY,0.0989,0.0099,0.089,0.0,-0.0099
+M2 NegBin+DC,26JUN01NORSWE,Norway vs Sweden,False,home,SELL,0.7536,0.9802,-0.2266,1.0,-0.0198
+M2 NegBin+DC,26JUN01NORSWE,Norway vs Sweden,False,draw,BUY,0.1457,0.0099,0.1358,0.0,-0.0099
+M2 NegBin+DC,26JUN01NORSWE,Norway vs Sweden,False,away,BUY,0.1007,0.0099,0.0908,0.0,-0.0099
+M3 NegBin+Frank,26JUN01NORSWE,Norway vs Sweden,False,home,SELL,0.7779,0.9802,-0.2023,1.0,-0.0198
+M3 NegBin+Frank,26JUN01NORSWE,Norway vs Sweden,False,draw,BUY,0.1356,0.0099,0.1257,0.0,-0.0099
+M3 NegBin+Frank,26JUN01NORSWE,Norway vs Sweden,False,away,BUY,0.0865,0.0099,0.0766,0.0,-0.0099
+M1 Poisson+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,home,SELL,0.7525,0.9608,-0.2083,1.0,-0.0392
+M1 Poisson+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,draw,BUY,0.1766,0.0294,0.1472,0.0,-0.0294
+M1 Poisson+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,away,BUY,0.0709,0.0098,0.0611,0.0,-0.0098
+M2 NegBin+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,home,SELL,0.751,0.9608,-0.2098,1.0,-0.0392
+M2 NegBin+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,draw,BUY,0.1776,0.0294,0.1482,0.0,-0.0294
+M2 NegBin+DC,26JUN01TURMKD,Turkiye vs North Macedonia,False,away,BUY,0.0715,0.0098,0.0617,0.0,-0.0098
+M3 NegBin+Frank,26JUN01TURMKD,Turkiye vs North Macedonia,False,home,SELL,0.7804,0.9608,-0.1804,1.0,-0.0392
+M3 NegBin+Frank,26JUN01TURMKD,Turkiye vs North Macedonia,False,draw,BUY,0.1614,0.0294,0.132,0.0,-0.0294
+M3 NegBin+Frank,26JUN01TURMKD,Turkiye vs North Macedonia,False,away,BUY,0.0582,0.0098,0.0484,0.0,-0.0098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01TURMKD,Turkiye vs North Macedonia,False,home,BUY,0.9901,0.9608,0.0293,1.0,0.0392
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01TURMKD,Turkiye vs North Macedonia,False,draw,SELL,0.0086,0.0294,-0.0208,0.0,0.0294
+M1 Poisson+DC,26JUN01AUTTUN,Austria vs Tunisia,False,home,SELL,0.5736,0.6863,-0.1127,1.0,-0.3137
+M1 Poisson+DC,26JUN01AUTTUN,Austria vs Tunisia,False,draw,BUY,0.277,0.2157,0.0613,0.0,-0.2157
+M1 Poisson+DC,26JUN01AUTTUN,Austria vs Tunisia,False,away,BUY,0.1494,0.098,0.0514,0.0,-0.098
+M2 NegBin+DC,26JUN01AUTTUN,Austria vs Tunisia,False,home,SELL,0.5717,0.6863,-0.1145,1.0,-0.3137
+M2 NegBin+DC,26JUN01AUTTUN,Austria vs Tunisia,False,draw,BUY,0.2778,0.2157,0.0621,0.0,-0.2157
+M2 NegBin+DC,26JUN01AUTTUN,Austria vs Tunisia,False,away,BUY,0.1505,0.098,0.0524,0.0,-0.098
+M3 NegBin+Frank,26JUN01AUTTUN,Austria vs Tunisia,False,home,SELL,0.5793,0.6863,-0.1069,1.0,-0.3137
+M3 NegBin+Frank,26JUN01AUTTUN,Austria vs Tunisia,False,draw,BUY,0.2785,0.2157,0.0628,0.0,-0.2157
+M3 NegBin+Frank,26JUN01AUTTUN,Austria vs Tunisia,False,away,BUY,0.1422,0.098,0.0441,0.0,-0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01AUTTUN,Austria vs Tunisia,False,home,SELL,0.5728,0.6863,-0.1134,1.0,-0.3137
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01AUTTUN,Austria vs Tunisia,False,draw,BUY,0.3747,0.2157,0.1591,0.0,-0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01AUTTUN,Austria vs Tunisia,False,away,SELL,0.0524,0.098,-0.0456,0.0,0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01COLCRI,Colombia vs Costa Rica,False,home,BUY,0.9879,0.9208,0.0671,1.0,0.0792
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01COLCRI,Colombia vs Costa Rica,False,draw,SELL,0.0093,0.0594,-0.0501,0.0,0.0594
+M3 NegBin+Frank,26JUN01CANUZB,Canada vs Uzbekistan,False,away,SELL,0.1456,0.1765,-0.0308,0.0,0.1765
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01CANUZB,Canada vs Uzbekistan,False,home,SELL,0.4006,0.4902,-0.0896,1.0,-0.5098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01CANUZB,Canada vs Uzbekistan,False,draw,BUY,0.4805,0.3333,0.1472,0.0,-0.3333
+M5 NegBin+Frank (calib 1X2+O/U),26JUN01CANUZB,Canada vs Uzbekistan,False,away,SELL,0.1189,0.1765,-0.0576,0.0,0.1765
+M1 Poisson+DC,26JUN02CROBEL,Croatia vs Belgium,False,home,BUY,0.474,0.099,0.375,0.0,-0.099
+M1 Poisson+DC,26JUN02CROBEL,Croatia vs Belgium,False,away,SELL,0.2756,0.6634,-0.3877,1.0,-0.3366
+M2 NegBin+DC,26JUN02CROBEL,Croatia vs Belgium,False,home,BUY,0.4743,0.099,0.3753,0.0,-0.099
+M2 NegBin+DC,26JUN02CROBEL,Croatia vs Belgium,False,away,SELL,0.2758,0.6634,-0.3875,1.0,-0.3366
+M3 NegBin+Frank,26JUN02CROBEL,Croatia vs Belgium,False,home,BUY,0.475,0.099,0.376,0.0,-0.099
+M3 NegBin+Frank,26JUN02CROBEL,Croatia vs Belgium,False,draw,BUY,0.2584,0.2376,0.0208,0.0,-0.2376
+M3 NegBin+Frank,26JUN02CROBEL,Croatia vs Belgium,False,away,SELL,0.2666,0.6634,-0.3968,1.0,-0.3366
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02CROBEL,Croatia vs Belgium,False,home,SELL,0.0689,0.099,-0.0301,0.0,0.099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02CROBEL,Croatia vs Belgium,False,draw,BUY,0.2732,0.2376,0.0356,0.0,-0.2376
+M1 Poisson+DC,26JUN02MARMAD,Morocco vs Madagascar,False,home,SELL,0.9162,0.9802,-0.064,1.0,-0.0198
+M1 Poisson+DC,26JUN02MARMAD,Morocco vs Madagascar,False,draw,BUY,0.0675,0.0099,0.0576,0.0,-0.0099
+M2 NegBin+DC,26JUN02MARMAD,Morocco vs Madagascar,False,home,SELL,0.9143,0.9802,-0.0659,1.0,-0.0198
+M2 NegBin+DC,26JUN02MARMAD,Morocco vs Madagascar,False,draw,BUY,0.069,0.0099,0.0591,0.0,-0.0099
+M3 NegBin+Frank,26JUN02MARMAD,Morocco vs Madagascar,False,home,SELL,0.9249,0.9802,-0.0553,1.0,-0.0198
+M3 NegBin+Frank,26JUN02MARMAD,Morocco vs Madagascar,False,draw,BUY,0.0608,0.0099,0.0509,0.0,-0.0099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02MARMAD,Morocco vs Madagascar,False,draw,BUY,0.0347,0.0099,0.0248,0.0,-0.0099
+M1 Poisson+DC,26JUN02GEOROU,Georgia vs Romania,False,home,BUY,0.4794,0.396,0.0833,0.0,-0.396
+M1 Poisson+DC,26JUN02GEOROU,Georgia vs Romania,False,draw,SELL,0.2677,0.4059,-0.1382,1.0,-0.5941
+M1 Poisson+DC,26JUN02GEOROU,Georgia vs Romania,False,away,BUY,0.2529,0.198,0.0549,0.0,-0.198
+M2 NegBin+DC,26JUN02GEOROU,Georgia vs Romania,False,home,BUY,0.4806,0.396,0.0846,0.0,-0.396
+M2 NegBin+DC,26JUN02GEOROU,Georgia vs Romania,False,draw,SELL,0.2673,0.4059,-0.1387,1.0,-0.5941
+M2 NegBin+DC,26JUN02GEOROU,Georgia vs Romania,False,away,BUY,0.2521,0.198,0.054,0.0,-0.198
+M3 NegBin+Frank,26JUN02GEOROU,Georgia vs Romania,False,home,BUY,0.5052,0.396,0.1092,0.0,-0.396
+M3 NegBin+Frank,26JUN02GEOROU,Georgia vs Romania,False,draw,SELL,0.2673,0.4059,-0.1386,1.0,-0.5941
+M3 NegBin+Frank,26JUN02GEOROU,Georgia vs Romania,False,away,BUY,0.2275,0.198,0.0294,0.0,-0.198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02GEOROU,Georgia vs Romania,False,home,BUY,0.4213,0.396,0.0253,0.0,-0.396
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02GEOROU,Georgia vs Romania,False,draw,SELL,0.3641,0.4059,-0.0419,1.0,-0.5941
+M1 Poisson+DC,26JUN02WALGHA,Wales vs Ghana,False,home,SELL,0.4815,0.549,-0.0675,0.0,0.549
+M1 Poisson+DC,26JUN02WALGHA,Wales vs Ghana,False,away,BUY,0.2478,0.1961,0.0517,0.0,-0.1961
+M2 NegBin+DC,26JUN02WALGHA,Wales vs Ghana,False,home,SELL,0.4822,0.549,-0.0668,0.0,0.549
+M2 NegBin+DC,26JUN02WALGHA,Wales vs Ghana,False,away,BUY,0.2475,0.1961,0.0515,0.0,-0.1961
+M3 NegBin+Frank,26JUN02WALGHA,Wales vs Ghana,False,home,SELL,0.4903,0.549,-0.0587,0.0,0.549
+M3 NegBin+Frank,26JUN02WALGHA,Wales vs Ghana,False,away,BUY,0.235,0.1961,0.0389,0.0,-0.1961
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02WALGHA,Wales vs Ghana,False,home,SELL,0.4441,0.549,-0.1049,0.0,0.549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02WALGHA,Wales vs Ghana,False,draw,BUY,0.4311,0.2549,0.1762,1.0,0.7451
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02WALGHA,Wales vs Ghana,False,away,SELL,0.1249,0.1961,-0.0712,0.0,0.1961
+M1 Poisson+DC,26JUN02HTINZL,Haiti vs New Zealand,False,home,BUY,0.4127,0.3107,0.102,1.0,0.6893
+M1 Poisson+DC,26JUN02HTINZL,Haiti vs New Zealand,False,away,SELL,0.2812,0.3981,-0.1169,0.0,0.3981
+M2 NegBin+DC,26JUN02HTINZL,Haiti vs New Zealand,False,home,BUY,0.4128,0.3107,0.1021,1.0,0.6893
+M2 NegBin+DC,26JUN02HTINZL,Haiti vs New Zealand,False,away,SELL,0.2818,0.3981,-0.1162,0.0,0.3981
+M3 NegBin+Frank,26JUN02HTINZL,Haiti vs New Zealand,False,home,BUY,0.4156,0.3107,0.1049,1.0,0.6893
+M3 NegBin+Frank,26JUN02HTINZL,Haiti vs New Zealand,False,away,SELL,0.2747,0.3981,-0.1233,0.0,0.3981
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02HTINZL,Haiti vs New Zealand,False,home,BUY,0.3544,0.3107,0.0438,1.0,0.6893
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02HTINZL,Haiti vs New Zealand,False,draw,SELL,0.1904,0.2913,-0.1009,0.0,0.2913
+M5 NegBin+Frank (calib 1X2+O/U),26JUN02HTINZL,Haiti vs New Zealand,False,away,BUY,0.4552,0.3981,0.0571,0.0,-0.3981
+M2 NegBin+DC,26JUN03PHIGUM,Philippines vs Guam,False,draw,BUY,0.04,0.0196,0.0204,0.0,-0.0196
+M4 NegBin+Frank (calib 1X2),26JUN03PHIGUM,Philippines vs Guam,False,home,BUY,0.9955,0.9706,0.0249,1.0,0.0294
+M1 Poisson+DC,26JUN03ALBISR,Albania vs Israel,False,home,BUY,0.3758,0.3333,0.0425,0.0,-0.3333
+M1 Poisson+DC,26JUN03ALBISR,Albania vs Israel,False,draw,SELL,0.2941,0.4216,-0.1275,0.0,0.4216
+M1 Poisson+DC,26JUN03ALBISR,Albania vs Israel,False,away,BUY,0.3301,0.2451,0.085,1.0,0.7549
+M2 NegBin+DC,26JUN03ALBISR,Albania vs Israel,False,home,BUY,0.3759,0.3333,0.0426,0.0,-0.3333
+M2 NegBin+DC,26JUN03ALBISR,Albania vs Israel,False,draw,SELL,0.294,0.4216,-0.1276,0.0,0.4216
+M2 NegBin+DC,26JUN03ALBISR,Albania vs Israel,False,away,BUY,0.3301,0.2451,0.085,1.0,0.7549
+M3 NegBin+Frank,26JUN03ALBISR,Albania vs Israel,False,home,BUY,0.377,0.3333,0.0437,0.0,-0.3333
+M3 NegBin+Frank,26JUN03ALBISR,Albania vs Israel,False,draw,SELL,0.2967,0.4216,-0.1248,0.0,0.4216
+M3 NegBin+Frank,26JUN03ALBISR,Albania vs Israel,False,away,BUY,0.3262,0.2451,0.0811,1.0,0.7549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03ALBISR,Albania vs Israel,False,home,SELL,0.2166,0.3333,-0.1168,0.0,0.3333
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03ALBISR,Albania vs Israel,False,draw,BUY,0.6347,0.4216,0.2131,0.0,-0.4216
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03ALBISR,Albania vs Israel,False,away,SELL,0.1487,0.2451,-0.0963,1.0,-0.7549
+M1 Poisson+DC,26JUN03DENCOD,Denmark vs Congo DR,False,home,SELL,0.4603,0.505,-0.0447,0.0,0.505
+M1 Poisson+DC,26JUN03DENCOD,Denmark vs Congo DR,False,draw,SELL,0.3328,0.3564,-0.0236,1.0,-0.6436
+M1 Poisson+DC,26JUN03DENCOD,Denmark vs Congo DR,False,away,BUY,0.2069,0.1386,0.0683,0.0,-0.1386
+M2 NegBin+DC,26JUN03DENCOD,Denmark vs Congo DR,False,home,SELL,0.4589,0.505,-0.046,0.0,0.505
+M2 NegBin+DC,26JUN03DENCOD,Denmark vs Congo DR,False,draw,SELL,0.333,0.3564,-0.0234,1.0,-0.6436
+M2 NegBin+DC,26JUN03DENCOD,Denmark vs Congo DR,False,away,BUY,0.2081,0.1386,0.0695,0.0,-0.1386
+M3 NegBin+Frank,26JUN03DENCOD,Denmark vs Congo DR,False,home,SELL,0.4539,0.505,-0.0511,0.0,0.505
+M3 NegBin+Frank,26JUN03DENCOD,Denmark vs Congo DR,False,away,BUY,0.2012,0.1386,0.0626,0.0,-0.1386
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03DENCOD,Denmark vs Congo DR,False,home,SELL,0.3494,0.505,-0.1556,0.0,0.505
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03DENCOD,Denmark vs Congo DR,False,draw,BUY,0.5788,0.3564,0.2223,1.0,0.6436
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03DENCOD,Denmark vs Congo DR,False,away,SELL,0.0718,0.1386,-0.0668,0.0,0.1386
+M1 Poisson+DC,26JUN03LUXITA,Luxembourg vs Italy,False,home,SELL,0.0581,0.1275,-0.0694,0.0,0.1275
+M1 Poisson+DC,26JUN03LUXITA,Luxembourg vs Italy,False,draw,SELL,0.1945,0.2255,-0.031,0.0,0.2255
+M1 Poisson+DC,26JUN03LUXITA,Luxembourg vs Italy,False,away,BUY,0.7474,0.6471,0.1004,1.0,0.3529
+M2 NegBin+DC,26JUN03LUXITA,Luxembourg vs Italy,False,home,SELL,0.0583,0.1275,-0.0691,0.0,0.1275
+M2 NegBin+DC,26JUN03LUXITA,Luxembourg vs Italy,False,draw,SELL,0.1953,0.2255,-0.0302,0.0,0.2255
+M2 NegBin+DC,26JUN03LUXITA,Luxembourg vs Italy,False,away,BUY,0.7464,0.6471,0.0993,1.0,0.3529
+M3 NegBin+Frank,26JUN03LUXITA,Luxembourg vs Italy,False,home,SELL,0.0511,0.1275,-0.0763,0.0,0.1275
+M3 NegBin+Frank,26JUN03LUXITA,Luxembourg vs Italy,False,draw,SELL,0.1816,0.2255,-0.0439,0.0,0.2255
+M3 NegBin+Frank,26JUN03LUXITA,Luxembourg vs Italy,False,away,BUY,0.7673,0.6471,0.1202,1.0,0.3529
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03LUXITA,Luxembourg vs Italy,False,home,SELL,0.102,0.1275,-0.0254,0.0,0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03LUXITA,Luxembourg vs Italy,False,draw,BUY,0.2701,0.2255,0.0446,0.0,-0.2255
+M1 Poisson+DC,26JUN03POLNGR,Poland vs Nigeria,False,home,SELL,0.2734,0.495,-0.2216,0.0,0.495
+M1 Poisson+DC,26JUN03POLNGR,Poland vs Nigeria,False,away,BUY,0.4617,0.2277,0.234,0.0,-0.2277
+M2 NegBin+DC,26JUN03POLNGR,Poland vs Nigeria,False,home,SELL,0.2741,0.495,-0.2209,0.0,0.495
+M2 NegBin+DC,26JUN03POLNGR,Poland vs Nigeria,False,away,BUY,0.4615,0.2277,0.2338,0.0,-0.2277
+M3 NegBin+Frank,26JUN03POLNGR,Poland vs Nigeria,False,home,SELL,0.2683,0.495,-0.2268,0.0,0.495
+M3 NegBin+Frank,26JUN03POLNGR,Poland vs Nigeria,False,away,BUY,0.4582,0.2277,0.2305,0.0,-0.2277
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03POLNGR,Poland vs Nigeria,False,home,BUY,0.5311,0.495,0.036,0.0,-0.495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03POLNGR,Poland vs Nigeria,False,draw,SELL,0.2268,0.2772,-0.0504,1.0,-0.7228
+M1 Poisson+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,home,SELL,0.6038,0.7129,-0.1091,0.0,0.7129
+M1 Poisson+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,draw,BUY,0.2199,0.1881,0.0318,0.0,-0.1881
+M1 Poisson+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,away,BUY,0.1763,0.099,0.0773,1.0,0.901
+M2 NegBin+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,home,SELL,0.6031,0.7129,-0.1098,0.0,0.7129
+M2 NegBin+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,draw,BUY,0.22,0.1881,0.0319,0.0,-0.1881
+M2 NegBin+DC,26JUN03NEDDZA,Netherlands vs Algeria,False,away,BUY,0.1769,0.099,0.0779,1.0,0.901
+M3 NegBin+Frank,26JUN03NEDDZA,Netherlands vs Algeria,False,home,SELL,0.6312,0.7129,-0.0817,0.0,0.7129
+M3 NegBin+Frank,26JUN03NEDDZA,Netherlands vs Algeria,False,draw,BUY,0.2116,0.1881,0.0235,0.0,-0.1881
+M3 NegBin+Frank,26JUN03NEDDZA,Netherlands vs Algeria,False,away,BUY,0.1572,0.099,0.0581,1.0,0.901
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03NEDDZA,Netherlands vs Algeria,False,home,SELL,0.6564,0.7129,-0.0564,0.0,0.7129
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03NEDDZA,Netherlands vs Algeria,False,draw,BUY,0.2794,0.1881,0.0913,0.0,-0.1881
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03NEDDZA,Netherlands vs Algeria,False,away,SELL,0.0642,0.099,-0.0348,1.0,-0.901
+M1 Poisson+DC,26JUN03KORSLV,Korea Republic vs El Salvador,False,home,SELL,0.8149,0.8627,-0.0479,1.0,-0.1373
+M1 Poisson+DC,26JUN03KORSLV,Korea Republic vs El Salvador,False,draw,BUY,0.1514,0.0882,0.0632,0.0,-0.0882
+M2 NegBin+DC,26JUN03KORSLV,Korea Republic vs El Salvador,False,home,SELL,0.8128,0.8627,-0.0499,1.0,-0.1373
+M2 NegBin+DC,26JUN03KORSLV,Korea Republic vs El Salvador,False,draw,BUY,0.153,0.0882,0.0647,0.0,-0.0882
+M3 NegBin+Frank,26JUN03KORSLV,Korea Republic vs El Salvador,False,home,SELL,0.8369,0.8627,-0.0259,1.0,-0.1373
+M3 NegBin+Frank,26JUN03KORSLV,Korea Republic vs El Salvador,False,draw,BUY,0.1357,0.0882,0.0474,0.0,-0.0882
+M3 NegBin+Frank,26JUN03KORSLV,Korea Republic vs El Salvador,False,away,SELL,0.0275,0.049,-0.0216,0.0,0.049
+M4 NegBin+Frank (calib 1X2),26JUN03KORSLV,Korea Republic vs El Salvador,False,home,BUY,0.8969,0.8627,0.0341,1.0,0.1373
+M4 NegBin+Frank (calib 1X2),26JUN03KORSLV,Korea Republic vs El Salvador,False,draw,SELL,0.0659,0.0882,-0.0223,0.0,0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03KORSLV,Korea Republic vs El Salvador,False,home,SELL,0.571,0.8627,-0.2917,1.0,-0.1373
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03KORSLV,Korea Republic vs El Salvador,False,draw,BUY,0.4135,0.0882,0.3253,0.0,-0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03KORSLV,Korea Republic vs El Salvador,False,away,SELL,0.0155,0.049,-0.0335,0.0,0.049
+M1 Poisson+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,home,BUY,0.8078,0.7255,0.0823,1.0,0.2745
+M1 Poisson+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,draw,SELL,0.124,0.1765,-0.0524,0.0,0.1765
+M1 Poisson+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,away,SELL,0.0682,0.098,-0.0299,0.0,0.098
+M2 NegBin+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,home,BUY,0.8062,0.7255,0.0807,1.0,0.2745
+M2 NegBin+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,draw,SELL,0.1248,0.1765,-0.0517,0.0,0.1765
+M2 NegBin+DC,26JUN03PANDOM,Panama vs Dominican Republic,False,away,SELL,0.069,0.098,-0.029,0.0,0.098
+M3 NegBin+Frank,26JUN03PANDOM,Panama vs Dominican Republic,False,home,BUY,0.826,0.7255,0.1005,1.0,0.2745
+M3 NegBin+Frank,26JUN03PANDOM,Panama vs Dominican Republic,False,draw,SELL,0.1153,0.1765,-0.0612,0.0,0.1765
+M3 NegBin+Frank,26JUN03PANDOM,Panama vs Dominican Republic,False,away,SELL,0.0587,0.098,-0.0393,0.0,0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03PANDOM,Panama vs Dominican Republic,False,home,BUY,0.7777,0.7255,0.0522,1.0,0.2745
+M5 NegBin+Frank (calib 1X2+O/U),26JUN03PANDOM,Panama vs Dominican Republic,False,draw,SELL,0.1319,0.1765,-0.0445,0.0,0.1765
+M1 Poisson+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,home,SELL,0.7862,0.98,-0.1938,1.0,-0.02
+M1 Poisson+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,draw,BUY,0.1565,0.01,0.1465,0.0,-0.01
+M1 Poisson+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,away,BUY,0.0573,0.01,0.0473,0.0,-0.01
+M2 NegBin+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,home,SELL,0.7848,0.98,-0.1952,1.0,-0.02
+M2 NegBin+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,draw,BUY,0.1574,0.01,0.1474,0.0,-0.01
+M2 NegBin+DC,26JUN04CAMBHU,Cambodia vs Bhutan,False,away,BUY,0.0578,0.01,0.0478,0.0,-0.01
+M3 NegBin+Frank,26JUN04CAMBHU,Cambodia vs Bhutan,False,home,SELL,0.8071,0.98,-0.1729,1.0,-0.02
+M3 NegBin+Frank,26JUN04CAMBHU,Cambodia vs Bhutan,False,draw,BUY,0.147,0.01,0.137,0.0,-0.01
+M3 NegBin+Frank,26JUN04CAMBHU,Cambodia vs Bhutan,False,away,BUY,0.0459,0.01,0.0359,0.0,-0.01
+M1 Poisson+DC,26JUN04LESKEN,Lesotho vs Kenya,False,home,BUY,0.296,0.03,0.266,0.0,-0.03
+M1 Poisson+DC,26JUN04LESKEN,Lesotho vs Kenya,False,draw,BUY,0.3336,0.15,0.1836,1.0,0.85
+M1 Poisson+DC,26JUN04LESKEN,Lesotho vs Kenya,False,away,SELL,0.3704,0.82,-0.4496,0.0,0.82
+M2 NegBin+DC,26JUN04LESKEN,Lesotho vs Kenya,False,home,BUY,0.2957,0.03,0.2657,0.0,-0.03
+M2 NegBin+DC,26JUN04LESKEN,Lesotho vs Kenya,False,draw,BUY,0.3338,0.15,0.1838,1.0,0.85
+M2 NegBin+DC,26JUN04LESKEN,Lesotho vs Kenya,False,away,SELL,0.3705,0.82,-0.4495,0.0,0.82
+M3 NegBin+Frank,26JUN04LESKEN,Lesotho vs Kenya,False,home,BUY,0.2819,0.03,0.2519,0.0,-0.03
+M3 NegBin+Frank,26JUN04LESKEN,Lesotho vs Kenya,False,draw,BUY,0.3432,0.15,0.1932,1.0,0.85
+M3 NegBin+Frank,26JUN04LESKEN,Lesotho vs Kenya,False,away,SELL,0.3749,0.82,-0.4451,0.0,0.82
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04LESKEN,Lesotho vs Kenya,False,draw,BUY,0.1844,0.15,0.0344,1.0,0.85
+M1 Poisson+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,home,BUY,0.7186,0.2549,0.4637,0.0,-0.2549
+M1 Poisson+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,draw,SELL,0.1949,0.3235,-0.1286,1.0,-0.6765
+M1 Poisson+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,away,SELL,0.0865,0.4216,-0.335,0.0,0.4216
+M2 NegBin+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,home,BUY,0.718,0.2549,0.4631,0.0,-0.2549
+M2 NegBin+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,draw,SELL,0.1951,0.3235,-0.1285,1.0,-0.6765
+M2 NegBin+DC,26JUN04SLOCYP,Slovenia vs Cyprus,False,away,SELL,0.0869,0.4216,-0.3347,0.0,0.4216
+M3 NegBin+Frank,26JUN04SLOCYP,Slovenia vs Cyprus,False,home,BUY,0.7387,0.2549,0.4838,0.0,-0.2549
+M3 NegBin+Frank,26JUN04SLOCYP,Slovenia vs Cyprus,False,draw,SELL,0.1863,0.3235,-0.1372,1.0,-0.6765
+M3 NegBin+Frank,26JUN04SLOCYP,Slovenia vs Cyprus,False,away,SELL,0.075,0.4216,-0.3466,0.0,0.4216
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04SLOCYP,Slovenia vs Cyprus,False,home,SELL,0.234,0.2549,-0.0209,0.0,0.2549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04SLOCYP,Slovenia vs Cyprus,False,draw,BUY,0.3608,0.3235,0.0372,1.0,0.6765
+M1 Poisson+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,home,SELL,0.4161,0.68,-0.2639,1.0,-0.32
+M1 Poisson+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,draw,BUY,0.3387,0.25,0.0887,0.0,-0.25
+M1 Poisson+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,away,BUY,0.2451,0.07,0.1751,0.0,-0.07
+M2 NegBin+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,home,SELL,0.4166,0.68,-0.2634,1.0,-0.32
+M2 NegBin+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,draw,BUY,0.3385,0.25,0.0885,0.0,-0.25
+M2 NegBin+DC,26JUN04NIRGUI,Northern Ireland vs Guinea,False,away,BUY,0.2449,0.07,0.1749,0.0,-0.07
+M3 NegBin+Frank,26JUN04NIRGUI,Northern Ireland vs Guinea,False,home,SELL,0.4238,0.68,-0.2562,1.0,-0.32
+M3 NegBin+Frank,26JUN04NIRGUI,Northern Ireland vs Guinea,False,draw,BUY,0.3458,0.25,0.0958,0.0,-0.25
+M3 NegBin+Frank,26JUN04NIRGUI,Northern Ireland vs Guinea,False,away,BUY,0.2304,0.07,0.1604,0.0,-0.07
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04NIRGUI,Northern Ireland vs Guinea,False,home,SELL,0.4702,0.68,-0.2098,1.0,-0.32
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04NIRGUI,Northern Ireland vs Guinea,False,draw,BUY,0.5007,0.25,0.2507,0.0,-0.25
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04NIRGUI,Northern Ireland vs Guinea,False,away,SELL,0.0291,0.07,-0.0409,0.0,0.07
+M1 Poisson+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,home,SELL,0.344,0.5098,-0.1658,1.0,-0.4902
+M1 Poisson+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,draw,BUY,0.487,0.402,0.085,0.0,-0.402
+M1 Poisson+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,away,BUY,0.169,0.0882,0.0808,0.0,-0.0882
+M2 NegBin+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,home,SELL,0.3446,0.5098,-0.1652,1.0,-0.4902
+M2 NegBin+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,draw,BUY,0.4863,0.402,0.0843,0.0,-0.402
+M2 NegBin+DC,26JUN04ANDLIE,Andorra vs Liechtenstein,False,away,BUY,0.1691,0.0882,0.0808,0.0,-0.0882
+M3 NegBin+Frank,26JUN04ANDLIE,Andorra vs Liechtenstein,False,home,SELL,0.3445,0.5098,-0.1653,1.0,-0.4902
+M3 NegBin+Frank,26JUN04ANDLIE,Andorra vs Liechtenstein,False,draw,BUY,0.5075,0.402,0.1055,0.0,-0.402
+M3 NegBin+Frank,26JUN04ANDLIE,Andorra vs Liechtenstein,False,away,BUY,0.148,0.0882,0.0597,0.0,-0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04ANDLIE,Andorra vs Liechtenstein,False,home,BUY,0.5689,0.5098,0.0591,1.0,0.4902
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04ANDLIE,Andorra vs Liechtenstein,False,draw,SELL,0.316,0.402,-0.0859,0.0,0.402
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04ANDLIE,Andorra vs Liechtenstein,False,away,BUY,0.115,0.0882,0.0268,0.0,-0.0882
+M1 Poisson+DC,26JUN04SWEGRE,Sweden vs Greece,False,home,BUY,0.3817,0.1683,0.2134,0.0,-0.1683
+M1 Poisson+DC,26JUN04SWEGRE,Sweden vs Greece,False,draw,SELL,0.245,0.2871,-0.0421,1.0,-0.7129
+M1 Poisson+DC,26JUN04SWEGRE,Sweden vs Greece,False,away,SELL,0.3733,0.5446,-0.1713,0.0,0.5446
+M2 NegBin+DC,26JUN04SWEGRE,Sweden vs Greece,False,home,BUY,0.3814,0.1683,0.213,0.0,-0.1683
+M2 NegBin+DC,26JUN04SWEGRE,Sweden vs Greece,False,draw,SELL,0.2447,0.2871,-0.0425,1.0,-0.7129
+M2 NegBin+DC,26JUN04SWEGRE,Sweden vs Greece,False,away,SELL,0.374,0.5446,-0.1706,0.0,0.5446
+M3 NegBin+Frank,26JUN04SWEGRE,Sweden vs Greece,False,home,BUY,0.3805,0.1683,0.2122,0.0,-0.1683
+M3 NegBin+Frank,26JUN04SWEGRE,Sweden vs Greece,False,draw,SELL,0.2511,0.2871,-0.036,1.0,-0.7129
+M3 NegBin+Frank,26JUN04SWEGRE,Sweden vs Greece,False,away,SELL,0.3684,0.5446,-0.1762,0.0,0.5446
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04SWEGRE,Sweden vs Greece,False,home,BUY,0.1918,0.1683,0.0235,0.0,-0.1683
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04SWEGRE,Sweden vs Greece,False,draw,SELL,0.1638,0.2871,-0.1234,1.0,-0.7129
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04SWEGRE,Sweden vs Greece,False,away,BUY,0.6444,0.5446,0.0999,0.0,-0.5446
+M1 Poisson+DC,26JUN04ESPIRQ,Spain vs Iraq,False,home,BUY,0.8983,0.802,0.0963,0.0,-0.802
+M1 Poisson+DC,26JUN04ESPIRQ,Spain vs Iraq,False,draw,SELL,0.0816,0.1584,-0.0769,1.0,-0.8416
+M2 NegBin+DC,26JUN04ESPIRQ,Spain vs Iraq,False,home,BUY,0.8964,0.802,0.0945,0.0,-0.802
+M2 NegBin+DC,26JUN04ESPIRQ,Spain vs Iraq,False,draw,SELL,0.0829,0.1584,-0.0755,1.0,-0.8416
+M3 NegBin+Frank,26JUN04ESPIRQ,Spain vs Iraq,False,home,BUY,0.9121,0.802,0.1101,0.0,-0.802
+M3 NegBin+Frank,26JUN04ESPIRQ,Spain vs Iraq,False,draw,SELL,0.0712,0.1584,-0.0872,1.0,-0.8416
+M3 NegBin+Frank,26JUN04ESPIRQ,Spain vs Iraq,False,away,SELL,0.0168,0.0396,-0.0228,0.0,0.0396
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04ESPIRQ,Spain vs Iraq,False,draw,BUY,0.1953,0.1584,0.0369,1.0,0.8416
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04ESPIRQ,Spain vs Iraq,False,away,SELL,0.0163,0.0396,-0.0233,0.0,0.0396
+M1 Poisson+DC,26JUN04FRACIV,France vs Ivory Coast,False,home,SELL,0.6237,0.8911,-0.2674,0.0,0.8911
+M1 Poisson+DC,26JUN04FRACIV,France vs Ivory Coast,False,draw,BUY,0.2504,0.0891,0.1613,0.0,-0.0891
+M1 Poisson+DC,26JUN04FRACIV,France vs Ivory Coast,False,away,BUY,0.1259,0.0198,0.1061,1.0,0.9802
+M2 NegBin+DC,26JUN04FRACIV,France vs Ivory Coast,False,home,SELL,0.6229,0.8911,-0.2682,0.0,0.8911
+M2 NegBin+DC,26JUN04FRACIV,France vs Ivory Coast,False,draw,BUY,0.2506,0.0891,0.1615,0.0,-0.0891
+M2 NegBin+DC,26JUN04FRACIV,France vs Ivory Coast,False,away,BUY,0.1265,0.0198,0.1067,1.0,0.9802
+M3 NegBin+Frank,26JUN04FRACIV,France vs Ivory Coast,False,home,SELL,0.645,0.8911,-0.2461,0.0,0.8911
+M3 NegBin+Frank,26JUN04FRACIV,France vs Ivory Coast,False,draw,BUY,0.2438,0.0891,0.1547,0.0,-0.0891
+M3 NegBin+Frank,26JUN04FRACIV,France vs Ivory Coast,False,away,BUY,0.1112,0.0198,0.0913,1.0,0.9802
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04FRACIV,France vs Ivory Coast,False,home,BUY,0.9586,0.8911,0.0675,0.0,-0.8911
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04FRACIV,France vs Ivory Coast,False,draw,SELL,0.0352,0.0891,-0.0539,0.0,0.0891
+M1 Poisson+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,home,BUY,0.8194,0.6436,0.1758,1.0,0.3564
+M1 Poisson+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,draw,SELL,0.1217,0.2673,-0.1457,0.0,0.2673
+M1 Poisson+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,away,SELL,0.059,0.0891,-0.0301,0.0,0.0891
+M2 NegBin+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,home,BUY,0.8172,0.6436,0.1737,1.0,0.3564
+M2 NegBin+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,draw,SELL,0.1227,0.2673,-0.1446,0.0,0.2673
+M2 NegBin+DC,26JUN04CZEGTM,Czechia vs Guatemala,False,away,SELL,0.06,0.0891,-0.0291,0.0,0.0891
+M3 NegBin+Frank,26JUN04CZEGTM,Czechia vs Guatemala,False,home,BUY,0.8306,0.6436,0.187,1.0,0.3564
+M3 NegBin+Frank,26JUN04CZEGTM,Czechia vs Guatemala,False,draw,SELL,0.1155,0.2673,-0.1518,0.0,0.2673
+M3 NegBin+Frank,26JUN04CZEGTM,Czechia vs Guatemala,False,away,SELL,0.0539,0.0891,-0.0352,0.0,0.0891
+M1 Poisson+DC,26JUN04MEXSRB,Mexico vs Serbia,False,home,SELL,0.7197,0.898,-0.1783,1.0,-0.102
+M1 Poisson+DC,26JUN04MEXSRB,Mexico vs Serbia,False,draw,BUY,0.195,0.0816,0.1134,0.0,-0.0816
+M1 Poisson+DC,26JUN04MEXSRB,Mexico vs Serbia,False,away,BUY,0.0853,0.0204,0.0649,0.0,-0.0204
+M2 NegBin+DC,26JUN04MEXSRB,Mexico vs Serbia,False,home,SELL,0.7191,0.898,-0.1789,1.0,-0.102
+M2 NegBin+DC,26JUN04MEXSRB,Mexico vs Serbia,False,draw,BUY,0.1953,0.0816,0.1137,0.0,-0.0816
+M2 NegBin+DC,26JUN04MEXSRB,Mexico vs Serbia,False,away,BUY,0.0856,0.0204,0.0652,0.0,-0.0204
+M3 NegBin+Frank,26JUN04MEXSRB,Mexico vs Serbia,False,home,SELL,0.7533,0.898,-0.1447,1.0,-0.102
+M3 NegBin+Frank,26JUN04MEXSRB,Mexico vs Serbia,False,draw,BUY,0.1765,0.0816,0.0949,0.0,-0.0816
+M3 NegBin+Frank,26JUN04MEXSRB,Mexico vs Serbia,False,away,BUY,0.0702,0.0204,0.0498,0.0,-0.0204
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04MEXSRB,Mexico vs Serbia,False,home,SELL,0.7533,0.898,-0.1447,1.0,-0.102
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04MEXSRB,Mexico vs Serbia,False,draw,BUY,0.1765,0.0816,0.0949,0.0,-0.0816
+M5 NegBin+Frank (calib 1X2+O/U),26JUN04MEXSRB,Mexico vs Serbia,False,away,BUY,0.0702,0.0204,0.0498,0.0,-0.0204
+M1 Poisson+DC,26JUN05SINCHN,Singapore vs China PR,False,home,BUY,0.1035,0.0495,0.054,0.0,-0.0495
+M1 Poisson+DC,26JUN05SINCHN,Singapore vs China PR,False,draw,BUY,0.184,0.1584,0.0256,0.0,-0.1584
+M1 Poisson+DC,26JUN05SINCHN,Singapore vs China PR,False,away,SELL,0.7124,0.7921,-0.0797,1.0,-0.2079
+M2 NegBin+DC,26JUN05SINCHN,Singapore vs China PR,False,home,BUY,0.1042,0.0495,0.0547,0.0,-0.0495
+M2 NegBin+DC,26JUN05SINCHN,Singapore vs China PR,False,draw,BUY,0.1844,0.1584,0.026,0.0,-0.1584
+M2 NegBin+DC,26JUN05SINCHN,Singapore vs China PR,False,away,SELL,0.7114,0.7921,-0.0807,1.0,-0.2079
+M3 NegBin+Frank,26JUN05SINCHN,Singapore vs China PR,False,home,BUY,0.0941,0.0495,0.0446,0.0,-0.0495
+M3 NegBin+Frank,26JUN05SINCHN,Singapore vs China PR,False,away,SELL,0.7292,0.7921,-0.0629,1.0,-0.2079
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SINCHN,Singapore vs China PR,False,draw,SELL,0.1344,0.1584,-0.024,0.0,0.1584
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SINCHN,Singapore vs China PR,False,away,BUY,0.832,0.7921,0.0399,1.0,0.2079
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HKGMGL,Hong Kong vs Mongolia,False,home,SELL,0.8413,0.9216,-0.0803,1.0,-0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HKGMGL,Hong Kong vs Mongolia,False,draw,BUY,0.1544,0.0588,0.0956,0.0,-0.0588
+M1 Poisson+DC,26JUN05THAKUW,Thailand vs Kuwait,False,home,SELL,0.3439,0.4848,-0.141,0.0,0.4848
+M1 Poisson+DC,26JUN05THAKUW,Thailand vs Kuwait,False,draw,SELL,0.2447,0.3434,-0.0988,1.0,-0.6566
+M1 Poisson+DC,26JUN05THAKUW,Thailand vs Kuwait,False,away,BUY,0.4114,0.1717,0.2397,0.0,-0.1717
+M2 NegBin+DC,26JUN05THAKUW,Thailand vs Kuwait,False,home,SELL,0.3443,0.4848,-0.1405,0.0,0.4848
+M2 NegBin+DC,26JUN05THAKUW,Thailand vs Kuwait,False,draw,SELL,0.2438,0.3434,-0.0996,1.0,-0.6566
+M2 NegBin+DC,26JUN05THAKUW,Thailand vs Kuwait,False,away,BUY,0.4118,0.1717,0.2401,0.0,-0.1717
+M3 NegBin+Frank,26JUN05THAKUW,Thailand vs Kuwait,False,home,SELL,0.3397,0.4848,-0.1452,0.0,0.4848
+M3 NegBin+Frank,26JUN05THAKUW,Thailand vs Kuwait,False,draw,SELL,0.2491,0.3434,-0.0943,1.0,-0.6566
+M3 NegBin+Frank,26JUN05THAKUW,Thailand vs Kuwait,False,away,BUY,0.4112,0.1717,0.2395,0.0,-0.1717
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05THAKUW,Thailand vs Kuwait,False,home,BUY,0.5763,0.4848,0.0915,0.0,-0.4848
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05THAKUW,Thailand vs Kuwait,False,draw,SELL,0.1942,0.3434,-0.1492,1.0,-0.6566
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05THAKUW,Thailand vs Kuwait,False,away,BUY,0.2295,0.1717,0.0578,0.0,-0.1717
+M1 Poisson+DC,26JUN05INAOMN,Indonesia vs Oman,False,home,SELL,0.2248,0.9109,-0.686,1.0,-0.0891
+M1 Poisson+DC,26JUN05INAOMN,Indonesia vs Oman,False,draw,BUY,0.3394,0.0693,0.2701,0.0,-0.0693
+M1 Poisson+DC,26JUN05INAOMN,Indonesia vs Oman,False,away,BUY,0.4357,0.0198,0.4159,0.0,-0.0198
+M2 NegBin+DC,26JUN05INAOMN,Indonesia vs Oman,False,home,SELL,0.225,0.9109,-0.6859,1.0,-0.0891
+M2 NegBin+DC,26JUN05INAOMN,Indonesia vs Oman,False,draw,BUY,0.3398,0.0693,0.2705,0.0,-0.0693
+M2 NegBin+DC,26JUN05INAOMN,Indonesia vs Oman,False,away,BUY,0.4352,0.0198,0.4154,0.0,-0.0198
+M3 NegBin+Frank,26JUN05INAOMN,Indonesia vs Oman,False,home,SELL,0.2208,0.9109,-0.6901,1.0,-0.0891
+M3 NegBin+Frank,26JUN05INAOMN,Indonesia vs Oman,False,draw,BUY,0.3479,0.0693,0.2786,0.0,-0.0693
+M3 NegBin+Frank,26JUN05INAOMN,Indonesia vs Oman,False,away,BUY,0.4313,0.0198,0.4115,0.0,-0.0198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05INAOMN,Indonesia vs Oman,False,home,BUY,0.9581,0.9109,0.0473,1.0,0.0891
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05INAOMN,Indonesia vs Oman,False,draw,SELL,0.039,0.0693,-0.0304,0.0,0.0693
+M1 Poisson+DC,26JUN05TJKIND,Tajikistan vs India,False,home,SELL,0.5821,0.7745,-0.1924,1.0,-0.2255
+M1 Poisson+DC,26JUN05TJKIND,Tajikistan vs India,False,draw,BUY,0.3167,0.1863,0.1304,0.0,-0.1863
+M1 Poisson+DC,26JUN05TJKIND,Tajikistan vs India,False,away,BUY,0.1012,0.0392,0.062,0.0,-0.0392
+M2 NegBin+DC,26JUN05TJKIND,Tajikistan vs India,False,home,SELL,0.5815,0.7745,-0.193,1.0,-0.2255
+M2 NegBin+DC,26JUN05TJKIND,Tajikistan vs India,False,draw,BUY,0.3171,0.1863,0.1308,0.0,-0.1863
+M2 NegBin+DC,26JUN05TJKIND,Tajikistan vs India,False,away,BUY,0.1014,0.0392,0.0622,0.0,-0.0392
+M3 NegBin+Frank,26JUN05TJKIND,Tajikistan vs India,False,home,SELL,0.5994,0.7745,-0.1751,1.0,-0.2255
+M3 NegBin+Frank,26JUN05TJKIND,Tajikistan vs India,False,draw,BUY,0.313,0.1863,0.1267,0.0,-0.1863
+M3 NegBin+Frank,26JUN05TJKIND,Tajikistan vs India,False,away,BUY,0.0876,0.0392,0.0484,0.0,-0.0392
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05TJKIND,Tajikistan vs India,False,home,SELL,0.5994,0.7745,-0.1751,1.0,-0.2255
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05TJKIND,Tajikistan vs India,False,draw,BUY,0.313,0.1863,0.1267,0.0,-0.1863
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05TJKIND,Tajikistan vs India,False,away,BUY,0.0876,0.0392,0.0484,0.0,-0.0392
+M1 Poisson+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,home,BUY,0.7284,0.6765,0.0519,1.0,0.3235
+M1 Poisson+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,draw,SELL,0.1779,0.2549,-0.077,0.0,0.2549
+M1 Poisson+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,away,BUY,0.0937,0.0686,0.0251,0.0,-0.0686
+M2 NegBin+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,home,BUY,0.7267,0.6765,0.0502,1.0,0.3235
+M2 NegBin+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,draw,SELL,0.1786,0.2549,-0.0763,0.0,0.2549
+M2 NegBin+DC,26JUN05GEOBHR,Georgia vs Bahrain,False,away,BUY,0.0947,0.0686,0.026,0.0,-0.0686
+M3 NegBin+Frank,26JUN05GEOBHR,Georgia vs Bahrain,False,home,BUY,0.748,0.6765,0.0715,1.0,0.3235
+M3 NegBin+Frank,26JUN05GEOBHR,Georgia vs Bahrain,False,draw,SELL,0.1674,0.2549,-0.0876,0.0,0.2549
+M1 Poisson+DC,26JUN05BLRSYR,Belarus vs Syria,False,home,SELL,0.4119,0.9412,-0.5293,1.0,-0.0588
+M1 Poisson+DC,26JUN05BLRSYR,Belarus vs Syria,False,draw,BUY,0.2947,0.0392,0.2555,0.0,-0.0392
+M1 Poisson+DC,26JUN05BLRSYR,Belarus vs Syria,False,away,BUY,0.2934,0.0196,0.2738,0.0,-0.0196
+M2 NegBin+DC,26JUN05BLRSYR,Belarus vs Syria,False,home,SELL,0.4123,0.9412,-0.5289,1.0,-0.0588
+M2 NegBin+DC,26JUN05BLRSYR,Belarus vs Syria,False,draw,BUY,0.2946,0.0392,0.2554,0.0,-0.0392
+M2 NegBin+DC,26JUN05BLRSYR,Belarus vs Syria,False,away,BUY,0.2931,0.0196,0.2735,0.0,-0.0196
+M3 NegBin+Frank,26JUN05BLRSYR,Belarus vs Syria,False,home,SELL,0.426,0.9412,-0.5151,1.0,-0.0588
+M3 NegBin+Frank,26JUN05BLRSYR,Belarus vs Syria,False,draw,BUY,0.2957,0.0392,0.2565,0.0,-0.0392
+M3 NegBin+Frank,26JUN05BLRSYR,Belarus vs Syria,False,away,BUY,0.2783,0.0196,0.2587,0.0,-0.0196
+M4 NegBin+Frank (calib 1X2),26JUN05BLRSYR,Belarus vs Syria,False,home,BUY,0.9847,0.9412,0.0435,1.0,0.0588
+M4 NegBin+Frank (calib 1X2),26JUN05BLRSYR,Belarus vs Syria,False,draw,SELL,0.0102,0.0392,-0.0291,0.0,0.0392
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05BLRSYR,Belarus vs Syria,False,home,SELL,0.426,0.9412,-0.5151,1.0,-0.0588
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05BLRSYR,Belarus vs Syria,False,draw,BUY,0.2957,0.0392,0.2565,0.0,-0.0392
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05BLRSYR,Belarus vs Syria,False,away,BUY,0.2783,0.0196,0.2587,0.0,-0.0196
+M1 Poisson+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,home,SELL,0.6753,0.802,-0.1267,0.0,0.802
+M1 Poisson+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,draw,BUY,0.2022,0.1485,0.0537,1.0,0.8515
+M1 Poisson+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,away,BUY,0.1225,0.0495,0.073,0.0,-0.0495
+M2 NegBin+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,home,SELL,0.6748,0.802,-0.1272,0.0,0.802
+M2 NegBin+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,draw,BUY,0.2022,0.1485,0.0537,1.0,0.8515
+M2 NegBin+DC,26JUN05SVKMNE,Slovakia vs Montenegro,False,away,BUY,0.123,0.0495,0.0735,0.0,-0.0495
+M3 NegBin+Frank,26JUN05SVKMNE,Slovakia vs Montenegro,False,home,SELL,0.7121,0.802,-0.0899,0.0,0.802
+M3 NegBin+Frank,26JUN05SVKMNE,Slovakia vs Montenegro,False,draw,BUY,0.1839,0.1485,0.0354,1.0,0.8515
+M3 NegBin+Frank,26JUN05SVKMNE,Slovakia vs Montenegro,False,away,BUY,0.104,0.0495,0.0545,0.0,-0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SVKMNE,Slovakia vs Montenegro,False,home,BUY,0.8803,0.802,0.0783,0.0,-0.802
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SVKMNE,Slovakia vs Montenegro,False,draw,SELL,0.0787,0.1485,-0.0698,1.0,-0.8515
+M1 Poisson+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,home,BUY,0.2305,0.049,0.1815,0.0,-0.049
+M1 Poisson+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,draw,BUY,0.2594,0.1863,0.0732,1.0,0.8137
+M1 Poisson+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,away,SELL,0.5101,0.7647,-0.2546,0.0,0.7647
+M2 NegBin+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,home,BUY,0.2327,0.049,0.1837,0.0,-0.049
+M2 NegBin+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,draw,BUY,0.2604,0.1863,0.0741,1.0,0.8137
+M2 NegBin+DC,26JUN05MDABUL,Moldova vs Bulgaria,False,away,SELL,0.5069,0.7647,-0.2578,0.0,0.7647
+M3 NegBin+Frank,26JUN05MDABUL,Moldova vs Bulgaria,False,home,BUY,0.2316,0.049,0.1826,0.0,-0.049
+M3 NegBin+Frank,26JUN05MDABUL,Moldova vs Bulgaria,False,draw,BUY,0.2619,0.1863,0.0756,1.0,0.8137
+M3 NegBin+Frank,26JUN05MDABUL,Moldova vs Bulgaria,False,away,SELL,0.5065,0.7647,-0.2582,0.0,0.7647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05MDABUL,Moldova vs Bulgaria,False,draw,SELL,0.0723,0.1863,-0.114,1.0,-0.8137
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05MDABUL,Moldova vs Bulgaria,False,away,BUY,0.8818,0.7647,0.1171,0.0,-0.7647
+M1 Poisson+DC,26JUN05SMRBAN,San Marino vs Bangladesh,False,home,BUY,0.4285,0.3168,0.1116,0.0,-0.3168
+M1 Poisson+DC,26JUN05SMRBAN,San Marino vs Bangladesh,False,draw,SELL,0.3193,0.4356,-0.1164,0.0,0.4356
+M2 NegBin+DC,26JUN05SMRBAN,San Marino vs Bangladesh,False,home,BUY,0.4286,0.3168,0.1118,0.0,-0.3168
+M2 NegBin+DC,26JUN05SMRBAN,San Marino vs Bangladesh,False,draw,SELL,0.319,0.4356,-0.1166,0.0,0.4356
+M3 NegBin+Frank,26JUN05SMRBAN,San Marino vs Bangladesh,False,home,BUY,0.4272,0.3168,0.1104,0.0,-0.3168
+M3 NegBin+Frank,26JUN05SMRBAN,San Marino vs Bangladesh,False,draw,SELL,0.3271,0.4356,-0.1086,0.0,0.4356
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SMRBAN,San Marino vs Bangladesh,False,home,BUY,0.3989,0.3168,0.082,0.0,-0.3168
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SMRBAN,San Marino vs Bangladesh,False,draw,SELL,0.275,0.4356,-0.1607,0.0,0.4356
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05SMRBAN,San Marino vs Bangladesh,False,away,BUY,0.3262,0.2475,0.0787,1.0,0.7525
+M1 Poisson+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,home,SELL,0.5483,0.9608,-0.4125,1.0,-0.0392
+M1 Poisson+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,draw,BUY,0.2593,0.0294,0.2299,0.0,-0.0294
+M1 Poisson+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,away,BUY,0.1924,0.0098,0.1826,0.0,-0.0098
+M2 NegBin+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,home,SELL,0.5497,0.9608,-0.4111,1.0,-0.0392
+M2 NegBin+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,draw,BUY,0.2584,0.0294,0.229,0.0,-0.0294
+M2 NegBin+DC,26JUN05RUSBUR,Russia vs Burkina Faso,False,away,BUY,0.1919,0.0098,0.1821,0.0,-0.0098
+M3 NegBin+Frank,26JUN05RUSBUR,Russia vs Burkina Faso,False,home,SELL,0.5651,0.9608,-0.3957,1.0,-0.0392
+M3 NegBin+Frank,26JUN05RUSBUR,Russia vs Burkina Faso,False,draw,BUY,0.2595,0.0294,0.2301,0.0,-0.0294
+M3 NegBin+Frank,26JUN05RUSBUR,Russia vs Burkina Faso,False,away,BUY,0.1754,0.0098,0.1656,0.0,-0.0098
+M4 NegBin+Frank (calib 1X2),26JUN05RUSBUR,Russia vs Burkina Faso,False,home,BUY,0.9808,0.9608,0.02,1.0,0.0392
+M1 Poisson+DC,26JUN05HUNFIN,Hungary vs Finland,False,home,SELL,0.5288,0.5545,-0.0257,1.0,-0.4455
+M1 Poisson+DC,26JUN05HUNFIN,Hungary vs Finland,False,away,BUY,0.1896,0.1683,0.0213,0.0,-0.1683
+M2 NegBin+DC,26JUN05HUNFIN,Hungary vs Finland,False,home,SELL,0.5289,0.5545,-0.0255,1.0,-0.4455
+M2 NegBin+DC,26JUN05HUNFIN,Hungary vs Finland,False,away,BUY,0.1898,0.1683,0.0215,0.0,-0.1683
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HUNFIN,Hungary vs Finland,False,home,BUY,0.5972,0.5545,0.0428,1.0,0.4455
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HUNFIN,Hungary vs Finland,False,draw,SELL,0.2197,0.2772,-0.0575,0.0,0.2772
+M1 Poisson+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,home,SELL,0.3709,0.3922,-0.0213,0.0,0.3922
+M1 Poisson+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,draw,SELL,0.3258,0.3922,-0.0663,0.0,0.3922
+M1 Poisson+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,away,BUY,0.3033,0.2157,0.0876,1.0,0.7843
+M2 NegBin+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,home,SELL,0.3694,0.3922,-0.0228,0.0,0.3922
+M2 NegBin+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,draw,SELL,0.326,0.3922,-0.0661,0.0,0.3922
+M2 NegBin+DC,26JUN05AZEMLT,Azerbaijan vs Malta,False,away,BUY,0.3046,0.2157,0.0889,1.0,0.7843
+M3 NegBin+Frank,26JUN05AZEMLT,Azerbaijan vs Malta,False,home,SELL,0.3578,0.3922,-0.0344,0.0,0.3922
+M3 NegBin+Frank,26JUN05AZEMLT,Azerbaijan vs Malta,False,draw,SELL,0.3399,0.3922,-0.0522,0.0,0.3922
+M3 NegBin+Frank,26JUN05AZEMLT,Azerbaijan vs Malta,False,away,BUY,0.3023,0.2157,0.0866,1.0,0.7843
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05AZEMLT,Azerbaijan vs Malta,False,draw,SELL,0.3632,0.3922,-0.029,0.0,0.3922
+M1 Poisson+DC,26JUN05BENNIG,Benin vs Niger,False,home,SELL,0.3694,0.7255,-0.356,0.0,0.7255
+M1 Poisson+DC,26JUN05BENNIG,Benin vs Niger,False,draw,BUY,0.3071,0.2059,0.1012,1.0,0.7941
+M1 Poisson+DC,26JUN05BENNIG,Benin vs Niger,False,away,BUY,0.3235,0.0686,0.2549,0.0,-0.0686
+M2 NegBin+DC,26JUN05BENNIG,Benin vs Niger,False,home,SELL,0.3701,0.7255,-0.3554,0.0,0.7255
+M2 NegBin+DC,26JUN05BENNIG,Benin vs Niger,False,draw,BUY,0.307,0.2059,0.1012,1.0,0.7941
+M2 NegBin+DC,26JUN05BENNIG,Benin vs Niger,False,away,BUY,0.3228,0.0686,0.2542,0.0,-0.0686
+M3 NegBin+Frank,26JUN05BENNIG,Benin vs Niger,False,home,SELL,0.366,0.7255,-0.3595,0.0,0.7255
+M3 NegBin+Frank,26JUN05BENNIG,Benin vs Niger,False,draw,BUY,0.306,0.2059,0.1001,1.0,0.7941
+M3 NegBin+Frank,26JUN05BENNIG,Benin vs Niger,False,away,BUY,0.328,0.0686,0.2594,0.0,-0.0686
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05BENNIG,Benin vs Niger,False,draw,BUY,0.2373,0.2059,0.0314,1.0,0.7941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05BENNIG,Benin vs Niger,False,away,SELL,0.0405,0.0686,-0.0281,0.0,0.0686
+M1 Poisson+DC,26JUN05ANGMRT,Angola vs Mauritania,False,home,BUY,0.4434,0.4198,0.0236,0.0,-0.4198
+M1 Poisson+DC,26JUN05ANGMRT,Angola vs Mauritania,False,draw,BUY,0.3801,0.1756,0.2045,1.0,0.8244
+M1 Poisson+DC,26JUN05ANGMRT,Angola vs Mauritania,False,away,SELL,0.1765,0.4046,-0.2281,0.0,0.4046
+M2 NegBin+DC,26JUN05ANGMRT,Angola vs Mauritania,False,home,BUY,0.4422,0.4198,0.0223,0.0,-0.4198
+M2 NegBin+DC,26JUN05ANGMRT,Angola vs Mauritania,False,draw,BUY,0.3803,0.1756,0.2047,1.0,0.8244
+M2 NegBin+DC,26JUN05ANGMRT,Angola vs Mauritania,False,away,SELL,0.1776,0.4046,-0.227,0.0,0.4046
+M3 NegBin+Frank,26JUN05ANGMRT,Angola vs Mauritania,False,draw,BUY,0.4075,0.1756,0.2319,1.0,0.8244
+M3 NegBin+Frank,26JUN05ANGMRT,Angola vs Mauritania,False,away,SELL,0.1712,0.4046,-0.2334,0.0,0.4046
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05ANGMRT,Angola vs Mauritania,False,home,SELL,0.3283,0.4198,-0.0915,0.0,0.4198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05ANGMRT,Angola vs Mauritania,False,draw,BUY,0.3587,0.1756,0.1831,1.0,0.8244
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05ANGMRT,Angola vs Mauritania,False,away,SELL,0.313,0.4046,-0.0916,0.0,0.4046
+M1 Poisson+DC,26JUN05PARNIC,Paraguay vs Nicaragua,False,home,BUY,0.9199,0.8713,0.0486,1.0,0.1287
+M1 Poisson+DC,26JUN05PARNIC,Paraguay vs Nicaragua,False,draw,SELL,0.0693,0.099,-0.0297,0.0,0.099
+M2 NegBin+DC,26JUN05PARNIC,Paraguay vs Nicaragua,False,home,BUY,0.9181,0.8713,0.0468,1.0,0.1287
+M2 NegBin+DC,26JUN05PARNIC,Paraguay vs Nicaragua,False,draw,SELL,0.0708,0.099,-0.0282,0.0,0.099
+M3 NegBin+Frank,26JUN05PARNIC,Paraguay vs Nicaragua,False,home,BUY,0.9311,0.8713,0.0598,1.0,0.1287
+M3 NegBin+Frank,26JUN05PARNIC,Paraguay vs Nicaragua,False,draw,SELL,0.0595,0.099,-0.0395,0.0,0.099
+M3 NegBin+Frank,26JUN05PARNIC,Paraguay vs Nicaragua,False,away,SELL,0.0094,0.0297,-0.0203,0.0,0.0297
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05PARNIC,Paraguay vs Nicaragua,False,home,BUY,0.9217,0.8713,0.0504,1.0,0.1287
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05PARNIC,Paraguay vs Nicaragua,False,draw,SELL,0.0554,0.099,-0.0436,0.0,0.099
+M1 Poisson+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,home,BUY,0.844,0.7551,0.0889,1.0,0.2449
+M1 Poisson+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,draw,SELL,0.1232,0.1633,-0.04,0.0,0.1633
+M1 Poisson+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,away,SELL,0.0327,0.0816,-0.0489,0.0,0.0816
+M2 NegBin+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,home,BUY,0.8422,0.7551,0.0871,1.0,0.2449
+M2 NegBin+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,draw,SELL,0.1247,0.1633,-0.0386,0.0,0.1633
+M2 NegBin+DC,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,away,SELL,0.0332,0.0816,-0.0485,0.0,0.0816
+M3 NegBin+Frank,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,home,BUY,0.8632,0.7551,0.1081,1.0,0.2449
+M3 NegBin+Frank,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,draw,SELL,0.1087,0.1633,-0.0546,0.0,0.1633
+M3 NegBin+Frank,26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,away,SELL,0.0281,0.0816,-0.0535,0.0,0.0816
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,home,SELL,0.6307,0.7551,-0.1244,1.0,-0.2449
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,draw,BUY,0.3234,0.1633,0.1601,0.0,-0.1633
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05KSAPUR,Saudi Arabia vs Puerto Rico,False,away,SELL,0.0459,0.0816,-0.0357,0.0,0.0816
+M1 Poisson+DC,26JUN05CANIRL,Canada vs Ireland,False,home,SELL,0.4803,0.5446,-0.0642,0.0,0.5446
+M1 Poisson+DC,26JUN05CANIRL,Canada vs Ireland,False,draw,BUY,0.3386,0.2871,0.0515,1.0,0.7129
+M2 NegBin+DC,26JUN05CANIRL,Canada vs Ireland,False,home,SELL,0.4801,0.5446,-0.0645,0.0,0.5446
+M2 NegBin+DC,26JUN05CANIRL,Canada vs Ireland,False,draw,BUY,0.3387,0.2871,0.0516,1.0,0.7129
+M3 NegBin+Frank,26JUN05CANIRL,Canada vs Ireland,False,home,SELL,0.4809,0.5446,-0.0636,0.0,0.5446
+M3 NegBin+Frank,26JUN05CANIRL,Canada vs Ireland,False,draw,BUY,0.3471,0.2871,0.0599,1.0,0.7129
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05CANIRL,Canada vs Ireland,False,draw,BUY,0.3155,0.2871,0.0284,1.0,0.7129
+M1 Poisson+DC,26JUN05HTIPER,Haiti vs Peru,False,home,SELL,0.2521,0.7129,-0.4607,0.0,0.7129
+M1 Poisson+DC,26JUN05HTIPER,Haiti vs Peru,False,draw,BUY,0.315,0.2178,0.0971,0.0,-0.2178
+M1 Poisson+DC,26JUN05HTIPER,Haiti vs Peru,False,away,BUY,0.4329,0.0693,0.3636,1.0,0.9307
+M2 NegBin+DC,26JUN05HTIPER,Haiti vs Peru,False,home,SELL,0.2529,0.7129,-0.46,0.0,0.7129
+M2 NegBin+DC,26JUN05HTIPER,Haiti vs Peru,False,draw,BUY,0.315,0.2178,0.0971,0.0,-0.2178
+M2 NegBin+DC,26JUN05HTIPER,Haiti vs Peru,False,away,BUY,0.4321,0.0693,0.3628,1.0,0.9307
+M3 NegBin+Frank,26JUN05HTIPER,Haiti vs Peru,False,home,SELL,0.2558,0.7129,-0.4571,0.0,0.7129
+M3 NegBin+Frank,26JUN05HTIPER,Haiti vs Peru,False,draw,BUY,0.3209,0.2178,0.1031,0.0,-0.2178
+M3 NegBin+Frank,26JUN05HTIPER,Haiti vs Peru,False,away,BUY,0.4233,0.0693,0.354,1.0,0.9307
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HTIPER,Haiti vs Peru,False,home,BUY,0.7858,0.7129,0.073,0.0,-0.7129
+M5 NegBin+Frank (calib 1X2+O/U),26JUN05HTIPER,Haiti vs Peru,False,draw,SELL,0.148,0.2178,-0.0698,0.0,0.2178
+M1 Poisson+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,home,BUY,0.4778,0.2037,0.2741,1.0,0.7963
+M1 Poisson+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,draw,SELL,0.2482,0.3086,-0.0605,0.0,0.3086
+M1 Poisson+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,away,SELL,0.274,0.4877,-0.2137,0.0,0.4877
+M2 NegBin+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,home,BUY,0.4796,0.2037,0.2759,1.0,0.7963
+M2 NegBin+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,draw,SELL,0.2477,0.3086,-0.0609,0.0,0.3086
+M2 NegBin+DC,26JUN06VANFIJ,Vanuatu vs Fiji,False,away,SELL,0.2727,0.4877,-0.2149,0.0,0.4877
+M3 NegBin+Frank,26JUN06VANFIJ,Vanuatu vs Fiji,False,home,BUY,0.4973,0.2037,0.2936,1.0,0.7963
+M3 NegBin+Frank,26JUN06VANFIJ,Vanuatu vs Fiji,False,draw,SELL,0.2436,0.3086,-0.065,0.0,0.3086
+M3 NegBin+Frank,26JUN06VANFIJ,Vanuatu vs Fiji,False,away,SELL,0.2591,0.4877,-0.2285,0.0,0.4877
+M1 Poisson+DC,26JUN06MYAGUM,Myanmar vs Guam,False,home,SELL,0.8223,0.97,-0.1477,1.0,-0.03
+M1 Poisson+DC,26JUN06MYAGUM,Myanmar vs Guam,False,draw,BUY,0.1326,0.02,0.1126,0.0,-0.02
+M1 Poisson+DC,26JUN06MYAGUM,Myanmar vs Guam,False,away,BUY,0.0451,0.01,0.0351,0.0,-0.01
+M2 NegBin+DC,26JUN06MYAGUM,Myanmar vs Guam,False,home,SELL,0.8194,0.97,-0.1506,1.0,-0.03
+M2 NegBin+DC,26JUN06MYAGUM,Myanmar vs Guam,False,draw,BUY,0.1345,0.02,0.1145,0.0,-0.02
+M2 NegBin+DC,26JUN06MYAGUM,Myanmar vs Guam,False,away,BUY,0.0461,0.01,0.0361,0.0,-0.01
+M3 NegBin+Frank,26JUN06MYAGUM,Myanmar vs Guam,False,home,SELL,0.8388,0.97,-0.1312,1.0,-0.03
+M3 NegBin+Frank,26JUN06MYAGUM,Myanmar vs Guam,False,draw,BUY,0.1197,0.02,0.0997,0.0,-0.02
+M3 NegBin+Frank,26JUN06MYAGUM,Myanmar vs Guam,False,away,BUY,0.0415,0.01,0.0315,0.0,-0.01
+M4 NegBin+Frank (calib 1X2),26JUN06MYAGUM,Myanmar vs Guam,False,home,BUY,0.9953,0.97,0.0253,1.0,0.03
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06MYAGUM,Myanmar vs Guam,False,home,SELL,0.8388,0.97,-0.1312,1.0,-0.03
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06MYAGUM,Myanmar vs Guam,False,draw,BUY,0.1197,0.02,0.0997,0.0,-0.02
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06MYAGUM,Myanmar vs Guam,False,away,BUY,0.0415,0.01,0.0315,0.0,-0.01
+M1 Poisson+DC,26JUN06BELTUN,Belgium vs Tunisia,False,home,SELL,0.6088,0.8911,-0.2822,1.0,-0.1089
+M1 Poisson+DC,26JUN06BELTUN,Belgium vs Tunisia,False,draw,BUY,0.2504,0.0891,0.1613,0.0,-0.0891
+M1 Poisson+DC,26JUN06BELTUN,Belgium vs Tunisia,False,away,BUY,0.1408,0.0198,0.121,0.0,-0.0198
+M2 NegBin+DC,26JUN06BELTUN,Belgium vs Tunisia,False,home,SELL,0.608,0.8911,-0.2831,1.0,-0.1089
+M2 NegBin+DC,26JUN06BELTUN,Belgium vs Tunisia,False,draw,BUY,0.2507,0.0891,0.1616,0.0,-0.0891
+M2 NegBin+DC,26JUN06BELTUN,Belgium vs Tunisia,False,away,BUY,0.1413,0.0198,0.1215,0.0,-0.0198
+M3 NegBin+Frank,26JUN06BELTUN,Belgium vs Tunisia,False,home,SELL,0.6295,0.8911,-0.2615,1.0,-0.1089
+M3 NegBin+Frank,26JUN06BELTUN,Belgium vs Tunisia,False,draw,BUY,0.2416,0.0891,0.1525,0.0,-0.0891
+M3 NegBin+Frank,26JUN06BELTUN,Belgium vs Tunisia,False,away,BUY,0.1289,0.0198,0.1091,0.0,-0.0198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06BELTUN,Belgium vs Tunisia,False,home,SELL,0.6295,0.8911,-0.2615,1.0,-0.1089
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06BELTUN,Belgium vs Tunisia,False,draw,BUY,0.2416,0.0891,0.1525,0.0,-0.0891
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06BELTUN,Belgium vs Tunisia,False,away,BUY,0.1289,0.0198,0.1091,0.0,-0.0198
+M1 Poisson+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,home,SELL,0.3586,0.4158,-0.0573,0.0,0.4158
+M1 Poisson+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,draw,SELL,0.2803,0.3762,-0.096,1.0,-0.6238
+M1 Poisson+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,away,BUY,0.3612,0.2079,0.1532,0.0,-0.2079
+M2 NegBin+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,home,SELL,0.3596,0.4158,-0.0562,0.0,0.4158
+M2 NegBin+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,draw,SELL,0.2804,0.3762,-0.0959,1.0,-0.6238
+M2 NegBin+DC,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,away,BUY,0.36,0.2079,0.1521,0.0,-0.2079
+M3 NegBin+Frank,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,home,SELL,0.3632,0.4158,-0.0527,0.0,0.4158
+M3 NegBin+Frank,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,draw,SELL,0.2762,0.3762,-0.1001,1.0,-0.6238
+M3 NegBin+Frank,26JUN06ARMKAZ,Armenia vs Kazakhstan,False,away,BUY,0.3607,0.2079,0.1528,0.0,-0.2079
+M1 Poisson+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,home,SELL,0.3791,0.7475,-0.3684,1.0,-0.2525
+M1 Poisson+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,draw,BUY,0.3254,0.1717,0.1537,0.0,-0.1717
+M1 Poisson+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,away,BUY,0.2955,0.0808,0.2146,0.0,-0.0808
+M2 NegBin+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,home,SELL,0.3788,0.7475,-0.3687,1.0,-0.2525
+M2 NegBin+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,draw,BUY,0.3254,0.1717,0.1537,0.0,-0.1717
+M2 NegBin+DC,26JUN06ETHMAW,Ethiopia vs Malawi,False,away,BUY,0.2958,0.0808,0.215,0.0,-0.0808
+M3 NegBin+Frank,26JUN06ETHMAW,Ethiopia vs Malawi,False,home,SELL,0.3775,0.7475,-0.37,1.0,-0.2525
+M3 NegBin+Frank,26JUN06ETHMAW,Ethiopia vs Malawi,False,draw,BUY,0.3283,0.1717,0.1566,0.0,-0.1717
+M3 NegBin+Frank,26JUN06ETHMAW,Ethiopia vs Malawi,False,away,BUY,0.2942,0.0808,0.2134,0.0,-0.0808
+M1 Poisson+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,home,BUY,0.5063,0.451,0.0553,1.0,0.549
+M1 Poisson+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,draw,SELL,0.2686,0.402,-0.1333,0.0,0.402
+M1 Poisson+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,away,BUY,0.2251,0.1471,0.0781,0.0,-0.1471
+M2 NegBin+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,home,BUY,0.5058,0.451,0.0548,1.0,0.549
+M2 NegBin+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,draw,SELL,0.2683,0.402,-0.1336,0.0,0.402
+M2 NegBin+DC,26JUN06SLELBR,Sierra Leone vs Liberia,False,away,BUY,0.2259,0.1471,0.0788,0.0,-0.1471
+M3 NegBin+Frank,26JUN06SLELBR,Sierra Leone vs Liberia,False,home,BUY,0.5124,0.451,0.0614,1.0,0.549
+M3 NegBin+Frank,26JUN06SLELBR,Sierra Leone vs Liberia,False,draw,SELL,0.2703,0.402,-0.1317,0.0,0.402
+M3 NegBin+Frank,26JUN06SLELBR,Sierra Leone vs Liberia,False,away,BUY,0.2173,0.1471,0.0703,0.0,-0.1471
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06SLELBR,Sierra Leone vs Liberia,False,home,SELL,0.3428,0.451,-0.1081,1.0,-0.549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06SLELBR,Sierra Leone vs Liberia,False,draw,BUY,0.5661,0.402,0.1641,0.0,-0.402
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06SLELBR,Sierra Leone vs Liberia,False,away,SELL,0.0911,0.1471,-0.056,0.0,0.1471
+M1 Poisson+DC,26JUN06GIBCAY,Gibraltar vs Cayman Islands,False,home,BUY,0.7642,0.7426,0.0217,1.0,0.2574
+M3 NegBin+Frank,26JUN06GIBCAY,Gibraltar vs Cayman Islands,False,home,BUY,0.7901,0.7426,0.0476,1.0,0.2574
+M3 NegBin+Frank,26JUN06GIBCAY,Gibraltar vs Cayman Islands,False,draw,SELL,0.1698,0.198,-0.0282,0.0,0.198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06GIBCAY,Gibraltar vs Cayman Islands,False,home,BUY,0.7901,0.7426,0.0476,1.0,0.2574
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06GIBCAY,Gibraltar vs Cayman Islands,False,draw,SELL,0.1698,0.198,-0.0282,0.0,0.198
+M1 Poisson+DC,26JUN06CPVBMU,Cape Verde vs Bermuda,False,home,BUY,0.9792,0.9406,0.0386,0.0,-0.9406
+M1 Poisson+DC,26JUN06CPVBMU,Cape Verde vs Bermuda,False,draw,SELL,0.0167,0.0396,-0.023,0.0,0.0396
+M2 NegBin+DC,26JUN06CPVBMU,Cape Verde vs Bermuda,False,home,BUY,0.9779,0.9406,0.0373,0.0,-0.9406
+M2 NegBin+DC,26JUN06CPVBMU,Cape Verde vs Bermuda,False,draw,SELL,0.0177,0.0396,-0.0219,0.0,0.0396
+M3 NegBin+Frank,26JUN06CPVBMU,Cape Verde vs Bermuda,False,home,BUY,0.9836,0.9406,0.043,0.0,-0.9406
+M3 NegBin+Frank,26JUN06CPVBMU,Cape Verde vs Bermuda,False,draw,SELL,0.0129,0.0396,-0.0267,0.0,0.0396
+M4 NegBin+Frank (calib 1X2),26JUN06CPVBMU,Cape Verde vs Bermuda,False,home,BUY,0.9844,0.9406,0.0438,0.0,-0.9406
+M4 NegBin+Frank (calib 1X2),26JUN06CPVBMU,Cape Verde vs Bermuda,False,draw,SELL,0.0103,0.0396,-0.0293,0.0,0.0396
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06CPVBMU,Cape Verde vs Bermuda,False,home,BUY,0.9684,0.9406,0.0278,0.0,-0.9406
+M1 Poisson+DC,26JUN06ROUWAL,Romania vs Wales,False,home,BUY,0.4095,0.3431,0.0663,1.0,0.6569
+M1 Poisson+DC,26JUN06ROUWAL,Romania vs Wales,False,away,SELL,0.2969,0.3529,-0.056,0.0,0.3529
+M2 NegBin+DC,26JUN06ROUWAL,Romania vs Wales,False,home,BUY,0.4076,0.3431,0.0644,1.0,0.6569
+M2 NegBin+DC,26JUN06ROUWAL,Romania vs Wales,False,away,SELL,0.2988,0.3529,-0.0541,0.0,0.3529
+M3 NegBin+Frank,26JUN06ROUWAL,Romania vs Wales,False,home,BUY,0.3996,0.3431,0.0565,1.0,0.6569
+M3 NegBin+Frank,26JUN06ROUWAL,Romania vs Wales,False,away,SELL,0.3005,0.3529,-0.0524,0.0,0.3529
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ROUWAL,Romania vs Wales,False,draw,BUY,0.3347,0.3039,0.0308,0.0,-0.3039
+M1 Poisson+DC,26JUN06PORCHI,Portugal vs Chile,False,home,SELL,0.7697,0.8317,-0.0619,1.0,-0.1683
+M1 Poisson+DC,26JUN06PORCHI,Portugal vs Chile,False,draw,BUY,0.1454,0.1188,0.0266,0.0,-0.1188
+M1 Poisson+DC,26JUN06PORCHI,Portugal vs Chile,False,away,BUY,0.0849,0.0495,0.0353,0.0,-0.0495
+M2 NegBin+DC,26JUN06PORCHI,Portugal vs Chile,False,home,SELL,0.7674,0.8317,-0.0643,1.0,-0.1683
+M2 NegBin+DC,26JUN06PORCHI,Portugal vs Chile,False,draw,BUY,0.1464,0.1188,0.0276,0.0,-0.1188
+M2 NegBin+DC,26JUN06PORCHI,Portugal vs Chile,False,away,BUY,0.0861,0.0495,0.0366,0.0,-0.0495
+M3 NegBin+Frank,26JUN06PORCHI,Portugal vs Chile,False,home,SELL,0.797,0.8317,-0.0347,1.0,-0.1683
+M3 NegBin+Frank,26JUN06PORCHI,Portugal vs Chile,False,away,BUY,0.0716,0.0495,0.022,0.0,-0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06PORCHI,Portugal vs Chile,False,home,SELL,0.7834,0.8317,-0.0483,1.0,-0.1683
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06PORCHI,Portugal vs Chile,False,draw,BUY,0.1899,0.1188,0.0711,0.0,-0.1188
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06PORCHI,Portugal vs Chile,False,away,SELL,0.0267,0.0495,-0.0228,0.0,0.0495
+M1 Poisson+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,home,BUY,0.4946,0.2255,0.2691,0.0,-0.2255
+M1 Poisson+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,draw,BUY,0.4051,0.3235,0.0815,0.0,-0.3235
+M1 Poisson+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,away,SELL,0.1003,0.451,-0.3506,1.0,-0.549
+M2 NegBin+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,home,BUY,0.4937,0.2255,0.2682,0.0,-0.2255
+M2 NegBin+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,draw,BUY,0.4057,0.3235,0.0822,0.0,-0.3235
+M2 NegBin+DC,26JUN06ALBLUX,Albania vs Luxembourg,False,away,SELL,0.1006,0.451,-0.3504,1.0,-0.549
+M3 NegBin+Frank,26JUN06ALBLUX,Albania vs Luxembourg,False,home,BUY,0.5043,0.2255,0.2788,0.0,-0.2255
+M3 NegBin+Frank,26JUN06ALBLUX,Albania vs Luxembourg,False,draw,BUY,0.4029,0.3235,0.0794,0.0,-0.3235
+M3 NegBin+Frank,26JUN06ALBLUX,Albania vs Luxembourg,False,away,SELL,0.0929,0.451,-0.3581,1.0,-0.549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ALBLUX,Albania vs Luxembourg,False,home,SELL,0.1215,0.2255,-0.104,0.0,0.2255
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ALBLUX,Albania vs Luxembourg,False,draw,BUY,0.587,0.3235,0.2634,0.0,-0.3235
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ALBLUX,Albania vs Luxembourg,False,away,SELL,0.2915,0.451,-0.1594,1.0,-0.549
+M1 Poisson+DC,26JUN06USAGER,USA vs Germany,False,home,BUY,0.1557,0.0882,0.0675,0.0,-0.0882
+M1 Poisson+DC,26JUN06USAGER,USA vs Germany,False,away,SELL,0.668,0.7451,-0.0771,1.0,-0.2549
+M2 NegBin+DC,26JUN06USAGER,USA vs Germany,False,home,BUY,0.1581,0.0882,0.0699,0.0,-0.0882
+M2 NegBin+DC,26JUN06USAGER,USA vs Germany,False,away,SELL,0.665,0.7451,-0.0801,1.0,-0.2549
+M3 NegBin+Frank,26JUN06USAGER,USA vs Germany,False,home,BUY,0.1484,0.0882,0.0602,0.0,-0.0882
+M3 NegBin+Frank,26JUN06USAGER,USA vs Germany,False,away,SELL,0.6792,0.7451,-0.0659,1.0,-0.2549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06USAGER,USA vs Germany,False,draw,SELL,0.1013,0.1667,-0.0653,0.0,0.1667
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06USAGER,USA vs Germany,False,away,BUY,0.8239,0.7451,0.0788,1.0,0.2549
+M1 Poisson+DC,26JUN06SUIAUS,Switzerland vs Australia,False,home,SELL,0.5124,0.8137,-0.3013,0.0,0.8137
+M1 Poisson+DC,26JUN06SUIAUS,Switzerland vs Australia,False,draw,BUY,0.2834,0.1471,0.1364,1.0,0.8529
+M1 Poisson+DC,26JUN06SUIAUS,Switzerland vs Australia,False,away,BUY,0.2041,0.0392,0.1649,0.0,-0.0392
+M2 NegBin+DC,26JUN06SUIAUS,Switzerland vs Australia,False,home,SELL,0.5112,0.8137,-0.3025,0.0,0.8137
+M2 NegBin+DC,26JUN06SUIAUS,Switzerland vs Australia,False,draw,BUY,0.2838,0.1471,0.1367,1.0,0.8529
+M2 NegBin+DC,26JUN06SUIAUS,Switzerland vs Australia,False,away,BUY,0.205,0.0392,0.1658,0.0,-0.0392
+M3 NegBin+Frank,26JUN06SUIAUS,Switzerland vs Australia,False,home,SELL,0.5276,0.8137,-0.2861,0.0,0.8137
+M3 NegBin+Frank,26JUN06SUIAUS,Switzerland vs Australia,False,draw,BUY,0.2812,0.1471,0.1341,1.0,0.8529
+M3 NegBin+Frank,26JUN06SUIAUS,Switzerland vs Australia,False,away,BUY,0.1912,0.0392,0.152,0.0,-0.0392
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06SUIAUS,Switzerland vs Australia,False,draw,BUY,0.1883,0.1471,0.0413,1.0,0.8529
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06SUIAUS,Switzerland vs Australia,False,away,SELL,0.0166,0.0392,-0.0227,0.0,0.0392
+M1 Poisson+DC,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,draw,SELL,0.2902,0.3861,-0.096,1.0,-0.6139
+M1 Poisson+DC,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,away,BUY,0.4272,0.3465,0.0806,0.0,-0.3465
+M2 NegBin+DC,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,draw,SELL,0.2902,0.3861,-0.0959,1.0,-0.6139
+M2 NegBin+DC,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,away,BUY,0.4256,0.3465,0.0791,0.0,-0.3465
+M3 NegBin+Frank,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,draw,SELL,0.2977,0.3861,-0.0885,1.0,-0.6139
+M3 NegBin+Frank,26JUN06PANBIH,Panama vs Bosnia and Herzegovina,False,away,BUY,0.4251,0.3465,0.0786,0.0,-0.3465
+M1 Poisson+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,home,BUY,0.1646,0.0099,0.1547,0.0,-0.0099
+M1 Poisson+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,draw,BUY,0.2705,0.0099,0.2606,0.0,-0.0099
+M1 Poisson+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,away,SELL,0.5649,0.9802,-0.4153,1.0,-0.0198
+M2 NegBin+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,home,BUY,0.1653,0.0099,0.1554,0.0,-0.0099
+M2 NegBin+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,draw,BUY,0.2708,0.0099,0.2609,0.0,-0.0099
+M2 NegBin+DC,26JUN06BOLSCO,Bolivia vs Scotland,False,away,SELL,0.5639,0.9802,-0.4163,1.0,-0.0198
+M3 NegBin+Frank,26JUN06BOLSCO,Bolivia vs Scotland,False,home,BUY,0.1519,0.0099,0.142,0.0,-0.0099
+M3 NegBin+Frank,26JUN06BOLSCO,Bolivia vs Scotland,False,draw,BUY,0.2601,0.0099,0.2502,0.0,-0.0099
+M3 NegBin+Frank,26JUN06BOLSCO,Bolivia vs Scotland,False,away,SELL,0.588,0.9802,-0.3922,1.0,-0.0198
+M1 Poisson+DC,26JUN06ENGNZL,England vs New Zealand,False,home,SELL,0.8039,0.9406,-0.1367,1.0,-0.0594
+M1 Poisson+DC,26JUN06ENGNZL,England vs New Zealand,False,draw,BUY,0.1568,0.0495,0.1073,0.0,-0.0495
+M1 Poisson+DC,26JUN06ENGNZL,England vs New Zealand,False,away,BUY,0.0393,0.0099,0.0294,0.0,-0.0099
+M2 NegBin+DC,26JUN06ENGNZL,England vs New Zealand,False,home,SELL,0.8021,0.9406,-0.1384,1.0,-0.0594
+M2 NegBin+DC,26JUN06ENGNZL,England vs New Zealand,False,draw,BUY,0.158,0.0495,0.1085,0.0,-0.0495
+M2 NegBin+DC,26JUN06ENGNZL,England vs New Zealand,False,away,BUY,0.0399,0.0099,0.03,0.0,-0.0099
+M3 NegBin+Frank,26JUN06ENGNZL,England vs New Zealand,False,home,SELL,0.8162,0.9406,-0.1244,1.0,-0.0594
+M3 NegBin+Frank,26JUN06ENGNZL,England vs New Zealand,False,draw,BUY,0.1476,0.0495,0.0981,0.0,-0.0495
+M3 NegBin+Frank,26JUN06ENGNZL,England vs New Zealand,False,away,BUY,0.0362,0.0099,0.0263,0.0,-0.0099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ENGNZL,England vs New Zealand,False,home,SELL,0.5907,0.9406,-0.3499,1.0,-0.0594
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ENGNZL,England vs New Zealand,False,draw,BUY,0.4068,0.0495,0.3573,0.0,-0.0495
+M1 Poisson+DC,26JUN06QATSLV,Qatar vs El Salvador,False,home,BUY,0.559,0.3627,0.1962,0.0,-0.3627
+M1 Poisson+DC,26JUN06QATSLV,Qatar vs El Salvador,False,draw,SELL,0.2959,0.451,-0.1551,1.0,-0.549
+M1 Poisson+DC,26JUN06QATSLV,Qatar vs El Salvador,False,away,SELL,0.1452,0.1863,-0.0411,0.0,0.1863
+M2 NegBin+DC,26JUN06QATSLV,Qatar vs El Salvador,False,home,BUY,0.5582,0.3627,0.1954,0.0,-0.3627
+M2 NegBin+DC,26JUN06QATSLV,Qatar vs El Salvador,False,draw,SELL,0.2963,0.451,-0.1547,1.0,-0.549
+M2 NegBin+DC,26JUN06QATSLV,Qatar vs El Salvador,False,away,SELL,0.1455,0.1863,-0.0407,0.0,0.1863
+M3 NegBin+Frank,26JUN06QATSLV,Qatar vs El Salvador,False,home,BUY,0.5637,0.3627,0.2009,0.0,-0.3627
+M3 NegBin+Frank,26JUN06QATSLV,Qatar vs El Salvador,False,draw,SELL,0.2969,0.451,-0.1541,1.0,-0.549
+M3 NegBin+Frank,26JUN06QATSLV,Qatar vs El Salvador,False,away,SELL,0.1394,0.1863,-0.0469,0.0,0.1863
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06QATSLV,Qatar vs El Salvador,False,home,SELL,0.2495,0.3627,-0.1133,0.0,0.3627
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06QATSLV,Qatar vs El Salvador,False,draw,BUY,0.638,0.451,0.1871,1.0,0.549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06QATSLV,Qatar vs El Salvador,False,away,SELL,0.1125,0.1863,-0.0738,0.0,0.1863
+M1 Poisson+DC,26JUN06BRAEGY,Brazil vs Egypt,False,home,SELL,0.5878,0.6832,-0.0953,1.0,-0.3168
+M1 Poisson+DC,26JUN06BRAEGY,Brazil vs Egypt,False,draw,BUY,0.262,0.2178,0.0441,0.0,-0.2178
+M1 Poisson+DC,26JUN06BRAEGY,Brazil vs Egypt,False,away,BUY,0.1502,0.099,0.0512,0.0,-0.099
+M2 NegBin+DC,26JUN06BRAEGY,Brazil vs Egypt,False,home,SELL,0.5869,0.6832,-0.0963,1.0,-0.3168
+M2 NegBin+DC,26JUN06BRAEGY,Brazil vs Egypt,False,draw,BUY,0.2622,0.2178,0.0443,0.0,-0.2178
+M2 NegBin+DC,26JUN06BRAEGY,Brazil vs Egypt,False,away,BUY,0.151,0.099,0.0519,0.0,-0.099
+M3 NegBin+Frank,26JUN06BRAEGY,Brazil vs Egypt,False,home,SELL,0.5985,0.6832,-0.0847,1.0,-0.3168
+M3 NegBin+Frank,26JUN06BRAEGY,Brazil vs Egypt,False,draw,BUY,0.2586,0.2178,0.0407,0.0,-0.2178
+M3 NegBin+Frank,26JUN06BRAEGY,Brazil vs Egypt,False,away,BUY,0.1429,0.099,0.0439,0.0,-0.099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06BRAEGY,Brazil vs Egypt,False,home,BUY,0.7262,0.6832,0.043,1.0,0.3168
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06BRAEGY,Brazil vs Egypt,False,draw,SELL,0.1787,0.2178,-0.0392,0.0,0.2178
+M1 Poisson+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,home,BUY,0.1846,0.15,0.0346,0.0,-0.15
+M1 Poisson+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,draw,SELL,0.2424,0.31,-0.0676,0.0,0.31
+M1 Poisson+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,away,BUY,0.573,0.54,0.033,1.0,0.46
+M2 NegBin+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,home,BUY,0.1857,0.15,0.0357,0.0,-0.15
+M2 NegBin+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,draw,SELL,0.2425,0.31,-0.0675,0.0,0.31
+M2 NegBin+DC,26JUN06VENTUR,Venezuela vs Turkiye,False,away,BUY,0.5718,0.54,0.0318,1.0,0.46
+M3 NegBin+Frank,26JUN06VENTUR,Venezuela vs Turkiye,False,home,BUY,0.1713,0.15,0.0213,0.0,-0.15
+M3 NegBin+Frank,26JUN06VENTUR,Venezuela vs Turkiye,False,draw,SELL,0.2356,0.31,-0.0744,0.0,0.31
+M3 NegBin+Frank,26JUN06VENTUR,Venezuela vs Turkiye,False,away,BUY,0.5931,0.54,0.0531,1.0,0.46
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06VENTUR,Venezuela vs Turkiye,False,home,BUY,0.1726,0.15,0.0226,0.0,-0.15
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06VENTUR,Venezuela vs Turkiye,False,draw,SELL,0.2229,0.31,-0.0871,0.0,0.31
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06VENTUR,Venezuela vs Turkiye,False,away,BUY,0.6045,0.54,0.0645,1.0,0.46
+M1 Poisson+DC,26JUN06ARGHND,Argentina vs Honduras,False,home,SELL,0.8732,0.9307,-0.0575,1.0,-0.0693
+M1 Poisson+DC,26JUN06ARGHND,Argentina vs Honduras,False,draw,BUY,0.1108,0.0495,0.0613,0.0,-0.0495
+M2 NegBin+DC,26JUN06ARGHND,Argentina vs Honduras,False,home,SELL,0.8712,0.9307,-0.0594,1.0,-0.0693
+M2 NegBin+DC,26JUN06ARGHND,Argentina vs Honduras,False,draw,BUY,0.1124,0.0495,0.0629,0.0,-0.0495
+M3 NegBin+Frank,26JUN06ARGHND,Argentina vs Honduras,False,home,SELL,0.8766,0.9307,-0.0541,1.0,-0.0693
+M3 NegBin+Frank,26JUN06ARGHND,Argentina vs Honduras,False,draw,BUY,0.1077,0.0495,0.0582,0.0,-0.0495
+M4 NegBin+Frank (calib 1X2),26JUN06ARGHND,Argentina vs Honduras,False,home,BUY,0.9559,0.9307,0.0252,1.0,0.0693
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ARGHND,Argentina vs Honduras,False,home,SELL,0.8743,0.9307,-0.0564,1.0,-0.0693
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06ARGHND,Argentina vs Honduras,False,draw,BUY,0.1217,0.0495,0.0722,0.0,-0.0495
+M1 Poisson+DC,26JUN06CUWARU,Curacao vs Aruba,False,home,BUY,0.8928,0.6538,0.2389,1.0,0.3462
+M1 Poisson+DC,26JUN06CUWARU,Curacao vs Aruba,False,draw,SELL,0.0778,0.2692,-0.1914,0.0,0.2692
+M1 Poisson+DC,26JUN06CUWARU,Curacao vs Aruba,False,away,SELL,0.0295,0.0769,-0.0475,0.0,0.0769
+M2 NegBin+DC,26JUN06CUWARU,Curacao vs Aruba,False,home,BUY,0.8907,0.6538,0.2369,1.0,0.3462
+M2 NegBin+DC,26JUN06CUWARU,Curacao vs Aruba,False,draw,SELL,0.0791,0.2692,-0.1901,0.0,0.2692
+M2 NegBin+DC,26JUN06CUWARU,Curacao vs Aruba,False,away,SELL,0.0302,0.0769,-0.0468,0.0,0.0769
+M3 NegBin+Frank,26JUN06CUWARU,Curacao vs Aruba,False,home,BUY,0.9142,0.6538,0.2604,1.0,0.3462
+M3 NegBin+Frank,26JUN06CUWARU,Curacao vs Aruba,False,draw,SELL,0.0624,0.2692,-0.2069,0.0,0.2692
+M3 NegBin+Frank,26JUN06CUWARU,Curacao vs Aruba,False,away,SELL,0.0234,0.0769,-0.0535,0.0,0.0769
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06CUWARU,Curacao vs Aruba,False,home,BUY,0.7817,0.6538,0.1279,1.0,0.3462
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06CUWARU,Curacao vs Aruba,False,draw,SELL,0.1132,0.2692,-0.156,0.0,0.2692
+M5 NegBin+Frank (calib 1X2+O/U),26JUN06CUWARU,Curacao vs Aruba,False,away,BUY,0.1051,0.0769,0.0282,0.0,-0.0769
+M1 Poisson+DC,26JUN07LIECYP,Liechtenstein vs Cyprus,False,draw,BUY,0.1382,0.0588,0.0793,0.0,-0.0588
+M1 Poisson+DC,26JUN07LIECYP,Liechtenstein vs Cyprus,False,away,SELL,0.8249,0.9216,-0.0966,1.0,-0.0784
+M2 NegBin+DC,26JUN07LIECYP,Liechtenstein vs Cyprus,False,draw,BUY,0.139,0.0588,0.0802,0.0,-0.0588
+M2 NegBin+DC,26JUN07LIECYP,Liechtenstein vs Cyprus,False,away,SELL,0.8236,0.9216,-0.098,1.0,-0.0784
+M3 NegBin+Frank,26JUN07LIECYP,Liechtenstein vs Cyprus,False,draw,BUY,0.1257,0.0588,0.0668,0.0,-0.0588
+M3 NegBin+Frank,26JUN07LIECYP,Liechtenstein vs Cyprus,False,away,SELL,0.8425,0.9216,-0.0791,1.0,-0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07LIECYP,Liechtenstein vs Cyprus,False,draw,BUY,0.1545,0.0588,0.0957,0.0,-0.0588
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07LIECYP,Liechtenstein vs Cyprus,False,away,SELL,0.8411,0.9216,-0.0805,1.0,-0.0784
+M1 Poisson+DC,26JUN07KOSAND,Kosovo vs Andorra,False,home,SELL,0.8909,0.9208,-0.0299,1.0,-0.0792
+M1 Poisson+DC,26JUN07KOSAND,Kosovo vs Andorra,False,draw,BUY,0.096,0.0594,0.0366,0.0,-0.0594
+M2 NegBin+DC,26JUN07KOSAND,Kosovo vs Andorra,False,home,SELL,0.8892,0.9208,-0.0316,1.0,-0.0792
+M2 NegBin+DC,26JUN07KOSAND,Kosovo vs Andorra,False,draw,BUY,0.0976,0.0594,0.0382,0.0,-0.0594
+M3 NegBin+Frank,26JUN07KOSAND,Kosovo vs Andorra,False,draw,BUY,0.0831,0.0594,0.0237,0.0,-0.0594
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07KOSAND,Kosovo vs Andorra,False,home,BUY,0.9562,0.9208,0.0354,1.0,0.0792
+M1 Poisson+DC,26JUN07CROSLO,Croatia vs Slovenia,False,home,SELL,0.5895,0.6176,-0.0281,1.0,-0.3824
+M1 Poisson+DC,26JUN07CROSLO,Croatia vs Slovenia,False,draw,BUY,0.276,0.2353,0.0407,0.0,-0.2353
+M2 NegBin+DC,26JUN07CROSLO,Croatia vs Slovenia,False,home,SELL,0.589,0.6176,-0.0286,1.0,-0.3824
+M2 NegBin+DC,26JUN07CROSLO,Croatia vs Slovenia,False,draw,BUY,0.2761,0.2353,0.0408,0.0,-0.2353
+M3 NegBin+Frank,26JUN07CROSLO,Croatia vs Slovenia,False,draw,BUY,0.2719,0.2353,0.0366,0.0,-0.2353
+M3 NegBin+Frank,26JUN07CROSLO,Croatia vs Slovenia,False,away,SELL,0.1233,0.1471,-0.0237,0.0,0.1471
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07CROSLO,Croatia vs Slovenia,False,draw,BUY,0.2682,0.2353,0.0329,0.0,-0.2353
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07CROSLO,Croatia vs Slovenia,False,away,SELL,0.1259,0.1471,-0.0211,0.0,0.1471
+M1 Poisson+DC,26JUN07GREITA,Greece vs Italy,False,home,BUY,0.398,0.0784,0.3195,0.0,-0.0784
+M1 Poisson+DC,26JUN07GREITA,Greece vs Italy,False,draw,BUY,0.2767,0.2157,0.0611,0.0,-0.2157
+M1 Poisson+DC,26JUN07GREITA,Greece vs Italy,False,away,SELL,0.3253,0.7059,-0.3806,1.0,-0.2941
+M2 NegBin+DC,26JUN07GREITA,Greece vs Italy,False,home,BUY,0.3972,0.0784,0.3188,0.0,-0.0784
+M2 NegBin+DC,26JUN07GREITA,Greece vs Italy,False,draw,BUY,0.2764,0.2157,0.0607,0.0,-0.2157
+M2 NegBin+DC,26JUN07GREITA,Greece vs Italy,False,away,SELL,0.3264,0.7059,-0.3795,1.0,-0.2941
+M3 NegBin+Frank,26JUN07GREITA,Greece vs Italy,False,home,BUY,0.4064,0.0784,0.328,0.0,-0.0784
+M3 NegBin+Frank,26JUN07GREITA,Greece vs Italy,False,draw,BUY,0.2771,0.2157,0.0614,0.0,-0.2157
+M3 NegBin+Frank,26JUN07GREITA,Greece vs Italy,False,away,SELL,0.3165,0.7059,-0.3894,1.0,-0.2941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07GREITA,Greece vs Italy,False,home,SELL,0.0305,0.0784,-0.048,0.0,0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07GREITA,Greece vs Italy,False,draw,BUY,0.5009,0.2157,0.2852,0.0,-0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07GREITA,Greece vs Italy,False,away,SELL,0.4687,0.7059,-0.2372,1.0,-0.2941
+M1 Poisson+DC,26JUN07MARNOR,Morocco vs Norway,False,home,SELL,0.3535,0.6,-0.2465,0.0,0.6
+M1 Poisson+DC,26JUN07MARNOR,Morocco vs Norway,False,draw,BUY,0.3712,0.26,0.1112,1.0,0.74
+M1 Poisson+DC,26JUN07MARNOR,Morocco vs Norway,False,away,BUY,0.2752,0.14,0.1352,0.0,-0.14
+M2 NegBin+DC,26JUN07MARNOR,Morocco vs Norway,False,home,SELL,0.3542,0.6,-0.2458,0.0,0.6
+M2 NegBin+DC,26JUN07MARNOR,Morocco vs Norway,False,draw,BUY,0.3712,0.26,0.1112,1.0,0.74
+M2 NegBin+DC,26JUN07MARNOR,Morocco vs Norway,False,away,BUY,0.2746,0.14,0.1346,0.0,-0.14
+M3 NegBin+Frank,26JUN07MARNOR,Morocco vs Norway,False,home,SELL,0.354,0.6,-0.246,0.0,0.6
+M3 NegBin+Frank,26JUN07MARNOR,Morocco vs Norway,False,draw,BUY,0.3867,0.26,0.1267,1.0,0.74
+M3 NegBin+Frank,26JUN07MARNOR,Morocco vs Norway,False,away,BUY,0.2592,0.14,0.1192,0.0,-0.14
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07MARNOR,Morocco vs Norway,False,away,SELL,0.1194,0.14,-0.0206,0.0,0.14
+M1 Poisson+DC,26JUN07ECUGTM,Ecuador vs Guatemala,False,home,SELL,0.871,0.902,-0.031,1.0,-0.098
+M1 Poisson+DC,26JUN07ECUGTM,Ecuador vs Guatemala,False,draw,BUY,0.1086,0.0784,0.0301,0.0,-0.0784
+M2 NegBin+DC,26JUN07ECUGTM,Ecuador vs Guatemala,False,home,SELL,0.8685,0.902,-0.0335,1.0,-0.098
+M2 NegBin+DC,26JUN07ECUGTM,Ecuador vs Guatemala,False,draw,BUY,0.1105,0.0784,0.0321,0.0,-0.0784
+M3 NegBin+Frank,26JUN07ECUGTM,Ecuador vs Guatemala,False,home,SELL,0.869,0.902,-0.033,1.0,-0.098
+M3 NegBin+Frank,26JUN07ECUGTM,Ecuador vs Guatemala,False,draw,BUY,0.1104,0.0784,0.032,0.0,-0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07ECUGTM,Ecuador vs Guatemala,False,home,BUY,0.9664,0.902,0.0644,1.0,0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07ECUGTM,Ecuador vs Guatemala,False,draw,SELL,0.0291,0.0784,-0.0494,0.0,0.0784
+M1 Poisson+DC,26JUN07COLJOR,Colombia vs Jordan,False,home,SELL,0.7751,0.8824,-0.1072,1.0,-0.1176
+M1 Poisson+DC,26JUN07COLJOR,Colombia vs Jordan,False,draw,BUY,0.1451,0.0882,0.0569,0.0,-0.0882
+M1 Poisson+DC,26JUN07COLJOR,Colombia vs Jordan,False,away,BUY,0.0798,0.0294,0.0503,0.0,-0.0294
+M2 NegBin+DC,26JUN07COLJOR,Colombia vs Jordan,False,home,SELL,0.7734,0.8824,-0.1089,1.0,-0.1176
+M2 NegBin+DC,26JUN07COLJOR,Colombia vs Jordan,False,draw,BUY,0.1458,0.0882,0.0576,0.0,-0.0882
+M2 NegBin+DC,26JUN07COLJOR,Colombia vs Jordan,False,away,BUY,0.0808,0.0294,0.0514,0.0,-0.0294
+M3 NegBin+Frank,26JUN07COLJOR,Colombia vs Jordan,False,home,SELL,0.7902,0.8824,-0.0922,1.0,-0.1176
+M3 NegBin+Frank,26JUN07COLJOR,Colombia vs Jordan,False,draw,BUY,0.1356,0.0882,0.0473,0.0,-0.0882
+M3 NegBin+Frank,26JUN07COLJOR,Colombia vs Jordan,False,away,BUY,0.0743,0.0294,0.0449,0.0,-0.0294
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07COLJOR,Colombia vs Jordan,False,home,SELL,0.824,0.8824,-0.0584,1.0,-0.1176
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07COLJOR,Colombia vs Jordan,False,draw,BUY,0.168,0.0882,0.0798,0.0,-0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN07COLJOR,Colombia vs Jordan,False,away,SELL,0.008,0.0294,-0.0214,0.0,0.0294
+M1 Poisson+DC,26JUN11MEXRSA,Mexico vs South Africa,True,away,SELL,0.0863,0.1078,-0.0216,0.0,0.1078
+M2 NegBin+DC,26JUN11MEXRSA,Mexico vs South Africa,True,away,SELL,0.087,0.1078,-0.0209,0.0,0.1078
+M3 NegBin+Frank,26JUN11MEXRSA,Mexico vs South Africa,True,home,BUY,0.7135,0.6863,0.0273,1.0,0.3137
+M3 NegBin+Frank,26JUN11MEXRSA,Mexico vs South Africa,True,away,SELL,0.0781,0.1078,-0.0298,0.0,0.1078
+M5 NegBin+Frank (calib 1X2+O/U),26JUN11MEXRSA,Mexico vs South Africa,True,away,SELL,0.0712,0.1078,-0.0367,0.0,0.1078
+M1 Poisson+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,home,BUY,0.4108,0.3333,0.0774,1.0,0.6667
+M1 Poisson+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,draw,SELL,0.2793,0.4314,-0.1521,0.0,0.4314
+M1 Poisson+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,away,BUY,0.3099,0.2353,0.0747,0.0,-0.2353
+M2 NegBin+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,home,BUY,0.4108,0.3333,0.0775,1.0,0.6667
+M2 NegBin+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,draw,SELL,0.279,0.4314,-0.1524,0.0,0.4314
+M2 NegBin+DC,26JUN11KORCZE,Korea Republic vs Czechia,True,away,BUY,0.3101,0.2353,0.0749,0.0,-0.2353
+M3 NegBin+Frank,26JUN11KORCZE,Korea Republic vs Czechia,True,home,BUY,0.4191,0.3333,0.0857,1.0,0.6667
+M3 NegBin+Frank,26JUN11KORCZE,Korea Republic vs Czechia,True,draw,SELL,0.2819,0.4314,-0.1495,0.0,0.4314
+M3 NegBin+Frank,26JUN11KORCZE,Korea Republic vs Czechia,True,away,BUY,0.2991,0.2353,0.0638,0.0,-0.2353
+M5 NegBin+Frank (calib 1X2+O/U),26JUN11KORCZE,Korea Republic vs Czechia,True,home,BUY,0.4239,0.3333,0.0906,1.0,0.6667
+M5 NegBin+Frank (calib 1X2+O/U),26JUN11KORCZE,Korea Republic vs Czechia,True,draw,SELL,0.2649,0.4314,-0.1665,0.0,0.4314
+M5 NegBin+Frank (calib 1X2+O/U),26JUN11KORCZE,Korea Republic vs Czechia,True,away,BUY,0.3112,0.2353,0.0759,0.0,-0.2353
+M1 Poisson+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,home,BUY,0.5861,0.24,0.3461,0.0,-0.24
+M1 Poisson+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,draw,SELL,0.2756,0.32,-0.0444,1.0,-0.68
+M1 Poisson+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,away,SELL,0.1383,0.44,-0.3017,0.0,0.44
+M2 NegBin+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,home,BUY,0.5853,0.24,0.3453,0.0,-0.24
+M2 NegBin+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,draw,SELL,0.276,0.32,-0.044,1.0,-0.68
+M2 NegBin+DC,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,away,SELL,0.1387,0.44,-0.3013,0.0,0.44
+M3 NegBin+Frank,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,home,BUY,0.5893,0.24,0.3493,0.0,-0.24
+M3 NegBin+Frank,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,draw,SELL,0.2789,0.32,-0.0411,1.0,-0.68
+M3 NegBin+Frank,26JUN12CANBIH,Canada vs Bosnia and Herzegovina,True,away,SELL,0.1317,0.44,-0.3083,0.0,0.44
+M1 Poisson+DC,26JUN12USAPAR,USA vs Paraguay,True,home,SELL,0.3945,0.4706,-0.0761,1.0,-0.5294
+M1 Poisson+DC,26JUN12USAPAR,USA vs Paraguay,True,draw,SELL,0.2655,0.2941,-0.0286,0.0,0.2941
+M1 Poisson+DC,26JUN12USAPAR,USA vs Paraguay,True,away,BUY,0.34,0.2353,0.1047,0.0,-0.2353
+M2 NegBin+DC,26JUN12USAPAR,USA vs Paraguay,True,home,SELL,0.3952,0.4706,-0.0754,1.0,-0.5294
+M2 NegBin+DC,26JUN12USAPAR,USA vs Paraguay,True,draw,SELL,0.2649,0.2941,-0.0292,0.0,0.2941
+M2 NegBin+DC,26JUN12USAPAR,USA vs Paraguay,True,away,BUY,0.34,0.2353,0.1047,0.0,-0.2353
+M3 NegBin+Frank,26JUN12USAPAR,USA vs Paraguay,True,home,SELL,0.3967,0.4706,-0.0739,1.0,-0.5294
+M3 NegBin+Frank,26JUN12USAPAR,USA vs Paraguay,True,draw,SELL,0.2655,0.2941,-0.0287,0.0,0.2941
+M3 NegBin+Frank,26JUN12USAPAR,USA vs Paraguay,True,away,BUY,0.3379,0.2353,0.1026,0.0,-0.2353
+M5 NegBin+Frank (calib 1X2+O/U),26JUN12USAPAR,USA vs Paraguay,True,home,BUY,0.5602,0.4706,0.0896,1.0,0.5294
+M5 NegBin+Frank (calib 1X2+O/U),26JUN12USAPAR,USA vs Paraguay,True,draw,SELL,0.1926,0.2941,-0.1015,0.0,0.2941
+M1 Poisson+DC,26JUN13QATSUI,Qatar vs Switzerland,True,home,SELL,0.0171,0.0594,-0.0423,0.0,0.0594
+M1 Poisson+DC,26JUN13QATSUI,Qatar vs Switzerland,True,draw,SELL,0.0598,0.1386,-0.0788,1.0,-0.8614
+M1 Poisson+DC,26JUN13QATSUI,Qatar vs Switzerland,True,away,BUY,0.9231,0.802,0.1211,0.0,-0.802
+M2 NegBin+DC,26JUN13QATSUI,Qatar vs Switzerland,True,home,SELL,0.0177,0.0594,-0.0417,0.0,0.0594
+M2 NegBin+DC,26JUN13QATSUI,Qatar vs Switzerland,True,draw,SELL,0.0614,0.1386,-0.0772,1.0,-0.8614
+M2 NegBin+DC,26JUN13QATSUI,Qatar vs Switzerland,True,away,BUY,0.9209,0.802,0.1189,0.0,-0.802
+M3 NegBin+Frank,26JUN13QATSUI,Qatar vs Switzerland,True,home,SELL,0.0158,0.0594,-0.0436,0.0,0.0594
+M3 NegBin+Frank,26JUN13QATSUI,Qatar vs Switzerland,True,draw,SELL,0.0537,0.1386,-0.0849,1.0,-0.8614
+M3 NegBin+Frank,26JUN13QATSUI,Qatar vs Switzerland,True,away,BUY,0.9305,0.802,0.1285,0.0,-0.802
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13QATSUI,Qatar vs Switzerland,True,home,SELL,0.0233,0.0594,-0.0361,0.0,0.0594
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13QATSUI,Qatar vs Switzerland,True,draw,BUY,0.3244,0.1386,0.1858,1.0,0.8614
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13QATSUI,Qatar vs Switzerland,True,away,SELL,0.6523,0.802,-0.1497,0.0,0.802
+M1 Poisson+DC,26JUN13BRAMAR,Brazil vs Morocco,True,home,SELL,0.2944,0.5769,-0.2825,0.0,0.5769
+M1 Poisson+DC,26JUN13BRAMAR,Brazil vs Morocco,True,draw,BUY,0.3413,0.25,0.0913,1.0,0.75
+M1 Poisson+DC,26JUN13BRAMAR,Brazil vs Morocco,True,away,BUY,0.3642,0.1731,0.1912,0.0,-0.1731
+M2 NegBin+DC,26JUN13BRAMAR,Brazil vs Morocco,True,home,SELL,0.2946,0.5769,-0.2823,0.0,0.5769
+M2 NegBin+DC,26JUN13BRAMAR,Brazil vs Morocco,True,draw,BUY,0.3412,0.25,0.0912,1.0,0.75
+M2 NegBin+DC,26JUN13BRAMAR,Brazil vs Morocco,True,away,BUY,0.3642,0.1731,0.1911,0.0,-0.1731
+M3 NegBin+Frank,26JUN13BRAMAR,Brazil vs Morocco,True,home,SELL,0.2845,0.5769,-0.2924,0.0,0.5769
+M3 NegBin+Frank,26JUN13BRAMAR,Brazil vs Morocco,True,draw,BUY,0.3484,0.25,0.0984,1.0,0.75
+M3 NegBin+Frank,26JUN13BRAMAR,Brazil vs Morocco,True,away,BUY,0.3671,0.1731,0.194,0.0,-0.1731
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13BRAMAR,Brazil vs Morocco,True,draw,BUY,0.2755,0.25,0.0255,1.0,0.75
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13BRAMAR,Brazil vs Morocco,True,away,SELL,0.1406,0.1731,-0.0325,0.0,0.1731
+M1 Poisson+DC,26JUN13HTISCO,Haiti vs Scotland,True,home,SELL,0.1301,0.1569,-0.0267,0.0,0.1569
+M2 NegBin+DC,26JUN13HTISCO,Haiti vs Scotland,True,home,SELL,0.1311,0.1569,-0.0257,0.0,0.1569
+M3 NegBin+Frank,26JUN13HTISCO,Haiti vs Scotland,True,home,SELL,0.1226,0.1569,-0.0342,0.0,0.1569
+M3 NegBin+Frank,26JUN13HTISCO,Haiti vs Scotland,True,away,BUY,0.6667,0.6275,0.0393,1.0,0.3725
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13HTISCO,Haiti vs Scotland,True,home,SELL,0.0817,0.1569,-0.0752,0.0,0.1569
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13HTISCO,Haiti vs Scotland,True,draw,BUY,0.4065,0.2157,0.1908,0.0,-0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN13HTISCO,Haiti vs Scotland,True,away,SELL,0.5118,0.6275,-0.1156,1.0,-0.3725
+M1 Poisson+DC,26JUN14AUSTUR,Australia vs Turkiye,True,home,SELL,0.3649,0.46,-0.0951,1.0,-0.54
+M1 Poisson+DC,26JUN14AUSTUR,Australia vs Turkiye,True,away,BUY,0.3213,0.22,0.1013,0.0,-0.22
+M2 NegBin+DC,26JUN14AUSTUR,Australia vs Turkiye,True,home,SELL,0.3651,0.46,-0.0949,1.0,-0.54
+M2 NegBin+DC,26JUN14AUSTUR,Australia vs Turkiye,True,away,BUY,0.321,0.22,0.101,0.0,-0.22
+M3 NegBin+Frank,26JUN14AUSTUR,Australia vs Turkiye,True,home,SELL,0.3622,0.46,-0.0978,1.0,-0.54
+M3 NegBin+Frank,26JUN14AUSTUR,Australia vs Turkiye,True,away,BUY,0.3244,0.22,0.1044,0.0,-0.22
+M1 Poisson+DC,26JUN14GERCUW,Germany vs Curacao,True,home,BUY,0.9523,0.9216,0.0308,1.0,0.0784
+M2 NegBin+DC,26JUN14GERCUW,Germany vs Curacao,True,home,BUY,0.9501,0.9216,0.0286,1.0,0.0784
+M3 NegBin+Frank,26JUN14GERCUW,Germany vs Curacao,True,home,BUY,0.9547,0.9216,0.0331,1.0,0.0784
+M4 NegBin+Frank (calib 1X2),26JUN14GERCUW,Germany vs Curacao,True,home,BUY,0.9744,0.9216,0.0528,1.0,0.0784
+M4 NegBin+Frank (calib 1X2),26JUN14GERCUW,Germany vs Curacao,True,draw,SELL,0.0164,0.049,-0.0327,0.0,0.049
+M4 NegBin+Frank (calib 1X2),26JUN14GERCUW,Germany vs Curacao,True,away,SELL,0.0093,0.0294,-0.0201,0.0,0.0294
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14GERCUW,Germany vs Curacao,True,home,BUY,0.9547,0.9216,0.0331,1.0,0.0784
+M1 Poisson+DC,26JUN14NEDJPN,Netherlands vs Japan,True,home,SELL,0.2769,0.4608,-0.1839,0.0,0.4608
+M1 Poisson+DC,26JUN14NEDJPN,Netherlands vs Japan,True,draw,BUY,0.3365,0.2745,0.062,1.0,0.7255
+M1 Poisson+DC,26JUN14NEDJPN,Netherlands vs Japan,True,away,BUY,0.3866,0.2647,0.1219,0.0,-0.2647
+M2 NegBin+DC,26JUN14NEDJPN,Netherlands vs Japan,True,home,SELL,0.2764,0.4608,-0.1844,0.0,0.4608
+M2 NegBin+DC,26JUN14NEDJPN,Netherlands vs Japan,True,draw,BUY,0.3365,0.2745,0.062,1.0,0.7255
+M2 NegBin+DC,26JUN14NEDJPN,Netherlands vs Japan,True,away,BUY,0.3871,0.2647,0.1224,0.0,-0.2647
+M3 NegBin+Frank,26JUN14NEDJPN,Netherlands vs Japan,True,home,SELL,0.2753,0.4608,-0.1855,0.0,0.4608
+M3 NegBin+Frank,26JUN14NEDJPN,Netherlands vs Japan,True,draw,BUY,0.3353,0.2745,0.0608,1.0,0.7255
+M3 NegBin+Frank,26JUN14NEDJPN,Netherlands vs Japan,True,away,BUY,0.3894,0.2647,0.1247,0.0,-0.2647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14NEDJPN,Netherlands vs Japan,True,home,BUY,0.5318,0.4608,0.071,0.0,-0.4608
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14NEDJPN,Netherlands vs Japan,True,draw,SELL,0.1997,0.2745,-0.0748,1.0,-0.7255
+M1 Poisson+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,home,SELL,0.218,0.2843,-0.0663,1.0,-0.7157
+M1 Poisson+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,draw,BUY,0.4529,0.3333,0.1195,0.0,-0.3333
+M1 Poisson+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,away,SELL,0.3291,0.3824,-0.0532,0.0,0.3824
+M2 NegBin+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,home,SELL,0.2185,0.2843,-0.0658,1.0,-0.7157
+M2 NegBin+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,draw,BUY,0.453,0.3333,0.1197,0.0,-0.3333
+M2 NegBin+DC,26JUN14CIVECU,Ivory Coast vs Ecuador,True,away,SELL,0.3285,0.3824,-0.0538,0.0,0.3824
+M3 NegBin+Frank,26JUN14CIVECU,Ivory Coast vs Ecuador,True,home,SELL,0.2109,0.2843,-0.0734,1.0,-0.7157
+M3 NegBin+Frank,26JUN14CIVECU,Ivory Coast vs Ecuador,True,draw,BUY,0.4732,0.3333,0.1398,0.0,-0.3333
+M3 NegBin+Frank,26JUN14CIVECU,Ivory Coast vs Ecuador,True,away,SELL,0.3159,0.3824,-0.0664,0.0,0.3824
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14CIVECU,Ivory Coast vs Ecuador,True,home,SELL,0.2172,0.2843,-0.0672,1.0,-0.7157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14CIVECU,Ivory Coast vs Ecuador,True,draw,BUY,0.4673,0.3333,0.1339,0.0,-0.3333
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14CIVECU,Ivory Coast vs Ecuador,True,away,SELL,0.3156,0.3824,-0.0668,0.0,0.3824
+M1 Poisson+DC,26JUN14SWETUN,Sweden vs Tunisia,True,home,SELL,0.61,0.7451,-0.1351,1.0,-0.2549
+M1 Poisson+DC,26JUN14SWETUN,Sweden vs Tunisia,True,away,BUY,0.1754,0.0588,0.1166,0.0,-0.0588
+M2 NegBin+DC,26JUN14SWETUN,Sweden vs Tunisia,True,home,SELL,0.6082,0.7451,-0.1369,1.0,-0.2549
+M2 NegBin+DC,26JUN14SWETUN,Sweden vs Tunisia,True,away,BUY,0.1768,0.0588,0.118,0.0,-0.0588
+M3 NegBin+Frank,26JUN14SWETUN,Sweden vs Tunisia,True,home,SELL,0.6197,0.7451,-0.1254,1.0,-0.2549
+M3 NegBin+Frank,26JUN14SWETUN,Sweden vs Tunisia,True,away,BUY,0.1712,0.0588,0.1123,0.0,-0.0588
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14SWETUN,Sweden vs Tunisia,True,home,SELL,0.6197,0.7451,-0.1254,1.0,-0.2549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN14SWETUN,Sweden vs Tunisia,True,away,BUY,0.1712,0.0588,0.1123,0.0,-0.0588
+M1 Poisson+DC,26JUN15ESPCPV,Spain vs Cape Verde,True,draw,BUY,0.0821,0.0588,0.0233,1.0,0.9412
+M2 NegBin+DC,26JUN15ESPCPV,Spain vs Cape Verde,True,draw,BUY,0.0836,0.0588,0.0248,1.0,0.9412
+M4 NegBin+Frank (calib 1X2),26JUN15ESPCPV,Spain vs Cape Verde,True,home,BUY,0.9495,0.9118,0.0377,0.0,-0.9118
+M4 NegBin+Frank (calib 1X2),26JUN15ESPCPV,Spain vs Cape Verde,True,draw,SELL,0.0334,0.0588,-0.0254,1.0,-0.9412
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15ESPCPV,Spain vs Cape Verde,True,home,SELL,0.416,0.9118,-0.4958,0.0,0.9118
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15ESPCPV,Spain vs Cape Verde,True,draw,BUY,0.5739,0.0588,0.515,1.0,0.9412
+M1 Poisson+DC,26JUN15BELEGY,Belgium vs Egypt,True,home,SELL,0.5333,0.6117,-0.0783,0.0,0.6117
+M1 Poisson+DC,26JUN15BELEGY,Belgium vs Egypt,True,draw,BUY,0.2971,0.233,0.0641,1.0,0.767
+M2 NegBin+DC,26JUN15BELEGY,Belgium vs Egypt,True,home,SELL,0.5321,0.6117,-0.0796,0.0,0.6117
+M2 NegBin+DC,26JUN15BELEGY,Belgium vs Egypt,True,draw,BUY,0.2975,0.233,0.0645,1.0,0.767
+M3 NegBin+Frank,26JUN15BELEGY,Belgium vs Egypt,True,home,SELL,0.5427,0.6117,-0.0689,0.0,0.6117
+M3 NegBin+Frank,26JUN15BELEGY,Belgium vs Egypt,True,draw,BUY,0.2974,0.233,0.0644,1.0,0.767
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15BELEGY,Belgium vs Egypt,True,draw,BUY,0.2815,0.233,0.0485,1.0,0.767
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15BELEGY,Belgium vs Egypt,True,away,SELL,0.1125,0.1553,-0.0429,0.0,0.1553
+M1 Poisson+DC,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,draw,BUY,0.307,0.2079,0.099,0.0,-0.2079
+M1 Poisson+DC,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,away,SELL,0.5694,0.6733,-0.1039,1.0,-0.3267
+M2 NegBin+DC,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,draw,BUY,0.307,0.2079,0.0991,0.0,-0.2079
+M2 NegBin+DC,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,away,SELL,0.5691,0.6733,-0.1042,1.0,-0.3267
+M3 NegBin+Frank,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,draw,BUY,0.3089,0.2079,0.101,0.0,-0.2079
+M3 NegBin+Frank,26JUN15KSAURU,Saudi Arabia vs Uruguay,True,away,SELL,0.5783,0.6733,-0.095,1.0,-0.3267
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15KSAURU,Saudi Arabia vs Uruguay,True,home,SELL,0.0796,0.1188,-0.0392,0.0,0.1188
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15KSAURU,Saudi Arabia vs Uruguay,True,draw,BUY,0.2348,0.2079,0.0268,0.0,-0.2079
+M1 Poisson+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,home,BUY,0.6064,0.534,0.0725,0.0,-0.534
+M1 Poisson+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,draw,SELL,0.2513,0.2718,-0.0206,1.0,-0.7282
+M1 Poisson+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,away,SELL,0.1423,0.1942,-0.0519,0.0,0.1942
+M2 NegBin+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,home,BUY,0.6048,0.534,0.0708,0.0,-0.534
+M2 NegBin+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,draw,SELL,0.2515,0.2718,-0.0203,1.0,-0.7282
+M2 NegBin+DC,26JUN15IRINZL,IR Iran vs New Zealand,True,away,SELL,0.1437,0.1942,-0.0505,0.0,0.1942
+M3 NegBin+Frank,26JUN15IRINZL,IR Iran vs New Zealand,True,home,BUY,0.6102,0.534,0.0763,0.0,-0.534
+M3 NegBin+Frank,26JUN15IRINZL,IR Iran vs New Zealand,True,draw,SELL,0.25,0.2718,-0.0219,1.0,-0.7282
+M3 NegBin+Frank,26JUN15IRINZL,IR Iran vs New Zealand,True,away,SELL,0.1398,0.1942,-0.0544,0.0,0.1942
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15IRINZL,IR Iran vs New Zealand,True,home,BUY,0.6411,0.534,0.1072,0.0,-0.534
+M5 NegBin+Frank (calib 1X2+O/U),26JUN15IRINZL,IR Iran vs New Zealand,True,draw,SELL,0.1712,0.2718,-0.1006,1.0,-0.7282
+M1 Poisson+DC,26JUN16FRASEN,France vs Senegal,True,home,SELL,0.4869,0.6569,-0.17,1.0,-0.3431
+M1 Poisson+DC,26JUN16FRASEN,France vs Senegal,True,draw,BUY,0.2701,0.2157,0.0544,0.0,-0.2157
+M1 Poisson+DC,26JUN16FRASEN,France vs Senegal,True,away,BUY,0.243,0.1275,0.1155,0.0,-0.1275
+M2 NegBin+DC,26JUN16FRASEN,France vs Senegal,True,home,SELL,0.4862,0.6569,-0.1706,1.0,-0.3431
+M2 NegBin+DC,26JUN16FRASEN,France vs Senegal,True,draw,BUY,0.2701,0.2157,0.0544,0.0,-0.2157
+M2 NegBin+DC,26JUN16FRASEN,France vs Senegal,True,away,BUY,0.2437,0.1275,0.1162,0.0,-0.1275
+M3 NegBin+Frank,26JUN16FRASEN,France vs Senegal,True,home,SELL,0.5029,0.6569,-0.154,1.0,-0.3431
+M3 NegBin+Frank,26JUN16FRASEN,France vs Senegal,True,draw,BUY,0.2668,0.2157,0.0511,0.0,-0.2157
+M3 NegBin+Frank,26JUN16FRASEN,France vs Senegal,True,away,BUY,0.2303,0.1275,0.1029,0.0,-0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16FRASEN,France vs Senegal,True,home,BUY,0.7943,0.6569,0.1374,1.0,0.3431
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16FRASEN,France vs Senegal,True,draw,SELL,0.1168,0.2157,-0.0989,0.0,0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16FRASEN,France vs Senegal,True,away,SELL,0.0889,0.1275,-0.0386,0.0,0.1275
+M1 Poisson+DC,26JUN16IRQNOR,Iraq vs Norway,True,home,BUY,0.0615,0.0297,0.0318,0.0,-0.0297
+M1 Poisson+DC,26JUN16IRQNOR,Iraq vs Norway,True,draw,BUY,0.1676,0.1089,0.0587,0.0,-0.1089
+M1 Poisson+DC,26JUN16IRQNOR,Iraq vs Norway,True,away,SELL,0.7709,0.8614,-0.0905,1.0,-0.1386
+M2 NegBin+DC,26JUN16IRQNOR,Iraq vs Norway,True,home,BUY,0.0622,0.0297,0.0325,0.0,-0.0297
+M2 NegBin+DC,26JUN16IRQNOR,Iraq vs Norway,True,draw,BUY,0.1689,0.1089,0.06,0.0,-0.1089
+M2 NegBin+DC,26JUN16IRQNOR,Iraq vs Norway,True,away,SELL,0.7689,0.8614,-0.0925,1.0,-0.1386
+M3 NegBin+Frank,26JUN16IRQNOR,Iraq vs Norway,True,home,BUY,0.0574,0.0297,0.0277,0.0,-0.0297
+M3 NegBin+Frank,26JUN16IRQNOR,Iraq vs Norway,True,draw,BUY,0.1613,0.1089,0.0524,0.0,-0.1089
+M3 NegBin+Frank,26JUN16IRQNOR,Iraq vs Norway,True,away,SELL,0.7814,0.8614,-0.08,1.0,-0.1386
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16IRQNOR,Iraq vs Norway,True,home,SELL,0.0001,0.0297,-0.0296,0.0,0.0297
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16IRQNOR,Iraq vs Norway,True,draw,SELL,0.0005,0.1089,-0.1084,0.0,0.1089
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16IRQNOR,Iraq vs Norway,True,away,BUY,0.9993,0.8614,0.1379,1.0,0.1386
+M1 Poisson+DC,26JUN16ARGDZA,Argentina vs Algeria,True,home,SELL,0.616,0.6566,-0.0405,1.0,-0.3434
+M1 Poisson+DC,26JUN16ARGDZA,Argentina vs Algeria,True,draw,BUY,0.2825,0.2222,0.0602,0.0,-0.2222
+M2 NegBin+DC,26JUN16ARGDZA,Argentina vs Algeria,True,home,SELL,0.6162,0.6566,-0.0404,1.0,-0.3434
+M2 NegBin+DC,26JUN16ARGDZA,Argentina vs Algeria,True,draw,BUY,0.2831,0.2222,0.0608,0.0,-0.2222
+M2 NegBin+DC,26JUN16ARGDZA,Argentina vs Algeria,True,away,SELL,0.1008,0.1212,-0.0204,0.0,0.1212
+M3 NegBin+Frank,26JUN16ARGDZA,Argentina vs Algeria,True,home,SELL,0.6366,0.6566,-0.02,1.0,-0.3434
+M3 NegBin+Frank,26JUN16ARGDZA,Argentina vs Algeria,True,draw,BUY,0.2721,0.2222,0.0498,0.0,-0.2222
+M3 NegBin+Frank,26JUN16ARGDZA,Argentina vs Algeria,True,away,SELL,0.0914,0.1212,-0.0298,0.0,0.1212
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16ARGDZA,Argentina vs Algeria,True,home,BUY,0.7304,0.6566,0.0739,1.0,0.3434
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16ARGDZA,Argentina vs Algeria,True,draw,SELL,0.1762,0.2222,-0.046,0.0,0.2222
+M5 NegBin+Frank (calib 1X2+O/U),26JUN16ARGDZA,Argentina vs Algeria,True,away,SELL,0.0933,0.1212,-0.0279,0.0,0.1212
+M3 NegBin+Frank,26JUN17AUTJOR,Austria vs Jordan,True,home,BUY,0.7143,0.6931,0.0212,1.0,0.3069
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17AUTJOR,Austria vs Jordan,True,home,BUY,0.7793,0.6931,0.0862,1.0,0.3069
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17AUTJOR,Austria vs Jordan,True,draw,SELL,0.1459,0.198,-0.0522,0.0,0.198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17AUTJOR,Austria vs Jordan,True,away,SELL,0.0749,0.1089,-0.034,0.0,0.1089
+M1 Poisson+DC,26JUN17PORCOD,Portugal vs Congo DR,True,home,SELL,0.4895,0.6373,-0.1478,0.0,0.6373
+M1 Poisson+DC,26JUN17PORCOD,Portugal vs Congo DR,True,draw,BUY,0.3492,0.2843,0.0649,1.0,0.7157
+M1 Poisson+DC,26JUN17PORCOD,Portugal vs Congo DR,True,away,BUY,0.1614,0.0784,0.0829,0.0,-0.0784
+M2 NegBin+DC,26JUN17PORCOD,Portugal vs Congo DR,True,home,SELL,0.4875,0.6373,-0.1498,0.0,0.6373
+M2 NegBin+DC,26JUN17PORCOD,Portugal vs Congo DR,True,draw,BUY,0.3503,0.2843,0.066,1.0,0.7157
+M2 NegBin+DC,26JUN17PORCOD,Portugal vs Congo DR,True,away,BUY,0.1622,0.0784,0.0838,0.0,-0.0784
+M3 NegBin+Frank,26JUN17PORCOD,Portugal vs Congo DR,True,home,SELL,0.4933,0.6373,-0.1439,0.0,0.6373
+M3 NegBin+Frank,26JUN17PORCOD,Portugal vs Congo DR,True,draw,BUY,0.3542,0.2843,0.0699,1.0,0.7157
+M3 NegBin+Frank,26JUN17PORCOD,Portugal vs Congo DR,True,away,BUY,0.1525,0.0784,0.074,0.0,-0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17PORCOD,Portugal vs Congo DR,True,home,BUY,0.6852,0.6373,0.0479,0.0,-0.6373
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17PORCOD,Portugal vs Congo DR,True,draw,SELL,0.2485,0.2843,-0.0358,1.0,-0.7157
+M1 Poisson+DC,26JUN17ENGCRO,England vs Croatia,True,home,SELL,0.4823,0.5631,-0.0808,1.0,-0.4369
+M1 Poisson+DC,26JUN17ENGCRO,England vs Croatia,True,draw,BUY,0.3148,0.2524,0.0624,0.0,-0.2524
+M2 NegBin+DC,26JUN17ENGCRO,England vs Croatia,True,home,SELL,0.4821,0.5631,-0.081,1.0,-0.4369
+M2 NegBin+DC,26JUN17ENGCRO,England vs Croatia,True,draw,BUY,0.3152,0.2524,0.0628,0.0,-0.2524
+M3 NegBin+Frank,26JUN17ENGCRO,England vs Croatia,True,home,SELL,0.4947,0.5631,-0.0684,1.0,-0.4369
+M3 NegBin+Frank,26JUN17ENGCRO,England vs Croatia,True,draw,BUY,0.3132,0.2524,0.0608,0.0,-0.2524
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17ENGCRO,England vs Croatia,True,home,SELL,0.4947,0.5631,-0.0684,1.0,-0.4369
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17ENGCRO,England vs Croatia,True,draw,BUY,0.3132,0.2524,0.0608,0.0,-0.2524
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17GHAPAN,Ghana vs Panama,True,home,SELL,0.3177,0.402,-0.0842,1.0,-0.598
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17GHAPAN,Ghana vs Panama,True,draw,BUY,0.4714,0.3039,0.1674,0.0,-0.3039
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17GHAPAN,Ghana vs Panama,True,away,SELL,0.2109,0.2941,-0.0832,0.0,0.2941
+M1 Poisson+DC,26JUN17UZBCOL,Uzbekistan vs Colombia,True,draw,BUY,0.219,0.1961,0.0229,0.0,-0.1961
+M1 Poisson+DC,26JUN17UZBCOL,Uzbekistan vs Colombia,True,away,SELL,0.6764,0.7059,-0.0294,1.0,-0.2941
+M2 NegBin+DC,26JUN17UZBCOL,Uzbekistan vs Colombia,True,draw,BUY,0.2194,0.1961,0.0233,0.0,-0.1961
+M2 NegBin+DC,26JUN17UZBCOL,Uzbekistan vs Colombia,True,away,SELL,0.6755,0.7059,-0.0304,1.0,-0.2941
+M3 NegBin+Frank,26JUN17UZBCOL,Uzbekistan vs Colombia,True,draw,BUY,0.2167,0.1961,0.0206,0.0,-0.1961
+M3 NegBin+Frank,26JUN17UZBCOL,Uzbekistan vs Colombia,True,away,SELL,0.6844,0.7059,-0.0215,1.0,-0.2941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17UZBCOL,Uzbekistan vs Colombia,True,home,SELL,0.0537,0.098,-0.0443,0.0,0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17UZBCOL,Uzbekistan vs Colombia,True,draw,SELL,0.0897,0.1961,-0.1064,0.0,0.1961
+M5 NegBin+Frank (calib 1X2+O/U),26JUN17UZBCOL,Uzbekistan vs Colombia,True,away,BUY,0.8566,0.7059,0.1507,1.0,0.2941
+M1 Poisson+DC,26JUN18CZERSA,Czechia vs South Africa,True,home,SELL,0.4979,0.7255,-0.2276,0.0,0.7255
+M1 Poisson+DC,26JUN18CZERSA,Czechia vs South Africa,True,draw,BUY,0.2804,0.2059,0.0745,1.0,0.7941
+M1 Poisson+DC,26JUN18CZERSA,Czechia vs South Africa,True,away,BUY,0.2218,0.0686,0.1532,0.0,-0.0686
+M2 NegBin+DC,26JUN18CZERSA,Czechia vs South Africa,True,home,SELL,0.4972,0.7255,-0.2282,0.0,0.7255
+M2 NegBin+DC,26JUN18CZERSA,Czechia vs South Africa,True,draw,BUY,0.2801,0.2059,0.0742,1.0,0.7941
+M2 NegBin+DC,26JUN18CZERSA,Czechia vs South Africa,True,away,BUY,0.2227,0.0686,0.1541,0.0,-0.0686
+M3 NegBin+Frank,26JUN18CZERSA,Czechia vs South Africa,True,home,SELL,0.5036,0.7255,-0.2219,0.0,0.7255
+M3 NegBin+Frank,26JUN18CZERSA,Czechia vs South Africa,True,draw,BUY,0.2867,0.2059,0.0808,1.0,0.7941
+M3 NegBin+Frank,26JUN18CZERSA,Czechia vs South Africa,True,away,BUY,0.2097,0.0686,0.1411,0.0,-0.0686
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18CZERSA,Czechia vs South Africa,True,home,BUY,0.749,0.7255,0.0235,0.0,-0.7255
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18CZERSA,Czechia vs South Africa,True,away,SELL,0.039,0.0686,-0.0296,0.0,0.0686
+M1 Poisson+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,home,BUY,0.6459,0.5243,0.1216,1.0,0.4757
+M1 Poisson+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,draw,SELL,0.2312,0.3301,-0.0989,0.0,0.3301
+M1 Poisson+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,away,SELL,0.1229,0.1456,-0.0227,0.0,0.1456
+M2 NegBin+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,home,BUY,0.6445,0.5243,0.1202,1.0,0.4757
+M2 NegBin+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,draw,SELL,0.2316,0.3301,-0.0985,0.0,0.3301
+M2 NegBin+DC,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,away,SELL,0.1239,0.1456,-0.0218,0.0,0.1456
+M3 NegBin+Frank,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,home,BUY,0.6465,0.5243,0.1222,1.0,0.4757
+M3 NegBin+Frank,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,draw,SELL,0.2349,0.3301,-0.0952,0.0,0.3301
+M3 NegBin+Frank,26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,away,SELL,0.1186,0.1456,-0.027,0.0,0.1456
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,home,BUY,0.6465,0.5243,0.1222,1.0,0.4757
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,draw,SELL,0.2349,0.3301,-0.0952,0.0,0.3301
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18SUIBIH,Switzerland vs Bosnia and Herzegovina,True,away,SELL,0.1186,0.1456,-0.027,0.0,0.1456
+M1 Poisson+DC,26JUN18CANQAT,Canada vs Qatar,True,home,BUY,0.7817,0.7353,0.0464,1.0,0.2647
+M1 Poisson+DC,26JUN18CANQAT,Canada vs Qatar,True,away,SELL,0.0541,0.0882,-0.0341,0.0,0.0882
+M2 NegBin+DC,26JUN18CANQAT,Canada vs Qatar,True,home,BUY,0.7805,0.7353,0.0452,1.0,0.2647
+M2 NegBin+DC,26JUN18CANQAT,Canada vs Qatar,True,away,SELL,0.0546,0.0882,-0.0337,0.0,0.0882
+M3 NegBin+Frank,26JUN18CANQAT,Canada vs Qatar,True,home,BUY,0.7992,0.7353,0.0639,1.0,0.2647
+M3 NegBin+Frank,26JUN18CANQAT,Canada vs Qatar,True,draw,SELL,0.1525,0.1765,-0.024,0.0,0.1765
+M3 NegBin+Frank,26JUN18CANQAT,Canada vs Qatar,True,away,SELL,0.0483,0.0882,-0.04,0.0,0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18CANQAT,Canada vs Qatar,True,home,BUY,0.7992,0.7353,0.0639,1.0,0.2647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18CANQAT,Canada vs Qatar,True,draw,SELL,0.1525,0.1765,-0.024,0.0,0.1765
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18CANQAT,Canada vs Qatar,True,away,SELL,0.0483,0.0882,-0.04,0.0,0.0882
+M1 Poisson+DC,26JUN18MEXKOR,Mexico vs Korea Republic,True,home,BUY,0.5518,0.4706,0.0812,1.0,0.5294
+M1 Poisson+DC,26JUN18MEXKOR,Mexico vs Korea Republic,True,away,SELL,0.1626,0.2353,-0.0727,0.0,0.2353
+M2 NegBin+DC,26JUN18MEXKOR,Mexico vs Korea Republic,True,home,BUY,0.551,0.4706,0.0804,1.0,0.5294
+M2 NegBin+DC,26JUN18MEXKOR,Mexico vs Korea Republic,True,away,SELL,0.163,0.2353,-0.0723,0.0,0.2353
+M3 NegBin+Frank,26JUN18MEXKOR,Mexico vs Korea Republic,True,home,BUY,0.5685,0.4706,0.0979,1.0,0.5294
+M3 NegBin+Frank,26JUN18MEXKOR,Mexico vs Korea Republic,True,away,SELL,0.1549,0.2353,-0.0804,0.0,0.2353
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18MEXKOR,Mexico vs Korea Republic,True,home,SELL,0.3798,0.4706,-0.0908,1.0,-0.5294
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18MEXKOR,Mexico vs Korea Republic,True,draw,BUY,0.4682,0.2941,0.1741,0.0,-0.2941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN18MEXKOR,Mexico vs Korea Republic,True,away,SELL,0.1519,0.2353,-0.0834,0.0,0.2353
+M1 Poisson+DC,26JUN19USAAUS,USA vs Australia,True,home,SELL,0.3079,0.598,-0.2902,1.0,-0.402
+M1 Poisson+DC,26JUN19USAAUS,USA vs Australia,True,draw,BUY,0.2866,0.2157,0.0709,0.0,-0.2157
+M1 Poisson+DC,26JUN19USAAUS,USA vs Australia,True,away,BUY,0.4055,0.1863,0.2193,0.0,-0.1863
+M2 NegBin+DC,26JUN19USAAUS,USA vs Australia,True,home,SELL,0.3093,0.598,-0.2888,1.0,-0.402
+M2 NegBin+DC,26JUN19USAAUS,USA vs Australia,True,draw,BUY,0.2863,0.2157,0.0706,0.0,-0.2157
+M2 NegBin+DC,26JUN19USAAUS,USA vs Australia,True,away,BUY,0.4044,0.1863,0.2182,0.0,-0.1863
+M3 NegBin+Frank,26JUN19USAAUS,USA vs Australia,True,home,SELL,0.3098,0.598,-0.2882,1.0,-0.402
+M3 NegBin+Frank,26JUN19USAAUS,USA vs Australia,True,draw,BUY,0.2843,0.2157,0.0686,0.0,-0.2157
+M3 NegBin+Frank,26JUN19USAAUS,USA vs Australia,True,away,BUY,0.4059,0.1863,0.2196,0.0,-0.1863
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19USAAUS,USA vs Australia,True,draw,BUY,0.283,0.2157,0.0673,0.0,-0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19USAAUS,USA vs Australia,True,away,SELL,0.1345,0.1863,-0.0517,0.0,0.1863
+M1 Poisson+DC,26JUN19SCOMAR,Scotland vs Morocco,True,draw,BUY,0.3431,0.2647,0.0784,0.0,-0.2647
+M1 Poisson+DC,26JUN19SCOMAR,Scotland vs Morocco,True,away,SELL,0.49,0.5784,-0.0884,1.0,-0.4216
+M2 NegBin+DC,26JUN19SCOMAR,Scotland vs Morocco,True,draw,BUY,0.3429,0.2647,0.0782,0.0,-0.2647
+M2 NegBin+DC,26JUN19SCOMAR,Scotland vs Morocco,True,away,SELL,0.4902,0.5784,-0.0883,1.0,-0.4216
+M3 NegBin+Frank,26JUN19SCOMAR,Scotland vs Morocco,True,draw,BUY,0.3483,0.2647,0.0836,0.0,-0.2647
+M3 NegBin+Frank,26JUN19SCOMAR,Scotland vs Morocco,True,away,SELL,0.4975,0.5784,-0.0809,1.0,-0.4216
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19SCOMAR,Scotland vs Morocco,True,home,SELL,0.0864,0.1569,-0.0704,0.0,0.1569
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19SCOMAR,Scotland vs Morocco,True,draw,BUY,0.4348,0.2647,0.1701,0.0,-0.2647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19SCOMAR,Scotland vs Morocco,True,away,SELL,0.4787,0.5784,-0.0997,1.0,-0.4216
+M1 Poisson+DC,26JUN19BRAHTI,Brazil vs Haiti,True,draw,BUY,0.1025,0.0784,0.0241,0.0,-0.0784
+M2 NegBin+DC,26JUN19BRAHTI,Brazil vs Haiti,True,draw,BUY,0.1037,0.0784,0.0252,0.0,-0.0784
+M4 NegBin+Frank (calib 1X2),26JUN19BRAHTI,Brazil vs Haiti,True,home,BUY,0.9363,0.8725,0.0638,1.0,0.1275
+M4 NegBin+Frank (calib 1X2),26JUN19BRAHTI,Brazil vs Haiti,True,draw,SELL,0.038,0.0784,-0.0404,0.0,0.0784
+M4 NegBin+Frank (calib 1X2),26JUN19BRAHTI,Brazil vs Haiti,True,away,SELL,0.0257,0.049,-0.0233,0.0,0.049
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19BRAHTI,Brazil vs Haiti,True,home,BUY,0.9375,0.8725,0.065,1.0,0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19BRAHTI,Brazil vs Haiti,True,draw,SELL,0.0554,0.0784,-0.023,0.0,0.0784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19BRAHTI,Brazil vs Haiti,True,away,SELL,0.0071,0.049,-0.0419,0.0,0.049
+M1 Poisson+DC,26JUN19TURPAR,Turkiye vs Paraguay,True,home,SELL,0.3477,0.38,-0.0323,0.0,0.38
+M1 Poisson+DC,26JUN19TURPAR,Turkiye vs Paraguay,True,away,BUY,0.3457,0.3,0.0457,1.0,0.7
+M2 NegBin+DC,26JUN19TURPAR,Turkiye vs Paraguay,True,home,SELL,0.3474,0.38,-0.0326,0.0,0.38
+M2 NegBin+DC,26JUN19TURPAR,Turkiye vs Paraguay,True,away,BUY,0.3462,0.3,0.0462,1.0,0.7
+M3 NegBin+Frank,26JUN19TURPAR,Turkiye vs Paraguay,True,home,SELL,0.3475,0.38,-0.0325,0.0,0.38
+M3 NegBin+Frank,26JUN19TURPAR,Turkiye vs Paraguay,True,away,BUY,0.3442,0.3,0.0442,1.0,0.7
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19TURPAR,Turkiye vs Paraguay,True,home,SELL,0.3168,0.38,-0.0632,0.0,0.38
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19TURPAR,Turkiye vs Paraguay,True,draw,BUY,0.4476,0.32,0.1276,0.0,-0.32
+M5 NegBin+Frank (calib 1X2+O/U),26JUN19TURPAR,Turkiye vs Paraguay,True,away,SELL,0.2357,0.3,-0.0643,1.0,-0.7
+M1 Poisson+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,home,SELL,0.6368,0.9208,-0.284,1.0,-0.0792
+M1 Poisson+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,draw,BUY,0.1862,0.0693,0.1169,0.0,-0.0693
+M1 Poisson+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,away,BUY,0.177,0.0099,0.1671,0.0,-0.0099
+M2 NegBin+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,home,SELL,0.6358,0.9208,-0.285,1.0,-0.0792
+M2 NegBin+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,draw,BUY,0.1862,0.0693,0.1169,0.0,-0.0693
+M2 NegBin+DC,26JUN20NEDSWE,Netherlands vs Sweden,True,away,BUY,0.178,0.0099,0.1681,0.0,-0.0099
+M3 NegBin+Frank,26JUN20NEDSWE,Netherlands vs Sweden,True,home,SELL,0.6571,0.9208,-0.2637,1.0,-0.0792
+M3 NegBin+Frank,26JUN20NEDSWE,Netherlands vs Sweden,True,draw,BUY,0.1793,0.0693,0.11,0.0,-0.0693
+M3 NegBin+Frank,26JUN20NEDSWE,Netherlands vs Sweden,True,away,BUY,0.1636,0.0099,0.1537,0.0,-0.0099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20NEDSWE,Netherlands vs Sweden,True,home,SELL,0.6571,0.9208,-0.2637,1.0,-0.0792
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20NEDSWE,Netherlands vs Sweden,True,draw,BUY,0.1793,0.0693,0.11,0.0,-0.0693
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20NEDSWE,Netherlands vs Sweden,True,away,BUY,0.1636,0.0099,0.1537,0.0,-0.0099
+M1 Poisson+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,home,SELL,0.4945,0.6863,-0.1918,1.0,-0.3137
+M1 Poisson+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,draw,BUY,0.2921,0.1863,0.1058,0.0,-0.1863
+M1 Poisson+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,away,BUY,0.2134,0.1275,0.086,0.0,-0.1275
+M2 NegBin+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,home,SELL,0.4938,0.6863,-0.1925,1.0,-0.3137
+M2 NegBin+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,draw,BUY,0.292,0.1863,0.1058,0.0,-0.1863
+M2 NegBin+DC,26JUN20GERCIV,Germany vs Ivory Coast,True,away,BUY,0.2142,0.1275,0.0867,0.0,-0.1275
+M3 NegBin+Frank,26JUN20GERCIV,Germany vs Ivory Coast,True,home,SELL,0.4884,0.6863,-0.1979,1.0,-0.3137
+M3 NegBin+Frank,26JUN20GERCIV,Germany vs Ivory Coast,True,draw,BUY,0.295,0.1863,0.1087,0.0,-0.1863
+M3 NegBin+Frank,26JUN20GERCIV,Germany vs Ivory Coast,True,away,BUY,0.2166,0.1275,0.0892,0.0,-0.1275
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20GERCIV,Germany vs Ivory Coast,True,home,BUY,0.751,0.6863,0.0647,1.0,0.3137
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20GERCIV,Germany vs Ivory Coast,True,away,SELL,0.0826,0.1275,-0.0448,0.0,0.1275
+M1 Poisson+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,home,SELL,0.775,0.8333,-0.0583,0.0,0.8333
+M1 Poisson+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,draw,BUY,0.188,0.1078,0.0802,1.0,0.8922
+M1 Poisson+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,away,SELL,0.037,0.0588,-0.0218,0.0,0.0588
+M2 NegBin+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,home,SELL,0.7723,0.8333,-0.061,0.0,0.8333
+M2 NegBin+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,draw,BUY,0.1901,0.1078,0.0822,1.0,0.8922
+M2 NegBin+DC,26JUN20ECUCUW,Ecuador vs Curacao,True,away,SELL,0.0376,0.0588,-0.0213,0.0,0.0588
+M3 NegBin+Frank,26JUN20ECUCUW,Ecuador vs Curacao,True,home,SELL,0.7751,0.8333,-0.0583,0.0,0.8333
+M3 NegBin+Frank,26JUN20ECUCUW,Ecuador vs Curacao,True,draw,BUY,0.1916,0.1078,0.0837,1.0,0.8922
+M3 NegBin+Frank,26JUN20ECUCUW,Ecuador vs Curacao,True,away,SELL,0.0334,0.0588,-0.0254,0.0,0.0588
+M4 NegBin+Frank (calib 1X2),26JUN20ECUCUW,Ecuador vs Curacao,True,home,BUY,0.8583,0.8333,0.025,0.0,-0.8333
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20ECUCUW,Ecuador vs Curacao,True,home,SELL,0.3831,0.8333,-0.4503,0.0,0.8333
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20ECUCUW,Ecuador vs Curacao,True,draw,BUY,0.5978,0.1078,0.49,1.0,0.8922
+M5 NegBin+Frank (calib 1X2+O/U),26JUN20ECUCUW,Ecuador vs Curacao,True,away,SELL,0.0191,0.0588,-0.0397,0.0,0.0588
+M1 Poisson+DC,26JUN21TUNJPN,Tunisia vs Japan,True,home,SELL,0.0468,0.1078,-0.061,0.0,0.1078
+M1 Poisson+DC,26JUN21TUNJPN,Tunisia vs Japan,True,draw,SELL,0.1651,0.2059,-0.0408,0.0,0.2059
+M1 Poisson+DC,26JUN21TUNJPN,Tunisia vs Japan,True,away,BUY,0.7881,0.6863,0.1018,1.0,0.3137
+M2 NegBin+DC,26JUN21TUNJPN,Tunisia vs Japan,True,home,SELL,0.0472,0.1078,-0.0606,0.0,0.1078
+M2 NegBin+DC,26JUN21TUNJPN,Tunisia vs Japan,True,draw,SELL,0.1661,0.2059,-0.0398,0.0,0.2059
+M2 NegBin+DC,26JUN21TUNJPN,Tunisia vs Japan,True,away,BUY,0.7867,0.6863,0.1004,1.0,0.3137
+M3 NegBin+Frank,26JUN21TUNJPN,Tunisia vs Japan,True,home,SELL,0.0433,0.1078,-0.0645,0.0,0.1078
+M3 NegBin+Frank,26JUN21TUNJPN,Tunisia vs Japan,True,draw,SELL,0.1551,0.2059,-0.0508,0.0,0.2059
+M3 NegBin+Frank,26JUN21TUNJPN,Tunisia vs Japan,True,away,BUY,0.8016,0.6863,0.1153,1.0,0.3137
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21TUNJPN,Tunisia vs Japan,True,home,SELL,0.0662,0.1078,-0.0416,0.0,0.1078
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21TUNJPN,Tunisia vs Japan,True,draw,SELL,0.1018,0.2059,-0.1041,0.0,0.2059
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21TUNJPN,Tunisia vs Japan,True,away,BUY,0.8319,0.6863,0.1457,1.0,0.3137
+M1 Poisson+DC,26JUN21ESPKSA,Spain vs Saudi Arabia,True,home,SELL,0.8212,0.8812,-0.06,1.0,-0.1188
+M1 Poisson+DC,26JUN21ESPKSA,Spain vs Saudi Arabia,True,draw,BUY,0.1383,0.0693,0.0689,0.0,-0.0693
+M2 NegBin+DC,26JUN21ESPKSA,Spain vs Saudi Arabia,True,home,SELL,0.82,0.8812,-0.0611,1.0,-0.1188
+M2 NegBin+DC,26JUN21ESPKSA,Spain vs Saudi Arabia,True,draw,BUY,0.1391,0.0693,0.0698,0.0,-0.0693
+M3 NegBin+Frank,26JUN21ESPKSA,Spain vs Saudi Arabia,True,home,SELL,0.8387,0.8812,-0.0425,1.0,-0.1188
+M3 NegBin+Frank,26JUN21ESPKSA,Spain vs Saudi Arabia,True,draw,BUY,0.1257,0.0693,0.0564,0.0,-0.0693
+M4 NegBin+Frank (calib 1X2),26JUN21ESPKSA,Spain vs Saudi Arabia,True,home,BUY,0.9476,0.8812,0.0664,1.0,0.1188
+M4 NegBin+Frank (calib 1X2),26JUN21ESPKSA,Spain vs Saudi Arabia,True,draw,SELL,0.0313,0.0693,-0.038,0.0,0.0693
+M4 NegBin+Frank (calib 1X2),26JUN21ESPKSA,Spain vs Saudi Arabia,True,away,SELL,0.0211,0.0495,-0.0284,0.0,0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21ESPKSA,Spain vs Saudi Arabia,True,home,BUY,0.9883,0.8812,0.1071,1.0,0.1188
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21ESPKSA,Spain vs Saudi Arabia,True,draw,SELL,0.0095,0.0693,-0.0598,0.0,0.0693
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21ESPKSA,Spain vs Saudi Arabia,True,away,SELL,0.0022,0.0495,-0.0473,0.0,0.0495
+M1 Poisson+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,home,SELL,0.1418,0.165,-0.0232,0.0,0.165
+M1 Poisson+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,draw,BUY,0.2976,0.233,0.0645,0.0,-0.233
+M1 Poisson+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,away,SELL,0.5606,0.6019,-0.0413,1.0,-0.3981
+M2 NegBin+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,home,SELL,0.1425,0.165,-0.0225,0.0,0.165
+M2 NegBin+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,draw,BUY,0.2974,0.233,0.0644,0.0,-0.233
+M2 NegBin+DC,26JUN21NZLEGY,New Zealand vs Egypt,True,away,SELL,0.5601,0.6019,-0.0418,1.0,-0.3981
+M3 NegBin+Frank,26JUN21NZLEGY,New Zealand vs Egypt,True,home,SELL,0.1352,0.165,-0.0299,0.0,0.165
+M3 NegBin+Frank,26JUN21NZLEGY,New Zealand vs Egypt,True,draw,BUY,0.3019,0.233,0.0689,0.0,-0.233
+M3 NegBin+Frank,26JUN21NZLEGY,New Zealand vs Egypt,True,away,SELL,0.5629,0.6019,-0.039,1.0,-0.3981
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21NZLEGY,New Zealand vs Egypt,True,home,SELL,0.1352,0.165,-0.0299,0.0,0.165
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21NZLEGY,New Zealand vs Egypt,True,draw,BUY,0.3019,0.233,0.0689,0.0,-0.233
+M5 NegBin+Frank (calib 1X2+O/U),26JUN21NZLEGY,New Zealand vs Egypt,True,away,SELL,0.5629,0.6019,-0.039,1.0,-0.3981
+M1 Poisson+DC,26JUN22ARGAUT,Argentina vs Austria,True,home,SELL,0.5375,0.6765,-0.139,1.0,-0.3235
+M1 Poisson+DC,26JUN22ARGAUT,Argentina vs Austria,True,draw,BUY,0.3312,0.2059,0.1253,0.0,-0.2059
+M2 NegBin+DC,26JUN22ARGAUT,Argentina vs Austria,True,home,SELL,0.5367,0.6765,-0.1397,1.0,-0.3235
+M2 NegBin+DC,26JUN22ARGAUT,Argentina vs Austria,True,draw,BUY,0.3317,0.2059,0.1258,0.0,-0.2059
+M3 NegBin+Frank,26JUN22ARGAUT,Argentina vs Austria,True,home,SELL,0.5483,0.6765,-0.1282,1.0,-0.3235
+M3 NegBin+Frank,26JUN22ARGAUT,Argentina vs Austria,True,draw,BUY,0.3293,0.2059,0.1234,0.0,-0.2059
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22ARGAUT,Argentina vs Austria,True,draw,BUY,0.2499,0.2059,0.044,0.0,-0.2059
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22ARGAUT,Argentina vs Austria,True,away,SELL,0.0728,0.1176,-0.0449,0.0,0.1176
+M1 Poisson+DC,26JUN22FRAIRQ,France vs Iraq,True,home,SELL,0.8005,0.9505,-0.15,1.0,-0.0495
+M1 Poisson+DC,26JUN22FRAIRQ,France vs Iraq,True,draw,BUY,0.152,0.0396,0.1124,0.0,-0.0396
+M1 Poisson+DC,26JUN22FRAIRQ,France vs Iraq,True,away,BUY,0.0475,0.0099,0.0376,0.0,-0.0099
+M2 NegBin+DC,26JUN22FRAIRQ,France vs Iraq,True,home,SELL,0.7987,0.9505,-0.1518,1.0,-0.0495
+M2 NegBin+DC,26JUN22FRAIRQ,France vs Iraq,True,draw,BUY,0.1531,0.0396,0.1135,0.0,-0.0396
+M2 NegBin+DC,26JUN22FRAIRQ,France vs Iraq,True,away,BUY,0.0482,0.0099,0.0383,0.0,-0.0099
+M3 NegBin+Frank,26JUN22FRAIRQ,France vs Iraq,True,home,SELL,0.8194,0.9505,-0.1311,1.0,-0.0495
+M3 NegBin+Frank,26JUN22FRAIRQ,France vs Iraq,True,draw,BUY,0.1391,0.0396,0.0995,0.0,-0.0396
+M3 NegBin+Frank,26JUN22FRAIRQ,France vs Iraq,True,away,BUY,0.0416,0.0099,0.0317,0.0,-0.0099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22FRAIRQ,France vs Iraq,True,home,SELL,0.9068,0.9505,-0.0437,1.0,-0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22FRAIRQ,France vs Iraq,True,draw,BUY,0.0784,0.0396,0.0388,0.0,-0.0396
+M1 Poisson+DC,26JUN22NORSEN,Norway vs Senegal,True,home,BUY,0.5536,0.4175,0.1362,1.0,0.5825
+M1 Poisson+DC,26JUN22NORSEN,Norway vs Senegal,True,draw,SELL,0.2297,0.2816,-0.0519,0.0,0.2816
+M1 Poisson+DC,26JUN22NORSEN,Norway vs Senegal,True,away,SELL,0.2167,0.301,-0.0843,0.0,0.301
+M2 NegBin+DC,26JUN22NORSEN,Norway vs Senegal,True,home,BUY,0.5507,0.4175,0.1332,1.0,0.5825
+M2 NegBin+DC,26JUN22NORSEN,Norway vs Senegal,True,draw,SELL,0.2301,0.2816,-0.0514,0.0,0.2816
+M2 NegBin+DC,26JUN22NORSEN,Norway vs Senegal,True,away,SELL,0.2192,0.301,-0.0818,0.0,0.301
+M3 NegBin+Frank,26JUN22NORSEN,Norway vs Senegal,True,home,BUY,0.563,0.4175,0.1456,1.0,0.5825
+M3 NegBin+Frank,26JUN22NORSEN,Norway vs Senegal,True,draw,SELL,0.2296,0.2816,-0.052,0.0,0.2816
+M3 NegBin+Frank,26JUN22NORSEN,Norway vs Senegal,True,away,SELL,0.2074,0.301,-0.0936,0.0,0.301
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22NORSEN,Norway vs Senegal,True,home,BUY,0.5188,0.4175,0.1014,1.0,0.5825
+M5 NegBin+Frank (calib 1X2+O/U),26JUN22NORSEN,Norway vs Senegal,True,draw,SELL,0.1749,0.2816,-0.1067,0.0,0.2816
+M1 Poisson+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,home,SELL,0.6865,0.8431,-0.1566,1.0,-0.1569
+M1 Poisson+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,draw,BUY,0.2204,0.1078,0.1125,0.0,-0.1078
+M1 Poisson+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,away,BUY,0.0931,0.049,0.0441,0.0,-0.049
+M2 NegBin+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,home,SELL,0.6839,0.8431,-0.1592,1.0,-0.1569
+M2 NegBin+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,draw,BUY,0.2218,0.1078,0.1139,0.0,-0.1078
+M2 NegBin+DC,26JUN23PORUZB,Portugal vs Uzbekistan,True,away,BUY,0.0943,0.049,0.0453,0.0,-0.049
+M3 NegBin+Frank,26JUN23PORUZB,Portugal vs Uzbekistan,True,home,SELL,0.6942,0.8431,-0.1489,1.0,-0.1569
+M3 NegBin+Frank,26JUN23PORUZB,Portugal vs Uzbekistan,True,draw,BUY,0.2184,0.1078,0.1106,0.0,-0.1078
+M3 NegBin+Frank,26JUN23PORUZB,Portugal vs Uzbekistan,True,away,BUY,0.0874,0.049,0.0384,0.0,-0.049
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23PORUZB,Portugal vs Uzbekistan,True,home,SELL,0.6942,0.8431,-0.1489,1.0,-0.1569
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23PORUZB,Portugal vs Uzbekistan,True,draw,BUY,0.2184,0.1078,0.1106,0.0,-0.1078
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23PORUZB,Portugal vs Uzbekistan,True,away,BUY,0.0874,0.049,0.0384,0.0,-0.049
+M1 Poisson+DC,26JUN23COLCOD,Colombia vs Congo DR,True,home,SELL,0.4617,0.5743,-0.1125,1.0,-0.4257
+M1 Poisson+DC,26JUN23COLCOD,Colombia vs Congo DR,True,draw,BUY,0.3558,0.3267,0.029,0.0,-0.3267
+M1 Poisson+DC,26JUN23COLCOD,Colombia vs Congo DR,True,away,BUY,0.1825,0.099,0.0835,0.0,-0.099
+M2 NegBin+DC,26JUN23COLCOD,Colombia vs Congo DR,True,home,SELL,0.4615,0.5743,-0.1127,1.0,-0.4257
+M2 NegBin+DC,26JUN23COLCOD,Colombia vs Congo DR,True,draw,BUY,0.3559,0.3267,0.0291,0.0,-0.3267
+M2 NegBin+DC,26JUN23COLCOD,Colombia vs Congo DR,True,away,BUY,0.1826,0.099,0.0836,0.0,-0.099
+M3 NegBin+Frank,26JUN23COLCOD,Colombia vs Congo DR,True,home,SELL,0.4635,0.5743,-0.1107,1.0,-0.4257
+M3 NegBin+Frank,26JUN23COLCOD,Colombia vs Congo DR,True,draw,BUY,0.3621,0.3267,0.0354,0.0,-0.3267
+M3 NegBin+Frank,26JUN23COLCOD,Colombia vs Congo DR,True,away,BUY,0.1744,0.099,0.0754,0.0,-0.099
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23COLCOD,Colombia vs Congo DR,True,home,SELL,0.5144,0.5743,-0.0599,1.0,-0.4257
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23COLCOD,Colombia vs Congo DR,True,draw,BUY,0.4264,0.3267,0.0997,0.0,-0.3267
+M5 NegBin+Frank (calib 1X2+O/U),26JUN23COLCOD,Colombia vs Congo DR,True,away,SELL,0.0592,0.099,-0.0398,0.0,0.099
+M1 Poisson+DC,26JUN24SUICAN,Switzerland vs Canada,True,home,BUY,0.4714,0.3922,0.0792,1.0,0.6078
+M1 Poisson+DC,26JUN24SUICAN,Switzerland vs Canada,True,draw,SELL,0.2934,0.3137,-0.0203,0.0,0.3137
+M1 Poisson+DC,26JUN24SUICAN,Switzerland vs Canada,True,away,SELL,0.2352,0.2941,-0.0589,0.0,0.2941
+M2 NegBin+DC,26JUN24SUICAN,Switzerland vs Canada,True,home,BUY,0.471,0.3922,0.0789,1.0,0.6078
+M2 NegBin+DC,26JUN24SUICAN,Switzerland vs Canada,True,draw,SELL,0.2933,0.3137,-0.0204,0.0,0.3137
+M2 NegBin+DC,26JUN24SUICAN,Switzerland vs Canada,True,away,SELL,0.2357,0.2941,-0.0584,0.0,0.2941
+M3 NegBin+Frank,26JUN24SUICAN,Switzerland vs Canada,True,home,BUY,0.4851,0.3922,0.093,1.0,0.6078
+M3 NegBin+Frank,26JUN24SUICAN,Switzerland vs Canada,True,away,SELL,0.2196,0.2941,-0.0745,0.0,0.2941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24SUICAN,Switzerland vs Canada,True,home,BUY,0.4262,0.3922,0.034,1.0,0.6078
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24SUICAN,Switzerland vs Canada,True,draw,SELL,0.2633,0.3137,-0.0504,0.0,0.3137
+M1 Poisson+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,home,SELL,0.6574,0.802,-0.1446,1.0,-0.198
+M1 Poisson+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,draw,BUY,0.2213,0.1485,0.0728,0.0,-0.1485
+M1 Poisson+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,away,BUY,0.1214,0.0495,0.0719,0.0,-0.0495
+M2 NegBin+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,home,SELL,0.6566,0.802,-0.1454,1.0,-0.198
+M2 NegBin+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,draw,BUY,0.2215,0.1485,0.073,0.0,-0.1485
+M2 NegBin+DC,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,away,BUY,0.1219,0.0495,0.0724,0.0,-0.0495
+M3 NegBin+Frank,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,home,SELL,0.677,0.802,-0.1249,1.0,-0.198
+M3 NegBin+Frank,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,draw,BUY,0.2132,0.1485,0.0647,0.0,-0.1485
+M3 NegBin+Frank,26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,away,BUY,0.1097,0.0495,0.0602,0.0,-0.0495
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,home,BUY,0.9639,0.802,0.162,1.0,0.198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,draw,SELL,0.0273,0.1485,-0.1212,0.0,0.1485
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24BIHQAT,Bosnia and Herzegovina vs Qatar,True,away,SELL,0.0088,0.0495,-0.0407,0.0,0.0495
+M1 Poisson+DC,26JUN24MARHTI,Morocco vs Haiti,True,home,SELL,0.7411,0.7843,-0.0432,1.0,-0.2157
+M1 Poisson+DC,26JUN24MARHTI,Morocco vs Haiti,True,draw,BUY,0.2083,0.1471,0.0613,0.0,-0.1471
+M2 NegBin+DC,26JUN24MARHTI,Morocco vs Haiti,True,home,SELL,0.7398,0.7843,-0.0445,1.0,-0.2157
+M2 NegBin+DC,26JUN24MARHTI,Morocco vs Haiti,True,draw,BUY,0.2093,0.1471,0.0623,0.0,-0.1471
+M3 NegBin+Frank,26JUN24MARHTI,Morocco vs Haiti,True,home,SELL,0.7609,0.7843,-0.0234,1.0,-0.2157
+M3 NegBin+Frank,26JUN24MARHTI,Morocco vs Haiti,True,draw,BUY,0.1953,0.1471,0.0482,0.0,-0.1471
+M3 NegBin+Frank,26JUN24MARHTI,Morocco vs Haiti,True,away,SELL,0.0438,0.0686,-0.0248,0.0,0.0686
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24MARHTI,Morocco vs Haiti,True,home,SELL,0.7609,0.7843,-0.0234,1.0,-0.2157
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24MARHTI,Morocco vs Haiti,True,draw,BUY,0.1953,0.1471,0.0482,0.0,-0.1471
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24MARHTI,Morocco vs Haiti,True,away,SELL,0.0438,0.0686,-0.0248,0.0,0.0686
+M1 Poisson+DC,26JUN24SCOBRA,Scotland vs Brazil,True,home,BUY,0.1835,0.0882,0.0952,0.0,-0.0882
+M1 Poisson+DC,26JUN24SCOBRA,Scotland vs Brazil,True,draw,BUY,0.2389,0.1667,0.0722,0.0,-0.1667
+M1 Poisson+DC,26JUN24SCOBRA,Scotland vs Brazil,True,away,SELL,0.5776,0.7451,-0.1675,1.0,-0.2549
+M2 NegBin+DC,26JUN24SCOBRA,Scotland vs Brazil,True,home,BUY,0.1841,0.0882,0.0959,0.0,-0.0882
+M2 NegBin+DC,26JUN24SCOBRA,Scotland vs Brazil,True,draw,BUY,0.2389,0.1667,0.0722,0.0,-0.1667
+M2 NegBin+DC,26JUN24SCOBRA,Scotland vs Brazil,True,away,SELL,0.577,0.7451,-0.1681,1.0,-0.2549
+M3 NegBin+Frank,26JUN24SCOBRA,Scotland vs Brazil,True,home,BUY,0.1694,0.0882,0.0812,0.0,-0.0882
+M3 NegBin+Frank,26JUN24SCOBRA,Scotland vs Brazil,True,draw,BUY,0.23,0.1667,0.0633,0.0,-0.1667
+M3 NegBin+Frank,26JUN24SCOBRA,Scotland vs Brazil,True,away,SELL,0.6006,0.7451,-0.1445,1.0,-0.2549
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24SCOBRA,Scotland vs Brazil,True,home,SELL,0.0455,0.0882,-0.0427,0.0,0.0882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24SCOBRA,Scotland vs Brazil,True,draw,SELL,0.1208,0.1667,-0.0458,0.0,0.1667
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24SCOBRA,Scotland vs Brazil,True,away,BUY,0.8336,0.7451,0.0885,1.0,0.2549
+M1 Poisson+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,home,BUY,0.2327,0.1584,0.0743,1.0,0.8416
+M1 Poisson+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,draw,BUY,0.3314,0.2574,0.074,0.0,-0.2574
+M1 Poisson+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,away,SELL,0.4358,0.5842,-0.1483,0.0,0.5842
+M2 NegBin+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,home,BUY,0.2331,0.1584,0.0746,1.0,0.8416
+M2 NegBin+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,draw,BUY,0.3316,0.2574,0.0741,0.0,-0.2574
+M2 NegBin+DC,26JUN24RSAKOR,South Africa vs Korea Republic,True,away,SELL,0.4354,0.5842,-0.1488,0.0,0.5842
+M3 NegBin+Frank,26JUN24RSAKOR,South Africa vs Korea Republic,True,home,BUY,0.2186,0.1584,0.0602,1.0,0.8416
+M3 NegBin+Frank,26JUN24RSAKOR,South Africa vs Korea Republic,True,draw,BUY,0.3324,0.2574,0.075,0.0,-0.2574
+M3 NegBin+Frank,26JUN24RSAKOR,South Africa vs Korea Republic,True,away,SELL,0.449,0.5842,-0.1352,0.0,0.5842
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24RSAKOR,South Africa vs Korea Republic,True,home,SELL,0.0891,0.1584,-0.0693,1.0,-0.8416
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24RSAKOR,South Africa vs Korea Republic,True,draw,BUY,0.4291,0.2574,0.1716,0.0,-0.2574
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24RSAKOR,South Africa vs Korea Republic,True,away,SELL,0.4819,0.5842,-0.1023,0.0,0.5842
+M1 Poisson+DC,26JUN24CZEMEX,Czechia vs Mexico,True,draw,SELL,0.252,0.3725,-0.1205,0.0,0.3725
+M1 Poisson+DC,26JUN24CZEMEX,Czechia vs Mexico,True,away,BUY,0.5815,0.4412,0.1404,1.0,0.5588
+M2 NegBin+DC,26JUN24CZEMEX,Czechia vs Mexico,True,draw,SELL,0.2521,0.3725,-0.1204,0.0,0.3725
+M2 NegBin+DC,26JUN24CZEMEX,Czechia vs Mexico,True,away,BUY,0.5808,0.4412,0.1397,1.0,0.5588
+M3 NegBin+Frank,26JUN24CZEMEX,Czechia vs Mexico,True,home,SELL,0.1578,0.1863,-0.0285,0.0,0.1863
+M3 NegBin+Frank,26JUN24CZEMEX,Czechia vs Mexico,True,draw,SELL,0.2492,0.3725,-0.1233,0.0,0.3725
+M3 NegBin+Frank,26JUN24CZEMEX,Czechia vs Mexico,True,away,BUY,0.593,0.4412,0.1518,1.0,0.5588
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24CZEMEX,Czechia vs Mexico,True,home,BUY,0.2274,0.1863,0.0411,0.0,-0.1863
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24CZEMEX,Czechia vs Mexico,True,draw,SELL,0.2488,0.3725,-0.1237,0.0,0.3725
+M5 NegBin+Frank (calib 1X2+O/U),26JUN24CZEMEX,Czechia vs Mexico,True,away,BUY,0.5238,0.4412,0.0826,1.0,0.5588
+M1 Poisson+DC,26JUN25ECUGER,Ecuador vs Germany,True,home,BUY,0.246,0.1942,0.0518,1.0,0.8058
+M1 Poisson+DC,26JUN25ECUGER,Ecuador vs Germany,True,draw,BUY,0.3554,0.2039,0.1515,0.0,-0.2039
+M1 Poisson+DC,26JUN25ECUGER,Ecuador vs Germany,True,away,SELL,0.3986,0.6019,-0.2033,0.0,0.6019
+M2 NegBin+DC,26JUN25ECUGER,Ecuador vs Germany,True,home,BUY,0.2466,0.1942,0.0524,1.0,0.8058
+M2 NegBin+DC,26JUN25ECUGER,Ecuador vs Germany,True,draw,BUY,0.3555,0.2039,0.1516,0.0,-0.2039
+M2 NegBin+DC,26JUN25ECUGER,Ecuador vs Germany,True,away,SELL,0.3979,0.6019,-0.204,0.0,0.6019
+M3 NegBin+Frank,26JUN25ECUGER,Ecuador vs Germany,True,home,BUY,0.2452,0.1942,0.051,1.0,0.8058
+M3 NegBin+Frank,26JUN25ECUGER,Ecuador vs Germany,True,draw,BUY,0.3705,0.2039,0.1667,0.0,-0.2039
+M3 NegBin+Frank,26JUN25ECUGER,Ecuador vs Germany,True,away,SELL,0.3843,0.6019,-0.2177,0.0,0.6019
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25ECUGER,Ecuador vs Germany,True,home,SELL,0.1487,0.1942,-0.0455,1.0,-0.8058
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25ECUGER,Ecuador vs Germany,True,away,BUY,0.6379,0.6019,0.0359,0.0,-0.6019
+M1 Poisson+DC,26JUN25CUWCIV,Curacao vs Ivory Coast,True,home,SELL,0.0467,0.068,-0.0212,0.0,0.068
+M1 Poisson+DC,26JUN25CUWCIV,Curacao vs Ivory Coast,True,draw,BUY,0.1632,0.1262,0.037,0.0,-0.1262
+M2 NegBin+DC,26JUN25CUWCIV,Curacao vs Ivory Coast,True,home,SELL,0.0476,0.068,-0.0204,0.0,0.068
+M2 NegBin+DC,26JUN25CUWCIV,Curacao vs Ivory Coast,True,draw,BUY,0.165,0.1262,0.0388,0.0,-0.1262
+M3 NegBin+Frank,26JUN25CUWCIV,Curacao vs Ivory Coast,True,home,SELL,0.0417,0.068,-0.0263,0.0,0.068
+M3 NegBin+Frank,26JUN25CUWCIV,Curacao vs Ivory Coast,True,draw,BUY,0.1557,0.1262,0.0295,0.0,-0.1262
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25CUWCIV,Curacao vs Ivory Coast,True,home,SELL,0.0254,0.068,-0.0425,0.0,0.068
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25CUWCIV,Curacao vs Ivory Coast,True,draw,BUY,0.1849,0.1262,0.0587,0.0,-0.1262
+M1 Poisson+DC,26JUN25JPNSWE,Japan vs Sweden,True,home,BUY,0.6597,0.3861,0.2736,0.0,-0.3861
+M1 Poisson+DC,26JUN25JPNSWE,Japan vs Sweden,True,draw,SELL,0.2082,0.4059,-0.1978,1.0,-0.5941
+M1 Poisson+DC,26JUN25JPNSWE,Japan vs Sweden,True,away,SELL,0.1321,0.2079,-0.0758,0.0,0.2079
+M2 NegBin+DC,26JUN25JPNSWE,Japan vs Sweden,True,home,BUY,0.6592,0.3861,0.2731,0.0,-0.3861
+M2 NegBin+DC,26JUN25JPNSWE,Japan vs Sweden,True,draw,SELL,0.2082,0.4059,-0.1977,1.0,-0.5941
+M2 NegBin+DC,26JUN25JPNSWE,Japan vs Sweden,True,away,SELL,0.1326,0.2079,-0.0753,0.0,0.2079
+M3 NegBin+Frank,26JUN25JPNSWE,Japan vs Sweden,True,home,BUY,0.6765,0.3861,0.2903,0.0,-0.3861
+M3 NegBin+Frank,26JUN25JPNSWE,Japan vs Sweden,True,draw,SELL,0.1994,0.4059,-0.2066,1.0,-0.5941
+M3 NegBin+Frank,26JUN25JPNSWE,Japan vs Sweden,True,away,SELL,0.1242,0.2079,-0.0838,0.0,0.2079
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25JPNSWE,Japan vs Sweden,True,home,BUY,0.4268,0.3861,0.0407,0.0,-0.3861
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25JPNSWE,Japan vs Sweden,True,draw,SELL,0.3422,0.4059,-0.0638,1.0,-0.5941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25JPNSWE,Japan vs Sweden,True,away,BUY,0.231,0.2079,0.0231,0.0,-0.2079
+M1 Poisson+DC,26JUN25PARAUS,Paraguay vs Australia,True,home,SELL,0.3035,0.3627,-0.0593,0.0,0.3627
+M1 Poisson+DC,26JUN25PARAUS,Paraguay vs Australia,True,draw,SELL,0.3834,0.4118,-0.0283,1.0,-0.5882
+M1 Poisson+DC,26JUN25PARAUS,Paraguay vs Australia,True,away,BUY,0.3131,0.2255,0.0876,0.0,-0.2255
+M2 NegBin+DC,26JUN25PARAUS,Paraguay vs Australia,True,home,SELL,0.3033,0.3627,-0.0594,0.0,0.3627
+M2 NegBin+DC,26JUN25PARAUS,Paraguay vs Australia,True,draw,SELL,0.3838,0.4118,-0.028,1.0,-0.5882
+M2 NegBin+DC,26JUN25PARAUS,Paraguay vs Australia,True,away,BUY,0.3129,0.2255,0.0874,0.0,-0.2255
+M3 NegBin+Frank,26JUN25PARAUS,Paraguay vs Australia,True,home,SELL,0.3048,0.3627,-0.0579,0.0,0.3627
+M3 NegBin+Frank,26JUN25PARAUS,Paraguay vs Australia,True,draw,SELL,0.3912,0.4118,-0.0205,1.0,-0.5882
+M3 NegBin+Frank,26JUN25PARAUS,Paraguay vs Australia,True,away,BUY,0.3039,0.2255,0.0784,0.0,-0.2255
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25PARAUS,Paraguay vs Australia,True,home,SELL,0.161,0.3627,-0.2018,0.0,0.3627
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25PARAUS,Paraguay vs Australia,True,draw,BUY,0.7462,0.4118,0.3345,1.0,0.5882
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25PARAUS,Paraguay vs Australia,True,away,SELL,0.0928,0.2255,-0.1327,0.0,0.2255
+M1 Poisson+DC,26JUN25TURUSA,Turkiye vs USA,True,draw,SELL,0.2177,0.2647,-0.047,0.0,0.2647
+M1 Poisson+DC,26JUN25TURUSA,Turkiye vs USA,True,away,BUY,0.2394,0.2059,0.0335,0.0,-0.2059
+M2 NegBin+DC,26JUN25TURUSA,Turkiye vs USA,True,draw,SELL,0.2176,0.2647,-0.0471,0.0,0.2647
+M2 NegBin+DC,26JUN25TURUSA,Turkiye vs USA,True,away,BUY,0.2415,0.2059,0.0356,0.0,-0.2059
+M3 NegBin+Frank,26JUN25TURUSA,Turkiye vs USA,True,home,BUY,0.5681,0.5294,0.0387,1.0,0.4706
+M3 NegBin+Frank,26JUN25TURUSA,Turkiye vs USA,True,draw,SELL,0.2134,0.2647,-0.0513,0.0,0.2647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25TURUSA,Turkiye vs USA,True,home,BUY,0.6593,0.5294,0.1299,1.0,0.4706
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25TURUSA,Turkiye vs USA,True,draw,SELL,0.1754,0.2647,-0.0893,0.0,0.2647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN25TURUSA,Turkiye vs USA,True,away,SELL,0.1654,0.2059,-0.0405,0.0,0.2059
+M1 Poisson+DC,26JUN26NORFRA,Norway vs France,True,home,BUY,0.3168,0.1287,0.1881,0.0,-0.1287
+M1 Poisson+DC,26JUN26NORFRA,Norway vs France,True,draw,BUY,0.2635,0.1683,0.0952,0.0,-0.1683
+M1 Poisson+DC,26JUN26NORFRA,Norway vs France,True,away,SELL,0.4197,0.703,-0.2833,1.0,-0.297
+M2 NegBin+DC,26JUN26NORFRA,Norway vs France,True,home,BUY,0.3167,0.1287,0.188,0.0,-0.1287
+M2 NegBin+DC,26JUN26NORFRA,Norway vs France,True,draw,BUY,0.263,0.1683,0.0947,0.0,-0.1683
+M2 NegBin+DC,26JUN26NORFRA,Norway vs France,True,away,SELL,0.4202,0.703,-0.2827,1.0,-0.297
+M3 NegBin+Frank,26JUN26NORFRA,Norway vs France,True,home,BUY,0.3031,0.1287,0.1744,0.0,-0.1287
+M3 NegBin+Frank,26JUN26NORFRA,Norway vs France,True,draw,BUY,0.2701,0.1683,0.1018,0.0,-0.1683
+M3 NegBin+Frank,26JUN26NORFRA,Norway vs France,True,away,SELL,0.4268,0.703,-0.2762,1.0,-0.297
+M4 NegBin+Frank (calib 1X2),26JUN26NORFRA,Norway vs France,True,away,BUY,0.7239,0.703,0.021,1.0,0.297
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NORFRA,Norway vs France,True,home,SELL,0.0,0.1287,-0.1287,0.0,0.1287
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NORFRA,Norway vs France,True,draw,BUY,0.3338,0.1683,0.1655,0.0,-0.1683
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NORFRA,Norway vs France,True,away,SELL,0.6662,0.703,-0.0368,1.0,-0.297
+M1 Poisson+DC,26JUN26SENIRQ,Senegal vs Iraq,True,home,SELL,0.6469,0.9314,-0.2845,1.0,-0.0686
+M1 Poisson+DC,26JUN26SENIRQ,Senegal vs Iraq,True,draw,BUY,0.234,0.049,0.185,0.0,-0.049
+M1 Poisson+DC,26JUN26SENIRQ,Senegal vs Iraq,True,away,BUY,0.1191,0.0196,0.0995,0.0,-0.0196
+M2 NegBin+DC,26JUN26SENIRQ,Senegal vs Iraq,True,home,SELL,0.6457,0.9314,-0.2857,1.0,-0.0686
+M2 NegBin+DC,26JUN26SENIRQ,Senegal vs Iraq,True,draw,BUY,0.2346,0.049,0.1855,0.0,-0.049
+M2 NegBin+DC,26JUN26SENIRQ,Senegal vs Iraq,True,away,BUY,0.1197,0.0196,0.1001,0.0,-0.0196
+M3 NegBin+Frank,26JUN26SENIRQ,Senegal vs Iraq,True,home,SELL,0.6652,0.9314,-0.2662,1.0,-0.0686
+M3 NegBin+Frank,26JUN26SENIRQ,Senegal vs Iraq,True,draw,BUY,0.2248,0.049,0.1757,0.0,-0.049
+M3 NegBin+Frank,26JUN26SENIRQ,Senegal vs Iraq,True,away,BUY,0.1101,0.0196,0.0904,0.0,-0.0196
+M4 NegBin+Frank (calib 1X2),26JUN26SENIRQ,Senegal vs Iraq,True,home,BUY,0.9567,0.9314,0.0253,1.0,0.0686
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26SENIRQ,Senegal vs Iraq,True,home,SELL,0.6652,0.9314,-0.2662,1.0,-0.0686
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26SENIRQ,Senegal vs Iraq,True,draw,BUY,0.2248,0.049,0.1757,0.0,-0.049
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26SENIRQ,Senegal vs Iraq,True,away,BUY,0.1101,0.0196,0.0904,0.0,-0.0196
+M1 Poisson+DC,26JUN26URUESP,Uruguay vs Spain,True,draw,BUY,0.317,0.26,0.057,0.0,-0.26
+M1 Poisson+DC,26JUN26URUESP,Uruguay vs Spain,True,away,SELL,0.5466,0.59,-0.0434,1.0,-0.41
+M2 NegBin+DC,26JUN26URUESP,Uruguay vs Spain,True,draw,BUY,0.3175,0.26,0.0575,0.0,-0.26
+M2 NegBin+DC,26JUN26URUESP,Uruguay vs Spain,True,away,SELL,0.5455,0.59,-0.0445,1.0,-0.41
+M3 NegBin+Frank,26JUN26URUESP,Uruguay vs Spain,True,home,SELL,0.1263,0.15,-0.0237,0.0,0.15
+M3 NegBin+Frank,26JUN26URUESP,Uruguay vs Spain,True,draw,BUY,0.3215,0.26,0.0615,0.0,-0.26
+M3 NegBin+Frank,26JUN26URUESP,Uruguay vs Spain,True,away,SELL,0.5523,0.59,-0.0377,1.0,-0.41
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26URUESP,Uruguay vs Spain,True,home,SELL,0.0819,0.15,-0.0681,0.0,0.15
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26URUESP,Uruguay vs Spain,True,draw,BUY,0.4248,0.26,0.1648,0.0,-0.26
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26URUESP,Uruguay vs Spain,True,away,SELL,0.4933,0.59,-0.0967,1.0,-0.41
+M1 Poisson+DC,26JUN26NZLBEL,New Zealand vs Belgium,True,home,SELL,0.0392,0.07,-0.0308,0.0,0.07
+M1 Poisson+DC,26JUN26NZLBEL,New Zealand vs Belgium,True,away,BUY,0.8479,0.82,0.0279,1.0,0.18
+M2 NegBin+DC,26JUN26NZLBEL,New Zealand vs Belgium,True,home,SELL,0.0401,0.07,-0.0299,0.0,0.07
+M2 NegBin+DC,26JUN26NZLBEL,New Zealand vs Belgium,True,away,BUY,0.8455,0.82,0.0255,1.0,0.18
+M3 NegBin+Frank,26JUN26NZLBEL,New Zealand vs Belgium,True,home,SELL,0.0363,0.07,-0.0337,0.0,0.07
+M3 NegBin+Frank,26JUN26NZLBEL,New Zealand vs Belgium,True,away,BUY,0.8602,0.82,0.0402,1.0,0.18
+M4 NegBin+Frank (calib 1X2),26JUN26NZLBEL,New Zealand vs Belgium,True,draw,SELL,0.0876,0.11,-0.0224,0.0,0.11
+M4 NegBin+Frank (calib 1X2),26JUN26NZLBEL,New Zealand vs Belgium,True,away,BUY,0.8554,0.82,0.0354,1.0,0.18
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NZLBEL,New Zealand vs Belgium,True,home,SELL,0.0017,0.07,-0.0683,0.0,0.07
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NZLBEL,New Zealand vs Belgium,True,draw,SELL,0.0031,0.11,-0.1069,0.0,0.11
+M5 NegBin+Frank (calib 1X2+O/U),26JUN26NZLBEL,New Zealand vs Belgium,True,away,BUY,0.9952,0.82,0.1752,1.0,0.18
+M1 Poisson+DC,26JUN26EGYIRI,Egypt vs IR Iran,True,home,SELL,0.3078,0.3627,-0.055,0.0,0.3627
+M1 Poisson+DC,26JUN26EGYIRI,Egypt vs IR Iran,True,away,BUY,0.3354,0.2843,0.051,0.0,-0.2843
+M2 NegBin+DC,26JUN26EGYIRI,Egypt vs IR Iran,True,home,SELL,0.3083,0.3627,-0.0545,0.0,0.3627
+M2 NegBin+DC,26JUN26EGYIRI,Egypt vs IR Iran,True,away,BUY,0.3351,0.2843,0.0508,0.0,-0.2843
+M3 NegBin+Frank,26JUN26EGYIRI,Egypt vs IR Iran,True,home,SELL,0.3029,0.3627,-0.0599,0.0,0.3627
+M3 NegBin+Frank,26JUN26EGYIRI,Egypt vs IR Iran,True,away,BUY,0.3254,0.2843,0.0411,0.0,-0.2843
+M1 Poisson+DC,26JUN27COLPOR,Colombia vs Portugal,True,home,BUY,0.2968,0.2451,0.0517,0.0,-0.2451
+M1 Poisson+DC,26JUN27COLPOR,Colombia vs Portugal,True,draw,BUY,0.2975,0.2353,0.0622,1.0,0.7647
+M1 Poisson+DC,26JUN27COLPOR,Colombia vs Portugal,True,away,SELL,0.4057,0.5196,-0.1139,0.0,0.5196
+M2 NegBin+DC,26JUN27COLPOR,Colombia vs Portugal,True,home,BUY,0.2978,0.2451,0.0527,0.0,-0.2451
+M2 NegBin+DC,26JUN27COLPOR,Colombia vs Portugal,True,draw,BUY,0.2975,0.2353,0.0622,1.0,0.7647
+M2 NegBin+DC,26JUN27COLPOR,Colombia vs Portugal,True,away,SELL,0.4047,0.5196,-0.1149,0.0,0.5196
+M3 NegBin+Frank,26JUN27COLPOR,Colombia vs Portugal,True,home,BUY,0.2899,0.2451,0.0448,0.0,-0.2451
+M3 NegBin+Frank,26JUN27COLPOR,Colombia vs Portugal,True,draw,BUY,0.3044,0.2353,0.0691,1.0,0.7647
+M3 NegBin+Frank,26JUN27COLPOR,Colombia vs Portugal,True,away,SELL,0.4057,0.5196,-0.1139,0.0,0.5196
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27COLPOR,Colombia vs Portugal,True,home,SELL,0.1527,0.2451,-0.0923,0.0,0.2451
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27COLPOR,Colombia vs Portugal,True,draw,BUY,0.4644,0.2353,0.2291,1.0,0.7647
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27COLPOR,Colombia vs Portugal,True,away,SELL,0.3829,0.5196,-0.1367,0.0,0.5196
+M1 Poisson+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,home,BUY,0.5305,0.2718,0.2586,1.0,0.7282
+M1 Poisson+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,draw,BUY,0.334,0.2816,0.0525,0.0,-0.2816
+M1 Poisson+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,away,SELL,0.1355,0.4466,-0.3111,0.0,0.4466
+M2 NegBin+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,home,BUY,0.5297,0.2718,0.2579,1.0,0.7282
+M2 NegBin+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,draw,BUY,0.3345,0.2816,0.0529,0.0,-0.2816
+M2 NegBin+DC,26JUN27CODUZB,Congo DR vs Uzbekistan,True,away,SELL,0.1358,0.4466,-0.3108,0.0,0.4466
+M3 NegBin+Frank,26JUN27CODUZB,Congo DR vs Uzbekistan,True,home,BUY,0.5333,0.2718,0.2614,1.0,0.7282
+M3 NegBin+Frank,26JUN27CODUZB,Congo DR vs Uzbekistan,True,draw,BUY,0.3408,0.2816,0.0592,0.0,-0.2816
+M3 NegBin+Frank,26JUN27CODUZB,Congo DR vs Uzbekistan,True,away,SELL,0.1259,0.4466,-0.3207,0.0,0.4466
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27CODUZB,Congo DR vs Uzbekistan,True,draw,BUY,0.3024,0.2816,0.0208,0.0,-0.2816
+M1 Poisson+DC,26JUN27DZAAUT,Algeria vs Austria,True,home,BUY,0.3239,0.2718,0.0521,0.0,-0.2718
+M1 Poisson+DC,26JUN27DZAAUT,Algeria vs Austria,True,draw,SELL,0.2923,0.4563,-0.164,1.0,-0.5437
+M1 Poisson+DC,26JUN27DZAAUT,Algeria vs Austria,True,away,BUY,0.3837,0.2718,0.1119,0.0,-0.2718
+M2 NegBin+DC,26JUN27DZAAUT,Algeria vs Austria,True,home,BUY,0.324,0.2718,0.0521,0.0,-0.2718
+M2 NegBin+DC,26JUN27DZAAUT,Algeria vs Austria,True,draw,SELL,0.2922,0.4563,-0.1641,1.0,-0.5437
+M2 NegBin+DC,26JUN27DZAAUT,Algeria vs Austria,True,away,BUY,0.3838,0.2718,0.112,0.0,-0.2718
+M3 NegBin+Frank,26JUN27DZAAUT,Algeria vs Austria,True,home,BUY,0.3155,0.2718,0.0437,0.0,-0.2718
+M3 NegBin+Frank,26JUN27DZAAUT,Algeria vs Austria,True,draw,SELL,0.291,0.4563,-0.1653,1.0,-0.5437
+M3 NegBin+Frank,26JUN27DZAAUT,Algeria vs Austria,True,away,BUY,0.3935,0.2718,0.1216,0.0,-0.2718
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27DZAAUT,Algeria vs Austria,True,home,BUY,0.3155,0.2718,0.0437,0.0,-0.2718
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27DZAAUT,Algeria vs Austria,True,draw,SELL,0.291,0.4563,-0.1653,1.0,-0.5437
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27DZAAUT,Algeria vs Austria,True,away,BUY,0.3935,0.2718,0.1216,0.0,-0.2718
+M1 Poisson+DC,26JUN27JORARG,Jordan vs Argentina,True,home,SELL,0.0224,0.049,-0.0266,0.0,0.049
+M1 Poisson+DC,26JUN27JORARG,Jordan vs Argentina,True,away,BUY,0.8794,0.8529,0.0265,1.0,0.1471
+M2 NegBin+DC,26JUN27JORARG,Jordan vs Argentina,True,home,SELL,0.0229,0.049,-0.0261,0.0,0.049
+M2 NegBin+DC,26JUN27JORARG,Jordan vs Argentina,True,away,BUY,0.8771,0.8529,0.0242,1.0,0.1471
+M3 NegBin+Frank,26JUN27JORARG,Jordan vs Argentina,True,home,SELL,0.0211,0.049,-0.0279,0.0,0.049
+M3 NegBin+Frank,26JUN27JORARG,Jordan vs Argentina,True,away,BUY,0.8885,0.8529,0.0356,1.0,0.1471
+M4 NegBin+Frank (calib 1X2),26JUN27JORARG,Jordan vs Argentina,True,away,BUY,0.8769,0.8529,0.0239,1.0,0.1471
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27JORARG,Jordan vs Argentina,True,home,SELL,0.0034,0.049,-0.0457,0.0,0.049
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27JORARG,Jordan vs Argentina,True,draw,SELL,0.0141,0.098,-0.084,0.0,0.098
+M5 NegBin+Frank (calib 1X2+O/U),26JUN27JORARG,Jordan vs Argentina,True,away,BUY,0.9826,0.8529,0.1296,1.0,0.1471
+M1 Poisson+DC,26JUN28RSACAN,South Africa vs Canada,True,draw,SELL,0.3226,0.3861,-0.0635,0.0,0.3861
+M1 Poisson+DC,26JUN28RSACAN,South Africa vs Canada,True,away,BUY,0.5161,0.4356,0.0804,1.0,0.5644
+M2 NegBin+DC,26JUN28RSACAN,South Africa vs Canada,True,draw,SELL,0.3232,0.3861,-0.063,0.0,0.3861
+M2 NegBin+DC,26JUN28RSACAN,South Africa vs Canada,True,away,BUY,0.5149,0.4356,0.0793,1.0,0.5644
+M3 NegBin+Frank,26JUN28RSACAN,South Africa vs Canada,True,home,SELL,0.1545,0.1782,-0.0237,0.0,0.1782
+M3 NegBin+Frank,26JUN28RSACAN,South Africa vs Canada,True,draw,SELL,0.3326,0.3861,-0.0535,0.0,0.3861
+M3 NegBin+Frank,26JUN28RSACAN,South Africa vs Canada,True,away,BUY,0.5129,0.4356,0.0773,1.0,0.5644
+M5 NegBin+Frank (calib 1X2+O/U),26JUN28RSACAN,South Africa vs Canada,True,home,SELL,0.1291,0.1782,-0.0491,0.0,0.1782
+M5 NegBin+Frank (calib 1X2+O/U),26JUN28RSACAN,South Africa vs Canada,True,draw,BUY,0.4763,0.3861,0.0902,0.0,-0.3861
+M5 NegBin+Frank (calib 1X2+O/U),26JUN28RSACAN,South Africa vs Canada,True,away,SELL,0.3946,0.4356,-0.0411,1.0,-0.5644
+M1 Poisson+DC,26JUN29BRAJPN,Brazil vs Japan,True,home,BUY,0.3468,0.2277,0.1191,1.0,0.7723
+M1 Poisson+DC,26JUN29BRAJPN,Brazil vs Japan,True,away,SELL,0.3402,0.4554,-0.1153,0.0,0.4554
+M2 NegBin+DC,26JUN29BRAJPN,Brazil vs Japan,True,home,BUY,0.3468,0.2277,0.119,1.0,0.7723
+M2 NegBin+DC,26JUN29BRAJPN,Brazil vs Japan,True,away,SELL,0.3404,0.4554,-0.1151,0.0,0.4554
+M3 NegBin+Frank,26JUN29BRAJPN,Brazil vs Japan,True,home,BUY,0.3528,0.2277,0.1251,1.0,0.7723
+M3 NegBin+Frank,26JUN29BRAJPN,Brazil vs Japan,True,away,SELL,0.331,0.4554,-0.1245,0.0,0.4554
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29BRAJPN,Brazil vs Japan,True,draw,SELL,0.2502,0.3168,-0.0666,0.0,0.3168
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29BRAJPN,Brazil vs Japan,True,away,BUY,0.5092,0.4554,0.0538,0.0,-0.4554
+M1 Poisson+DC,26JUN29GERPAR,Germany vs Paraguay,True,home,SELL,0.5599,0.703,-0.143,0.0,0.703
+M1 Poisson+DC,26JUN29GERPAR,Germany vs Paraguay,True,draw,BUY,0.2497,0.2178,0.0319,1.0,0.7822
+M1 Poisson+DC,26JUN29GERPAR,Germany vs Paraguay,True,away,BUY,0.1904,0.0792,0.1111,0.0,-0.0792
+M2 NegBin+DC,26JUN29GERPAR,Germany vs Paraguay,True,home,SELL,0.5582,0.703,-0.1448,0.0,0.703
+M2 NegBin+DC,26JUN29GERPAR,Germany vs Paraguay,True,draw,BUY,0.2502,0.2178,0.0324,1.0,0.7822
+M2 NegBin+DC,26JUN29GERPAR,Germany vs Paraguay,True,away,BUY,0.1916,0.0792,0.1124,0.0,-0.0792
+M3 NegBin+Frank,26JUN29GERPAR,Germany vs Paraguay,True,home,SELL,0.5665,0.703,-0.1365,0.0,0.703
+M3 NegBin+Frank,26JUN29GERPAR,Germany vs Paraguay,True,draw,BUY,0.248,0.2178,0.0302,1.0,0.7822
+M3 NegBin+Frank,26JUN29GERPAR,Germany vs Paraguay,True,away,BUY,0.1855,0.0792,0.1063,0.0,-0.0792
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29GERPAR,Germany vs Paraguay,True,home,BUY,0.7784,0.703,0.0755,0.0,-0.703
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29GERPAR,Germany vs Paraguay,True,draw,SELL,0.1513,0.2178,-0.0665,1.0,-0.7822
+M1 Poisson+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,home,SELL,0.3204,0.3564,-0.036,0.0,0.3564
+M1 Poisson+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,draw,SELL,0.3375,0.4059,-0.0685,1.0,-0.5941
+M1 Poisson+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,away,BUY,0.3422,0.2376,0.1045,0.0,-0.2376
+M2 NegBin+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,home,SELL,0.3203,0.3564,-0.0361,0.0,0.3564
+M2 NegBin+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,draw,SELL,0.3374,0.4059,-0.0685,1.0,-0.5941
+M2 NegBin+DC,26JUN29NEDMAR,Netherlands vs Morocco,True,away,BUY,0.3423,0.2376,0.1046,0.0,-0.2376
+M3 NegBin+Frank,26JUN29NEDMAR,Netherlands vs Morocco,True,home,SELL,0.3148,0.3564,-0.0416,0.0,0.3564
+M3 NegBin+Frank,26JUN29NEDMAR,Netherlands vs Morocco,True,draw,SELL,0.3453,0.4059,-0.0606,1.0,-0.5941
+M3 NegBin+Frank,26JUN29NEDMAR,Netherlands vs Morocco,True,away,BUY,0.3399,0.2376,0.1022,0.0,-0.2376
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29NEDMAR,Netherlands vs Morocco,True,home,BUY,0.3905,0.3564,0.0341,0.0,-0.3564
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29NEDMAR,Netherlands vs Morocco,True,draw,SELL,0.3494,0.4059,-0.0566,1.0,-0.5941
+M5 NegBin+Frank (calib 1X2+O/U),26JUN29NEDMAR,Netherlands vs Morocco,True,away,BUY,0.2601,0.2376,0.0225,0.0,-0.2376
+M1 Poisson+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,home,BUY,0.2658,0.1089,0.1569,0.0,-0.1089
+M1 Poisson+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,draw,BUY,0.3119,0.2475,0.0644,0.0,-0.2475
+M1 Poisson+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,away,SELL,0.4224,0.6436,-0.2212,1.0,-0.3564
+M2 NegBin+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,home,BUY,0.2671,0.1089,0.1581,0.0,-0.1089
+M2 NegBin+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,draw,BUY,0.3119,0.2475,0.0644,0.0,-0.2475
+M2 NegBin+DC,26JUN30CIVNOR,Ivory Coast vs Norway,True,away,SELL,0.421,0.6436,-0.2226,1.0,-0.3564
+M3 NegBin+Frank,26JUN30CIVNOR,Ivory Coast vs Norway,True,home,BUY,0.2666,0.1089,0.1576,0.0,-0.1089
+M3 NegBin+Frank,26JUN30CIVNOR,Ivory Coast vs Norway,True,draw,BUY,0.3204,0.2475,0.0729,0.0,-0.2475
+M3 NegBin+Frank,26JUN30CIVNOR,Ivory Coast vs Norway,True,away,SELL,0.413,0.6436,-0.2305,1.0,-0.3564
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30CIVNOR,Ivory Coast vs Norway,True,draw,SELL,0.1786,0.2475,-0.0689,0.0,0.2475
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30CIVNOR,Ivory Coast vs Norway,True,away,BUY,0.7284,0.6436,0.0848,1.0,0.3564
+M1 Poisson+DC,26JUN30FRASWE,France vs Sweden,True,home,SELL,0.7784,0.8713,-0.0929,1.0,-0.1287
+M1 Poisson+DC,26JUN30FRASWE,France vs Sweden,True,draw,BUY,0.1387,0.1089,0.0298,0.0,-0.1089
+M1 Poisson+DC,26JUN30FRASWE,France vs Sweden,True,away,BUY,0.0829,0.0198,0.0631,0.0,-0.0198
+M2 NegBin+DC,26JUN30FRASWE,France vs Sweden,True,home,SELL,0.7764,0.8713,-0.0949,1.0,-0.1287
+M2 NegBin+DC,26JUN30FRASWE,France vs Sweden,True,draw,BUY,0.1396,0.1089,0.0307,0.0,-0.1089
+M2 NegBin+DC,26JUN30FRASWE,France vs Sweden,True,away,BUY,0.084,0.0198,0.0642,0.0,-0.0198
+M3 NegBin+Frank,26JUN30FRASWE,France vs Sweden,True,home,SELL,0.8118,0.8713,-0.0595,1.0,-0.1287
+M3 NegBin+Frank,26JUN30FRASWE,France vs Sweden,True,away,BUY,0.0677,0.0198,0.0479,0.0,-0.0198
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30FRASWE,France vs Sweden,True,home,BUY,0.9459,0.8713,0.0746,1.0,0.1287
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30FRASWE,France vs Sweden,True,draw,SELL,0.0493,0.1089,-0.0596,0.0,0.1089
+M1 Poisson+DC,26JUN30MEXECU,Mexico vs Ecuador,True,home,SELL,0.3262,0.4216,-0.0954,1.0,-0.5784
+M1 Poisson+DC,26JUN30MEXECU,Mexico vs Ecuador,True,draw,BUY,0.4372,0.3529,0.0843,0.0,-0.3529
+M2 NegBin+DC,26JUN30MEXECU,Mexico vs Ecuador,True,home,SELL,0.3262,0.4216,-0.0954,1.0,-0.5784
+M2 NegBin+DC,26JUN30MEXECU,Mexico vs Ecuador,True,draw,BUY,0.4372,0.3529,0.0843,0.0,-0.3529
+M3 NegBin+Frank,26JUN30MEXECU,Mexico vs Ecuador,True,home,SELL,0.3135,0.4216,-0.1081,1.0,-0.5784
+M3 NegBin+Frank,26JUN30MEXECU,Mexico vs Ecuador,True,draw,BUY,0.4594,0.3529,0.1064,0.0,-0.3529
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30MEXECU,Mexico vs Ecuador,True,home,BUY,0.4944,0.4216,0.0728,1.0,0.5784
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30MEXECU,Mexico vs Ecuador,True,draw,SELL,0.2384,0.3529,-0.1145,0.0,0.3529
+M5 NegBin+Frank (calib 1X2+O/U),26JUN30MEXECU,Mexico vs Ecuador,True,away,BUY,0.2672,0.2255,0.0417,0.0,-0.2255
+M1 Poisson+DC,26JUL01ENGCOD,England vs Congo DR,True,home,BUY,0.4373,0.4059,0.0313,1.0,0.5941
+M1 Poisson+DC,26JUL01ENGCOD,England vs Congo DR,True,draw,BUY,0.3966,0.3168,0.0797,0.0,-0.3168
+M1 Poisson+DC,26JUL01ENGCOD,England vs Congo DR,True,away,SELL,0.1662,0.2772,-0.1111,0.0,0.2772
+M2 NegBin+DC,26JUL01ENGCOD,England vs Congo DR,True,home,BUY,0.4369,0.4059,0.031,1.0,0.5941
+M2 NegBin+DC,26JUL01ENGCOD,England vs Congo DR,True,draw,BUY,0.3968,0.3168,0.0799,0.0,-0.3168
+M2 NegBin+DC,26JUL01ENGCOD,England vs Congo DR,True,away,SELL,0.1663,0.2772,-0.1109,0.0,0.2772
+M3 NegBin+Frank,26JUL01ENGCOD,England vs Congo DR,True,home,BUY,0.4417,0.4059,0.0357,1.0,0.5941
+M3 NegBin+Frank,26JUL01ENGCOD,England vs Congo DR,True,draw,BUY,0.4031,0.3168,0.0863,0.0,-0.3168
+M3 NegBin+Frank,26JUL01ENGCOD,England vs Congo DR,True,away,SELL,0.1552,0.2772,-0.122,0.0,0.2772
+M5 NegBin+Frank (calib 1X2+O/U),26JUL01ENGCOD,England vs Congo DR,True,home,BUY,0.4454,0.4059,0.0394,1.0,0.5941
+M5 NegBin+Frank (calib 1X2+O/U),26JUL01ENGCOD,England vs Congo DR,True,draw,SELL,0.265,0.3168,-0.0518,0.0,0.3168
+M1 Poisson+DC,26JUL01BELSEN,Belgium vs Senegal,True,home,BUY,0.4707,0.2376,0.233,1.0,0.7624
+M1 Poisson+DC,26JUL01BELSEN,Belgium vs Senegal,True,draw,SELL,0.259,0.3069,-0.0479,0.0,0.3069
+M1 Poisson+DC,26JUL01BELSEN,Belgium vs Senegal,True,away,SELL,0.2703,0.4554,-0.1851,0.0,0.4554
+M2 NegBin+DC,26JUL01BELSEN,Belgium vs Senegal,True,home,BUY,0.4684,0.2376,0.2308,1.0,0.7624
+M2 NegBin+DC,26JUL01BELSEN,Belgium vs Senegal,True,draw,SELL,0.2591,0.3069,-0.0479,0.0,0.3069
+M2 NegBin+DC,26JUL01BELSEN,Belgium vs Senegal,True,away,SELL,0.2725,0.4554,-0.1829,0.0,0.4554
+M3 NegBin+Frank,26JUL01BELSEN,Belgium vs Senegal,True,home,BUY,0.4873,0.2376,0.2496,1.0,0.7624
+M3 NegBin+Frank,26JUL01BELSEN,Belgium vs Senegal,True,draw,SELL,0.2577,0.3069,-0.0492,0.0,0.3069
+M3 NegBin+Frank,26JUL01BELSEN,Belgium vs Senegal,True,away,SELL,0.255,0.4554,-0.2004,0.0,0.4554
+M5 NegBin+Frank (calib 1X2+O/U),26JUL01BELSEN,Belgium vs Senegal,True,draw,SELL,0.2025,0.3069,-0.1044,0.0,0.3069
+M5 NegBin+Frank (calib 1X2+O/U),26JUL01BELSEN,Belgium vs Senegal,True,away,BUY,0.5559,0.4554,0.1004,0.0,-0.4554
+M1 Poisson+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,home,SELL,0.5416,0.8614,-0.3198,1.0,-0.1386
+M1 Poisson+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,draw,BUY,0.2533,0.1089,0.1444,0.0,-0.1089
+M1 Poisson+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,away,BUY,0.2051,0.0297,0.1754,0.0,-0.0297
+M2 NegBin+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,home,SELL,0.5417,0.8614,-0.3197,1.0,-0.1386
+M2 NegBin+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,draw,BUY,0.2532,0.1089,0.1443,0.0,-0.1089
+M2 NegBin+DC,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,away,BUY,0.2051,0.0297,0.1754,0.0,-0.0297
+M3 NegBin+Frank,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,home,SELL,0.5535,0.8614,-0.3079,1.0,-0.1386
+M3 NegBin+Frank,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,draw,BUY,0.2519,0.1089,0.143,0.0,-0.1089
+M3 NegBin+Frank,26JUL01USABIH,USA vs Bosnia and Herzegovina,True,away,BUY,0.1946,0.0297,0.1649,0.0,-0.0297
+M5 NegBin+Frank (calib 1X2+O/U),26JUL01USABIH,USA vs Bosnia and Herzegovina,True,away,SELL,0.0086,0.0297,-0.0211,0.0,0.0297
