@@ -38,9 +38,14 @@ class CoherenceScanner:
             If sum(YES bids) - fees > $1.00, we have an over-priced SELL arbitrage!
         """
         flags = []
-        valid_contracts = [c for c in contracts if c.ticker in books and books[c.ticker] is not None]
-        if len(valid_contracts) < 2:
+        # In order for an underpriced basket sum to guarantee $1 payout,
+        # we MUST have asks for ALL contracts in the mutually exclusive event.
+        if len(contracts) < 2:
             return flags
+
+        # Check if EVERY contract has an active book
+        all_contracts_have_books = all(c.ticker in books and books[c.ticker] is not None for c in contracts)
+        valid_contracts = [c for c in contracts if c.ticker in books and books[c.ticker] is not None]
 
         # Check if set is complete or collectively exhaustive
         # Calculate sum of best YES asks and sum of best YES bids
@@ -73,7 +78,8 @@ class CoherenceScanner:
 
         # Scenario 1: Underpriced basket (Sum of Asks + Fees < 1.0)
         # We can buy 1 YES in each bracket for sum_asks. Exactly one bracket resolves YES, yielding $1.00.
-        if all_asks_present and (sum_asks + total_fee) < (1.0 - self.min_edge):
+        # This requires ALL contracts in the ME family to be tradable!
+        if all_contracts_have_books and all_asks_present and (sum_asks + total_fee) < (1.0 - self.min_edge):
             net_edge = round(1.0 - (sum_asks + total_fee), 4)
             suggested_trades = []
             for c in valid_contracts:
