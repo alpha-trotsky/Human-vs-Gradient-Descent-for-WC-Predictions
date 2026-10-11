@@ -1,6 +1,6 @@
 """
-Copula Live Web Dashboard & Execution API Server.
-Powered by Flask, serving real-time Kalshi order books, coherence scanning,
+Copula Live Multi-Venue Web Dashboard & Execution API Server.
+Supports both Kalshi and Polymarket order books, coherence scanning,
 model fair values, and live execution.
 """
 import os
@@ -21,8 +21,9 @@ from copula_execution.types import (
     MarketContract, OrderBook, OrderBookLevel, MarketVenue, ActionSide, ContractSide
 )
 from copula_execution.ingestion import MarketIngestion
+from copula_execution.polymarket import PolymarketIngestion
 from copula_execution.coherence_scanner import CoherenceScanner
-from copula_execution.pricer import EconomicBracketPricer, SportsCopulaPricer, MarketMakerQuoter
+from copula_execution.pricer import EconomicBracketPricer, MarketMakerQuoter
 from copula_execution.risk_manager import RiskManager, RiskLimits, FeeCalculator
 from copula_execution.gateway import PaperExecutionGateway
 from copula_execution.engine import ExecutionEngine
@@ -30,7 +31,8 @@ from copula_execution.engine import ExecutionEngine
 app = Flask(__name__)
 
 # Initialize singletons
-ingestion = MarketIngestion()
+kalshi_ingestion = MarketIngestion()
+poly_ingestion = PolymarketIngestion()
 gateway = PaperExecutionGateway(latency_ms=10.0)
 limits = RiskLimits(
     max_total_exposure_dollars=2500.0,
@@ -43,40 +45,41 @@ risk_manager = RiskManager(limits)
 scanner = CoherenceScanner(min_edge=0.015)
 engine = ExecutionEngine(gateway=gateway, risk_manager=risk_manager, scanner=scanner)
 
-# Cache state
+current_venue = MarketVenue.POLYMARKET
 cached_event = None
 cached_contracts = []
 cached_books = {}
 cached_flags = []
 
 
-def refresh_market_data():
-    global cached_event, cached_contracts, cached_books, cached_flags
-    try:
-        open_events = ingestion.fetch_open_events(limit=40)
-        target_ev = None
-        for ev in open_events:
-            series = ev.get("series_ticker", "")
-            if any(k in series.lower() for k in ["gdp", "cpi", "fed", "rate"]):
-                ev_ticker = ev.get("event_ticker")
-                contracts = ingestion.fetch_event_markets(ev_ticker)
-                if len(contracts) >= 3:
-                    target_ev = ev
-                    cached_contracts = contracts
-                    break
+def refresh_market_data(venue_str: str = "polymarket"):
+    global current_venue, cached_event, cached_contracts, cached_books, cached_flags
+    current_venue = MarketVenue.POLYMARKET if venue_str.lower() == "polymarket" else MarketVenue.KALSHI
 
-        if target_ev:
-            cached_event = target_ev
-            cached_books = {}
-            for c in cached_contracts[:8]:
-                ob = ingestion.fetch_order_book(c.ticker)
-                if ob:
-                    cached_books[c.ticker] = ob
-        else:
-            _fallback_mock_data()
-    except Exception as e:
-        print(f"Error refreshing from Kalshi: {e}")
-        _fallback_mock_data()
+    if current_venue == MarketVenue.POLYMARKET:
+        try:
+            # Polymarket: Fed rate cuts event ID 51456
+            contracts = poly_ingestion.fetch_event_markets("51456")
+            if contracts:
+                cached_event = {
+                    "event_ticker": "POLY-51456",
+                    "title": "How many Fed rate cuts in 2026? (Polymarket)",
+                    "series_ticker": "FED-RATES-2026",
+                    "venue": "Polymarket"
+                }
+                cached_contracts = contracts
+                cached_books = {}
+                for c in cached_contracts[:8]:
+                    ob = poly_ingestion.fetch_order_book(c.ticker)
+                    if ob:
+                        cached_books[c.ticker] = ob
+            else:
+                _fallback_kalshi()
+        except Exception as e:
+            print(f"Error refreshing from Polymarket: {e}")
+            _fallback_kalshi()
+    else:
+        _fallback_kalshi()
 
     # Re-scan
     if cached_contracts and cached_books:
@@ -86,34 +89,39 @@ def refresh_market_data():
         cached_flags = sum_flags + mono_flags
 
 
-def _fallback_mock_data():
-    global cached_event, cached_contracts, cached_books
-    ev_ticker = "KXUSCPI-DEMO"
-    cached_event = {
-        "event_ticker": ev_ticker,
-        "title": "US Headline CPI Inflation (Simulated Live Feed)",
-        "series_ticker": "KXUSCPIYEAR"
-    }
-    cached_contracts = [
-        MarketContract("CPI-B1.5", ev_ticker, MarketVenue.KALSHI, "CPI <= 1.5%", floor_strike=0.0, cap_strike=1.5),
-        MarketContract("CPI-B2.5", ev_ticker, MarketVenue.KALSHI, "1.5% < CPI <= 2.5%", floor_strike=1.5, cap_strike=2.5),
-        MarketContract("CPI-B3.5", ev_ticker, MarketVenue.KALSHI, "2.5% < CPI <= 3.5%", floor_strike=2.5, cap_strike=3.5),
-        MarketContract("CPI-B4.5", ev_ticker, MarketVenue.KALSHI, "CPI > 3.5%", floor_strike=3.5, cap_strike=10.0),
-    ]
-    cached_books = {
-        "CPI-B1.5": OrderBook("CPI-B1.5", MarketVenue.KALSHI, datetime.now(timezone.utc),
-                              yes_bids=[OrderBookLevel(0.10, 100)], yes_asks=[OrderBookLevel(0.14, 100)]),
-        "CPI-B2.5": OrderBook("CPI-B2.5", MarketVenue.KALSHI, datetime.now(timezone.utc),
-                              yes_bids=[OrderBookLevel(0.30, 100)], yes_asks=[OrderBookLevel(0.35, 100)]),
-        "CPI-B3.5": OrderBook("CPI-B3.5", MarketVenue.KALSHI, datetime.now(timezone.utc),
-                              yes_bids=[OrderBookLevel(0.20, 100)], yes_asks=[OrderBookLevel(0.24, 100)]),
-        "CPI-B4.5": OrderBook("CPI-B4.5", MarketVenue.KALSHI, datetime.now(timezone.utc),
-                              yes_bids=[OrderBookLevel(0.08, 100)], yes_asks=[OrderBookLevel(0.11, 100)]),
-    }
+def _fallback_kalshi():
+    global current_venue, cached_event, cached_contracts, cached_books
+    current_venue = MarketVenue.KALSHI
+    try:
+        open_events = kalshi_ingestion.fetch_open_events(limit=40)
+        target_ev = None
+        for ev in open_events:
+            series = ev.get("series_ticker", "")
+            if any(k in series.lower() for k in ["gdp", "cpi", "fed", "rate"]):
+                ev_ticker = ev.get("event_ticker")
+                contracts = kalshi_ingestion.fetch_event_markets(ev_ticker)
+                if len(contracts) >= 3:
+                    target_ev = ev
+                    cached_contracts = contracts
+                    break
+        if target_ev:
+            cached_event = {
+                "event_ticker": target_ev.get("event_ticker"),
+                "title": f"{target_ev.get('title')} (Kalshi)",
+                "series_ticker": target_ev.get("series_ticker"),
+                "venue": "Kalshi"
+            }
+            cached_books = {}
+            for c in cached_contracts[:8]:
+                ob = kalshi_ingestion.fetch_order_book(c.ticker)
+                if ob:
+                    cached_books[c.ticker] = ob
+    except Exception as e:
+        print(f"Error fetching from Kalshi: {e}")
 
 
-# Initial data load
-refresh_market_data()
+# Initialize with Polymarket
+refresh_market_data("polymarket")
 
 
 HTML_TEMPLATE = """
@@ -122,7 +130,7 @@ HTML_TEMPLATE = """
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Copula — Live Coherence Scanner & Execution Dashboard</title>
+  <title>Copula — Multi-Venue Coherence Scanner</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @keyframes pulse-slow {
@@ -140,19 +148,21 @@ HTML_TEMPLATE = """
       <div class="flex items-center gap-3">
         <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 pulse-dot shadow-lg shadow-emerald-500/50"></div>
         <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          COPULA <span class="text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-700 font-mono text-emerald-400">EXECUTION ENGINE v1.0</span>
+          COPULA <span class="text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-700 font-mono text-emerald-400">MULTI-VENUE ARBITRAGE v1.0</span>
         </h1>
       </div>
-      <p class="text-sm text-slate-400 mt-1">Prices illiquid prediction markets from the liquid markets they're tied to.</p>
+      <p class="text-sm text-slate-400 mt-1">Cross-exchange execution & structural quoting across Polymarket & Kalshi.</p>
     </div>
 
-    <!-- Live Status Badges -->
+    <!-- Live Status & Venue Selector -->
     <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
-      <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800">
-        <span class="text-slate-400">Venue:</span> <span class="font-semibold text-emerald-400">Kalshi (Live L2)</span>
-      </div>
-      <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800">
-        <span class="text-slate-400">Target Event:</span> <span class="font-semibold text-cyan-400" id="header-event">Loading...</span>
+      <div class="flex rounded-lg bg-slate-900 border border-slate-800 p-0.5">
+        <button onclick="switchVenue('polymarket')" id="btn-polymarket" class="px-3 py-1 rounded-md bg-purple-600 text-white font-semibold transition">
+          Polymarket CLOB
+        </button>
+        <button onclick="switchVenue('kalshi')" id="btn-kalshi" class="px-3 py-1 rounded-md text-slate-400 hover:text-white transition">
+          Kalshi L2
+        </button>
       </div>
       <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800">
         <span class="text-slate-400">PnL:</span> <span class="font-semibold text-emerald-400" id="header-pnl">$0.00</span>
@@ -168,24 +178,24 @@ HTML_TEMPLATE = """
     <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
       <div class="text-xs text-slate-400 font-medium">Scanned Contracts</div>
       <div class="text-2xl font-bold mt-1 font-mono text-white" id="stat-scanned">0</div>
-      <div class="text-xs text-emerald-400 mt-1 flex items-center gap-1.5">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Active books connected
+      <div class="text-xs text-emerald-400 mt-1 flex items-center gap-1.5" id="venue-status-indicator">
+        <span class="w-2 h-2 rounded-full bg-purple-500"></span> Polymarket CLOB Active
       </div>
     </div>
     <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
       <div class="text-xs text-slate-400 font-medium">Active Disagreements</div>
       <div class="text-2xl font-bold mt-1 font-mono text-amber-400" id="stat-disagreements">0</div>
-      <div class="text-xs text-slate-400 mt-1">Violations net of exchange fees</div>
+      <div class="text-xs text-slate-400 mt-1">Sum-to-1 & Monotonicity bounds</div>
     </div>
     <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
-      <div class="text-xs text-slate-400 font-medium">Convergence Rate</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-emerald-400" id="stat-convergence">100.0%</div>
-      <div class="text-xs text-slate-400 mt-1">Prices drift toward model FV</div>
+      <div class="text-xs text-slate-400 font-medium">Venue Fee Rate</div>
+      <div class="text-2xl font-bold mt-1 font-mono text-cyan-400" id="stat-fee">0.2% Taker</div>
+      <div class="text-xs text-slate-400 mt-1">Gas & relayer amortization</div>
     </div>
     <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
       <div class="text-xs text-slate-400 font-medium">Risk Gate Exposure</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-cyan-400" id="stat-exposure">$0.00</div>
-      <div class="text-xs text-slate-400 mt-1">Hard cap: $2,500.00</div>
+      <div class="text-2xl font-bold mt-1 font-mono text-emerald-400" id="stat-exposure">$0.00</div>
+      <div class="text-xs text-slate-400 mt-1">Hard limit: $2,500.00</div>
     </div>
   </div>
 
@@ -214,11 +224,11 @@ HTML_TEMPLATE = """
       <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
         <div class="flex items-center justify-between pb-3 border-b border-slate-800">
           <div>
-            <h2 class="text-base font-semibold text-white">Model Fair Values & Quoter</h2>
-            <p class="text-xs text-slate-400">Distribution fit from liquid contracts & derived quotes for thin brackets.</p>
+            <h2 class="text-base font-semibold text-white">Live L2 Order Books & Copula Quotes</h2>
+            <p class="text-xs text-slate-400" id="table-subtitle">Distribution fit from liquid contracts & derived quotes for thin brackets.</p>
           </div>
           <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20" id="model-params">
-            Fit: μ = 2.50%, σ = 0.96%
+            Fit: μ = 1.82, σ = 0.85
           </span>
         </div>
 
@@ -226,12 +236,12 @@ HTML_TEMPLATE = """
           <table class="w-full text-left text-xs font-mono">
             <thead>
               <tr class="text-slate-400 border-b border-slate-800">
-                <th class="pb-2.5">Contract</th>
-                <th class="pb-2.5">Bracket</th>
+                <th class="pb-2.5">Bracket / Question</th>
+                <th class="pb-2.5">Venue</th>
                 <th class="pb-2.5">Model FV</th>
-                <th class="pb-2.5">Best Bid</th>
-                <th class="pb-2.5">Best Ask</th>
-                <th class="pb-2.5">Two-Sided Quote</th>
+                <th class="pb-2.5">CLOB Bid</th>
+                <th class="pb-2.5">CLOB Ask</th>
+                <th class="pb-2.5">Derived Quote</th>
                 <th class="pb-2.5">Discrepancy</th>
               </tr>
             </thead>
@@ -297,18 +307,36 @@ HTML_TEMPLATE = """
   </div>
 
   <script>
+    let activeVenue = "polymarket";
+
+    function switchVenue(venue) {
+      activeVenue = venue;
+      if (venue === 'polymarket') {
+        document.getElementById('btn-polymarket').className = 'px-3 py-1 rounded-md bg-purple-600 text-white font-semibold transition';
+        document.getElementById('btn-kalshi').className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white transition';
+        document.getElementById('venue-status-indicator').innerHTML = '<span class="w-2 h-2 rounded-full bg-purple-500"></span> Polymarket CLOB Active';
+        document.getElementById('stat-fee').innerText = '0.2% Taker';
+      } else {
+        document.getElementById('btn-kalshi').className = 'px-3 py-1 rounded-md bg-emerald-600 text-white font-semibold transition';
+        document.getElementById('btn-polymarket').className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white transition';
+        document.getElementById('venue-status-indicator').innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Kalshi L2 Active';
+        document.getElementById('stat-fee').innerText = '1.0% Taker';
+      }
+      fetch('/api/switch_venue?venue=' + venue).then(() => fetchLatestData());
+    }
+
     async function fetchLatestData() {
       try {
         const res = await fetch('/api/state');
         const data = await res.json();
 
         // Update header & metrics
-        document.getElementById('header-event').innerText = data.event ? data.event.title : 'N/A';
         document.getElementById('stat-scanned').innerText = data.contracts.length;
         document.getElementById('stat-disagreements').innerText = data.flags.length;
         document.getElementById('flags-badge').innerText = data.flags.length + " Flags";
         document.getElementById('header-pnl').innerText = "$" + data.portfolio.net_pnl_after_fees.toFixed(2);
         document.getElementById('stat-exposure').innerText = "$" + (data.portfolio.positions_count * 2.5).toFixed(2);
+        document.getElementById('table-subtitle').innerText = data.event ? data.event.title : 'Live Order Books';
 
         // Update flags
         const flagsContainer = document.getElementById('flags-container');
@@ -347,11 +375,12 @@ HTML_TEMPLATE = """
           const bid = book.yes_bids && book.yes_bids[0] ? book.yes_bids[0].price : null;
           const diff = ask ? (fv - ask).toFixed(4) : '-';
           const diffColor = parseFloat(diff) > 0 ? 'text-emerald-400' : 'text-slate-400';
+          const venueTag = c.venue === 'polymarket' ? '<span class="text-purple-400 font-semibold">POLY</span>' : '<span class="text-emerald-400 font-semibold">KALSHI</span>';
 
           return `
             <tr>
-              <td class="py-2.5 font-bold text-slate-200">${c.ticker}</td>
-              <td class="text-slate-300">${c.subtitle || c.title}</td>
+              <td class="py-2.5 font-bold text-slate-200 max-w-xs truncate">${c.subtitle || c.title}</td>
+              <td class="font-mono text-[11px]">${venueTag}</td>
               <td class="text-cyan-400 font-bold">${fv.toFixed(4)}</td>
               <td class="text-emerald-400">${bid !== null ? bid.toFixed(4) : '-'}</td>
               <td class="text-rose-400">${ask !== null ? ask.toFixed(4) : '-'}</td>
@@ -372,7 +401,7 @@ HTML_TEMPLATE = """
                 <span>${a.order_id}</span>
                 <span class="text-emerald-400 font-bold">${a.status.toUpperCase()}</span>
               </div>
-              <div class="text-slate-100 mt-0.5 font-semibold">FILL ${a.filled_count} ${a.ticker} @ $${a.fill_price.toFixed(4)}</div>
+              <div class="text-slate-100 mt-0.5 font-semibold">FILL ${a.filled_count} ${a.ticker.substring(0, 16)}... @ $${a.fill_price.toFixed(4)}</div>
               <div class="text-slate-400 text-[11px] mt-0.5">Fee: $${a.fee_paid.toFixed(4)} | VWAP match</div>
             </div>
           `).join('');
@@ -389,7 +418,6 @@ HTML_TEMPLATE = """
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({flag_id: flagId})
       });
-      const data = await res.json();
       fetchLatestData();
     }
 
@@ -408,9 +436,15 @@ def index():
     return render_template_string(HTML_TEMPLATE)
 
 
+@app.route("/api/switch_venue")
+def switch_venue():
+    venue = request.args.get("venue", "polymarket")
+    refresh_market_data(venue)
+    return jsonify({"status": "switched", "venue": venue})
+
+
 @app.route("/api/state")
 def get_state():
-    # Economic model fit
     strikes = [1.5, 2.5, 3.5]
     cum_probs = [0.15, 0.50, 0.85]
     mu, sigma = engine.economic_pricer.fit_distribution_from_brackets(strikes, cum_probs)
@@ -423,17 +457,16 @@ def get_state():
         model_fvs[c.ticker] = fv
         quotes[c.ticker] = {"bid": bid_q, "ask": ask_q}
 
-    # Format contracts
     contracts_data = [{
         "ticker": c.ticker,
         "event_ticker": c.event_ticker,
         "title": c.title,
         "subtitle": c.subtitle or c.title,
         "floor_strike": c.floor_strike,
-        "cap_strike": c.cap_strike
+        "cap_strike": c.cap_strike,
+        "venue": c.venue.value
     } for c in cached_contracts]
 
-    # Format books
     books_data = {}
     for ticker, ob in cached_books.items():
         books_data[ticker] = {
@@ -444,7 +477,6 @@ def get_state():
             "spread": ob.spread
         }
 
-    # Format flags
     flags_data = [{
         "flag_id": f.flag_id,
         "event_ticker": f.event_ticker,
@@ -461,7 +493,6 @@ def get_state():
         } for t in f.suggested_trades]
     } for f in cached_flags]
 
-    # Portfolio
     summary = engine.get_portfolio_summary()
 
     return jsonify({
@@ -478,9 +509,6 @@ def get_state():
 
 @app.route("/api/execute", methods=["POST"])
 def execute_flag():
-    body = request.get_json() or {}
-    flag_id = body.get("flag_id")
-
     if cached_contracts and cached_books:
         ev_ticker = cached_contracts[0].event_ticker
         results = engine.scan_and_execute_bracket_arbitrage(
@@ -501,8 +529,8 @@ def execute_flag():
 def main():
     port = 8080
     print("=" * 65)
-    print(f" COPULA DASHBOARD SERVER LAUNCHING")
-    print(f" Access Dashboard Live At: http://localhost:{port}")
+    print(f" COPULA MULTI-VENUE SERVER LAUNCHING")
+    print(f" Access Live At: http://localhost:{port}")
     print("=" * 65)
     app.run(host="127.0.0.1", port=port, debug=False)
 
