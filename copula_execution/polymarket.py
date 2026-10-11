@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from typing import Dict, List, Optional, Any
 
 from copula_execution.types import OrderBook, OrderBookLevel, MarketVenue, MarketContract
+from copula_execution.classify import classify_polymarket_event
 
 
 class PolymarketIngestion:
@@ -38,31 +39,70 @@ class PolymarketIngestion:
             print(f"Error fetching Polymarket events: {e}")
         return []
 
+    @staticmethod
+    def _parse_time(s) -> Optional[datetime]:
+        if not s:
+            return None
+        try:
+            return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+        except ValueError:
+            return None
+
+    @staticmethod
+    def _load_list(raw) -> list:
+        if isinstance(raw, str):
+            try:
+                return json.loads(raw)
+            except ValueError:
+                return []
+        return raw or []
+
+    def contracts_from_event(self, ev: dict) -> List[MarketContract]:
+        """
+        Build MarketContracts for the *open, tradable* markets of a Gamma event and classify the
+        event. Closed markets are dropped (they are resolved and have no book), the YES token is
+        located through each market's `outcomes` list rather than assumed to be index 0, and the
+        per-market fee schedule and tick size are copied from the venue.
+        """
+        raw_mkts = ev.get("markets") or []
+        contracts: List[MarketContract] = []
+        n_unmapped = 0
+        for m in raw_mkts:
+            if m.get("closed") or m.get("active") is False or m.get("acceptingOrders") is False:
+                continue
+            tokens = self._load_list(m.get("clobTokenIds"))
+            outcomes = [str(o).lower() for o in self._load_list(m.get("outcomes"))]
+            if "yes" in outcomes and len(tokens) == len(outcomes):
+                yes_token = tokens[outcomes.index("yes")]
+            else:
+                n_unmapped += 1   # not a plain Yes/No market: cannot be mapped safely
+                continue
+
+            sched = m.get("feeSchedule") or {}
+            contracts.append(MarketContract(
+                ticker=yes_token,
+                event_ticker=str(ev.get("id")),
+                venue=MarketVenue.POLYMARKET,
+                title=m.get("question", ""),
+                subtitle=m.get("groupItemTitle") or m.get("question"),
+                strike_type="binary",
+                mutually_exclusive_group=bool(ev.get("negRisk")),
+                expiration_time=self._parse_time(m.get("endDate")),
+                tick_size=float(m.get("orderPriceMinTickSize") or 0.01),
+                fees_enabled=bool(m.get("feesEnabled", True)),
+                fee_rate=float(sched["rate"]) if sched.get("rate") is not None else None,
+                fee_exponent=float(sched.get("exponent", 1.0)),
+            ))
+        classify_polymarket_event(contracts, bool(ev.get("negRisk")),
+                                  bool(ev.get("negRiskAugmented")), n_unmapped=n_unmapped)
+        return contracts
+
     def fetch_event_markets(self, event_id: str) -> List[MarketContract]:
-        """Fetch all markets under a specific Polymarket event."""
+        """Fetch the open markets under a specific Polymarket event."""
         try:
             r = self.session.get(f"{self.gamma_base}/events/{event_id}", timeout=12)
             if r.status_code == 200:
-                ev = r.json()
-                raw_mkts = ev.get("markets") or []
-                contracts = []
-                for m in raw_mkts:
-                    # Parse tokens
-                    tokens_raw = m.get("clobTokenIds") or "[]"
-                    tokens = json.loads(tokens_raw) if isinstance(tokens_raw, str) else tokens_raw
-                    yes_token = tokens[0] if tokens else m.get("id")
-
-                    c = MarketContract(
-                        ticker=yes_token,
-                        event_ticker=str(ev.get("id")),
-                        venue=MarketVenue.POLYMARKET,
-                        title=m.get("question", ""),
-                        subtitle=m.get("groupItemTitle") or m.get("question"),
-                        strike_type="binary",
-                        mutually_exclusive_group=bool(ev.get("negRisk") or len(raw_mkts) > 2)
-                    )
-                    contracts.append(c)
-                return contracts
+                return self.contracts_from_event(r.json())
         except Exception as e:
             print(f"Error fetching event {event_id} from Polymarket: {e}")
         return []

@@ -27,7 +27,7 @@ from copula_execution.types import (
 from copula_execution.ingestion import MarketIngestion
 from copula_execution.polymarket import PolymarketIngestion
 from copula_execution.coherence_scanner import CoherenceScanner
-from copula_execution.pricer import EconomicBracketPricer, MarketMakerQuoter
+from copula_execution.pricer import EventPricer
 from copula_execution.risk_manager import FeeCalculator
 
 
@@ -40,8 +40,7 @@ def scan_all_venues():
     poly = PolymarketIngestion()
     kalshi = MarketIngestion()
     scanner = CoherenceScanner(min_edge=0.01) # 1 cent min edge
-    pricer = EconomicBracketPricer()
-    quoter = MarketMakerQuoter()
+    engine_pricer = EventPricer()
 
     all_results = []
 
@@ -58,48 +57,42 @@ def scan_all_venues():
     for ev in poly_events:
         ev_id = str(ev.get("id"))
         title = ev.get("title", "")
-        raw_mkts = ev.get("markets") or []
-        
+        # Open, tradable markets only, with YES token / fee schedule / event kind resolved by ingestion
+        contracts = poly.contracts_from_event(ev)
+
         # Only scan multi-market / bracket events
-        if len(raw_mkts) < 2:
+        if len(contracts) < 2:
             continue
 
         poly_scanned_count += 1
-        print(f"\n--- [Polymarket] Event #{ev_id}: '{title}' ({len(raw_mkts)} markets) ---")
+        kind = contracts[0].event_kind.value
+        exh = " exhaustive" if all(c.exhaustive for c in contracts) else ""
+        print(f"\n--- [Polymarket] Event #{ev_id}: '{title}' ({len(contracts)} open markets, {kind}{exh}) ---")
 
-        contracts = []
         books = {}
-
-        for m in raw_mkts:
-            tokens_raw = m.get("clobTokenIds") or "[]"
-            tokens = json.loads(tokens_raw) if isinstance(tokens_raw, str) else tokens_raw
-            yes_token = tokens[0] if tokens else m.get("id")
-            
-            c = MarketContract(
-                ticker=yes_token,
-                event_ticker=ev_id,
-                venue=MarketVenue.POLYMARKET,
-                title=m.get("question", ""),
-                subtitle=m.get("groupItemTitle") or m.get("question")
-            )
-            contracts.append(c)
-
-            # Ingest order book
-            ob = poly.fetch_order_book(yes_token)
+        for c in contracts:
+            ob = poly.fetch_order_book(c.ticker)
             if ob:
-                books[yes_token] = ob
+                books[c.ticker] = ob
 
         print(f"  > Successfully retrieved {len(books)}/{len(contracts)} CLOB order books.")
 
-        # Compute Basket Sums
+        # Basket sums only mean something for a mutually exclusive set
         sum_asks = sum(b.best_yes_ask for b in books.values() if b.best_yes_ask is not None)
         sum_bids = sum(b.best_yes_bid for b in books.values() if b.best_yes_bid is not None)
-        total_poly_fees = sum(FeeCalculator.calculate_fee(MarketVenue.POLYMARKET, b.best_yes_ask or 0.5, 1) for b in books.values() if b.best_yes_ask is not None)
+        total_poly_fees = sum(FeeCalculator.fee_per_contract(c, books[c.ticker].best_yes_ask, scanner.trade_size)
+                              for c in contracts if c.ticker in books and books[c.ticker].best_yes_ask is not None)
+        applies = "" if kind == "partition" else "  (not a partition: sums are informational only)"
+        print(f"  > Basket Ask Sum: ${sum_asks:.4f} | Basket Bid Sum: ${sum_bids:.4f} | Est. Fees/basket: ${total_poly_fees:.4f}{applies}")
 
-        print(f"  > Basket Ask Sum: ${sum_asks:.4f} | Basket Bid Sum: ${sum_bids:.4f} | Est. Fees: ${total_poly_fees:.4f}")
+        pricing = engine_pricer.price_event(contracts, books)
+        priced = sum(1 for f in pricing.fair_values.values() if f.fv is not None)
+        print(f"  > Pricing: {pricing.method} ({priced}/{len(contracts)} contracts priced)"
+              + (f" | {pricing.warnings[0]}" if pricing.warnings else ""))
 
-        # Run mathematical coherence scanner
-        flags = scanner.check_mutually_exclusive_sum(ev_id, contracts, books)
+        # Run mathematical coherence scanner (guards decide which checks are valid for this event kind)
+        flags = scanner.check_mutually_exclusive_sum(ev_id, contracts, books) + \
+            scanner.check_monotonicity(ev_id, contracts, books)
         for f in flags:
             poly_flags_count += 1
             print(f"  >>> [FLAG DETECTED] {f.disagreement_type.value.upper()}: Gap = ${f.gross_discrepancy:.4f} | Net Edge After Fees = ${f.gap_size:.4f}")
@@ -136,10 +129,12 @@ def scan_all_venues():
             continue
 
         kalshi_scanned_count += 1
-        print(f"\n--- [Kalshi] Event {ev_ticker}: '{title}' ({len(contracts)} brackets) ---")
+        kind = contracts[0].event_kind.value
+        exh = " exhaustive" if all(c.exhaustive for c in contracts) else ""
+        print(f"\n--- [Kalshi] Event {ev_ticker}: '{title}' ({len(contracts)} brackets, {kind}{exh}) ---")
 
         books = {}
-        for c in contracts[:10]: # Check up to 10 brackets
+        for c in contracts[:40]:  # a partial book set can never prove a buy-basket (the scanner enforces it)
             ob = kalshi.fetch_order_book(c.ticker)
             if ob:
                 books[c.ticker] = ob
@@ -148,9 +143,15 @@ def scan_all_venues():
 
         sum_asks = sum(b.best_yes_ask for b in books.values() if b.best_yes_ask is not None)
         sum_bids = sum(b.best_yes_bid for b in books.values() if b.best_yes_bid is not None)
-        total_kalshi_fees = sum(FeeCalculator.calculate_fee(MarketVenue.KALSHI, b.best_yes_ask or 0.5, 1) for b in books.values() if b.best_yes_ask is not None)
+        total_kalshi_fees = sum(FeeCalculator.fee_per_contract(c, books[c.ticker].best_yes_ask, scanner.trade_size)
+                                for c in contracts if c.ticker in books and books[c.ticker].best_yes_ask is not None)
+        applies = "" if kind == "partition" else "  (not a partition: sums are informational only)"
+        print(f"  > Basket Ask Sum: ${sum_asks:.4f} | Basket Bid Sum: ${sum_bids:.4f} | Est. Fees/basket: ${total_kalshi_fees:.4f}{applies}")
 
-        print(f"  > Basket Ask Sum: ${sum_asks:.4f} | Basket Bid Sum: ${sum_bids:.4f} | Est. Fees: ${total_kalshi_fees:.4f}")
+        pricing = engine_pricer.price_event(contracts, books)
+        priced = sum(1 for f in pricing.fair_values.values() if f.fv is not None)
+        print(f"  > Pricing: {pricing.method} ({priced}/{len(contracts)} contracts priced)"
+              + (f" | {pricing.warnings[0]}" if pricing.warnings else ""))
 
         # Check Sum to 1 & Monotonicity
         sum_flags = scanner.check_mutually_exclusive_sum(ev_ticker, contracts, books)

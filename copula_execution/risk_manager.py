@@ -4,11 +4,14 @@ Risk management, fee calculation, and safety gates for the execution layer.
 Calculates exchange transaction fees and enforces hard drawdown limits, max exposure,
 max per-event exposure, slippage bounds, and execution rate limits.
 """
+import math
 from dataclasses import dataclass, field
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Optional, Tuple, List
 
-from copula_execution.types import OrderRequest, Position, MarketVenue, ContractSide, ActionSide
+from copula_execution.types import (
+    OrderRequest, Position, MarketVenue, ContractSide, ActionSide, MarketContract
+)
 
 
 @dataclass
@@ -24,33 +27,87 @@ class RiskLimits:
 
 class FeeCalculator:
     """
-    Computes exact fees across prediction market venues.
-    Kalshi charges:
-      Formula: taker fees typically round to nearest cent per contract or volume tiered.
-      Standard standard retail/institutional model: ~0.5% - 1.5% of trade value (default 1c min or 0.01/share).
-      Here we implement accurate per-contract prediction market fee schedules.
+    Per-venue fee schedules.
+
+    Kalshi (published schedule): taker fee = ceil_to_cent(0.07 * C * p * (1 - p)); maker orders pay
+    nothing except on the few series that list maker fees (0.0175 * C * p * (1 - p)). Per-market
+    `fee_multiplier` / `fee_type` from the API are honoured via MarketContract.
+
+    Polymarket: fees are set per market. The market's `feeSchedule` gives
+    fee = C * p * rate * (p * (1 - p)) ** exponent, taker-only; `feesEnabled=False` means fee-free.
+    The fallback below is used only when a contract carries no schedule (e.g. historical data).
+
+    Both rates drift over time -- ingestion copies what the venue reports onto each MarketContract
+    and `fee_for_contract` is the entry point everything else should use.
     """
 
+    KALSHI_TAKER_RATE = 0.07
+    KALSHI_MAKER_RATE = 0.0175
+    POLYMARKET_FALLBACK_RATE = 0.05   # conservative: highest non-crypto rate seen on live markets
+
     @staticmethod
-    def calculate_fee(venue: MarketVenue, price: float, count: int, is_maker: bool = False) -> float:
+    def _ceil_cents(x: float) -> float:
+        return math.ceil(round(x * 100.0, 9)) / 100.0
+
+    @staticmethod
+    def calculate_fee(venue: MarketVenue, price: float, count: int, is_maker: bool = False,
+                      fee_rate: Optional[float] = None, fee_exponent: float = 1.0,
+                      fees_enabled: bool = True, maker_fee_rate: Optional[float] = None) -> float:
+        if count <= 0:
+            return 0.0
+        p = min(max(float(price), 0.0), 1.0)
+
         if venue == MarketVenue.SIMULATED:
-            # Assume 0.5% fee or 0.5 cent / contract for realistic paper testing
-            return round(max(0.005 * price * count, 0.005 * count), 4)
+            # Venue-agnostic paper fee; real paths should pass the real venue.
+            return round(max(0.005 * p * count, 0.005 * count), 4)
+
+        if not fees_enabled:
+            return 0.0
 
         if venue == MarketVenue.KALSHI:
-            # Kalshi fee schedule:
-            # For maker orders: often 0 or negative maker rebate in certain contracts. Defaulting to 0.001.
-            # For taker orders: ~$0.01 per contract (up to max fee cap of $0.02)
-            if is_maker:
-                return round(0.001 * count, 4)
-            taker_fee_per_contract = min(0.02, max(0.005, 0.01 * price))
-            return round(taker_fee_per_contract * count, 4)
+            rate = maker_fee_rate if is_maker else (
+                fee_rate if fee_rate is not None else FeeCalculator.KALSHI_TAKER_RATE)
+            if not rate:
+                return 0.0
+            # Kalshi rounds the whole order's fee up to the next cent.
+            return FeeCalculator._ceil_cents(rate * count * p * (1.0 - p))
 
         if venue == MarketVenue.POLYMARKET:
-            # Polymarket: 0% exchange fee on most markets, but gas/relayer cost amortised
-            return round(0.002 * count * price, 4)
+            if is_maker:
+                return 0.0   # takerOnly on every schedule observed
+            rate = fee_rate if fee_rate is not None else FeeCalculator.POLYMARKET_FALLBACK_RATE
+            return round(count * p * rate * (p * (1.0 - p)) ** fee_exponent, 5)
 
         return 0.0
+
+    @staticmethod
+    def fee_for_contract(contract: MarketContract, price: float, count: int,
+                         is_maker: bool = False) -> float:
+        """Fee using the market's own schedule (falls back to the venue default)."""
+        return FeeCalculator.calculate_fee(
+            contract.venue, price, count, is_maker=is_maker,
+            fee_rate=contract.fee_rate, fee_exponent=contract.fee_exponent,
+            fees_enabled=contract.fees_enabled, maker_fee_rate=contract.maker_fee_rate)
+
+    @staticmethod
+    def fee_per_contract(contract: MarketContract, price: float, size: int,
+                         is_maker: bool = False) -> float:
+        """Average fee per contract when trading `size` at once (cent rounding is per order, not per lot)."""
+        size = max(int(size), 1)
+        return FeeCalculator.fee_for_contract(contract, price, size, is_maker) / size
+
+    @staticmethod
+    def describe(contract: MarketContract) -> str:
+        """Human-readable schedule for UIs."""
+        if not contract.fees_enabled:
+            return "fee-free"
+        if contract.venue == MarketVenue.KALSHI:
+            r = contract.fee_rate if contract.fee_rate is not None else FeeCalculator.KALSHI_TAKER_RATE
+            return f"taker {r:g}*p(1-p), ceil to cent"
+        if contract.venue == MarketVenue.POLYMARKET:
+            r = contract.fee_rate if contract.fee_rate is not None else FeeCalculator.POLYMARKET_FALLBACK_RATE
+            return f"taker {r:g}*p*(p(1-p))^{contract.fee_exponent:g}"
+        return "paper"
 
 
 class RiskManager:

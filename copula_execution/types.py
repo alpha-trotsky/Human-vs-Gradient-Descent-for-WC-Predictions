@@ -39,6 +39,17 @@ class OrderStatus(str, Enum):
     EXPIRED = "expired"
 
 
+class EventKind(str, Enum):
+    """
+    How the contracts of one event relate to each other. This decides which
+    coherence checks are *valid* and which pricing model applies.
+    """
+    PARTITION = "partition"                        # mutually exclusive: at most one leg resolves YES
+    CUMULATIVE_THRESHOLD = "cumulative_threshold"  # nested ladder: P(X > k) / P(X < k)
+    NESTED_BY_DATE = "nested_by_date"              # nested ladder: P(event happens by t)
+    UNKNOWN = "unknown"                            # relationship not established -> no structural checks
+
+
 class DisagreementType(str, Enum):
     SUM_TO_ONE = "sum_to_one"                   # ME brackets sum exceeds 1 + fee or < 1 - fee
     MONOTONICITY = "monotonicity"               # P(Above X) < P(Above Y) when X < Y
@@ -97,6 +108,19 @@ class MarketContract:
     strike_type: Optional[str] = None
     mutually_exclusive_group: bool = False
     expiration_time: Optional[datetime] = None
+    # --- structure of the event this contract belongs to (set by copula_execution.classify) ---
+    event_kind: EventKind = EventKind.UNKNOWN
+    exhaustive: bool = False         # PARTITION only: the listed legs cover every possible outcome
+    resolution_step: float = 0.0     # quantisation of the underlying (e.g. 0.1 for GDP/CPI prints)
+    # Continuous-domain edges (lo, hi) of the region this contract pays on; None = unbounded.
+    # Derived from strikes by the classifier so the pricer never re-interprets strike types.
+    model_edges: Optional[Tuple[Optional[float], Optional[float]]] = None
+    # --- venue trading parameters (read from the venue, not guessed) ---
+    tick_size: float = 0.01
+    fee_rate: Optional[float] = None  # None -> venue default schedule
+    fee_exponent: float = 1.0
+    fees_enabled: bool = True
+    maker_fee_rate: Optional[float] = None  # None -> no maker fee
 
 
 @dataclass
@@ -128,6 +152,7 @@ class OrderRequest:
     flag_id: Optional[str] = None
     client_order_id: Optional[str] = None
     created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    contract: Optional["MarketContract"] = None  # lets the gateway apply the market's own fee schedule
 
 
 @dataclass

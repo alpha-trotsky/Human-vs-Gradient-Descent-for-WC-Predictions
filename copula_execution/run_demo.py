@@ -17,6 +17,7 @@ from copula_execution.gateway import PaperExecutionGateway
 from copula_execution.risk_manager import RiskManager, RiskLimits
 from copula_execution.coherence_scanner import CoherenceScanner
 from copula_execution.engine import ExecutionEngine
+from copula_execution.classify import classify_kalshi_event
 from copula_execution.types import OrderBook, OrderBookLevel, MarketVenue, MarketContract
 
 
@@ -59,7 +60,8 @@ def run_live_or_simulated_demo():
     if target_event:
         print(f" -> Found active event: {target_event.get('title')} ({target_event.get('event_ticker')})")
         print(f" -> Ingesting order books for {len(target_contracts)} contracts...")
-        for c in target_contracts[:6]:
+        # every leg's book: a buy-basket arbitrage is only valid with a live ask on all of them
+        for c in target_contracts[:40]:
             ob = ingestion.fetch_order_book(c.ticker)
             if ob:
                 books[c.ticker] = ob
@@ -68,11 +70,13 @@ def run_live_or_simulated_demo():
         print(" -> No active open bracket event with liquid book. Generating realistic bracket scenario...")
         ev_ticker = "KXUSCPI-DEMO"
         target_contracts = [
-            MarketContract("CPI-B1.5", ev_ticker, MarketVenue.KALSHI, "CPI <= 1.5%", floor_strike=0.0, cap_strike=1.5),
-            MarketContract("CPI-B2.5", ev_ticker, MarketVenue.KALSHI, "1.5% < CPI <= 2.5%", floor_strike=1.5, cap_strike=2.5),
-            MarketContract("CPI-B3.5", ev_ticker, MarketVenue.KALSHI, "2.5% < CPI <= 3.5%", floor_strike=2.5, cap_strike=3.5),
-            MarketContract("CPI-B4.5", ev_ticker, MarketVenue.KALSHI, "CPI > 3.5%", floor_strike=3.5, cap_strike=10.0),
+            MarketContract("CPI-B1.5", ev_ticker, MarketVenue.KALSHI, "CPI <= 1.5%", cap_strike=1.5, strike_type="less"),
+            MarketContract("CPI-B2.5", ev_ticker, MarketVenue.KALSHI, "1.5% < CPI <= 2.5%", floor_strike=1.5, cap_strike=2.5, strike_type="between"),
+            MarketContract("CPI-B3.5", ev_ticker, MarketVenue.KALSHI, "2.5% < CPI <= 3.5%", floor_strike=2.5, cap_strike=3.5, strike_type="between"),
+            MarketContract("CPI-B4.5", ev_ticker, MarketVenue.KALSHI, "CPI > 3.5%", floor_strike=3.5, strike_type="greater"),
         ]
+        # The brackets tile the real line, so the classifier proves them mutually exclusive AND exhaustive.
+        classify_kalshi_event(target_contracts, event_mutually_exclusive=True)
         # Introduce a real-world mispricing where the basket sums to $0.84 (16c gross arb)
         books = {
             "CPI-B1.5": OrderBook("CPI-B1.5", MarketVenue.KALSHI, datetime.now(timezone.utc),
@@ -90,15 +94,24 @@ def run_live_or_simulated_demo():
 
     # 3. Model calibration & quoting
     print("\n[2] Calibrating Structural Model & Generating Fair Values...")
-    strikes = [1.5, 2.5, 3.5]
-    cum_probs = [0.15, 0.50, 0.85]
-    mu, sigma = engine.economic_pricer.fit_distribution_from_brackets(strikes, cum_probs)
-    print(f" -> Implied Gaussian parameters: Mean={mu:.3f}, StdDev={sigma:.3f}")
+    # Fair values come from THIS event's own live books (no hardcoded strikes).
+    pricing = engine.price_event(target_contracts, books)
+    print(f" -> Event kind: {target_contracts[0].event_kind.value} | method: {pricing.method}")
+    if pricing.params.get("mu") is not None:
+        print(f" -> Fitted {pricing.params['dist']}: mean={pricing.params['mu']:.3f}, scale={pricing.params['sigma']:.3f}, "
+              f"fit rmse={pricing.params['rmse']:.4f} over {pricing.params['n_anchors']} liquid brackets")
+    for w in pricing.warnings:
+        print(f" !! {w}")
 
-    for c in target_contracts[:4]:
-        fv = engine.economic_pricer.price_bracket(c.floor_strike, c.cap_strike, mu, sigma)
-        bid_quote, ask_quote = engine.quoter.quote_contract(fv)
-        print(f"    * Model FV for {c.ticker}: {fv:.4f} | Quoted Two-Sided Market: Bid={bid_quote:.2f} / Ask={ask_quote:.2f}")
+    for c in target_contracts[:6]:
+        fv = pricing.fair_values[c.ticker]
+        if fv.fv is None:
+            print(f"    * {c.ticker}: not priced ({fv.note})")
+            continue
+        bid_quote, ask_quote = engine.quoter.quote_fair_value(fv, c)
+        fmt = lambda x: "none" if x is None else f"{x:.2f}"
+        print(f"    * Model FV for {c.ticker}: {fv.fv:.4f} +/- {fv.uncertainty:.4f} "
+              f"| Quoted Two-Sided Market: Bid={fmt(bid_quote)} / Ask={fmt(ask_quote)}")
 
     # 4. Scan & Execute Arbitrage
     print("\n[3] Scanning for Coherence / Arbitrage Violations & Routing Orders...")

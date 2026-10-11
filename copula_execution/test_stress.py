@@ -14,7 +14,7 @@ import numpy as np
 
 from copula_execution.types import (
     OrderBook, OrderBookLevel, MarketVenue, MarketContract, OrderRequest,
-    OrderType, ActionSide, ContractSide, OrderStatus, DisagreementType
+    OrderType, ActionSide, ContractSide, OrderStatus, DisagreementType, EventKind
 )
 from copula_execution.risk_manager import RiskManager, RiskLimits, FeeCalculator
 from copula_execution.gateway import PaperExecutionGateway
@@ -31,8 +31,11 @@ class TestExecutionStressAndEdgeCases(unittest.TestCase):
         The system MUST suppress the flag and not execute a money-losing trade.
         """
         scanner = CoherenceScanner(min_edge=0.02)
-        c1 = MarketContract("T-1", "EV-1", MarketVenue.KALSHI, "Bracket 1", floor_strike=1.0)
-        c2 = MarketContract("T-2", "EV-1", MarketVenue.KALSHI, "Bracket 2", floor_strike=2.0)
+        # Declared as an exhaustive partition so the *only* thing suppressing the flag is the fee.
+        c1 = MarketContract("T-1", "EV-1", MarketVenue.KALSHI, "Bracket 1", floor_strike=1.0,
+                            event_kind=EventKind.PARTITION, exhaustive=True)
+        c2 = MarketContract("T-2", "EV-1", MarketVenue.KALSHI, "Bracket 2", floor_strike=2.0,
+                            event_kind=EventKind.PARTITION, exhaustive=True)
 
         # Sum of asks is 0.985 (1.5c gross profit).
         # But fee on 2 contracts is ~2c. Net edge is negative!
@@ -163,8 +166,10 @@ class TestExecutionStressAndEdgeCases(unittest.TestCase):
         flag = scanner_flag = CoherenceScanner().check_mutually_exclusive_sum(
             "EV-CONV",
             [
-                MarketContract("C1", "EV-CONV", MarketVenue.KALSHI, "Leg 1"),
-                MarketContract("C2", "EV-CONV", MarketVenue.KALSHI, "Leg 2")
+                MarketContract("C1", "EV-CONV", MarketVenue.KALSHI, "Leg 1",
+                               event_kind=EventKind.PARTITION, exhaustive=True),
+                MarketContract("C2", "EV-CONV", MarketVenue.KALSHI, "Leg 2",
+                               event_kind=EventKind.PARTITION, exhaustive=True)
             ],
             {
                 "C1": OrderBook("C1", MarketVenue.KALSHI, datetime.now(timezone.utc),

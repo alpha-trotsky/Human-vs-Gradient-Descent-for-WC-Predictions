@@ -9,6 +9,8 @@ from datetime import datetime, timezone
 from typing import Dict, List, Optional, Generator
 
 from copula_execution.types import OrderBook, OrderBookLevel, MarketVenue, MarketContract
+from copula_execution.classify import classify_kalshi_event
+from copula_execution.risk_manager import FeeCalculator
 
 
 class MarketIngestion:
@@ -44,13 +46,41 @@ class MarketIngestion:
         res = self.get("/events", {"status": "open", "limit": limit})
         return (res or {}).get("events") or []
 
+    MARKET_PAGE_LIMIT = 100
+    _DEAD_STATUSES = {"closed", "settled", "finalized", "determined", "inactive"}
+
+    @staticmethod
+    def _parse_time(s) -> Optional[datetime]:
+        if not s:
+            return None
+        try:
+            return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+        except ValueError:
+            return None
+
     def fetch_event_markets(self, event_ticker: str) -> List[MarketContract]:
-        """Fetch all individual contracts under an event."""
-        res = self.get("/markets", {"event_ticker": event_ticker, "limit": 100})
+        """
+        Fetch all live contracts under an event and classify how they relate (partition / ladder).
+        Exclusivity lives on the *event* object (market objects carry no such flag), so we read
+        GET /events/{ticker} and fall back to GET /markets only if that fails.
+        """
+        res = self.get(f"/events/{event_ticker}")
+        event = (res or {}).get("event") or {}
         raw_mkts = (res or {}).get("markets") or []
+        event_me: Optional[bool] = event.get("mutually_exclusive") if event else None
+        if not raw_mkts:
+            res = self.get("/markets", {"event_ticker": event_ticker, "limit": self.MARKET_PAGE_LIMIT})
+            raw_mkts = (res or {}).get("markets") or []
+            event_me = None   # unknown: only strike ladders can be classified
+        truncated = len(raw_mkts) >= self.MARKET_PAGE_LIMIT
+
         contracts = []
         for m in raw_mkts:
-            c = MarketContract(
+            if str(m.get("status", "")).lower() in self._DEAD_STATUSES:
+                continue
+            mult = m.get("fee_multiplier")
+            fee_type = str(m.get("fee_type") or "").lower()
+            contracts.append(MarketContract(
                 ticker=m.get("ticker"),
                 event_ticker=m.get("event_ticker"),
                 venue=MarketVenue.KALSHI,
@@ -59,9 +89,14 @@ class MarketIngestion:
                 floor_strike=float(m["floor_strike"]) if m.get("floor_strike") is not None else None,
                 cap_strike=float(m["cap_strike"]) if m.get("cap_strike") is not None else None,
                 strike_type=m.get("strike_type"),
-                mutually_exclusive_group=bool(m.get("mutually_exclusive", False))
-            )
-            contracts.append(c)
+                mutually_exclusive_group=bool(event_me),
+                expiration_time=self._parse_time(m.get("expiration_time")),
+                fees_enabled="free" not in fee_type,
+                fee_rate=(FeeCalculator.KALSHI_TAKER_RATE * float(mult)) if mult else None,
+                maker_fee_rate=(FeeCalculator.KALSHI_MAKER_RATE * float(mult or 1.0)) if "maker" in fee_type else None,
+            ))
+        # A dropped (closed) leg of an ME set means the listing is no longer the whole event.
+        classify_kalshi_event(contracts, event_me, truncated=truncated or len(contracts) < len(raw_mkts))
         return contracts
 
     def fetch_order_book(self, ticker: str) -> Optional[OrderBook]:

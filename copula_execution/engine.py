@@ -20,7 +20,9 @@ from copula_execution.types import (
 from copula_execution.gateway import BaseExecutionGateway, PaperExecutionGateway
 from copula_execution.risk_manager import RiskManager, FeeCalculator
 from copula_execution.coherence_scanner import CoherenceScanner
-from copula_execution.pricer import EconomicBracketPricer, SportsCopulaPricer, MarketMakerQuoter
+from copula_execution.pricer import (
+    EconomicBracketPricer, EventPricer, EventPricing, SportsCopulaPricer, MarketMakerQuoter
+)
 
 
 class ExecutionEngine:
@@ -32,6 +34,7 @@ class ExecutionEngine:
         self.risk_manager = risk_manager or RiskManager()
         self.scanner = scanner or CoherenceScanner()
         self.economic_pricer = EconomicBracketPricer()
+        self.event_pricer = EventPricer(self.economic_pricer)
         self.sports_pricer = SportsCopulaPricer()
         self.quoter = MarketMakerQuoter()
 
@@ -51,6 +54,7 @@ class ExecutionEngine:
         3. Fires orders to gateway and updates portfolio positions.
         """
         results = []
+        contract_by_ticker = {c.ticker: c for c in contracts}
 
         # Run scanner
         sum_flags = self.scanner.check_mutually_exclusive_sum(event_ticker, contracts, books)
@@ -70,17 +74,20 @@ class ExecutionEngine:
                 price = trade["price"]
                 size = trade["size"]
                 book = books.get(ticker)
+                contract = contract_by_ticker.get(ticker)
+                venue = contract.venue if contract else MarketVenue.SIMULATED
 
                 order_req = OrderRequest(
                     order_id=f"ord-{uuid.uuid4().hex[:10]}",
                     ticker=ticker,
-                    venue=MarketVenue.SIMULATED,
+                    venue=venue,
                     action=action,
                     side=side,
                     order_type=OrderType.LIMIT,
                     price=price,
                     count=size,
-                    flag_id=flag.flag_id
+                    flag_id=flag.flag_id,
+                    contract=contract
                 )
 
                 # Validate with Risk Gate
@@ -108,7 +115,7 @@ class ExecutionEngine:
                     self.risk_manager.update_position_from_fill(
                         ticker=ticker,
                         event_ticker=event_ticker,
-                        venue=MarketVenue.SIMULATED,
+                        venue=venue,
                         action=action,
                         side=side,
                         price=order_res.average_fill_price,
@@ -128,6 +135,10 @@ class ExecutionEngine:
                 })
 
         return results
+
+    def price_event(self, contracts: List[MarketContract], books: Dict[str, OrderBook]) -> EventPricing:
+        """Fair values (with uncertainty and provenance) for every contract of one event."""
+        return self.event_pricer.price_event(contracts, books)
 
     def record_convergence_observation(self, flag: DisagreementFlag,
                                        current_prices: Dict[str, float]):

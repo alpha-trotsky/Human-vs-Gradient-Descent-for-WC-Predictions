@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 from copula_execution.types import (
     OrderBook, OrderBookLevel, MarketVenue, MarketContract, OrderRequest,
-    OrderType, ActionSide, ContractSide, OrderStatus, DisagreementType
+    OrderType, ActionSide, ContractSide, OrderStatus, DisagreementType, EventKind
 )
 from copula_execution.risk_manager import RiskManager, RiskLimits, FeeCalculator
 from copula_execution.gateway import PaperExecutionGateway
@@ -73,15 +73,21 @@ class TestRiskManager(unittest.TestCase):
         self.assertIn("exceeds max per-order limit", reason)
 
 
+def partition(ticker, event, title, **kw):
+    """A leg of a mutually exclusive, exhaustive set (what the scanner now requires before it will flag a basket)."""
+    return MarketContract(ticker, event, MarketVenue.KALSHI, title,
+                          event_kind=EventKind.PARTITION, exhaustive=True, **kw)
+
+
 class TestCoherenceScanner(unittest.TestCase):
     def setUp(self):
         self.scanner = CoherenceScanner(min_edge=0.02)
 
     def test_sum_to_one_arbitrage_detection(self):
         # Set up 3 mutually exclusive contracts where sum of YES asks is 0.70 (gross gap = $0.30!)
-        c1 = MarketContract("T-A", "EV-1", MarketVenue.KALSHI, "A", floor_strike=1.0)
-        c2 = MarketContract("T-B", "EV-1", MarketVenue.KALSHI, "B", floor_strike=2.0)
-        c3 = MarketContract("T-C", "EV-1", MarketVenue.KALSHI, "C", floor_strike=3.0)
+        c1 = partition("T-A", "EV-1", "A", floor_strike=1.0)
+        c2 = partition("T-B", "EV-1", "B", floor_strike=2.0)
+        c3 = partition("T-C", "EV-1", "C", floor_strike=3.0)
 
         books = {
             "T-A": OrderBook("T-A", MarketVenue.KALSHI, datetime.now(timezone.utc),
@@ -102,8 +108,10 @@ class TestCoherenceScanner(unittest.TestCase):
     def test_monotonicity_arbitrage_detection(self):
         # Strike 2.0 has Ask = 0.40, Strike 4.0 has Bid = 0.55
         # Clearly impossible since P(X > 4) cannot exceed P(X > 2)!
-        c_low = MarketContract("T-LOW", "EV-1", MarketVenue.KALSHI, "Low", floor_strike=2.0)
-        c_high = MarketContract("T-HIGH", "EV-1", MarketVenue.KALSHI, "High", floor_strike=4.0)
+        c_low = MarketContract("T-LOW", "EV-1", MarketVenue.KALSHI, "Low", floor_strike=2.0,
+                               event_kind=EventKind.CUMULATIVE_THRESHOLD)
+        c_high = MarketContract("T-HIGH", "EV-1", MarketVenue.KALSHI, "High", floor_strike=4.0,
+                                event_kind=EventKind.CUMULATIVE_THRESHOLD)
 
         books = {
             "T-LOW": OrderBook("T-LOW", MarketVenue.KALSHI, datetime.now(timezone.utc),
@@ -148,8 +156,8 @@ class TestExecutionEngineIntegration(unittest.TestCase):
     def test_full_pipeline_arbitrage_execution(self):
         engine = ExecutionEngine()
 
-        c1 = MarketContract("T-A", "EV-TEST", MarketVenue.KALSHI, "A", floor_strike=1.0)
-        c2 = MarketContract("T-B", "EV-TEST", MarketVenue.KALSHI, "B", floor_strike=2.0)
+        c1 = partition("T-A", "EV-TEST", "A", floor_strike=1.0)
+        c2 = partition("T-B", "EV-TEST", "B", floor_strike=2.0)
         books = {
             "T-A": OrderBook("T-A", MarketVenue.KALSHI, datetime.now(timezone.utc),
                              yes_asks=[OrderBookLevel(price=0.25, size=50)]),

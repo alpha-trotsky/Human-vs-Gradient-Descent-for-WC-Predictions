@@ -21,12 +21,11 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 from flask import Flask, jsonify, render_template_string, request
 
 from copula_execution.types import (
-    MarketContract, OrderBook, OrderBookLevel, MarketVenue, ActionSide, ContractSide
+    MarketContract, OrderBook, OrderBookLevel, MarketVenue, ActionSide, ContractSide, EventKind
 )
 from copula_execution.ingestion import MarketIngestion
 from copula_execution.polymarket import PolymarketIngestion
 from copula_execution.coherence_scanner import CoherenceScanner
-from copula_execution.pricer import EconomicBracketPricer, MarketMakerQuoter
 from copula_execution.risk_manager import RiskManager, RiskLimits, FeeCalculator
 from copula_execution.gateway import PaperExecutionGateway
 from copula_execution.engine import ExecutionEngine
@@ -92,7 +91,7 @@ def load_event(event_meta):
         try:
             contracts = poly_ingestion.fetch_event_markets(ev_id)
             cached_contracts = contracts
-            for c in cached_contracts[:12]:
+            for c in cached_contracts[:40]:
                 ob = poly_ingestion.fetch_order_book(c.ticker)
                 if ob:
                     cached_books[c.ticker] = ob
@@ -102,7 +101,7 @@ def load_event(event_meta):
         try:
             contracts = kalshi_ingestion.fetch_event_markets(ev_id)
             cached_contracts = contracts
-            for c in cached_contracts[:12]:
+            for c in cached_contracts[:40]:
                 ob = kalshi_ingestion.fetch_order_book(c.ticker)
                 if ob:
                     cached_books[c.ticker] = ob
@@ -177,12 +176,12 @@ HTML_TEMPLATE = """
 
       <!-- Orderbook Matrix -->
       <div class="border border-[#182234] bg-[#080d17] rounded p-3">
-        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#182234]">
-          <div class="flex items-center gap-2">
+        <div class="flex items-start justify-between gap-3 pb-2 mb-2 border-b border-[#182234]">
+          <div class="flex items-center gap-2 shrink-0">
             <span class="font-bold text-white text-[13px]" id="current-event-title">-</span>
             <span class="px-1.5 py-0.2 rounded text-[10px] font-semibold bg-[#182234] text-cyan-400" id="current-event-venue">VENUE</span>
           </div>
-          <span class="text-[10px] text-[#475569]">MODEL: Structural Calibration Active</span>
+          <span class="text-[10px] text-[#475569] text-right" id="model-label">MODEL: -</span>
         </div>
 
         <div class="overflow-x-auto max-h-96 overflow-y-auto">
@@ -195,7 +194,7 @@ HTML_TEMPLATE = """
                 <th>BEST ASK</th>
                 <th>SPREAD</th>
                 <th>DERIVED QUOTE</th>
-                <th>EDGE (ASK - FV)</th>
+                <th>EDGE (FV - ASK)</th>
               </tr>
             </thead>
             <tbody id="book-rows" class="divide-y divide-[#182234]/50">
@@ -225,13 +224,13 @@ HTML_TEMPLATE = """
       <div class="border border-[#182234] bg-[#080d17] rounded p-3">
         <div class="font-bold text-white pb-2 mb-2 border-b border-[#182234] flex justify-between">
           <span>EVENT COHERENCE STATS</span>
-          <span class="text-[#475569] text-[10px]">THEORY SUM: 1.000</span>
+          <span class="text-[#475569] text-[10px]" id="stat-kind">-</span>
         </div>
         <div class="space-y-1.5 text-[11px]">
           <div class="flex justify-between"><span class="text-[#64748b]">Total Proposition Legs:</span><span class="text-white font-semibold" id="stat-legs">0</span></div>
           <div class="flex justify-between"><span class="text-[#64748b]">Basket Ask Sum:</span><span class="text-rose-400 font-semibold" id="stat-ask-sum">0.0000</span></div>
           <div class="flex justify-between"><span class="text-[#64748b]">Basket Bid Sum:</span><span class="text-emerald-400 font-semibold" id="stat-bid-sum">0.0000</span></div>
-          <div class="flex justify-between"><span class="text-[#64748b]">Venue Fee Structure:</span><span class="text-cyan-400 font-semibold" id="stat-fee">0.20% Taker</span></div>
+          <div class="flex justify-between"><span class="text-[#64748b]">Venue Fee Structure:</span><span class="text-cyan-400 font-semibold text-right" id="stat-fee">-</span></div>
           <div class="pt-2 border-t border-[#182234] flex justify-between text-[11px]">
             <span class="text-slate-300 font-medium">Implied Arbitrage Status:</span>
             <span id="stat-arb-status" class="font-bold text-slate-400">-</span>
@@ -316,55 +315,57 @@ HTML_TEMPLATE = """
         document.getElementById('current-event-title').innerText = data.event ? data.event.title : '-';
         document.getElementById('current-event-venue').innerText = data.event ? data.event.venue.toUpperCase() : '-';
         document.getElementById('head-pnl').innerText = '$' + data.portfolio.net_pnl_after_fees.toFixed(2);
-        document.getElementById('head-exposure').innerText = '$' + (data.portfolio.positions_count * 5.0).toFixed(2);
+        document.getElementById('head-exposure').innerText = '$' + data.exposure.toFixed(2);
         document.getElementById('stat-legs').innerText = data.contracts.length;
         document.getElementById('flags-count-badge').innerText = data.flags.length + ' DISCREPANCIES';
 
-        // Calculate basket sums
-        let sumAsk = 0, sumBid = 0;
-        data.contracts.forEach(c => {
-          const b = data.books[c.ticker] || {};
-          if (typeof b.best_ask === 'number') sumAsk += b.best_ask;
-          if (typeof b.best_bid === 'number') sumBid += b.best_bid;
-        });
-        document.getElementById('stat-ask-sum').innerText = sumAsk.toFixed(4);
-        document.getElementById('stat-bid-sum').innerText = sumBid.toFixed(4);
-        document.getElementById('stat-fee').innerText = data.event.venue === 'polymarket' ? '0.20% Taker' : '1.00% Taker';
-
-        // Implied arb text
+        // Basket stats are computed server-side: they only mean something for a mutually exclusive set
+        const bk = data.basket;
+        document.getElementById('stat-ask-sum').innerText = bk.ask_sum === null ? '-' : bk.ask_sum.toFixed(4) + ' (' + bk.n_asks + '/' + bk.n_legs + ')';
+        document.getElementById('stat-bid-sum').innerText = bk.bid_sum === null ? '-' : bk.bid_sum.toFixed(4) + ' (' + bk.n_bids + '/' + bk.n_legs + ')';
+        document.getElementById('stat-fee').innerText = bk.fee;
+        document.getElementById('stat-kind').innerText = bk.kind.toUpperCase() + (bk.partition ? (bk.exhaustive ? ' / EXHAUSTIVE' : ' / NOT PROVEN EXHAUSTIVE') : '');
         const arbStatus = document.getElementById('stat-arb-status');
-        if (sumAsk > 0 && sumAsk < 0.985) {
-          arbStatus.innerText = 'UNDERPRICED BASKET (BUY ARB)';
-          arbStatus.className = 'font-bold text-emerald-400';
-        } else if (sumBid > 1.015) {
-          arbStatus.innerText = 'OVERPRICED BASKET (SELL ARB)';
-          arbStatus.className = 'font-bold text-amber-400';
-        } else {
-          arbStatus.innerText = 'NO BASKET ARBITRAGE';
-          arbStatus.className = 'font-bold text-[#64748b]';
-        }
+        arbStatus.innerText = bk.status;
+        arbStatus.className = 'font-bold ' + (bk.status.startsWith('UNDERPRICED') ? 'text-emerald-400'
+          : bk.status.startsWith('OVERPRICED') ? 'text-amber-400' : 'text-[#64748b]');
 
-        // Render book rows
+        const pr = data.pricing;
+        document.getElementById('model-label').innerText = 'MODEL: ' + pr.method
+          + (pr.rmse !== null ? ' | fit rmse ' + pr.rmse.toFixed(3) : '')
+          + (pr.n_anchors !== null ? ' | ' + pr.n_anchors + ' anchors' : '')
+          + (pr.warnings.length ? ' | ' + pr.warnings[0] : '');
+
+        // Render book rows. A missing fair value is shown as "-", never as a placeholder number.
         const tbody = document.getElementById('book-rows');
         tbody.innerHTML = data.contracts.map(c => {
           const b = data.books[c.ticker] || {};
-          const fv = data.model_fvs[c.ticker] || 0.05;
-          const q = data.quotes[c.ticker] || {bid: 0.04, ask: 0.08};
-          const ask = b.best_ask !== undefined && b.best_ask !== null ? b.best_ask : '-';
-          const bid = b.best_bid !== undefined && b.best_bid !== null ? b.best_bid : '-';
-          const spread = (typeof ask === 'number' && typeof bid === 'number') ? (ask - bid).toFixed(3) : '-';
-          const edge = typeof ask === 'number' ? (fv - ask).toFixed(3) : '-';
-          const edgeColor = parseFloat(edge) > 0 ? 'text-emerald-400 font-semibold' : 'text-[#64748b]';
+          const m = data.model_fvs[c.ticker] || {};
+          const q = data.quotes[c.ticker] || {};
+          const dp = c.venue === 'polymarket' ? 3 : 2;
+          const num = (x, d) => (typeof x === 'number') ? x.toFixed(d) : '-';
+          const ask = (typeof b.best_ask === 'number') ? b.best_ask : null;
+          const bid = (typeof b.best_bid === 'number') ? b.best_bid : null;
+          const spread = (ask !== null && bid !== null) ? (ask - bid).toFixed(3) : '-';
+          const fvTxt = (typeof m.fv === 'number')
+            ? m.fv.toFixed(3) + ' <span class="text-[#475569]">&plusmn;' + (m.uncertainty || 0).toFixed(3) + (m.anchor ? ' A' : '') + '</span>' : '-';
+          // Edge only when the fair value is an independent model view (not a rescaled market mid)
+          const showEdge = m.has_view && typeof m.fv === 'number' && ask !== null;
+          const edge = showEdge ? (m.fv - ask) : null;
+          // highlight only when the edge is bigger than the model's own error bar
+          const edgeColor = (edge !== null && edge > (m.uncertainty || 0)) ? 'text-emerald-400 font-semibold' : 'text-[#64748b]';
+          const qb = (q.bid === null || q.bid === undefined) ? '-' : q.bid.toFixed(dp);
+          const qa = (q.ask === null || q.ask === undefined) ? '-' : q.ask.toFixed(dp);
 
           return `
-            <tr class="hover:bg-[#0c121f] transition">
+            <tr class="hover:bg-[#0c121f] transition" title="${m.note || m.source || ''}">
               <td class="py-1.5 font-medium text-slate-200 max-w-sm truncate">${c.subtitle || c.title}</td>
-              <td class="text-cyan-400 font-medium">${fv.toFixed(3)}</td>
-              <td class="text-emerald-400">${typeof bid === 'number' ? bid.toFixed(3) : '-'}</td>
-              <td class="text-rose-400">${typeof ask === 'number' ? ask.toFixed(3) : '-'}</td>
+              <td class="text-cyan-400 font-medium">${fvTxt}</td>
+              <td class="text-emerald-400">${num(bid, dp)}</td>
+              <td class="text-rose-400">${num(ask, dp)}</td>
               <td class="text-[#94a3b8]">${spread}</td>
-              <td class="text-slate-300 font-medium">${q.bid.toFixed(2)} / ${q.ask.toFixed(2)}</td>
-              <td class="${edgeColor}">${edge}</td>
+              <td class="text-slate-300 font-medium">${qb} / ${qa}</td>
+              <td class="${edgeColor}">${edge === null ? '-' : edge.toFixed(3)}</td>
             </tr>
           `;
         }).join('');
@@ -439,17 +440,51 @@ def select_event():
 
 @app.route("/api/state")
 def get_state():
-    strikes = [1.5, 2.5, 3.5]
-    cum_probs = [0.15, 0.50, 0.85]
-    mu, sigma = engine.economic_pricer.fit_distribution_from_brackets(strikes, cum_probs)
+    # Everything below is derived from the active event's own contracts and books.
+    pricing = engine.price_event(cached_contracts, cached_books)
 
     model_fvs = {}
     quotes = {}
     for c in cached_contracts:
-        fv = engine.economic_pricer.price_bracket(c.floor_strike, c.cap_strike, mu, sigma)
-        bid_q, ask_q = engine.quoter.quote_contract(fv)
-        model_fvs[c.ticker] = fv
+        fv = pricing.fair_values.get(c.ticker)
+        if fv is None or fv.fv is None:
+            model_fvs[c.ticker] = {"fv": None, "uncertainty": None, "source": "unpriced", "has_view": False,
+                                   "anchor": False, "note": fv.note if fv else ""}
+            quotes[c.ticker] = {"bid": None, "ask": None}
+            continue
+        bid_q, ask_q = engine.quoter.quote_fair_value(fv, c)
+        model_fvs[c.ticker] = {"fv": fv.fv, "uncertainty": fv.uncertainty, "source": fv.source,
+                               "has_view": fv.has_model_view, "anchor": fv.is_anchor, "note": fv.note}
         quotes[c.ticker] = {"bid": bid_q, "ask": ask_q}
+
+    partition = bool(cached_contracts) and all(c.event_kind == EventKind.PARTITION for c in cached_contracts)
+    exhaustive = partition and all(c.exhaustive for c in cached_contracts)
+    asks = [ob.best_yes_ask for ob in cached_books.values() if ob.best_yes_ask is not None]
+    bids = [ob.best_yes_bid for ob in cached_books.values() if ob.best_yes_bid is not None]
+    if not partition:
+        status = "N/A - legs are not a mutually exclusive set"
+    elif any(f.flag_id.startswith("arb-sum-under") for f in cached_flags):
+        status = "UNDERPRICED BASKET (BUY ARB)"
+    elif any(f.flag_id.startswith("arb-sum-over") for f in cached_flags):
+        status = "OVERPRICED BASKET (SELL ARB)"
+    else:
+        status = "NO BASKET ARBITRAGE" + ("" if exhaustive else " (buy-side disabled: not proven exhaustive)")
+    basket = {
+        "kind": cached_contracts[0].event_kind.value if cached_contracts else "unknown",
+        "partition": partition, "exhaustive": exhaustive,
+        "n_legs": len(cached_contracts), "n_asks": len(asks), "n_bids": len(bids),
+        "ask_sum": round(sum(asks), 4) if asks else None,
+        "bid_sum": round(sum(bids), 4) if bids else None,
+        "fee": FeeCalculator.describe(cached_contracts[0]) if cached_contracts else "-",
+        "status": status,
+    }
+    pricing_meta = {
+        "method": pricing.method,
+        "rmse": pricing.params.get("rmse"),
+        "n_anchors": pricing.params.get("n_anchors"),
+        "warnings": pricing.warnings,
+    }
+    exposure = sum(p.cost_basis for p in engine.risk_manager.positions.values())
 
     contracts_data = [{
         "ticker": c.ticker,
@@ -496,6 +531,9 @@ def get_state():
         "flags": flags_data,
         "model_fvs": model_fvs,
         "quotes": quotes,
+        "basket": basket,
+        "pricing": pricing_meta,
+        "exposure": exposure,
         "portfolio": summary,
         "audit_trail": engine.execution_audit_trail
     })

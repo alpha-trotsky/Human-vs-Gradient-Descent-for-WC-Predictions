@@ -1,239 +1,249 @@
 """
 Arbitrage and Coherence Scanner for Prediction Markets.
 
-Implements mathematical and structural consistency checks:
-1. Mutually Exclusive Brackets sum to 1.0 (checking both bid-sum and ask-sum bounds after fees).
-2. Monotonicity: 'Above X' contracts must strictly decrease in price as strike X increases.
-3. Model-to-Market Copula Divergence: flags contracts where calibrated joint model fair value
-   differs from market quotes by more than spread + fees.
+Implements mathematical and structural consistency checks. Each check is only valid for certain
+kinds of events, so contracts must be classified first (see copula_execution.classify):
+
+1. Mutually exclusive baskets (EventKind.PARTITION only)
+     - SELL every leg: at most one leg pays $1, so sum(bids) - fees > 1 is a guaranteed profit.
+       Valid for any mutually exclusive set, exhaustive or not.
+     - BUY every leg: guaranteed $1 payout only if the legs are *exhaustive* (one of them must win)
+       and we hold *all* of them. Requires proven exhaustiveness and a live ask on every leg.
+2. Monotonicity (EventKind.CUMULATIVE_THRESHOLD / NESTED_BY_DATE only)
+     - Nested events: P(superset) >= P(subset). Bracket ("between") contracts are NOT nested and
+       are never checked here.
+3. Model-to-Market divergence: model fair value vs. the book, net of fees *and* model uncertainty.
+
+All fees are computed per leg with the contract's own venue schedule at the size we would trade.
 """
 import uuid
 from datetime import datetime, timezone
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
+from copula_execution.classify import contract_edges
 from copula_execution.types import (
-    DisagreementFlag, DisagreementType, OrderBook, MarketContract, ActionSide, ContractSide
+    DisagreementFlag, DisagreementType, OrderBook, MarketContract, ActionSide, ContractSide, EventKind
 )
-from copula_execution.risk_manager import FeeCalculator, MarketVenue
+from copula_execution.risk_manager import FeeCalculator
 
 
 class CoherenceScanner:
-    def __init__(self, fee_buffer: float = 0.02, min_edge: float = 0.02):
+    def __init__(self, fee_buffer: float = 0.02, min_edge: float = 0.02,
+                 trade_size: int = 10, uncertainty_mult: float = 1.0):
         """
-        fee_buffer: safety buffer for exchange transaction costs
-        min_edge: minimum net profit required to raise a tradable flag
+        min_edge: minimum net profit per contract required to raise a tradable flag
+        trade_size: lot size suggested on every leg (fees are priced at this size, since
+                    exchanges round per order)
+        uncertainty_mult: model-disagreement edges must also clear this many fair-value sigmas
         """
         self.fee_buffer = fee_buffer
         self.min_edge = min_edge
+        self.trade_size = trade_size
+        self.uncertainty_mult = uncertainty_mult
 
+    def _fee(self, contract: MarketContract, price: float) -> float:
+        return FeeCalculator.fee_per_contract(contract, price, self.trade_size)
+
+    # ------------------------------------------------------------------------------------------
     def check_mutually_exclusive_sum(self, event_ticker: str,
                                      contracts: List[MarketContract],
                                      books: Dict[str, OrderBook]) -> List[DisagreementFlag]:
         """
-        In a mutually exclusive, collectively exhaustive set of brackets (e.g. GDP brackets,
-        1X2 match odds, exact scores):
-          - Buying all YES asks guarantees exactly $1.00 payout. If sum(YES asks) + fees < $1.00,
-            we have a guaranteed BUY arbitrage!
-          - Selling all YES bids (or buying all NO asks) guarantees paying $1.00.
-            If sum(YES bids) - fees > $1.00, we have an over-priced SELL arbitrage!
+        Basket arbitrage over a mutually exclusive set.
+          Under-priced (sum asks + fees < 1): buy one YES in every leg. Needs EXHAUSTIVE legs and a
+            tradable ask on every one of them -- otherwise "exactly one leg pays $1" is unproven.
+          Over-priced (sum bids - fees > 1): sell YES in every leg that has a bid. At most one leg can
+            pay out, so the liability is capped at $1 whether or not the set is exhaustive.
         """
-        flags = []
-        # In order for an underpriced basket sum to guarantee $1 payout,
-        # we MUST have asks for ALL contracts in the mutually exclusive event.
+        flags: List[DisagreementFlag] = []
         if len(contracts) < 2:
             return flags
+        if len({c.venue for c in contracts}) != 1:
+            return flags   # legs on different venues are not one event with one resolution rule
+        if any(c.event_kind != EventKind.PARTITION for c in contracts):
+            return flags   # nested / unknown relationships do not sum to one
 
-        # Check if EVERY contract has an active book
-        all_contracts_have_books = all(c.ticker in books and books[c.ticker] is not None for c in contracts)
-        valid_contracts = [c for c in contracts if c.ticker in books and books[c.ticker] is not None]
-
-        # Check if set is complete or collectively exhaustive
-        # Calculate sum of best YES asks and sum of best YES bids
-        sum_asks = 0.0
-        sum_bids = 0.0
-        all_asks_present = True
-        all_bids_present = True
-        total_fee = 0.0
+        exhaustive = all(c.exhaustive for c in contracts)
+        with_books = [c for c in contracts if books.get(c.ticker) is not None]
+        mid_of = {}
+        for c in with_books:
+            ob = books[c.ticker]
+            mid_of[c.ticker] = ob.mid_price
 
         market_prices = {}
-        for c in valid_contracts:
+        for c in with_books:
             ob = books[c.ticker]
-            bid = ob.best_yes_bid
-            ask = ob.best_yes_ask
             market_prices[c.ticker] = {
-                "bid": bid if bid is not None else 0.0,
-                "ask": ask if ask is not None else 1.0,
-                "mid": ob.mid_price or 0.5
+                "bid": ob.best_yes_bid if ob.best_yes_bid is not None else 0.0,
+                "ask": ob.best_yes_ask if ob.best_yes_ask is not None else 1.0,
+                "mid": ob.mid_price if ob.mid_price is not None else 0.5,
             }
-            if ask is not None:
-                sum_asks += ask
-                total_fee += FeeCalculator.calculate_fee(MarketVenue.KALSHI, ask, 1, is_maker=False)
-            else:
-                all_asks_present = False
 
-            if bid is not None:
-                sum_bids += bid
-            else:
-                all_bids_present = False
+        def coherent_fvs(legs: List[MarketContract]) -> Dict[str, float]:
+            """Market mids rescaled to sum to 1 -- the nearest coherent prices (used for convergence tracking)."""
+            mids = {c.ticker: mid_of[c.ticker] for c in legs if mid_of.get(c.ticker) is not None}
+            tot = sum(mids.values())
+            if len(mids) != len(legs) or tot <= 0:
+                return {}
+            return {t: round(m / tot, 4) for t, m in mids.items()}
 
-        # Scenario 1: Underpriced basket (Sum of Asks + Fees < 1.0)
-        # We can buy 1 YES in each bracket for sum_asks. Exactly one bracket resolves YES, yielding $1.00.
-        # This requires ALL contracts in the ME family to be tradable!
-        if all_contracts_have_books and all_asks_present and (sum_asks + total_fee) < (1.0 - self.min_edge):
-            net_edge = round(1.0 - (sum_asks + total_fee), 4)
-            suggested_trades = []
-            for c in valid_contracts:
-                ask_p = books[c.ticker].best_yes_ask
-                suggested_trades.append({
-                    "ticker": c.ticker,
-                    "action": ActionSide.BUY,
-                    "side": ContractSide.YES,
-                    "price": ask_p,
-                    "size": 10,
-                    "reason": "Basket sum < $1 arbitrage leg"
-                })
+        # Scenario 1: buy every leg
+        ask_legs = [c for c in contracts if books.get(c.ticker) is not None and books[c.ticker].best_yes_ask is not None]
+        if exhaustive and len(ask_legs) == len(contracts):
+            sum_asks = sum(books[c.ticker].best_yes_ask for c in ask_legs)
+            total_fee = sum(self._fee(c, books[c.ticker].best_yes_ask) for c in ask_legs)
+            if (sum_asks + total_fee) < (1.0 - self.min_edge):
+                net_edge = round(1.0 - (sum_asks + total_fee), 4)
+                flags.append(DisagreementFlag(
+                    flag_id=f"arb-sum-under-{uuid.uuid4().hex[:8]}",
+                    event_ticker=event_ticker,
+                    disagreement_type=DisagreementType.SUM_TO_ONE,
+                    contracts_involved=[c.ticker for c in ask_legs],
+                    gap_size=net_edge,
+                    gross_discrepancy=round(1.0 - sum_asks, 4),
+                    model_fair_values=coherent_fvs(ask_legs),
+                    market_prices={c.ticker: market_prices[c.ticker] for c in ask_legs},
+                    detected_at=datetime.now(timezone.utc),
+                    suggested_trades=[{
+                        "ticker": c.ticker, "action": ActionSide.BUY, "side": ContractSide.YES,
+                        "price": books[c.ticker].best_yes_ask, "size": self.trade_size,
+                        "reason": "Basket sum < $1 arbitrage leg"} for c in ask_legs]
+                ))
 
-            flags.append(DisagreementFlag(
-                flag_id=f"arb-sum-under-{uuid.uuid4().hex[:8]}",
-                event_ticker=event_ticker,
-                disagreement_type=DisagreementType.SUM_TO_ONE,
-                contracts_involved=[c.ticker for c in valid_contracts],
-                gap_size=net_edge,
-                gross_discrepancy=round(1.0 - sum_asks, 4),
-                model_fair_values={c.ticker: round(1.0 / len(valid_contracts), 4) for c in valid_contracts},
-                market_prices=market_prices,
-                detected_at=datetime.now(timezone.utc),
-                suggested_trades=suggested_trades
-            ))
-
-        # Scenario 2: Overpriced basket (Sum of Bids - Fees > 1.0)
-        # We can sell (or short/buy NO) across all brackets. Total payoff cost is $1.00, proceeds = sum_bids.
-        if all_bids_present and (sum_bids - total_fee) > (1.0 + self.min_edge):
-            net_edge = round((sum_bids - total_fee) - 1.0, 4)
-            suggested_trades = []
-            for c in valid_contracts:
-                bid_p = books[c.ticker].best_yes_bid
-                suggested_trades.append({
-                    "ticker": c.ticker,
-                    "action": ActionSide.SELL,
-                    "side": ContractSide.YES,
-                    "price": bid_p,
-                    "size": 10,
-                    "reason": "Basket sum > $1 overpriced sell leg"
-                })
-
-            flags.append(DisagreementFlag(
-                flag_id=f"arb-sum-over-{uuid.uuid4().hex[:8]}",
-                event_ticker=event_ticker,
-                disagreement_type=DisagreementType.SUM_TO_ONE,
-                contracts_involved=[c.ticker for c in valid_contracts],
-                gap_size=net_edge,
-                gross_discrepancy=round(sum_bids - 1.0, 4),
-                model_fair_values={c.ticker: round(1.0 / len(valid_contracts), 4) for c in valid_contracts},
-                market_prices=market_prices,
-                detected_at=datetime.now(timezone.utc),
-                suggested_trades=suggested_trades
-            ))
+        # Scenario 2: sell every leg that has a bid (liability capped at $1 by mutual exclusivity)
+        bid_legs = [c for c in with_books if books[c.ticker].best_yes_bid is not None]
+        if len(bid_legs) >= 2:
+            sum_bids = sum(books[c.ticker].best_yes_bid for c in bid_legs)
+            total_fee = sum(self._fee(c, books[c.ticker].best_yes_bid) for c in bid_legs)
+            if (sum_bids - total_fee) > (1.0 + self.min_edge):
+                net_edge = round((sum_bids - total_fee) - 1.0, 4)
+                flags.append(DisagreementFlag(
+                    flag_id=f"arb-sum-over-{uuid.uuid4().hex[:8]}",
+                    event_ticker=event_ticker,
+                    disagreement_type=DisagreementType.SUM_TO_ONE,
+                    contracts_involved=[c.ticker for c in bid_legs],
+                    gap_size=net_edge,
+                    gross_discrepancy=round(sum_bids - 1.0, 4),
+                    model_fair_values=coherent_fvs(bid_legs),
+                    market_prices={c.ticker: market_prices[c.ticker] for c in bid_legs},
+                    detected_at=datetime.now(timezone.utc),
+                    suggested_trades=[{
+                        "ticker": c.ticker, "action": ActionSide.SELL, "side": ContractSide.YES,
+                        "price": books[c.ticker].best_yes_bid, "size": self.trade_size,
+                        "reason": "Basket sum > $1 overpriced sell leg"} for c in bid_legs]
+                ))
 
         return flags
+
+    # ------------------------------------------------------------------------------------------
+    @staticmethod
+    def _nested_chains(contracts: List[MarketContract]) -> List[List[MarketContract]]:
+        """
+        Chains ordered so that probability is non-increasing along the chain, i.e. every contract
+        is a (weak) superset of the ones after it:
+          'above k' ladders : ascending k          P(X > k) falls as k rises
+          'below k' ladders : descending k         P(X < k) falls as k falls
+          by-date ladders   : latest deadline first
+        Anything that is not a true nested ladder (brackets, partitions, unknowns) yields no chain.
+        """
+        chains: List[List[MarketContract]] = []
+        thr = [c for c in contracts if c.event_kind == EventKind.CUMULATIVE_THRESHOLD]
+        above = [c for c in thr if (contract_edges(c) or (None, None))[0] is not None
+                 and (contract_edges(c) or (None, None))[1] is None]
+        below = [c for c in thr if (contract_edges(c) or (None, None))[0] is None
+                 and (contract_edges(c) or (None, None))[1] is not None]
+        if len(above) >= 2:
+            chains.append(sorted(above, key=lambda c: contract_edges(c)[0]))
+        if len(below) >= 2:
+            chains.append(sorted(below, key=lambda c: contract_edges(c)[1], reverse=True))
+        dated = [c for c in contracts if c.event_kind == EventKind.NESTED_BY_DATE and c.expiration_time is not None]
+        if len(dated) >= 2:
+            chains.append(sorted(dated, key=lambda c: c.expiration_time, reverse=True))
+        return chains
+
+    @staticmethod
+    def _label(c: MarketContract) -> str:
+        if c.event_kind == EventKind.NESTED_BY_DATE and c.expiration_time is not None:
+            return f"deadline {c.expiration_time.date()}"
+        e = contract_edges(c)
+        return f"strike {e[0] if e and e[0] is not None else (e[1] if e else '?')}"
 
     def check_monotonicity(self, event_ticker: str,
                            threshold_contracts: List[MarketContract],
                            books: Dict[str, OrderBook]) -> List[DisagreementFlag]:
         """
-        For cumulative 'Above X' contracts:
-        If strike X1 < strike X2, then mathematically P(Value > X1) >= P(Value > X2).
-        Therefore:
-          - If Best YES Bid(X2) > Best YES Ask(X1) + fees:
-            Buy YES(X1) and Sell YES(X2).
-            Net cashflow at inception = Bid(X2) - Ask(X1) - fees > 0.
-            At expiration:
-              - If Value <= X1: both pay $0. Net payout = 0.
-              - If X1 < Value <= X2: YES(X1) pays $1, YES(X2) pays $0. Net payout = +$1.
-              - If Value > X2: both pay $1. Net payout = $1 - $1 = 0.
-            This is a 100% risk-free arbitrage with strictly non-negative payout!
+        For nested contracts, P(superset) >= P(subset). If Bid(subset) > Ask(superset) + fees:
+        buy the superset YES and sell the subset YES.
+          - neither happens: both pay $0
+          - only the superset happens: +$1
+          - both happen: $1 - $1 = 0
+        so the payoff is never negative and the inception cash flow Bid - Ask - fees is locked in.
         """
-        flags = []
-        # Filter for contracts that have a floor_strike
-        sorted_contracts = [c for c in threshold_contracts if c.floor_strike is not None and c.ticker in books]
-        sorted_contracts.sort(key=lambda c: c.floor_strike)
+        flags: List[DisagreementFlag] = []
+        for chain in self._nested_chains(threshold_contracts):
+            for i in range(len(chain)):
+                for j in range(i + 1, len(chain)):
+                    big, small = chain[i], chain[j]
+                    if big.venue != small.venue:
+                        continue   # different venues may resolve differently
+                    book_big, book_small = books.get(big.ticker), books.get(small.ticker)
+                    if not book_big or not book_small:
+                        continue
+                    ask_big, bid_small = book_big.best_yes_ask, book_small.best_yes_bid
+                    if ask_big is None or bid_small is None:
+                        continue
 
-        for i in range(len(sorted_contracts)):
-            for j in range(i + 1, len(sorted_contracts)):
-                c_low = sorted_contracts[i]   # Lower strike X1
-                c_high = sorted_contracts[j]  # Higher strike X2
-
-                book_low = books[c_low.ticker]
-                book_high = books[c_high.ticker]
-                if not book_low or not book_high:
-                    continue
-
-                ask_low = book_low.best_yes_ask
-                bid_high = book_high.best_yes_bid
-
-                if ask_low is None or bid_high is None:
-                    continue
-
-                fee_low = FeeCalculator.calculate_fee(MarketVenue.KALSHI, ask_low, 1)
-                fee_high = FeeCalculator.calculate_fee(MarketVenue.KALSHI, bid_high, 1)
-                total_fees = fee_low + fee_high
-
-                gross_edge = bid_high - ask_low
-                net_edge = gross_edge - total_fees
-
-                if net_edge >= self.min_edge:
+                    total_fees = self._fee(big, ask_big) + self._fee(small, bid_small)
+                    gross_edge = bid_small - ask_big
+                    net_edge = gross_edge - total_fees
+                    if net_edge < self.min_edge:
+                        continue
                     flags.append(DisagreementFlag(
                         flag_id=f"arb-mono-{uuid.uuid4().hex[:8]}",
                         event_ticker=event_ticker,
                         disagreement_type=DisagreementType.MONOTONICITY,
-                        contracts_involved=[c_low.ticker, c_high.ticker],
+                        contracts_involved=[big.ticker, small.ticker],
                         gap_size=round(net_edge, 4),
                         gross_discrepancy=round(gross_edge, 4),
                         model_fair_values={},
                         market_prices={
-                            c_low.ticker: {"bid": book_low.best_yes_bid or 0.0, "ask": ask_low, "mid": book_low.mid_price or ask_low},
-                            c_high.ticker: {"bid": bid_high, "ask": book_high.best_yes_ask or 1.0, "mid": book_high.mid_price or bid_high}
+                            big.ticker: {"bid": book_big.best_yes_bid or 0.0, "ask": ask_big,
+                                         "mid": book_big.mid_price or ask_big},
+                            small.ticker: {"bid": bid_small, "ask": book_small.best_yes_ask or 1.0,
+                                           "mid": book_small.mid_price or bid_small},
                         },
                         detected_at=datetime.now(timezone.utc),
                         suggested_trades=[
-                            {
-                                "ticker": c_low.ticker,
-                                "action": ActionSide.BUY,
-                                "side": ContractSide.YES,
-                                "price": ask_low,
-                                "size": 10,
-                                "reason": f"Buy lower strike {c_low.floor_strike}"
-                            },
-                            {
-                                "ticker": c_high.ticker,
-                                "action": ActionSide.SELL,
-                                "side": ContractSide.YES,
-                                "price": bid_high,
-                                "size": 10,
-                                "reason": f"Sell higher strike {c_high.floor_strike}"
-                            }
+                            {"ticker": big.ticker, "action": ActionSide.BUY, "side": ContractSide.YES,
+                             "price": ask_big, "size": self.trade_size,
+                             "reason": f"Buy superset leg ({self._label(big)})"},
+                            {"ticker": small.ticker, "action": ActionSide.SELL, "side": ContractSide.YES,
+                             "price": bid_small, "size": self.trade_size,
+                             "reason": f"Sell subset leg ({self._label(small)})"},
                         ]
                     ))
-
         return flags
 
+    # ------------------------------------------------------------------------------------------
     def check_model_disagreement(self, event_ticker: str,
                                  contract: MarketContract,
                                  model_fair_value: float,
-                                 book: OrderBook) -> Optional[DisagreementFlag]:
+                                 book: OrderBook,
+                                 uncertainty: float = 0.0) -> Optional[DisagreementFlag]:
         """
-        Detects when a model's calibrated joint probability diverges from the market book
-        by more than spread + fees.
+        Detects when a model's fair value diverges from the book by more than fees plus
+        `uncertainty_mult` model sigmas. Only call with fair values that are an independent model
+        view (FairValue.has_model_view); a rescaled market mid is not one.
         """
         bid = book.best_yes_bid
         ask = book.best_yes_ask
         if bid is None and ask is None:
             return None
+        haircut = self.uncertainty_mult * max(uncertainty, 0.0)
 
-        # If model expects price much higher than market Ask: BUY signal
         if ask is not None:
-            fee = FeeCalculator.calculate_fee(MarketVenue.KALSHI, ask, 1)
-            net_edge = model_fair_value - ask - fee
+            fee = self._fee(contract, ask)
+            net_edge = model_fair_value - ask - fee - haircut
             if net_edge >= self.min_edge:
                 return DisagreementFlag(
                     flag_id=f"arb-copula-buy-{uuid.uuid4().hex[:8]}",
@@ -246,19 +256,14 @@ class CoherenceScanner:
                     market_prices={contract.ticker: {"bid": bid or 0.0, "ask": ask, "mid": book.mid_price or ask}},
                     detected_at=datetime.now(timezone.utc),
                     suggested_trades=[{
-                        "ticker": contract.ticker,
-                        "action": ActionSide.BUY,
-                        "side": ContractSide.YES,
-                        "price": ask,
-                        "size": 10,
-                        "reason": f"Model FV {model_fair_value:.3f} > Ask {ask:.3f}"
-                    }]
+                        "ticker": contract.ticker, "action": ActionSide.BUY, "side": ContractSide.YES,
+                        "price": ask, "size": self.trade_size,
+                        "reason": f"Model FV {model_fair_value:.3f} > Ask {ask:.3f}"}]
                 )
 
-        # If model expects price much lower than market Bid: SELL signal
         if bid is not None:
-            fee = FeeCalculator.calculate_fee(MarketVenue.KALSHI, bid, 1)
-            net_edge = bid - model_fair_value - fee
+            fee = self._fee(contract, bid)
+            net_edge = bid - model_fair_value - fee - haircut
             if net_edge >= self.min_edge:
                 return DisagreementFlag(
                     flag_id=f"arb-copula-sell-{uuid.uuid4().hex[:8]}",
@@ -271,13 +276,9 @@ class CoherenceScanner:
                     market_prices={contract.ticker: {"bid": bid, "ask": ask or 1.0, "mid": book.mid_price or bid}},
                     detected_at=datetime.now(timezone.utc),
                     suggested_trades=[{
-                        "ticker": contract.ticker,
-                        "action": ActionSide.SELL,
-                        "side": ContractSide.YES,
-                        "price": bid,
-                        "size": 10,
-                        "reason": f"Bid {bid:.3f} > Model FV {model_fair_value:.3f}"
-                    }]
+                        "ticker": contract.ticker, "action": ActionSide.SELL, "side": ContractSide.YES,
+                        "price": bid, "size": self.trade_size,
+                        "reason": f"Bid {bid:.3f} > Model FV {model_fair_value:.3f}"}]
                 )
 
         return None

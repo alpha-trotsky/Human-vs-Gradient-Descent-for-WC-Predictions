@@ -48,6 +48,13 @@ class PaperExecutionGateway(BaseExecutionGateway):
         self.latency_ms = latency_ms
         self.orders: Dict[str, OrderResult] = {}
 
+    @staticmethod
+    def _fee(order: OrderRequest, price: float, count: int) -> float:
+        """Taker fee under the market's own schedule (venue default, or the paper fee for SIMULATED)."""
+        if order.contract is not None:
+            return FeeCalculator.fee_for_contract(order.contract, price, count, is_maker=False)
+        return FeeCalculator.calculate_fee(order.venue, price, count, is_maker=False)
+
     def submit_order(self, order: OrderRequest, current_book: Optional[OrderBook] = None) -> OrderResult:
         # Simulate network latency
         if self.latency_ms > 0:
@@ -57,7 +64,7 @@ class PaperExecutionGateway(BaseExecutionGateway):
         
         # If no book available, fill optimistically at specified limit price
         if not current_book:
-            fee = FeeCalculator.calculate_fee(MarketVenue.SIMULATED, order.price, order.count, is_maker=False)
+            fee = self._fee(order, order.price, order.count)
             res = OrderResult(
                 order_id=order.order_id,
                 client_order_id=order.client_order_id,
@@ -121,7 +128,7 @@ class PaperExecutionGateway(BaseExecutionGateway):
 
         if filled > 0:
             avg_price = round(total_spent / filled, 4)
-            fee = FeeCalculator.calculate_fee(MarketVenue.SIMULATED, avg_price, filled, is_maker=False)
+            fee = self._fee(order, avg_price, filled)
             status = OrderStatus.FILLED if remaining == 0 else OrderStatus.PARTIALLY_FILLED
             res = OrderResult(
                 order_id=order.order_id,
