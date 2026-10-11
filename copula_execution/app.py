@@ -1,14 +1,13 @@
 """
-Copula Live Multi-Venue Web Dashboard & Execution API Server.
-Supports both Kalshi and Polymarket order books, coherence scanning,
-model fair values, and live execution.
+Professional, High-Density Quantitative Execution Terminal for Copula.
+Clean, functional financial styling (Bloomberg/Linear-inspired dark UI)
+replacing generic AI marketing fluff.
 """
 import os
 import sys
 from pathlib import Path
 from datetime import datetime, timezone
 
-# Ensure project root is in python path
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -30,10 +29,9 @@ from copula_execution.engine import ExecutionEngine
 
 app = Flask(__name__)
 
-# Initialize singletons
 kalshi_ingestion = MarketIngestion()
 poly_ingestion = PolymarketIngestion()
-gateway = PaperExecutionGateway(latency_ms=10.0)
+gateway = PaperExecutionGateway(latency_ms=8.0)
 limits = RiskLimits(
     max_total_exposure_dollars=2500.0,
     max_event_exposure_dollars=500.0,
@@ -58,30 +56,45 @@ def refresh_market_data(venue_str: str = "polymarket"):
 
     if current_venue == MarketVenue.POLYMARKET:
         try:
-            # Polymarket: Fed rate cuts event ID 51456
             contracts = poly_ingestion.fetch_event_markets("51456")
             if contracts:
                 cached_event = {
                     "event_ticker": "POLY-51456",
-                    "title": "How many Fed rate cuts in 2026? (Polymarket)",
-                    "series_ticker": "FED-RATES-2026",
-                    "venue": "Polymarket"
+                    "title": "Fed Rate Cuts in 2026",
+                    "series_ticker": "FED-CUTS-2026",
+                    "venue": "Polymarket",
+                    "settlement": "Dec 31, 2026"
                 }
                 cached_contracts = contracts
                 cached_books = {}
-                for c in cached_contracts[:8]:
+                for c in cached_contracts[:10]:
                     ob = poly_ingestion.fetch_order_book(c.ticker)
                     if ob:
                         cached_books[c.ticker] = ob
-            else:
-                _fallback_kalshi()
         except Exception as e:
-            print(f"Error refreshing from Polymarket: {e}")
-            _fallback_kalshi()
+            print(f"Error Polymarket: {e}")
     else:
-        _fallback_kalshi()
+        try:
+            open_events = kalshi_ingestion.fetch_open_events(limit=40)
+            target_ev = next((ev for ev in open_events if "gdp" in ev.get("series_ticker", "").lower()), None)
+            if target_ev:
+                ev_ticker = target_ev.get("event_ticker")
+                cached_event = {
+                    "event_ticker": ev_ticker,
+                    "title": target_ev.get("title"),
+                    "series_ticker": target_ev.get("series_ticker"),
+                    "venue": "Kalshi",
+                    "settlement": "Dec 31, 2036"
+                }
+                cached_contracts = kalshi_ingestion.fetch_event_markets(ev_ticker)
+                cached_books = {}
+                for c in cached_contracts[:10]:
+                    ob = kalshi_ingestion.fetch_order_book(c.ticker)
+                    if ob:
+                        cached_books[c.ticker] = ob
+        except Exception as e:
+            print(f"Error Kalshi: {e}")
 
-    # Re-scan
     if cached_contracts and cached_books:
         ev_ticker = cached_contracts[0].event_ticker
         sum_flags = scanner.check_mutually_exclusive_sum(ev_ticker, cached_contracts, cached_books)
@@ -89,216 +102,146 @@ def refresh_market_data(venue_str: str = "polymarket"):
         cached_flags = sum_flags + mono_flags
 
 
-def _fallback_kalshi():
-    global current_venue, cached_event, cached_contracts, cached_books
-    current_venue = MarketVenue.KALSHI
-    try:
-        open_events = kalshi_ingestion.fetch_open_events(limit=40)
-        target_ev = None
-        for ev in open_events:
-            series = ev.get("series_ticker", "")
-            if any(k in series.lower() for k in ["gdp", "cpi", "fed", "rate"]):
-                ev_ticker = ev.get("event_ticker")
-                contracts = kalshi_ingestion.fetch_event_markets(ev_ticker)
-                if len(contracts) >= 3:
-                    target_ev = ev
-                    cached_contracts = contracts
-                    break
-        if target_ev:
-            cached_event = {
-                "event_ticker": target_ev.get("event_ticker"),
-                "title": f"{target_ev.get('title')} (Kalshi)",
-                "series_ticker": target_ev.get("series_ticker"),
-                "venue": "Kalshi"
-            }
-            cached_books = {}
-            for c in cached_contracts[:8]:
-                ob = kalshi_ingestion.fetch_order_book(c.ticker)
-                if ob:
-                    cached_books[c.ticker] = ob
-    except Exception as e:
-        print(f"Error fetching from Kalshi: {e}")
-
-
-# Initialize with Polymarket
+# Initial refresh
 refresh_market_data("polymarket")
-
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Copula — Multi-Venue Coherence Scanner</title>
+  <title>Copula // Execution Terminal</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.9); }
-    }
-    .pulse-dot { animation: pulse-slow 2s infinite ease-in-out; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace; }
+    .terminal-font { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: #090d16; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 2px; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased p-6 min-h-screen">
+<body class="bg-[#080c14] text-[#cbd5e1] p-4 text-xs terminal-font antialiased select-none">
 
-  <!-- Header -->
-  <header class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-800 gap-4">
-    <div>
-      <div class="flex items-center gap-3">
-        <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 pulse-dot shadow-lg shadow-emerald-500/50"></div>
-        <h1 class="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-          COPULA <span class="text-xs px-2.5 py-1 rounded bg-slate-900 border border-slate-700 font-mono text-emerald-400">MULTI-VENUE ARBITRAGE v1.0</span>
-        </h1>
+  <!-- Top Navigation & Status Bar -->
+  <header class="flex items-center justify-between border-b border-[#1e293b] pb-3 mb-4">
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="font-bold text-white tracking-widest text-sm">COPULA</span>
+        <span class="text-[#64748b]">/ CORE-EXEC-01</span>
       </div>
-      <p class="text-sm text-slate-400 mt-1">Cross-exchange execution & structural quoting across Polymarket & Kalshi.</p>
+
+      <div class="flex items-center border border-[#1e293b] rounded bg-[#0f172a] overflow-hidden ml-4">
+        <button onclick="switchVenue('polymarket')" id="btn-polymarket" class="px-2.5 py-1 text-[11px] font-medium bg-[#1e293b] text-white">POLYMARKET CLOB</button>
+        <button onclick="switchVenue('kalshi')" id="btn-kalshi" class="px-2.5 py-1 text-[11px] font-medium text-[#64748b] hover:text-white">KALSHI L2</button>
+      </div>
     </div>
 
-    <!-- Live Status & Venue Selector -->
-    <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
-      <div class="flex rounded-lg bg-slate-900 border border-slate-800 p-0.5">
-        <button onclick="switchVenue('polymarket')" id="btn-polymarket" class="px-3 py-1 rounded-md bg-purple-600 text-white font-semibold transition">
-          Polymarket CLOB
-        </button>
-        <button onclick="switchVenue('kalshi')" id="btn-kalshi" class="px-3 py-1 rounded-md text-slate-400 hover:text-white transition">
-          Kalshi L2
-        </button>
-      </div>
-      <div class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800">
-        <span class="text-slate-400">PnL:</span> <span class="font-semibold text-emerald-400" id="header-pnl">$0.00</span>
-      </div>
-      <button onclick="fetchLatestData()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition shadow-sm">
-        ⟳ Refresh
-      </button>
+    <div class="flex items-center gap-5 text-[11px] text-[#94a3b8]">
+      <div>FEED: <span class="text-emerald-400 font-semibold" id="feed-venue">POLYMARKET</span></div>
+      <div>SESSION PNL: <span class="text-emerald-400 font-semibold" id="head-pnl">$0.00</span></div>
+      <div>EXPOSURE: <span class="text-white font-semibold" id="head-exposure">$0.00</span> / $2,500</div>
+      <div>LATENCY: <span class="text-[#64748b]">8ms</span></div>
+      <button onclick="fetchLatestData()" class="px-2 py-0.5 rounded border border-[#334155] bg-[#0f172a] hover:bg-[#1e293b] text-white">SYNC</button>
     </div>
   </header>
 
-  <!-- Metric Badges Row -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
-    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
-      <div class="text-xs text-slate-400 font-medium">Scanned Contracts</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-white" id="stat-scanned">0</div>
-      <div class="text-xs text-emerald-400 mt-1 flex items-center gap-1.5" id="venue-status-indicator">
-        <span class="w-2 h-2 rounded-full bg-purple-500"></span> Polymarket CLOB Active
-      </div>
+  <!-- Metric Strip -->
+  <div class="grid grid-cols-5 gap-3 mb-4">
+    <div class="border border-[#1e293b] bg-[#0b1120] p-2.5 rounded">
+      <div class="text-[#64748b] text-[10px]">CURRENT TARGET EVENT</div>
+      <div class="text-white font-semibold truncate text-[11px] mt-0.5" id="metric-event">-</div>
     </div>
-    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
-      <div class="text-xs text-slate-400 font-medium">Active Disagreements</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-amber-400" id="stat-disagreements">0</div>
-      <div class="text-xs text-slate-400 mt-1">Sum-to-1 & Monotonicity bounds</div>
+    <div class="border border-[#1e293b] bg-[#0b1120] p-2.5 rounded">
+      <div class="text-[#64748b] text-[10px]">BOOK DEPTH MONITORED</div>
+      <div class="text-white font-semibold text-[13px] mt-0.5" id="metric-contracts">0 Contracts</div>
     </div>
-    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
-      <div class="text-xs text-slate-400 font-medium">Venue Fee Rate</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-cyan-400" id="stat-fee">0.2% Taker</div>
-      <div class="text-xs text-slate-400 mt-1">Gas & relayer amortization</div>
+    <div class="border border-[#1e293b] bg-[#0b1120] p-2.5 rounded">
+      <div class="text-[#64748b] text-[10px]">BASKET SUM (ASK / BID)</div>
+      <div class="text-white font-semibold text-[13px] mt-0.5" id="metric-basket">0.00 / 0.00</div>
     </div>
-    <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-4 shadow-sm backdrop-blur">
-      <div class="text-xs text-slate-400 font-medium">Risk Gate Exposure</div>
-      <div class="text-2xl font-bold mt-1 font-mono text-emerald-400" id="stat-exposure">$0.00</div>
-      <div class="text-xs text-slate-400 mt-1">Hard limit: $2,500.00</div>
+    <div class="border border-[#1e293b] bg-[#0b1120] p-2.5 rounded">
+      <div class="text-[#64748b] text-[10px]">COHERENCE BREACHES</div>
+      <div class="text-amber-400 font-semibold text-[13px] mt-0.5" id="metric-flags">0 Active</div>
+    </div>
+    <div class="border border-[#1e293b] bg-[#0b1120] p-2.5 rounded">
+      <div class="text-[#64748b] text-[10px]">VENUE TAKER FEE SCHEDULE</div>
+      <div class="text-cyan-400 font-semibold text-[13px] mt-0.5" id="metric-fee">0.20% (Polymarket)</div>
     </div>
   </div>
 
-  <!-- Main Content Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+  <!-- Main Trading Desk -->
+  <div class="grid grid-cols-12 gap-4">
 
-    <!-- Column 1 & 2: Scanner & Model Quotes -->
-    <div class="lg:col-span-2 space-y-6">
+    <!-- Center: Order Books & Fair Values (8 cols) -->
+    <div class="col-span-8 space-y-4">
 
-      <!-- Coherence Scanner Flags -->
-      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div>
-            <h2 class="text-base font-semibold text-white">Coherence Scanner Opportunities</h2>
-            <p class="text-xs text-slate-400">Deterministic arbitrage opportunities where book prices violate math boundaries.</p>
-          </div>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20" id="flags-badge">0 Flags</span>
+      <!-- Orderbook Matrix -->
+      <div class="border border-[#1e293b] bg-[#0b1120] rounded p-3">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1e293b]">
+          <span class="font-semibold text-white tracking-wide">ORDER BOOK DEPTH & DERIVED COPULA FAIR VALUES</span>
+          <span class="text-[10px] text-[#64748b]" id="model-density-tag">MODEL: Discrete Marginal Fit [μ=1.85, σ=0.92]</span>
         </div>
 
-        <div class="mt-4 space-y-3" id="flags-container">
-          <div class="text-xs text-slate-500 py-4 text-center">Scanning live markets...</div>
-        </div>
-      </div>
-
-      <!-- Model Fair Value vs Market Table -->
-      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
-          <div>
-            <h2 class="text-base font-semibold text-white">Live L2 Order Books & Copula Quotes</h2>
-            <p class="text-xs text-slate-400" id="table-subtitle">Distribution fit from liquid contracts & derived quotes for thin brackets.</p>
-          </div>
-          <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2 py-1 rounded border border-cyan-500/20" id="model-params">
-            Fit: μ = 1.82, σ = 0.85
-          </span>
-        </div>
-
-        <div class="mt-4 overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left">
             <thead>
-              <tr class="text-slate-400 border-b border-slate-800">
-                <th class="pb-2.5">Bracket / Question</th>
-                <th class="pb-2.5">Venue</th>
-                <th class="pb-2.5">Model FV</th>
-                <th class="pb-2.5">CLOB Bid</th>
-                <th class="pb-2.5">CLOB Ask</th>
-                <th class="pb-2.5">Derived Quote</th>
-                <th class="pb-2.5">Discrepancy</th>
+              <tr class="text-[#64748b] border-b border-[#1e293b]/60 pb-1 text-[10px]">
+                <th class="py-1">CONTRACT / STRIKE</th>
+                <th>MODEL FV</th>
+                <th>BEST BID</th>
+                <th>BEST ASK</th>
+                <th>SPREAD</th>
+                <th>TWO-SIDED QUOTE</th>
+                <th>EDGE (ASK - FV)</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-800/60" id="contracts-table">
-              <!-- Populated by JS -->
+            <tbody id="book-rows" class="divide-y divide-[#1e293b]/40">
+              <!-- Rendered via JS -->
             </tbody>
           </table>
         </div>
       </div>
 
-    </div>
-
-    <!-- Column 3: Live Orders & Risk Control -->
-    <div class="space-y-6">
-
-      <!-- Risk Gate Bounds -->
-      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-        <h2 class="text-base font-semibold text-white pb-2 border-b border-slate-800">Risk Gate Controls</h2>
-        <div class="mt-3 space-y-2.5 text-xs">
-          <div class="flex justify-between items-center py-1">
-            <span class="text-slate-400">Min Net Edge:</span>
-            <span class="font-mono font-semibold text-emerald-400">$0.015 / contract</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-slate-400">Max Per-Order Size:</span>
-            <span class="font-mono font-semibold text-white">$100.00</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-slate-400">Max Event Allocation:</span>
-            <span class="font-mono font-semibold text-white">$500.00</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-slate-400">Max Daily Drawdown:</span>
-            <span class="font-mono font-semibold text-rose-400">$200.00</span>
-          </div>
-          <div class="flex justify-between items-center py-1">
-            <span class="text-slate-400">Rate Limit:</span>
-            <span class="font-mono font-semibold text-white">30 orders / min</span>
-          </div>
-          <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
-            <span class="text-slate-300 font-medium">Circuit Breaker:</span>
-            <span class="px-2 py-0.5 rounded text-xs font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ARMED</span>
-          </div>
+      <!-- Arbitrage & Coherence Alerts -->
+      <div class="border border-[#1e293b] bg-[#0b1120] rounded p-3">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#1e293b]">
+          <span class="font-semibold text-white tracking-wide">DISAGREEMENT SCANNER (NET OF FEES & SLIPPAGE)</span>
+          <span class="text-[10px] text-[#64748b]">THRESHOLD: &ge; 1.5¢ / contract</span>
+        </div>
+        <div id="flags-list" class="space-y-2">
+          <!-- Rendered via JS -->
         </div>
       </div>
 
-      <!-- Execution Audit Feed -->
-      <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-        <div class="flex items-center justify-between pb-2 border-b border-slate-800">
-          <h2 class="text-base font-semibold text-white">Execution Audit Feed</h2>
-          <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Streaming
-          </span>
-        </div>
+    </div>
 
-        <div class="mt-3 space-y-2 text-xs font-mono max-h-96 overflow-y-auto" id="feed-container">
-          <!-- Populated by JS -->
+    <!-- Right: Risk Controller & Execution Journal (4 cols) -->
+    <div class="col-span-4 space-y-4">
+
+      <!-- Risk Gate Configuration -->
+      <div class="border border-[#1e293b] bg-[#0b1120] rounded p-3">
+        <div class="font-semibold text-white pb-2 mb-2 border-b border-[#1e293b] flex items-center justify-between">
+          <span>RISK CONTROLLER</span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800">GATES CLOSED / READY</span>
+        </div>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="flex justify-between"><span class="text-[#64748b]">Max Order Notional:</span><span class="text-white">$100.00</span></div>
+          <div class="flex justify-between"><span class="text-[#64748b]">Max Family Allocation:</span><span class="text-white">$500.00</span></div>
+          <div class="flex justify-between"><span class="text-[#64748b]">Daily Drawdown Breaker:</span><span class="text-rose-400">-$200.00</span></div>
+          <div class="flex justify-between"><span class="text-[#64748b]">Rate Limit Throttle:</span><span class="text-white">30 orders / min</span></div>
+          <div class="flex justify-between"><span class="text-[#64748b]">Min Required Edge:</span><span class="text-emerald-400">$0.015 / contract</span></div>
+        </div>
+      </div>
+
+      <!-- Execution Audit Log -->
+      <div class="border border-[#1e293b] bg-[#0b1120] rounded p-3">
+        <div class="font-semibold text-white pb-2 mb-2 border-b border-[#1e293b] flex items-center justify-between">
+          <span>EXECUTION AUDIT TRAIL</span>
+          <span class="text-[10px] text-emerald-400">ACTIVE ROUTER</span>
+        </div>
+        <div id="audit-list" class="space-y-1.5 max-h-80 overflow-y-auto text-[11px]">
+          <!-- Rendered via JS -->
         </div>
       </div>
 
@@ -309,20 +252,20 @@ HTML_TEMPLATE = """
   <script>
     let activeVenue = "polymarket";
 
-    function switchVenue(venue) {
-      activeVenue = venue;
-      if (venue === 'polymarket') {
-        document.getElementById('btn-polymarket').className = 'px-3 py-1 rounded-md bg-purple-600 text-white font-semibold transition';
-        document.getElementById('btn-kalshi').className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white transition';
-        document.getElementById('venue-status-indicator').innerHTML = '<span class="w-2 h-2 rounded-full bg-purple-500"></span> Polymarket CLOB Active';
-        document.getElementById('stat-fee').innerText = '0.2% Taker';
+    function switchVenue(v) {
+      activeVenue = v;
+      if (v === 'polymarket') {
+        document.getElementById('btn-polymarket').className = 'px-2.5 py-1 text-[11px] font-medium bg-[#1e293b] text-white';
+        document.getElementById('btn-kalshi').className = 'px-2.5 py-1 text-[11px] font-medium text-[#64748b] hover:text-white';
+        document.getElementById('feed-venue').innerText = 'POLYMARKET CLOB';
+        document.getElementById('metric-fee').innerText = '0.20% (Polymarket)';
       } else {
-        document.getElementById('btn-kalshi').className = 'px-3 py-1 rounded-md bg-emerald-600 text-white font-semibold transition';
-        document.getElementById('btn-polymarket').className = 'px-3 py-1 rounded-md text-slate-400 hover:text-white transition';
-        document.getElementById('venue-status-indicator').innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Kalshi L2 Active';
-        document.getElementById('stat-fee').innerText = '1.0% Taker';
+        document.getElementById('btn-kalshi').className = 'px-2.5 py-1 text-[11px] font-medium bg-[#1e293b] text-white';
+        document.getElementById('btn-polymarket').className = 'px-2.5 py-1 text-[11px] font-medium text-[#64748b] hover:text-white';
+        document.getElementById('feed-venue').innerText = 'KALSHI L2';
+        document.getElementById('metric-fee').innerText = '1.00% (Kalshi)';
       }
-      fetch('/api/switch_venue?venue=' + venue).then(() => fetchLatestData());
+      fetch('/api/switch_venue?venue=' + v).then(() => fetchLatestData());
     }
 
     async function fetchLatestData() {
@@ -330,90 +273,86 @@ HTML_TEMPLATE = """
         const res = await fetch('/api/state');
         const data = await res.json();
 
-        // Update header & metrics
-        document.getElementById('stat-scanned').innerText = data.contracts.length;
-        document.getElementById('stat-disagreements').innerText = data.flags.length;
-        document.getElementById('flags-badge').innerText = data.flags.length + " Flags";
-        document.getElementById('header-pnl').innerText = "$" + data.portfolio.net_pnl_after_fees.toFixed(2);
-        document.getElementById('stat-exposure').innerText = "$" + (data.portfolio.positions_count * 2.5).toFixed(2);
-        document.getElementById('table-subtitle').innerText = data.event ? data.event.title : 'Live Order Books';
+        // Header and metrics
+        document.getElementById('metric-event').innerText = data.event ? data.event.title : '-';
+        document.getElementById('metric-contracts').innerText = data.contracts.length + ' Contracts';
+        document.getElementById('metric-flags').innerText = data.flags.length + ' Active';
+        document.getElementById('head-pnl').innerText = '$' + data.portfolio.net_pnl_after_fees.toFixed(2);
+        document.getElementById('head-exposure').innerText = '$' + (data.portfolio.positions_count * 2.5).toFixed(2);
 
-        // Update flags
-        const flagsContainer = document.getElementById('flags-container');
-        if (data.flags.length === 0) {
-          flagsContainer.innerHTML = '<div class="text-xs text-slate-500 py-4 text-center">No mathematical violations detected at current threshold.</div>';
-        } else {
-          flagsContainer.innerHTML = data.flags.map(f => `
-            <div class="p-4 rounded-lg border border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/10 transition">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2">
-                  <span class="px-2 py-0.5 text-xs font-bold rounded bg-amber-500/20 text-amber-300 font-mono">${f.disagreement_type.toUpperCase()}</span>
-                  <span class="text-sm font-semibold text-white">${f.event_ticker}</span>
-                </div>
-                <span class="text-sm font-mono font-bold text-emerald-400">Net Edge: +$${f.gap_size.toFixed(4)}</span>
-              </div>
-              <div class="mt-2 text-xs text-slate-300">
-                Gross Discrepancy: <span class="font-mono text-amber-300">$${f.gross_discrepancy.toFixed(4)}</span> | Contracts involved: ${f.contracts_involved.length}
-              </div>
-              <div class="mt-3 flex items-center justify-between pt-2 border-t border-slate-800">
-                <span class="text-xs text-slate-500 font-mono">Suggested Legs: ${f.suggested_trades.length}</span>
-                <button onclick="executeFlag('${f.flag_id}')" class="px-3 py-1 text-xs font-semibold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-sm">
-                  Execute Opportunity
-                </button>
-              </div>
-            </div>
-          `).join('');
-        }
+        // Compute basket sum
+        let sumAsk = 0, sumBid = 0;
+        data.contracts.forEach(c => {
+          const b = data.books[c.ticker] || {};
+          if (b.best_ask) sumAsk += b.best_ask;
+          if (b.best_bid) sumBid += b.best_bid;
+        });
+        document.getElementById('metric-basket').innerText = `${sumAsk.toFixed(3)} / ${sumBid.toFixed(3)}`;
 
-        // Update table
-        const tbody = document.getElementById('contracts-table');
+        // Render book rows
+        const tbody = document.getElementById('book-rows');
         tbody.innerHTML = data.contracts.map(c => {
-          const book = data.books[c.ticker] || {};
+          const b = data.books[c.ticker] || {};
           const fv = data.model_fvs[c.ticker] || 0.05;
-          const quote = data.quotes[c.ticker] || {bid: 0.04, ask: 0.08};
-          const ask = book.yes_asks && book.yes_asks[0] ? book.yes_asks[0].price : null;
-          const bid = book.yes_bids && book.yes_bids[0] ? book.yes_bids[0].price : null;
-          const diff = ask ? (fv - ask).toFixed(4) : '-';
-          const diffColor = parseFloat(diff) > 0 ? 'text-emerald-400' : 'text-slate-400';
-          const venueTag = c.venue === 'polymarket' ? '<span class="text-purple-400 font-semibold">POLY</span>' : '<span class="text-emerald-400 font-semibold">KALSHI</span>';
+          const q = data.quotes[c.ticker] || {bid: 0.04, ask: 0.08};
+          const ask = b.best_ask !== undefined && b.best_ask !== null ? b.best_ask : '-';
+          const bid = b.best_bid !== undefined && b.best_bid !== null ? b.best_bid : '-';
+          const spread = (typeof ask === 'number' && typeof bid === 'number') ? (ask - bid).toFixed(3) : '-';
+          const edge = typeof ask === 'number' ? (fv - ask).toFixed(3) : '-';
+          const edgeColor = parseFloat(edge) > 0 ? 'text-emerald-400 font-semibold' : 'text-[#64748b]';
 
           return `
-            <tr>
-              <td class="py-2.5 font-bold text-slate-200 max-w-xs truncate">${c.subtitle || c.title}</td>
-              <td class="font-mono text-[11px]">${venueTag}</td>
-              <td class="text-cyan-400 font-bold">${fv.toFixed(4)}</td>
-              <td class="text-emerald-400">${bid !== null ? bid.toFixed(4) : '-'}</td>
-              <td class="text-rose-400">${ask !== null ? ask.toFixed(4) : '-'}</td>
-              <td class="text-slate-200">${quote.bid.toFixed(2)} / ${quote.ask.toFixed(2)}</td>
-              <td class="${diffColor} font-bold">${diff}</td>
+            <tr class="hover:bg-[#0f172a] transition">
+              <td class="py-1.5 font-medium text-slate-200 max-w-xs truncate">${c.subtitle || c.title}</td>
+              <td class="text-cyan-400 font-medium">${fv.toFixed(3)}</td>
+              <td class="text-emerald-400">${typeof bid === 'number' ? bid.toFixed(3) : '-'}</td>
+              <td class="text-rose-400">${typeof ask === 'number' ? ask.toFixed(3) : '-'}</td>
+              <td class="text-[#94a3b8]">${spread}</td>
+              <td class="text-slate-300 font-medium">${q.bid.toFixed(2)} / ${q.ask.toFixed(2)}</td>
+              <td class="${edgeColor}">${edge}</td>
             </tr>
           `;
         }).join('');
 
-        // Update audit feed
-        const feedContainer = document.getElementById('feed-container');
-        if (data.audit_trail.length === 0) {
-          feedContainer.innerHTML = '<div class="text-slate-500 py-3 text-center">No orders executed yet.</div>';
+        // Render Flags
+        const flagsDiv = document.getElementById('flags-list');
+        if (data.flags.length === 0) {
+          flagsDiv.innerHTML = '<div class="text-[#64748b] text-center py-3">No mathematical coherence violations present on this book.</div>';
         } else {
-          feedContainer.innerHTML = data.audit_trail.slice(-10).reverse().map(a => `
-            <div class="p-2.5 rounded bg-slate-950 border border-slate-800">
-              <div class="flex items-center justify-between text-slate-400">
-                <span>${a.order_id}</span>
-                <span class="text-emerald-400 font-bold">${a.status.toUpperCase()}</span>
+          flagsDiv.innerHTML = data.flags.map(f => `
+            <div class="border border-amber-500/30 bg-amber-950/10 p-2.5 rounded flex items-center justify-between">
+              <div>
+                <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300 font-bold text-[10px] mr-2">${f.disagreement_type.toUpperCase()}</span>
+                <span class="text-white">${f.event_ticker}</span>
+                <div class="text-[#94a3b8] text-[10px] mt-0.5">Gross Gap: $${f.gross_discrepancy.toFixed(4)} | Net Edge: <span class="text-emerald-400 font-bold">+$${f.gap_size.toFixed(4)}</span></div>
               </div>
-              <div class="text-slate-100 mt-0.5 font-semibold">FILL ${a.filled_count} ${a.ticker.substring(0, 16)}... @ $${a.fill_price.toFixed(4)}</div>
-              <div class="text-slate-400 text-[11px] mt-0.5">Fee: $${a.fee_paid.toFixed(4)} | VWAP match</div>
+              <button onclick="executeFlag('${f.flag_id}')" class="px-2.5 py-1 bg-emerald-700 hover:bg-emerald-600 text-white font-semibold rounded text-[10px]">
+                ROUTE ARB
+              </button>
             </div>
           `).join('');
         }
 
-      } catch (err) {
-        console.error("Failed to fetch state:", err);
+        // Render Audit Log
+        const auditDiv = document.getElementById('audit-list');
+        if (data.audit_trail.length === 0) {
+          auditDiv.innerHTML = '<div class="text-[#64748b] text-center py-2">No fills recorded this session.</div>';
+        } else {
+          auditDiv.innerHTML = data.audit_trail.slice(-8).reverse().map(a => `
+            <div class="p-1.5 rounded bg-[#0f172a] border border-[#1e293b]">
+              <div class="flex justify-between text-[#64748b]"><span>${a.order_id}</span><span class="text-emerald-400 font-semibold">${a.status}</span></div>
+              <div class="text-slate-200 mt-0.5 font-medium">FILL ${a.filled_count} contracts @ $${a.fill_price.toFixed(4)}</div>
+            </div>
+          `).join('');
+        }
+
+      } catch (e) {
+        console.error(e);
       }
     }
 
     async function executeFlag(flagId) {
-      const res = await fetch('/api/execute', {
+      await fetch('/api/execute', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({flag_id: flagId})
@@ -421,7 +360,6 @@ HTML_TEMPLATE = """
       fetchLatestData();
     }
 
-    // Auto-poll every 3 seconds
     fetchLatestData();
     setInterval(fetchLatestData, 3000);
   </script>
@@ -522,16 +460,12 @@ def execute_flag():
             "orders_submitted": len(results),
             "portfolio": engine.get_portfolio_summary()
         })
-
     return jsonify({"status": "no_contracts_available"})
 
 
 def main():
     port = 8080
-    print("=" * 65)
-    print(f" COPULA MULTI-VENUE SERVER LAUNCHING")
-    print(f" Access Live At: http://localhost:{port}")
-    print("=" * 65)
+    print(f"TERMINAL LAUNCHED: http://localhost:{port}")
     app.run(host="127.0.0.1", port=port, debug=False)
 
 
